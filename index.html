@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رضا کارگر مصالح</title>
+    <title>مصالح ساختمانی رضا کارگر</title>
 
     <style>
         body {
@@ -11,6 +11,7 @@
             margin: 0;
             background: #f5f5f5;
             color: #222;
+            padding-bottom: 80px;
         }
 
         header {
@@ -50,7 +51,6 @@
             margin: auto;
         }
 
-        /* استایل کارت‌های محصول */
         .product {
             background: white;
             padding: 20px;
@@ -84,25 +84,6 @@
             line-height: 1.6;
         }
 
-        /* دکمه تماس */
-        .call-btn {
-            display: inline-block;
-            background: #25d366;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-
-        .call-btn:hover {
-            background: #128c7e;
-        }
-
-        /* استایل لیست محصولات متنی */
         .product-list {
             background: white;
             padding: 20px;
@@ -120,7 +101,7 @@
         }
 
         .product-list ul {
-            list-style-type: none; /* حذف نقطه‌های پیش‌فرض */
+            list-style-type: none;
             padding-right: 0;
         }
 
@@ -131,7 +112,72 @@
         }
 
         .product-list li::before {
-            content: "🔹 "; /* اضافه کردن آیکون به لیست */
+            content: "🔹 ";
+        }
+
+        .map-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 25px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            border: 0;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .floating-call-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .floating-call-btn:hover {
+            background: #128c7e;
+            transform: scale(1.1);
+        }
+
+        .working-hours {
+            background: #e5e7eb;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #1f2937;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .call-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .call-btn:hover {
+            background: #128c7e;
         }
     </style>
 </head>
@@ -139,7 +185,7 @@
 <body>
 
 <header>
-    <h1>رضا کارگر مصالح</h1>
+    <h1>مصالح ساختمانی رضا کارگر</h1>
     <p>فروش و عرضه مصالح ساختمانی</p>
 </header>
 
@@ -158,7 +204,6 @@
 
     <h2>محصولات ما</h2>
 
-    <!-- لیست محصولات بر اساس چیزی که گفتید -->
     <div class="product-list">
         <h3>لیست کامل محصولات:</h3>
         <ul>
@@ -172,22 +217,34 @@
             <li>پودر سنگ</li>
             <li>آجر گره‌ای</li>
             <li>سیمان سفید</li>
-            <li>آهک کیسه‌ای</li>
+            <li>آهک</li> <!-- تغییر کرد -->
         </ul>
+    </div>
+    
+    <div class="working-hours">
+        ⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب
     </div>
 
 </section>
 
+<div class="map-container">
+    <h2 style="text-align: center; color: #1f2937;">موقعیت روی نقشه</h2>
+    <!-- مختصات دقیق‌تر برای خیابان مطهری شهربابک -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.178519442423!2d55.1167483150364!3d30.11587748190898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f9f5b6b5b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sShahr-e%20Babak%2C%20Kerman%20Province!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
 <section class="contact" id="contact">
     <h2>تماس با ما</h2>
     
-    <!-- اطلاعات تماس وارد شده -->
     <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
     <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
 
-    <!-- دکمه تماس مستقیم -->
     <a href="tel:+983434130386" class="call-btn">📞 تماس مستقیم</a>
 </section>
+
+<a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">
+    📞
+</a>
 
 </body>
 </html>
