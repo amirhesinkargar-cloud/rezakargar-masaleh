@@ -95,6 +95,22 @@
             content: "🔹 ";
         }
 
+        .about-us {
+            background: white;
+            padding: 25px;
+            max-width: 900px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+            line-height: 2;
+            border-right: 4px solid #1f2937;
+        }
+
+        .about-us h2 {
+            color: #1f2937;
+            margin-top: 0;
+        }
+
         .map-container {
             max-width: 900px;
             margin: 20px auto;
@@ -109,6 +125,7 @@
             box-shadow: 0 2px 8px #ddd;
         }
 
+        /* دکمه شناور تماس (سمت چپ) */
         .floating-call-btn {
             position: fixed;
             bottom: 20px;
@@ -131,6 +148,84 @@
         .floating-call-btn:hover {
             background: #128c7e;
             transform: scale(1.1);
+        }
+
+        /* دکمه شناور اینستاگرام (سمت راست) */
+        .floating-insta-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e1306c;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+        }
+
+        .floating-insta-btn:hover {
+            background: #c13584;
+            transform: scale(1.1);
+        }
+
+        /* منوی بازشو اینستاگرام */
+        .insta-menu {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            padding: 10px;
+            z-index: 1001;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .insta-menu.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .insta-menu p {
+            margin: 5px 0 10px 0;
+            font-weight: bold;
+            color: #1f2937;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .insta-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #1f2937;
+            border-radius: 8px;
+            margin: 5px 0;
+            transition: 0.2s;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .insta-menu a:hover {
+            background: #f3f4f6;
+            color: #e1306c;
         }
 
         .working-hours {
@@ -159,13 +254,39 @@
         .call-btn:hover {
             background: #128c7e;
         }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #e1306c;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 24px;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .social-links a:hover {
+            background: #c13584;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
 <body>
 
 <header>
-    <!-- نام جدید مغازه -->
     <h1>مصالح ساختمانی و تاسیسات مرکزی کارگر</h1>
     <p>فروش مصالح ساختمانی و تجهیزات تاسیسات</p>
 </header>
@@ -173,12 +294,23 @@
 <nav>
     <a href="#">خانه</a>
     <a href="#products">محصولات</a>
+    <a href="#about">درباره ما</a>
     <a href="#contact">تماس با ما</a>
 </nav>
 
 <section class="hero">
     <h1>مصالح ساختمانی و تاسیسات با کیفیت</h1>
     <p>مشاهده محصولات و قیمت‌های روز</p>
+</section>
+
+<section class="about-us" id="about">
+    <h2>درباره ما</h2>
+    <p>
+        فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.
+    </p>
+    <p>
+        ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. رضایت شما، بزرگترین سرمایه ماست.
+    </p>
 </section>
 
 <section class="products" id="products">
@@ -188,7 +320,6 @@
     <div class="product-list">
         <h3>لیست کامل محصولات:</h3>
         <ul>
-            <!-- محصولات ساختمانی -->
             <li>انواع سیمان</li>
             <li>بلوک تیغه</li>
             <li>بلوک سقفی</li>
@@ -200,8 +331,6 @@
             <li>آجر گره‌ای</li>
             <li>سیمان سفید</li>
             <li>آهک</li>
-            
-            <!-- محصولات تاسیساتی جدید -->
             <li>انواع لوله</li>
             <li>اتصالات</li>
             <li>شیرآلات</li>
@@ -230,11 +359,45 @@
     <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
 
     <a href="tel:+983434130386" class="call-btn">📞 تماس مستقیم</a>
+
+    <!-- آیکون‌های اینستاگرام در بخش تماس با ما -->
+    <div class="social-links">
+        <a href="https://instagram.com/rezakargar_masaleh" target="_blank" title="پیج مصالح">📷</a>
+        <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" title="پیج تاسیسات">📷</a>
+    </div>
 </section>
 
+<!-- دکمه شناور تماس (سمت چپ) -->
 <a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">
     📞
 </a>
+
+<!-- دکمه شناور اینستاگرام (سمت راست) -->
+<button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
+    📷
+</button>
+
+<!-- منوی بازشو اینستاگرام -->
+<div class="insta-menu" id="instaMenu">
+    <p>صفحه اینستاگرام ما:</p>
+    <a href="https://instagram.com/rezakargar_masaleh" target="_blank">📷 پیج مصالح</a>
+    <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">📷 پیج تاسیسات</a>
+</div>
+
+<script>
+    function toggleInstaMenu() {
+        var menu = document.getElementById("instaMenu");
+        menu.classList.toggle("show");
+    }
+
+    document.addEventListener("click", function(event) {
+        var menu = document.getElementById("instaMenu");
+        var btn = document.querySelector(".floating-insta-btn");
+        if (!btn.contains(event.target) && !menu.contains(event.target)) {
+            menu.classList.remove("show");
+        }
+    });
+</script>
 
 </body>
 </html>
