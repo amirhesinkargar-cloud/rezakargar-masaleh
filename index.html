@@ -7,7 +7,7 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Tahoma, Arial, sans-serif;
             margin: 0;
             background: #f5f5f5;
             color: #222;
@@ -30,6 +30,7 @@
             color: white;
             text-decoration: none;
             margin: 10px;
+            font-weight: bold;
         }
 
         .hero {
@@ -39,7 +40,8 @@
         }
 
         .hero h1 {
-            font-size: 30px;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
 
         .products {
@@ -48,17 +50,25 @@
             margin: auto;
         }
 
+        /* استایل کارت‌های محصول */
         .product {
             background: white;
             padding: 20px;
             margin: 15px 0;
             border-radius: 10px;
             box-shadow: 0 2px 8px #ddd;
+            border-right: 4px solid #1f2937;
         }
 
-        .price {
+        .product h3 {
+            margin-top: 0;
+            color: #1f2937;
             font-size: 20px;
-            font-weight: bold;
+        }
+
+        .product p {
+            color: #555;
+            margin: 5px 0;
         }
 
         .contact {
@@ -66,6 +76,62 @@
             color: white;
             padding: 30px;
             text-align: center;
+        }
+
+        .contact p {
+            margin: 15px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* دکمه تماس */
+        .call-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .call-btn:hover {
+            background: #128c7e;
+        }
+
+        /* استایل لیست محصولات متنی */
+        .product-list {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+            margin-bottom: 20px;
+            line-height: 2;
+        }
+        
+        .product-list h3 {
+            margin-top: 0;
+            color: #1f2937;
+            border-bottom: 2px solid #f5f5f5;
+            padding-bottom: 10px;
+        }
+
+        .product-list ul {
+            list-style-type: none; /* حذف نقطه‌های پیش‌فرض */
+            padding-right: 0;
+        }
+
+        .product-list li {
+            border-bottom: 1px dashed #eee;
+            padding: 8px 0;
+            font-size: 17px;
+        }
+
+        .product-list li::before {
+            content: "🔹 "; /* اضافه کردن آیکون به لیست */
         }
     </style>
 </head>
@@ -90,32 +156,37 @@
 
 <section class="products" id="products">
 
-    <h2>محصولات</h2>
+    <h2>محصولات ما</h2>
 
-    <div class="product">
-        <h3>سیمان تیپ ۲</h3>
-        <p>وزن: ۵۰ کیلوگرم</p>
-        <p class="price">قیمت: به‌زودی</p>
-    </div>
-
-    <div class="product">
-        <h3>گچ ساختمانی</h3>
-        <p>کیسه ۳۰ کیلوگرمی</p>
-        <p class="price">قیمت: به‌زودی</p>
-    </div>
-
-    <div class="product">
-        <h3>بلوک سیمانی</h3>
-        <p>انواع بلوک ساختمانی</p>
-        <p class="price">قیمت: به‌زودی</p>
+    <!-- لیست محصولات بر اساس چیزی که گفتید -->
+    <div class="product-list">
+        <h3>لیست کامل محصولات:</h3>
+        <ul>
+            <li>انواع سیمان</li>
+            <li>بلوک تیغه</li>
+            <li>بلوک سقفی</li>
+            <li>کاشی</li>
+            <li>سرامیک</li>
+            <li>موزاییک</li>
+            <li>گچ</li>
+            <li>پودر سنگ</li>
+            <li>آجر گره‌ای</li>
+            <li>سیمان سفید</li>
+            <li>آهک کیسه‌ای</li>
+        </ul>
     </div>
 
 </section>
 
 <section class="contact" id="contact">
     <h2>تماس با ما</h2>
-    <p>📞 شماره تماس: 09xxxxxxxxx</p>
-    <p>📍 آدرس فروشگاه: آدرس مغازه</p>
+    
+    <!-- اطلاعات تماس وارد شده -->
+    <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
+    <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
+
+    <!-- دکمه تماس مستقیم -->
+    <a href="tel:+983434130386" class="call-btn">📞 تماس مستقیم</a>
 </section>
 
 </body>
