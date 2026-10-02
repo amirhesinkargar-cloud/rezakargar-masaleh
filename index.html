@@ -14,27 +14,21 @@
             padding-bottom: 80px;
         }
 
-        /* ====== هدر با لوگوی بزرگ‌تر و شیک ====== */
+        /* ====== هدر ساده و تمیز ====== */
         header {
             background: #1f2937;
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
         }
 
-        .logo {
-            max-width: 190px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 12px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            background: white;
-            padding: 6px;
+        header h1 {
+            margin: 0;
+            font-size: 26px;
         }
 
         header p {
-            margin: 5px 0 0 0;
+            margin: 8px 0 0 0;
             font-size: 15px;
             color: #d1d5db;
         }
@@ -114,6 +108,17 @@
             margin: 15px 0;
             font-size: 18px;
             line-height: 1.6;
+        }
+
+        /* لوگوی کوچیک در بخش تماس */
+        .contact-logo {
+            max-width: 100px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: white;
+            padding: 4px;
         }
 
         .product-card {
@@ -469,9 +474,6 @@
             .two-column-layout {
                 flex-direction: column;
             }
-            .logo {
-                max-width: 160px;
-            }
             nav a {
                 font-size: 13px;
                 margin: 5px;
@@ -483,7 +485,7 @@
 <body>
 
 <header>
-    <img src="0987.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="logo">
+    <h1>مصالح ساختمانی و تاسیسات مرکزی کارگر</h1>
     <p>فروش مصالح ساختمانی و تجهیزات تاسیسات</p>
 </header>
 
@@ -771,6 +773,9 @@
 </div>
 
 <section class="contact" id="contact">
+    <!-- لوگوی کوچیک در بخش تماس -->
+    <img src="0987.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="contact-logo">
+    
     <h2>تماس با ما</h2>
     <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
     <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
@@ -828,4 +833,4 @@
 </script>
 
 </body>
-                                       </html>
+            </html>
