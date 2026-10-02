@@ -64,37 +64,59 @@
             line-height: 1.6;
         }
 
-        .product-list {
+        /* ====== کارت‌های محصول ====== */
+        .product-card {
             background: white;
-            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 8px #ddd;
-            margin-bottom: 20px;
-            line-height: 2;
+            margin-bottom: 15px;
+            display: flex;
+            overflow: hidden;
+            transition: 0.3s;
         }
-        
-        .product-list h3 {
-            margin-top: 0;
+
+        .product-card:hover {
+            box-shadow: 0 4px 15px #ccc;
+            transform: translateY(-2px);
+        }
+
+        /* کادر عکس محصول */
+        .product-image {
+            width: 120px;
+            min-width: 120px;
+            height: 120px;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #9ca3af;
+            border-left: 1px solid #eee;
+        }
+
+        /* بخش مشخصات محصول */
+        .product-info {
+            padding: 15px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-info h3 {
+            margin: 0 0 8px 0;
             color: #1f2937;
-            border-bottom: 2px solid #f5f5f5;
-            padding-bottom: 10px;
+            font-size: 18px;
         }
 
-        .product-list ul {
-            list-style-type: none;
-            padding-right: 0;
+        .product-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
         }
 
-        .product-list li {
-            border-bottom: 1px dashed #eee;
-            padding: 8px 0;
-            font-size: 17px;
-        }
-
-        .product-list li::before {
-            content: "🔹 ";
-        }
-
+        /* استایل درباره ما */
         .about-us {
             background: white;
             padding: 25px;
@@ -111,7 +133,7 @@
             margin-top: 0;
         }
 
-        /* ====== استایل بخش چرا ما ====== */
+        /* استایل چرا ما را انتخاب کنید */
         .why-us {
             background: white;
             padding: 25px;
@@ -119,7 +141,7 @@
             margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 2px 8px #ddd;
-            border-right: 4px solid #25d366; /* خط سبز برای تمایز */
+            border-right: 4px solid #25d366;
         }
 
         .why-us h2 {
@@ -361,9 +383,9 @@
 
 <nav>
     <a href="#">خانه</a>
-    <a href="#why-us">مزایای ما</a>
-    <a href="#products">محصولات</a>
     <a href="#about">درباره ما</a>
+    <a href="#why-us">چرا ما را انتخاب کنید؟</a>
+    <a href="#products">محصولات</a>
     <a href="#contact">تماس با ما</a>
 </nav>
 
@@ -372,9 +394,18 @@
     <p>مشاهده محصولات و قیمت‌های روز</p>
 </section>
 
-<!-- ====== بخش چرا مشتری‌ها ما را انتخاب می‌کنند ====== -->
+<section class="about-us" id="about">
+    <h2>درباره ما</h2>
+    <p>
+        فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.
+    </p>
+    <p>
+        ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. رضایت شما، بزرگترین سرمایه ماست.
+    </p>
+</section>
+
 <section class="why-us" id="why-us">
-    <h2>چرا مشتری‌ها ما را انتخاب می‌کنند؟</h2>
+    <h2>چرا ما را انتخاب کنید؟</h2>
     <div class="features-grid">
         <div class="feature-item">
             <span class="icon">✅</span>
@@ -421,51 +452,208 @@
     </div>
 </section>
 
-<section class="about-us" id="about">
-    <h2>درباره ما</h2>
-    <p>
-        فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.
-    </p>
-    <p>
-        ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. رضایت شما، بزرگترین سرمایه ماست.
-    </p>
-</section>
-
 <section class="products" id="products">
 
     <h2>محصولات ما</h2>
 
-    <div class="product-list">
-        <h3>لیست کامل محصولات:</h3>
-        <ul>
-            <!-- محصولات ساختمانی -->
-            <li>انواع سیمان</li>
-            <li>بلوک تیغه</li>
-            <li>بلوک سقفی</li>
-            <li>کاشی</li>
-            <li>سرامیک</li>
-            <li>موزاییک</li>
-            <li>گچ</li>
-            <li>پودر سنگ</li>
-            <li>آجر گره‌ای</li>
-            <li>سیمان سفید</li>
-            <li>آهک</li>
-            
-            <!-- محصولات تاسیساتی -->
-            <li>انواع لوله</li>
-            <li>اتصالات</li>
-            <li>شیرآلات</li>
-            <li>هود</li>
-            <li>سینک</li>
-            <li>روشویی</li>
-            <li>چینی بهداشتی</li>
-            <li>پکیج</li>
-            <li>رادیاتور</li>
-            <li>کولر سلولزی</li>
-            <li>انواع مخازن آب (افقی، عمودی، ایستاده، خوابیده و...)</li>
-        </ul>
+    <!-- محصول ۱: انواع سیمان -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>انواع سیمان</h3>
+            <p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی. مناسب برای انواع سازه‌ها.</p>
+        </div>
     </div>
-    
+
+    <!-- محصول ۲: بلوک تیغه -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>بلوک تیغه</h3>
+            <p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی، با ابعاد و ضخامت‌های مختلف.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۳: بلوک سقفی -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>بلوک سقفی</h3>
+            <p>بلوک سقفی سبک و مقاوم، مناسب برای اجرای سقف‌های تیرچه بلوک.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۴: کاشی -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>کاشی</h3>
+            <p>انواع کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع، با کیفیت عالی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۵: سرامیک -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>سرامیک</h3>
+            <p>سرامیک کف و دیوار با مقاومت بالا، در ابعاد و طرح‌های مختلف.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۶: موزاییک -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>موزاییک</h3>
+            <p>موزاییک پرسی و معمولی، مناسب برای محوطه‌سازی و کف‌سازی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۷: گچ -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>گچ</h3>
+            <p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۸: پودر سنگ -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>پودر سنگ</h3>
+            <p>پودر سنگ جوشقان و سایر معادن، مناسب برای تولید بتن و ملات.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۹: آجر گره‌ای -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>آجر گره‌ای</h3>
+            <p>آجر گره‌ای و سفال، مناسب برای دیوارچینی و نماکاری.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۰: سیمان سفید -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>سیمان سفید</h3>
+            <p>سیمان سفید پاکتی، مناسب برای کارهای نما و بندکشی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۱: آهک -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>آهک</h3>
+            <p>آهک کیسه‌ای و آهک ساختمانی، مناسب برای ملات و شفته‌ریزی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۲: انواع لوله -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>انواع لوله</h3>
+            <p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۳: اتصالات -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>اتصالات</h3>
+            <p>انواع اتصالات لوله‌کشی آب و فاضلاب، در جنس‌ها و سایزهای متنوع.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۴: شیرآلات -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>شیرآلات</h3>
+            <p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر، با ضمانت.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۵: هود -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>هود</h3>
+            <p>هود آشپزخانه در مدل‌های مختلف، با کیفیت و قیمت مناسب.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۶: سینک -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>سینک</h3>
+            <p>سینک ظرفشویی در ابعاد و مدل‌های متنوع، استیل و گرانیتی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۷: روشویی -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>روشویی</h3>
+            <p>روشویی و دستشویی در طرح‌های مختلف، با کیفیت عالی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۸: چینی بهداشتی -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>چینی بهداشتی</h3>
+            <p>توالت ایرانی و فرنگی، چینی بهداشتی از برندهای معتبر.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۱۹: پکیج -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>پکیج</h3>
+            <p>پکیج دیواری و زمینی، از برندهای معتبر با گارانتی.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۲۰: رادیاتور -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>رادیاتور</h3>
+            <p>رادیاتور پنلی و آلومینیومی در ابعاد و ظرفیت‌های مختلف.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۲۱: کولر سلولزی -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>کولر سلولزی</h3>
+            <p>کولر آبی سلولزی در ظرفیت‌های مختلف، با مصرف بهینه آب و برق.</p>
+        </div>
+    </div>
+
+    <!-- محصول ۲۲: انواع مخازن آب -->
+    <div class="product-card">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+            <h3>انواع مخازن آب</h3>
+            <p>مخازن آب افقی، عمودی، ایستاده و خوابیده، در ظرفیت‌های مختلف.</p>
+        </div>
+    </div>
+
     <div class="working-hours">
         ⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب
     </div>
@@ -537,4 +725,4 @@
 </script>
 
 </body>
-        </html>
+</html>
