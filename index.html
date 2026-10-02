@@ -19,6 +19,20 @@
         nav a { color: white; text-decoration: none; margin: 8px; font-weight: bold; font-size: 14px; }
         .hero { background: white; padding: 40px 20px; text-align: center; }
         .hero h1 { font-size: 28px; margin-bottom: 10px; }
+        .hero p { color: #555; margin-bottom: 20px; }
+        .hero-btn {
+            display: inline-block;
+            background: #d97706;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+        }
+        .hero-btn:hover { background: #b45309; transform: scale(1.05); }
         .two-column-layout { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1100px; margin: 20px auto; padding: 0 25px; }
         .two-column-layout > section { flex: 1; min-width: 300px; margin: 0; }
         .products { padding: 25px; max-width: 900px; margin: auto; }
@@ -28,13 +42,33 @@
         .contact { background: #1f2937; color: white; padding: 30px; text-align: center; }
         .contact p { margin: 15px 0; font-size: 18px; line-height: 1.6; }
         .contact-logo { max-width: 100px; width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px; background: white; padding: 4px; }
-        .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; display: flex; overflow: hidden; transition: 0.3s; }
+        
+        .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
         .product-card:hover { box-shadow: 0 4px 15px #ccc; transform: translateY(-2px); }
+        .product-top { display: flex; }
         .product-image { width: 120px; min-width: 120px; height: 120px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; border-left: 1px solid #eee; overflow: hidden; }
         .product-image img { width: 100%; height: 100%; object-fit: cover; }
         .product-info { padding: 15px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .product-info h3 { margin: 0 0 8px 0; color: #1f2937; font-size: 18px; }
         .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
+        
+        /* دکمه استعلام قیمت داخل هر محصول */
+        .product-inquiry {
+            display: block;
+            background: #f3f4f6;
+            color: #1f2937;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border-top: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+        .product-inquiry:hover { background: #d97706; color: white; }
+        .product-inquiry.eitaa { background: #1f2937; color: white; }
+        .product-inquiry.eitaa:hover { background: #d97706; }
+
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
         .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
@@ -94,6 +128,8 @@
 <section class="hero">
     <h1>مصالح ساختمانی و تاسیسات با کیفیت</h1>
     <p>مشاهده محصولات و قیمت‌های روز</p>
+    <!-- دکمه کلی استعلام قیمت -->
+    <a href="#contact" class="hero-btn">📞 استعلام قیمت</a>
 </section>
 
 <div class="two-column-layout">
@@ -121,123 +157,187 @@
 
     <div class="category-title construction">مصالح ساختمانی</div>
 
-    <!-- سیمان: Gallery6 -->
     <div class="product-card">
-        <div class="product-image"><img src="Gallery6.jpg" alt="انواع سیمان"></div>
-        <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="Gallery6.jpg" alt="انواع سیمان"></div>
+            <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
-        <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
+            <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
-        <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
+            <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
-        <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
+            <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery1.jpg" alt="سرامیک"></div>
-        <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery1.jpg" alt="سرامیک"></div>
+            <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="موزاییک"></div>
-        <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="موزاییک"></div>
+            <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
-        <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
+            <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
-        <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
+            <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
-        <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
+            <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
-        <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
+            <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
-        <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
+            <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908230" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="category-title facilities">تجهیزات تاسیساتی</div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
-        <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
+            <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="اتصالات"></div>
-        <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="اتصالات"></div>
+            <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
-        <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
+            <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="هود"></div>
-        <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="هود"></div>
+            <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
-        <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
+            <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
-        <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
+            <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
-        <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
+            <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
-        <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
+            <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
-        <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
+            <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
-        <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
+            <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
-        <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
+            <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
+        </div>
+        <a href="https://eitaa.com/09133908393" target="_blank" class="product-inquiry eitaa">💬 استعلام قیمت از طریق ایتا</a>
     </div>
 
     <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
 </section>
 
-<!-- ====== گالری: Gallery6 حذف شد ====== -->
 <section class="gallery" id="gallery">
     <h2>گالری تصاویر فروشگاه</h2>
     <div class="gallery-grid">
@@ -260,6 +360,15 @@
     <h2>تماس با ما</h2>
     <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
     <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
+    
+    <h3 style="color: #d1d5db; margin-top: 25px;">استعلام قیمت از طریق ایتا:</h3>
+    <p>
+        <strong>مصالح ساختمانی:</strong> <a href="https://eitaa.com/09133908230" target="_blank" style="color: #25d366;">۰۹۱۳۳۹۰۸۲۳۰</a>
+    </p>
+    <p>
+        <strong>تاسیسات:</strong> <a href="https://eitaa.com/09133908393" target="_blank" style="color: #25d366;">۰۹۱۳۳۹۰۸۳۹۳</a>
+    </p>
+
     <a href="tel:+983434130386" class="call-btn">📞 تماس مستقیم</a>
     <div class="social-links">
         <div class="social-item">
@@ -303,4 +412,4 @@
 </script>
 
 </body>
-        </html>
+                                           </html>
