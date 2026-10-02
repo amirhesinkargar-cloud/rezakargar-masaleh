@@ -45,7 +45,6 @@
             margin-bottom: 10px;
         }
 
-        /* ====== چیدمان دو ستونه ====== */
         .two-column-layout {
             display: flex;
             flex-wrap: wrap;
@@ -67,6 +66,27 @@
             margin: auto;
         }
 
+        /* عنوان دسته‌بندی */
+        .category-title {
+            background: #1f2937;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 25px 0 15px 0;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-title.construction {
+            background: #b45309; /* رنگ قهوه‌ای برای مصالح */
+        }
+
+        .category-title.facilities {
+            background: #1e40af; /* رنگ آبی برای تاسیسات */
+        }
+
         .contact {
             background: #1f2937;
             color: white;
@@ -80,7 +100,7 @@
             line-height: 1.6;
         }
 
-        /* ====== کارت‌های محصول با عکس ====== */
+        /* کارت‌های محصول */
         .product-card {
             background: white;
             border-radius: 10px;
@@ -96,7 +116,6 @@
             transform: translateY(-2px);
         }
 
-        /* کادر عکس محصول */
         .product-image {
             width: 120px;
             min-width: 120px;
@@ -138,7 +157,7 @@
             line-height: 1.6;
         }
 
-        /* ====== گالری تصاویر ====== */
+        /* گالری */
         .gallery {
             padding: 25px;
             max-width: 900px;
@@ -181,7 +200,6 @@
             transform: scale(1.05);
         }
 
-        /* استایل درباره ما */
         .about-us {
             background: white;
             padding: 25px;
@@ -196,7 +214,6 @@
             margin-top: 0;
         }
 
-        /* استایل چرا ما را انتخاب کنید */
         .why-us {
             background: white;
             padding: 25px;
@@ -434,7 +451,6 @@
             font-weight: bold;
         }
 
-        /* واکنش‌گرایی برای موبایل */
         @media (max-width: 768px) {
             .two-column-layout {
                 flex-direction: column;
@@ -464,7 +480,6 @@
     <p>مشاهده محصولات و قیمت‌های روز</p>
 </section>
 
-<!-- چیدمان دو ستونه: درباره ما و چرا ما -->
 <div class="two-column-layout">
     <section class="about-us" id="about">
         <h2>درباره ما</h2>
@@ -525,250 +540,192 @@
     </section>
 </div>
 
-<!-- بخش محصولات -->
 <section class="products" id="products">
-    <h2>محصولات ما</h2>
+    <h2 style="text-align: center; color: #1f2937;">محصولات ما</h2>
 
-    <!-- محصول ۱: انواع سیمان -->
+    <!-- ====== دسته اول: مصالح ساختمانی ====== -->
+    <div class="category-title construction">
+        🏗️ مصالح ساختمانی
+    </div>
+
     <div class="product-card">
-        <div class="product-image">
-            <!-- عکس سیمان را جایگزین کنید: src="images/sement.jpg" -->
-            <img src="images/placeholder.jpg" alt="انواع سیمان">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="انواع سیمان"></div>
         <div class="product-info">
             <h3>انواع سیمان</h3>
-            <p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی. مناسب برای انواع سازه‌ها.</p>
+            <p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p>
         </div>
     </div>
 
-    <!-- محصول ۲: بلوک تیغه -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="بلوک تیغه">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="بلوک تیغه"></div>
         <div class="product-info">
             <h3>بلوک تیغه</h3>
-            <p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی، با ابعاد و ضخامت‌های مختلف.</p>
+            <p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p>
         </div>
     </div>
 
-    <!-- محصول ۳: بلوک سقفی -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="بلوک سقفی">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="بلوک سقفی"></div>
         <div class="product-info">
             <h3>بلوک سقفی</h3>
-            <p>بلوک سقفی سبک و مقاوم، مناسب برای اجرای سقف‌های تیرچه بلوک.</p>
+            <p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p>
         </div>
     </div>
 
-    <!-- محصول ۴: کاشی -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="کاشی">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="کاشی"></div>
         <div class="product-info">
             <h3>کاشی</h3>
-            <p>انواع کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع، با کیفیت عالی.</p>
+            <p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p>
         </div>
     </div>
 
-    <!-- محصول ۵: سرامیک -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="سرامیک">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="سرامیک"></div>
         <div class="product-info">
             <h3>سرامیک</h3>
-            <p>سرامیک کف و دیوار با مقاومت بالا، در ابعاد و طرح‌های مختلف.</p>
+            <p>سرامیک کف و دیوار با مقاومت بالا.</p>
         </div>
     </div>
 
-    <!-- محصول ۶: موزاییک -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="موزاییک">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="موزاییک"></div>
         <div class="product-info">
             <h3>موزاییک</h3>
-            <p>موزاییک پرسی و معمولی، مناسب برای محوطه‌سازی و کف‌سازی.</p>
+            <p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p>
         </div>
     </div>
 
-    <!-- محصول ۷: گچ -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="گچ">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="گچ"></div>
         <div class="product-info">
             <h3>گچ</h3>
             <p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p>
         </div>
     </div>
 
-    <!-- محصول ۸: پودر سنگ -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="پودر سنگ">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="پودر سنگ"></div>
         <div class="product-info">
             <h3>پودر سنگ</h3>
-            <p>پودر سنگ جوشقان و سایر معادن، مناسب برای تولید بتن و ملات.</p>
+            <p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p>
         </div>
     </div>
 
-    <!-- محصول ۹: آجر گره‌ای -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="آجر گره‌ای">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="آجر گره‌ای"></div>
         <div class="product-info">
             <h3>آجر گره‌ای</h3>
-            <p>آجر گره‌ای و سفال، مناسب برای دیوارچینی و نماکاری.</p>
+            <p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۰: سیمان سفید -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="سیمان سفید">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="سیمان سفید"></div>
         <div class="product-info">
             <h3>سیمان سفید</h3>
-            <p>سیمان سفید پاکتی، مناسب برای کارهای نما و بندکشی.</p>
+            <p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۱: آهک -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="آهک">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="آهک"></div>
         <div class="product-info">
             <h3>آهک</h3>
-            <p>آهک کیسه‌ای و آهک ساختمانی، مناسب برای ملات و شفته‌ریزی.</p>
+            <p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۲: انواع لوله -->
+    <!-- ====== دسته دوم: تاسیسات ====== -->
+    <div class="category-title facilities">
+        🔧 تجهیزات تاسیساتی
+    </div>
+
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="انواع لوله">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="انواع لوله"></div>
         <div class="product-info">
             <h3>انواع لوله</h3>
             <p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۳: اتصالات -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="اتصالات">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="اتصالات"></div>
         <div class="product-info">
             <h3>اتصالات</h3>
-            <p>انواع اتصالات لوله‌کشی آب و فاضلاب، در جنس‌ها و سایزهای متنوع.</p>
+            <p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۴: شیرآلات -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="شیرآلات">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="شیرآلات"></div>
         <div class="product-info">
             <h3>شیرآلات</h3>
-            <p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر، با ضمانت.</p>
+            <p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۵: هود -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="هود">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="هود"></div>
         <div class="product-info">
             <h3>هود</h3>
-            <p>هود آشپزخانه در مدل‌های مختلف، با کیفیت و قیمت مناسب.</p>
+            <p>هود آشپزخانه در مدل‌های مختلف.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۶: سینک -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="سینک">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="سینک"></div>
         <div class="product-info">
             <h3>سینک</h3>
-            <p>سینک ظرفشویی در ابعاد و مدل‌های متنوع، استیل و گرانیتی.</p>
+            <p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۷: روشویی -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="روشویی">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="روشویی"></div>
         <div class="product-info">
             <h3>روشویی</h3>
-            <p>روشویی و دستشویی در طرح‌های مختلف، با کیفیت عالی.</p>
+            <p>روشویی و دستشویی در طرح‌های مختلف.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۸: چینی بهداشتی -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="چینی بهداشتی">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="چینی بهداشتی"></div>
         <div class="product-info">
             <h3>چینی بهداشتی</h3>
-            <p>توالت ایرانی و فرنگی، چینی بهداشتی از برندهای معتبر.</p>
+            <p>توالت ایرانی و فرنگی از برندهای معتبر.</p>
         </div>
     </div>
 
-    <!-- محصول ۱۹: پکیج -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="پکیج">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="پکیج"></div>
         <div class="product-info">
             <h3>پکیج</h3>
-            <p>پکیج دیواری و زمینی، از برندهای معتبر با گارانتی.</p>
+            <p>پکیج دیواری و زمینی با گارانتی.</p>
         </div>
     </div>
 
-    <!-- محصول ۲۰: رادیاتور -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="رادیاتور">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="رادیاتور"></div>
         <div class="product-info">
             <h3>رادیاتور</h3>
-            <p>رادیاتور پنلی و آلومینیومی در ابعاد و ظرفیت‌های مختلف.</p>
+            <p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p>
         </div>
     </div>
 
-    <!-- محصول ۲۱: کولر سلولزی -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="کولر سلولزی">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="کولر سلولزی"></div>
         <div class="product-info">
             <h3>کولر سلولزی</h3>
-            <p>کولر آبی سلولزی در ظرفیت‌های مختلف، با مصرف بهینه آب و برق.</p>
+            <p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p>
         </div>
     </div>
 
-    <!-- محصول ۲۲: انواع مخازن آب -->
     <div class="product-card">
-        <div class="product-image">
-            <img src="images/placeholder.jpg" alt="انواع مخازن آب">
-        </div>
+        <div class="product-image"><img src="images/placeholder.jpg" alt="انواع مخازن آب"></div>
         <div class="product-info">
             <h3>انواع مخازن آب</h3>
-            <p>مخازن آب افقی، عمودی، ایستاده و خوابیده، در ظرفیت‌های مختلف.</p>
+            <p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p>
         </div>
     </div>
 
@@ -777,34 +734,15 @@
     </div>
 </section>
 
-<!-- ====== بخش گالری تصاویر ====== -->
 <section class="gallery" id="gallery">
     <h2>گالری تصاویر فروشگاه</h2>
     <div class="gallery-grid">
-        <!-- عکس ۱ -->
-        <div class="gallery-item">
-            <img src="images/gallery1.jpg" alt="تصویر فروشگاه ۱">
-        </div>
-        <!-- عکس ۲ -->
-        <div class="gallery-item">
-            <img src="images/gallery2.jpg" alt="تصویر فروشگاه ۲">
-        </div>
-        <!-- عکس ۳ -->
-        <div class="gallery-item">
-            <img src="images/gallery3.jpg" alt="تصویر فروشگاه ۳">
-        </div>
-        <!-- عکس ۴ -->
-        <div class="gallery-item">
-            <img src="images/gallery4.jpg" alt="تصویر فروشگاه ۴">
-        </div>
-        <!-- عکس ۵ -->
-        <div class="gallery-item">
-            <img src="images/gallery5.jpg" alt="تصویر فروشگاه ۵">
-        </div>
-        <!-- عکس ۶ -->
-        <div class="gallery-item">
-            <img src="images/gallery6.jpg" alt="تصویر فروشگاه ۶">
-        </div>
+        <div class="gallery-item"><img src="images/gallery1.jpg" alt="تصویر فروشگاه ۱"></div>
+        <div class="gallery-item"><img src="images/gallery2.jpg" alt="تصویر فروشگاه ۲"></div>
+        <div class="gallery-item"><img src="images/gallery3.jpg" alt="تصویر فروشگاه ۳"></div>
+        <div class="gallery-item"><img src="images/gallery4.jpg" alt="تصویر فروشگاه ۴"></div>
+        <div class="gallery-item"><img src="images/gallery5.jpg" alt="تصویر فروشگاه ۵"></div>
+        <div class="gallery-item"><img src="images/gallery6.jpg" alt="تصویر فروشگاه ۶"></div>
     </div>
 </section>
 
@@ -815,10 +753,8 @@
 
 <section class="contact" id="contact">
     <h2>تماس با ما</h2>
-    
     <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
     <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
-
     <a href="tel:+983434130386" class="call-btn">📞 تماس مستقیم</a>
 
     <div class="social-links">
@@ -873,4 +809,4 @@
 </script>
 
 </body>
-            </html>
+</html>
