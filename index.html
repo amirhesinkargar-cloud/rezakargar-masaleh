@@ -14,23 +14,28 @@
             padding-bottom: 80px;
         }
 
+        /* ====== هدر با لوگوی بهبود یافته ====== */
         header {
             background: #1f2937;
             color: white;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
         }
 
         .logo {
-            max-width: 220px;
+            max-width: 130px; /* کوچیک‌تر شد */
             width: 100%;
             height: auto;
             margin-bottom: 10px;
+            border-radius: 12px; /* گوشه‌های گرد */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* سایه ملایم */
+            background: white;
+            padding: 5px;
         }
 
         header p {
             margin: 5px 0 0 0;
-            font-size: 15px;
+            font-size: 14px;
             color: #d1d5db;
         }
 
@@ -43,8 +48,9 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin: 10px;
+            margin: 8px;
             font-weight: bold;
+            font-size: 14px;
         }
 
         .hero {
@@ -464,7 +470,11 @@
                 flex-direction: column;
             }
             .logo {
-                max-width: 180px;
+                max-width: 110px;
+            }
+            nav a {
+                font-size: 13px;
+                margin: 5px;
             }
         }
     </style>
@@ -473,6 +483,7 @@
 <body>
 
 <header>
+    <!-- لوگو با اندازه کوچیک‌تر و گوشه‌های گرد -->
     <img src="0987.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="logo">
     <p>فروش مصالح ساختمانی و تجهیزات تاسیسات</p>
 </header>
@@ -818,4 +829,4 @@
 </script>
 
 </body>
-                                      </html>
+            </html>
