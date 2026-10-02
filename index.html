@@ -1,352 +1,295 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصالح ساختمانی و تاسیسات مرکزی کارگر</title>
 
-<title>مصالح ساختمانی و تاسیسات مرکزی کارگر</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+            color: #222;
+            padding-bottom: 80px;
+        }
 
-<style>
-*{
-    box-sizing:border-box;
-}
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
 
-body{
-    margin:0;
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f3f4f6;
-    color:#1f2937;
-    line-height:1.8;
-}
+        nav {
+            background: #374151;
+            padding: 12px;
+            text-align: center;
+        }
 
-header{
-    background:#1f2937;
-    color:white;
-    text-align:center;
-    padding:25px 15px;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+        }
 
-header h1{
-    margin:0;
-    font-size:26px;
-}
+        .hero {
+            background: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-header p{
-    margin:8px 0 0;
-    color:#d1d5db;
-}
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
 
-nav{
-    background:#374151;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-}
+        .products {
+            padding: 25px;
+            max-width: 900px;
+            margin: auto;
+        }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    padding:12px 18px;
-}
+        .contact {
+            background: #1f2937;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
 
-nav a:hover{
-    background:#4b5563;
-}
+        .contact p {
+            margin: 15px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
 
-.hero{
-    background:white;
-    text-align:center;
-    padding:45px 20px;
-}
+        .product-list {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+            margin-bottom: 20px;
+            line-height: 2;
+        }
+        
+        .product-list h3 {
+            margin-top: 0;
+            color: #1f2937;
+            border-bottom: 2px solid #f5f5f5;
+            padding-bottom: 10px;
+        }
 
-.hero h2{
-    margin-top:0;
-    font-size:28px;
-}
+        .product-list ul {
+            list-style-type: none;
+            padding-right: 0;
+        }
 
-.hero p{
-    color:#6b7280;
-}
+        .product-list li {
+            border-bottom: 1px dashed #eee;
+            padding: 8px 0;
+            font-size: 17px;
+        }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:25px 15px;
-}
+        .product-list li::before {
+            content: "🔹 ";
+        }
 
-.section-title{
-    text-align:center;
-    margin:10px 0 25px;
-}
+        .about-us {
+            background: white;
+            padding: 25px;
+            max-width: 900px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+            line-height: 2;
+            border-right: 4px solid #1f2937;
+        }
 
-/* دسته بندی محصولات */
-.product-categories{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-bottom:25px;
-}
+        .about-us h2 {
+            color: #1f2937;
+            margin-top: 0;
+        }
 
-.category-button{
-    background:#1f2937;
-    color:white;
-    text-decoration:none;
-    padding:12px 35px;
-    border-radius:10px;
-    font-weight:bold;
-}
+        .map-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 25px;
+        }
 
-.category-button:hover{
-    background:#374151;
-}
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            border: 0;
+            box-shadow: 0 2px 8px #ddd;
+        }
 
-.category{
-    background:white;
-    border-radius:14px;
-    padding:25px;
-    margin-bottom:30px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
+        /* دکمه شناور تماس (سمت چپ) */
+        .floating-call-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 1000;
+        }
 
-.category-title{
-    text-align:center;
-    margin-top:0;
-    margin-bottom:20px;
-    font-size:25px;
-}
+        .floating-call-btn:hover {
+            background: #128c7e;
+            transform: scale(1.1);
+        }
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    gap:18px;
-}
+        /* دکمه شناور اینستاگرام (سمت راست) */
+        .floating-insta-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e1306c;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+        }
 
-.product{
-    background:#f9fafb;
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:18px;
-    text-align:center;
-}
+        .floating-insta-btn:hover {
+            background: #c13584;
+            transform: scale(1.1);
+        }
 
-.product h3{
-    margin:0 0 8px;
-    font-size:18px;
-}
+        /* استایل SVG اینستاگرام */
+        .insta-icon {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
 
-.product p{
-    margin:0;
-    color:#6b7280;
-    font-size:14px;
-}
+        /* منوی بازشو اینستاگرام */
+        .insta-menu {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            padding: 10px;
+            z-index: 1001;
+            min-width: 200px;
+            text-align: center;
+        }
 
-.about{
-    background:white;
-    padding:25px;
-    border-radius:14px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-    border-right:5px solid #1f2937;
-}
+        .insta-menu.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
 
-.contact-box{
-    background:white;
-    padding:25px;
-    border-radius:14px;
-    margin-top:25px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.contact-item{
-    margin:12px 0;
-}
+        .insta-menu p {
+            margin: 5px 0 10px 0;
+            font-weight: bold;
+            color: #1f2937;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
 
-.contact-item a{
-    color:#1f2937;
-    font-weight:bold;
-    text-decoration:none;
-}
+        .insta-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #1f2937;
+            border-radius: 8px;
+            margin: 5px 0;
+            transition: 0.2s;
+            font-size: 15px;
+            font-weight: bold;
+        }
 
-.map{
-    margin-top:25px;
-    overflow:hidden;
-    border-radius:14px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
+        .insta-menu a:hover {
+            background: #f3f4f6;
+            color: #e1306c;
+        }
 
-.map iframe{
-    width:100%;
-    height:350px;
-    border:0;
-}
+        .working-hours {
+            background: #e5e7eb;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #1f2937;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
 
-/* اینستاگرام */
-.social-section{
-    margin-top:30px;
-}
+        .call-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
 
-.social-boxes{
-    display:flex;
-    justify-content:center;
-    align-items:stretch;
-    gap:20px;
-    flex-wrap:wrap;
-}
+        .call-btn:hover {
+            background: #128c7e;
+        }
 
-.social-box{
-    background:white;
-    width:300px;
-    padding:25px 20px;
-    border-radius:14px;
-    text-align:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
+        /* آیکون‌های اینستاگرام در بخش تماس با ما */
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
 
-.social-box h3{
-    margin:0 0 8px;
-}
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #e1306c;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 24px;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-.social-box p{
-    direction:ltr;
-    color:#6b7280;
-    margin:5px 0 18px;
-}
-
-.social-box a{
-    display:inline-block;
-    background:#1f2937;
-    color:white;
-    text-decoration:none;
-    padding:8px 25px;
-    border-radius:8px;
-}
-
-.social-box a:hover{
-    background:#374151;
-}
-
-/* دکمه شناور تماس */
-.call-button{
-    position:fixed;
-    left:20px;
-    bottom:20px;
-    width:55px;
-    height:55px;
-    background:#16a34a;
-    color:white;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-decoration:none;
-    font-size:25px;
-    box-shadow:0 4px 12px rgba(0,0,0,.25);
-    z-index:1000;
-}
-
-/* دکمه شناور اینستاگرام */
-.instagram-float{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:55px;
-    height:55px;
-    background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,.25);
-    z-index:1000;
-}
-
-.instagram-float svg{
-    width:30px;
-    height:30px;
-    fill:white;
-}
-
-/* پنجره پیج های اینستاگرام */
-.instagram-menu{
-    position:fixed;
-    right:20px;
-    bottom:85px;
-    width:260px;
-    background:white;
-    border-radius:14px;
-    padding:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
-    display:none;
-    z-index:999;
-}
-
-.instagram-menu.show{
-    display:block;
-}
-
-.instagram-menu h3{
-    margin:5px 0 15px;
-    text-align:center;
-}
-
-.instagram-menu a{
-    display:block;
-    text-decoration:none;
-    color:#1f2937;
-    background:#f3f4f6;
-    padding:10px;
-    margin:8px 0;
-    border-radius:8px;
-    text-align:center;
-}
-
-.instagram-menu a:hover{
-    background:#e5e7eb;
-}
-
-footer{
-    background:#1f2937;
-    color:#d1d5db;
-    text-align:center;
-    padding:25px 15px;
-    margin-top:40px;
-}
-
-@media(max-width:600px){
-
-    header h1{
-        font-size:21px;
-    }
-
-    .hero h2{
-        font-size:23px;
-    }
-
-    .product-categories{
-        gap:10px;
-    }
-
-    .category-button{
-        padding:10px 25px;
-    }
-
-    .social-boxes{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .social-box{
-        width:100%;
-        max-width:350px;
-    }
-
-    .instagram-menu{
-        right:15px;
-        left:15px;
-        width:auto;
-    }
-}
-</style>
+        .social-links a:hover {
+            background: #c13584;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 
 <body>
@@ -357,261 +300,124 @@ footer{
 </header>
 
 <nav>
-    <a href="#home">خانه</a>
+    <a href="#">خانه</a>
     <a href="#products">محصولات</a>
     <a href="#about">درباره ما</a>
     <a href="#contact">تماس با ما</a>
 </nav>
 
-<section class="hero" id="home">
-    <h2>مصالح ساختمانی و تاسیسات با کیفیت</h2>
-    <p>مشاهده محصولات و اطلاعات فروشگاه</p>
+<section class="hero">
+    <h1>مصالح ساختمانی و تاسیسات با کیفیت</h1>
+    <p>مشاهده محصولات و قیمت‌های روز</p>
 </section>
 
-<div class="container">
+<section class="about-us" id="about">
+    <h2>درباره ما</h2>
+    <p>
+        فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.
+    </p>
+    <p>
+        ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. رضایت شما، بزرگترین سرمایه ماست.
+    </p>
+</section>
 
-    <section id="products">
-        <h2 class="section-title">محصولات ما</h2>
+<section class="products" id="products">
 
-        <div class="product-categories">
-            <a class="category-button" href="#masaleh">مصالح</a>
-            <a class="category-button" href="#tasisat">تأسیسات</a>
-        </div>
+    <h2>محصولات ما</h2>
 
-        <!-- مصالح -->
-        <div class="category" id="masaleh">
-            <h2 class="category-title">مصالح</h2>
+    <div class="product-list">
+        <h3>لیست کامل محصولات:</h3>
+        <ul>
+            <li>انواع سیمان</li>
+            <li>بلوک تیغه</li>
+            <li>بلوک سقفی</li>
+            <li>کاشی</li>
+            <li>سرامیک</li>
+            <li>موزاییک</li>
+            <li>گچ</li>
+            <li>پودر سنگ</li>
+            <li>آجر گره‌ای</li>
+            <li>سیمان سفید</li>
+            <li>آهک</li>
+            <li>انواع لوله</li>
+            <li>اتصالات</li>
+            <li>شیرآلات</li>
+            <li>هود</li>
+            <li>سینک</li>
+            <li>روشویی</li>
+            <li>چینی بهداشتی</li>
+        </ul>
+    </div>
+    
+    <div class="working-hours">
+        ⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب
+    </div>
 
-            <div class="products">
+</section>
 
-                <div class="product">
-                    <h3>انواع سیمان</h3>
-                    <p>وزن: ۵۰ کیلوگرم</p>
-                </div>
-
-                <div class="product">
-                    <h3>بلوک تیغه</h3>
-                </div>
-
-                <div class="product">
-                    <h3>بلوک سقفی</h3>
-                </div>
-
-                <div class="product">
-                    <h3>کاشی</h3>
-                </div>
-
-                <div class="product">
-                    <h3>سرامیک</h3>
-                </div>
-
-                <div class="product">
-                    <h3>موزاییک</h3>
-                </div>
-
-                <div class="product">
-                    <h3>گچ</h3>
-                    <p>وزن: ۳۵ کیلوگرم</p>
-                </div>
-
-                <div class="product">
-                    <h3>پودر سنگ</h3>
-                    <p>وزن: ۳۵ کیلوگرم</p>
-                </div>
-
-                <div class="product">
-                    <h3>آجر گره‌ای</h3>
-                </div>
-
-                <div class="product">
-                    <h3>سیمان سفید</h3>
-                    <p>وزن: ۲۵ کیلوگرم</p>
-                </div>
-
-                <div class="product">
-                    <h3>آهک</h3>
-                    <p>وزن: ۳۵ کیلوگرم</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- تأسیسات -->
-        <div class="category" id="tasisat">
-            <h2 class="category-title">تأسیسات</h2>
-
-            <div class="products">
-
-                <div class="product">
-                    <h3>انواع لوله</h3>
-                </div>
-
-                <div class="product">
-                    <h3>اتصالات</h3>
-                </div>
-
-                <div class="product">
-                    <h3>شیرآلات</h3>
-                </div>
-
-                <div class="product">
-                    <h3>پکیج</h3>
-                </div>
-
-                <div class="product">
-                    <h3>رادیاتور</h3>
-                </div>
-
-                <div class="product">
-                    <h3>کولر سلولزی</h3>
-                </div>
-
-                <div class="product">
-                    <h3>انواع مخازن آب</h3>
-                    <p>عمودی، افقی، ایستاده، خوابیده و مدل‌های دیگر</p>
-                </div>
-
-                <div class="product">
-                    <h3>هود</h3>
-                </div>
-
-                <div class="product">
-                    <h3>سینک</h3>
-                </div>
-
-                <div class="product">
-                    <h3>روشویی</h3>
-                </div>
-
-                <div class="product">
-                    <h3>چینی بهداشتی</h3>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- درباره ما -->
-    <section id="about">
-        <h2 class="section-title">درباره ما</h2>
-
-        <div class="about">
-            <p>
-                فروشگاه مصالح ساختمانی و تاسیسات مرکزی کارگر
-                با سال‌ها تجربه در زمینه فروش مصالح ساختمانی و تجهیزات تاسیسات،
-                آماده ارائه خدمات به مردم شهر شهربابک و مناطق اطراف می‌باشد.
-            </p>
-
-            <p>
-                کیفیت مناسب، قیمت منصفانه و خدمات صادقانه از اهداف اصلی ماست
-                و تلاش می‌کنیم محصولات مورد نیاز مشتریان را با بهترین شرایط
-                ارائه کنیم.
-            </p>
-        </div>
-    </section>
-
-    <!-- تماس -->
-    <section id="contact">
-        <h2 class="section-title">تماس با ما</h2>
-
-        <div class="contact-box">
-
-            <div class="contact-item">
-                <strong>شماره تماس:</strong>
-                <a href="tel:+983434130386">۰۳۴-۳۴۳۴۱۳۰۳۸۶</a>
-            </div>
-
-            <div class="contact-item">
-                <strong>آدرس:</strong>
-                شهربابک، خیابان مطهری، نبش کوچه ۱۱
-            </div>
-
-            <div class="contact-item">
-                <strong>ساعات کاری:</strong>
-                شنبه تا پنجشنبه، ۸ صبح تا ۸ شب
-            </div>
-
-        </div>
-
-        <div class="map">
-            <iframe
-                src="https://www.google.com/maps?q=شهربابک،+خیابان+مطهری،+نبش+کوچه+۱۱&output=embed"
-                loading="lazy">
-            </iframe>
-        </div>
-    </section>
-
-    <!-- اینستاگرام -->
-    <section class="social-section">
-        <h2 class="section-title">اینستاگرام</h2>
-
-        <div class="social-boxes">
-
-            <div class="social-box">
-                <h3>مصالح ساختمانی</h3>
-                <p>@rezakargar_masaleh</p>
-                <a href="https://instagram.com/rezakargar_masaleh" target="_blank">
-                    ورود
-                </a>
-            </div>
-
-            <div class="social-box">
-                <h3>تأسیسات</h3>
-                <p>@tasisat1_markazi_kargar</p>
-                <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">
-                    ورود
-                </a>
-            </div>
-
-        </div>
-    </section>
-
+<div class="map-container">
+    <h2 style="text-align: center; color: #1f2937;">موقعیت روی نقشه</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.178519442423!2d55.1167483150364!3d30.11587748190898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f9f5b6b5b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sShahr-e%20Babak%2C%20Kerman%20Province!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
 </div>
 
-<footer>
-    مصالح ساختمانی و تاسیسات مرکزی کارگر
-    <br>
-    شهربابک، خیابان مطهری، نبش کوچه ۱۱
-</footer>
+<section class="contact" id="contact">
+    <h2>تماس با ما</h2>
+    
+    <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
+    <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
 
-<!-- دکمه تماس شناور -->
-<a class="call-button" href="tel:+983434130386" aria-label="تماس">
-    ☎
+    <a href="tel:+983434130386" class="call-btn">📞 تماس مستقیم</a>
+
+    <!-- آیکون‌های اینستاگرام در بخش تماس با ما -->
+    <div class="social-links">
+        <a href="https://instagram.com/rezakargar_masaleh" target="_blank" title="پیج مصالح">
+            <!-- آیکون اینستاگرام SVG -->
+            <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" title="پیج تاسیسات">
+            <!-- آیکون اینستاگرام SVG -->
+            <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<!-- دکمه شناور تماس (سمت چپ) -->
+<a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">
+    📞
 </a>
 
-<!-- دکمه شناور اینستاگرام -->
-<div class="instagram-float" onclick="toggleInstagram()" aria-label="اینستاگرام">
-
-    <svg viewBox="0 0 24 24">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+<!-- دکمه شناور اینستاگرام (سمت راست) -->
+<button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
+    <!-- آیکون اینستاگرام SVG -->
+    <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
     </svg>
+</button>
 
-</div>
-
-<!-- منوی اینستاگرام -->
-<div class="instagram-menu" id="instagramMenu">
-
-    <h3>اینستاگرام</h3>
-
-    <a href="https://instagram.com/rezakargar_masaleh" target="_blank">
-        مصالح ساختمانی
-        <br>
-        @rezakargar_masaleh
-    </a>
-
-    <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">
-        تأسیسات
-        <br>
-        @tasisat1_markazi_kargar
-    </a>
-
+<!-- منوی بازشو اینستاگرام -->
+<div class="insta-menu" id="instaMenu">
+    <p>صفحه اینستاگرام ما:</p>
+    <a href="https://instagram.com/rezakargar_masaleh" target="_blank">📷 پیج مصالح</a>
+    <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">📷 پیج تاسیسات</a>
 </div>
 
 <script>
-function toggleInstagram(){
-    const menu = document.getElementById("instagramMenu");
-    menu.classList.toggle("show");
-}
+    function toggleInstaMenu() {
+        var menu = document.getElementById("instaMenu");
+        menu.classList.toggle("show");
+    }
+
+    document.addEventListener("click", function(event) {
+        var menu = document.getElementById("instaMenu");
+        var btn = document.querySelector(".floating-insta-btn");
+        if (!btn.contains(event.target) && !menu.contains(event.target)) {
+            menu.classList.remove("show");
+        }
+    });
 </script>
 
 </body>
