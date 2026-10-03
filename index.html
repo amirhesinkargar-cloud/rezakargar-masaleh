@@ -19,7 +19,389 @@
             color: white; 
             padding: 15px 25px; 
             text-align: center;
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصالح ساختمانی و تاسیسات مرکزی کارگر | شهربابک</title>
+    <meta name="description" content="فروش انواع مصالح ساختمانی و تجهیزات تاسیساتی در شهربابک. سیمان، بلوک، کاشی، سرامیک، لوله، شیرآلات، پکیج، رادیاتور و... با قیمت مناسب و ارسال سریع.">
+    <meta name="keywords" content="مصالح ساختمانی, تاسیسات, مصالح ساختمانی شهربابک, تاسیسات شهربابک, سیمان, بلوک, کاشی, سرامیک, لوله, شیرآلات, پکیج, رادیاتور, فلاش تانک, جامایع, آینه">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/jpeg" href="0987.jpg">
+    <link rel="apple-touch-icon" href="0987.jpg">
+
+    <style>
+        body { font-family: Tahoma, Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; padding-bottom: 80px; }
+        
+        /* ====== هدر با لوگوی جدید ====== */
+        header { 
+            background: #1f2937; 
+            color: white; 
+            padding: 15px 25px; 
+            text-align: center;
         }
+        .header-logo {
+            max-width: 260px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        nav { background: #374151; padding: 12px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 8px; font-weight: bold; font-size: 14px; }
+        .hero { background: white; padding: 40px 20px; text-align: center; }
+        .hero h1 { font-size: 28px; margin-bottom: 10px; }
+        .hero p { color: #555; margin-bottom: 20px; }
+        
+        .inquiry-btn {
+            display: inline-block;
+            background: #d97706;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+        }
+        .inquiry-btn:hover { background: #b45309; transform: scale(1.05); }
+
+        .two-column-layout { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1100px; margin: 20px auto; padding: 0 25px; }
+        .two-column-layout > section { flex: 1; min-width: 300px; margin: 0; }
+        .products { padding: 25px; max-width: 900px; margin: auto; }
+        .category-title { color: white; padding: 12px 20px; border-radius: 8px; margin: 25px 0 15px 0; font-size: 20px; text-align: center; font-weight: bold; }
+        .category-title.construction { background: #6b7280; }
+        .category-title.facilities { background: #1e40af; }
+        .contact { background: #1f2937; color: white; padding: 30px; text-align: center; }
+        .contact p { margin: 15px 0; font-size: 18px; line-height: 1.6; }
+        .contact-logo { max-width: 100px; width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px; background: white; padding: 4px; }
+        .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; display: flex; overflow: hidden; transition: 0.3s; }
+        .product-card:hover { box-shadow: 0 4px 15px #ccc; transform: translateY(-2px); }
+        .product-image { width: 120px; min-width: 120px; height: 120px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; border-left: 1px solid #eee; overflow: hidden; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding: 15px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .product-info h3 { margin: 0 0 8px 0; color: #1f2937; font-size: 18px; }
+        .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
+        .gallery { padding: 25px; max-width: 900px; margin: auto; }
+        .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item img:hover { transform: scale(1.05); }
+        .about-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; line-height: 2; border-right: 4px solid #1f2937; }
+        .about-us h2 { color: #1f2937; margin-top: 0; }
+        .why-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; border-right: 4px solid #25d366; }
+        .why-us h2 { color: #1f2937; margin-top: 0; text-align: center; margin-bottom: 20px; }
+        .features-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .feature-item { background: #f9fafb; padding: 12px 15px; border-radius: 8px; border-right: 3px solid #25d366; display: flex; align-items: flex-start; gap: 10px; }
+        .feature-item .icon { color: #25d366; font-size: 18px; font-weight: bold; }
+        .feature-item strong { color: #1f2937; display: block; margin-bottom: 3px; font-size: 15px; }
+        .feature-item p { margin: 0; font-size: 13px; color: #555; line-height: 1.5; }
+        .map-container { max-width: 900px; margin: 20px auto; padding: 0 25px; }
+        .map-container iframe { width: 100%; height: 300px; border-radius: 10px; border: 0; box-shadow: 0 2px 8px #ddd; }
+        .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; }
+        .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
+        .floating-insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; cursor: pointer; border: none; }
+        .floating-insta-btn:hover { background: #c13584; transform: scale(1.1); }
+        .insta-icon { width: 30px; height: 30px; fill: white; }
+        .insta-menu { display: none; position: fixed; bottom: 90px; right: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); padding: 10px; z-index: 1001; min-width: 200px; text-align: center; }
+        .insta-menu.show { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .insta-menu p { margin: 5px 0 10px 0; font-weight: bold; color: #1f2937; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .insta-menu a { display: block; padding: 10px; text-decoration: none; color: #1f2937; border-radius: 8px; margin: 5px 0; transition: 0.2s; font-size: 15px; font-weight: bold; }
+        .insta-menu a:hover { background: #f3f4f6; color: #e1306c; }
+        .working-hours { background: #e5e7eb; padding: 15px; text-align: center; font-weight: bold; color: #1f2937; margin-top: 20px; border-radius: 10px; }
+        .call-btn { display: inline-block; background: #25d366; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; margin-top: 15px; transition: 0.3s; }
+        .call-btn:hover { background: #128c7e; }
+        
+        .personal-call-btn {
+            display: inline-block;
+            background: #374151;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 8px;
+            transition: 0.3s;
+            border: 2px solid #25d366;
+        }
+        .personal-call-btn:hover { background: #25d366; }
+
+        .social-links { margin-top: 20px; display: flex; justify-content: center; gap: 25px; }
+        .social-item { text-align: center; }
+        .social-item a { display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; background: #e1306c; color: white; border-radius: 50%; text-decoration: none; font-size: 24px; transition: 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .social-item a:hover { background: #c13584; transform: scale(1.1); }
+        .social-item span { display: block; margin-top: 8px; font-size: 13px; color: #ddd; font-weight: bold; }
+        
+        @media (max-width: 768px) { 
+            .two-column-layout { flex-direction: column; } 
+            nav a { font-size: 13px; margin: 5px; }
+            .header-logo { max-width: 200px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="iu.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="header-logo">
+</header>
+
+<nav>
+    <a href="#">خانه</a>
+    <a href="#about">درباره ما</a>
+    <a href="#why-us">چرا ما را انتخاب کنید؟</a>
+    <a href="#products">محصولات</a>
+    <a href="#gallery">گالری</a>
+    <a href="#contact">تماس با ما</a>
+</nav>
+
+<section class="hero">
+    <h1>مصالح ساختمانی و تاسیسات با کیفیت</h1>
+    <p>مشاهده محصولات و قیمت‌های روز</p>
+    <a href="#contact" class="inquiry-btn">📞 استعلام قیمت</a>
+</section>
+
+<div class="two-column-layout">
+    <section class="about-us" id="about">
+        <h2>درباره ما</h2>
+        <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.</p>
+        <p>ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. رضایت شما، بزرگترین سرمایه ماست.</p>
+    </section>
+
+    <section class="why-us" id="why-us">
+        <h2>چرا ما را انتخاب کنید؟</h2>
+        <div class="features-grid">
+            <div class="feature-item"><span class="icon">✅</span><div><strong>کیفیت تضمینی</strong><p>تمام محصولات از برندهای معتبر و با ضمانت کیفیت عرضه می‌شوند.</p></div></div>
+            <div class="feature-item"><span class="icon">✅</span><div><strong>قیمت مناسب</strong><p>خرید مستقیم از تولیدکننده و ارائه قیمت رقابتی به شما.</p></div></div>
+            <div class="feature-item"><span class="icon">✅</span><div><strong>تنوع کامل</strong><p>از مصالح ساختمانی تا تجهیزات تاسیساتی، همه چیز یکجا.</p></div></div>
+            <div class="feature-item"><span class="icon">✅</span><div><strong>ارسال سریع</strong><p>با ناوگان حمل و نقل خودمان، سفارش شما در کمترین زمان ارسال می‌شود.</p></div></div>
+            <div class="feature-item"><span class="icon">✅</span><div><strong>مشاوره رایگان</strong><p>کارشناسان ما آماده راهنمایی شما در انتخاب بهترین محصول هستند.</p></div></div>
+            <div class="feature-item"><span class="icon">✅</span><div><strong>سابقه درخشان</strong><p>سال‌هاست در خدمت هم‌شهری‌های عزیز در شهربابک و حومه هستیم.</p></div></div>
+        </div>
+    </section>
+</div>
+
+<section class="products" id="products">
+    <h2 style="text-align: center; color: #1f2937;">محصولات ما</h2>
+
+    <div class="category-title construction">مصالح ساختمانی</div>
+
+    <!-- سیمان با عکس جدید png.67 -->
+    <div class="product-card">
+        <div class="product-image"><img src="png.67" alt="انواع سیمان"></div>
+        <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
+        <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
+        <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
+        <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery1.jpg" alt="سرامیک"></div>
+        <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
+    </div>
+
+    <!-- موزاییک با عکس جدید png.76 -->
+    <div class="product-card">
+        <div class="product-image"><img src="png.76" alt="موزاییک"></div>
+        <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
+        <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
+        <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
+        <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
+        <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
+        <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
+    </div>
+
+    <div class="category-title facilities">تجهیزات تاسیساتی</div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
+        <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="اتصالات"></div>
+        <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
+        <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="هود"></div>
+        <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
+        <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
+        <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
+        <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="انواع فلاش تانک"></div>
+        <div class="product-info"><h3>انواع فلاش تانک</h3><p>فلاش تانک توکار و روکار، در مدل‌های مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="جامایع"></div>
+        <div class="product-info"><h3>جامایع</h3><p>جامایع در طرح‌ها و رنگ‌های متنوع.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="جادستمال"></div>
+        <div class="product-info"><h3>جادستمال</h3><p>جادستمال در طرح‌ها و رنگ‌های مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="آینه"></div>
+        <div class="product-info"><h3>آینه</h3><p>آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
+        <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
+        <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
+        <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
+        <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
+    </div>
+
+    <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
+</section>
+
+<!-- ====== گالری با دو عکس جدید در ابتدا ====== -->
+<section class="gallery" id="gallery">
+    <h2>گالری تصاویر فروشگاه</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="png.76" alt="تصویر فروشگاه ۱"></div>
+        <div class="gallery-item"><img src="png.67" alt="تصویر فروشگاه ۲"></div>
+        <div class="gallery-item"><img src="gallery1.jpg" alt="تصویر فروشگاه ۳"></div>
+        <div class="gallery-item"><img src="gallery2.jpg" alt="تصویر فروشگاه ۴"></div>
+        <div class="gallery-item"><img src="gallery3.jpg" alt="تصویر فروشگاه ۵"></div>
+        <div class="gallery-item"><img src="gallery4.jpg" alt="تصویر فروشگاه ۶"></div>
+    </div>
+</section>
+
+<div class="map-container">
+    <h2 style="text-align: center; color: #1f2937;">موقعیت روی نقشه</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.123456789!2d55.110361!3d30.128111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzQxLjIiTiA1NcKwMDYnMzcuMyJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<section class="contact" id="contact">
+    <img src="0987.jpg" alt="لوگو" class="contact-logo">
+    <h2>تماس با ما</h2>
+    <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
+    <p>📍 آدرس فروشگاه: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
+    
+    <h3 style="color: #d1d5db; margin-top: 25px;">برای استعلام قیمت با ما تماس بگیرید:</h3>
+    <a href="tel:09133908230" class="personal-call-btn">📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰</a>
+    <a href="tel:09133908393" class="personal-call-btn">📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳</a>
+
+    <br>
+    <a href="tel:+983434130386" class="call-btn">📞 تماس با مغازه</a>
+    <div class="social-links">
+        <div class="social-item">
+            <a href="https://instagram.com/rezakargar_masaleh" target="_blank" title="پیج مصالح">
+                <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <span>مصالح</span>
+        </div>
+        <div class="social-item">
+            <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" title="پیج تاسیسات">
+                <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <span>تاسیسات</span>
+        </div>
+    </div>
+</section>
+
+<a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">📞</a>
+<button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
+    <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</button>
+
+<div class="insta-menu" id="instaMenu">
+    <p>صفحه اینستاگرام ما:</p>
+    <a href="https://instagram.com/rezakargar_masaleh" target="_blank">📷 پیج مصالح</a>
+    <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">📷 پیج تاسیسات</a>
+</div>
+
+<script>
+    function toggleInstaMenu() {
+        var menu = document.getElementById("instaMenu");
+        menu.classList.toggle("show");
+    }
+    document.addEventListener("click", function(event) {
+        var menu = document.getElementById("instaMenu");
+        var btn = document.querySelector(".floating-insta-btn");
+        if (!btn.contains(event.target) && !menu.contains(event.target)) {
+            menu.classList.remove("show");
+        }
+    });
+</script>
+
+</body>
+</html>        }
         .header-logo {
             max-width: 260px;
             width: 100%;
