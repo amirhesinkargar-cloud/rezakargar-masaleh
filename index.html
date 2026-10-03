@@ -54,6 +54,8 @@
             gap: 4px;
             flex-shrink: 0;
         }
+        
+        /* دکمه + اولیه */
         .add-icon-btn {
             background: transparent;
             color: #0d9488;
@@ -71,21 +73,55 @@
             font-weight: bold;
         }
         .add-icon-btn:hover { background: #0d9488; color: white; }
-        .add-icon-btn.added { background: #0d9488; color: white; }
         
-        /* شمارنده تعداد کنار محصول */
-        .product-qty-badge {
-            background: #0d9488;
-            color: white;
-            border-radius: 10px;
-            padding: 2px 10px;
-            font-size: 13px;
-            font-weight: bold;
+        /* کادر تعداد (بعد از کلیک اول نمایش داده میشه) */
+        .qty-control {
             display: none;
-            min-width: 20px;
-            text-align: center;
+            align-items: center;
+            gap: 3px;
+            background: #f0fdfa;
+            border: 1.5px solid #0d9488;
+            border-radius: 8px;
+            padding: 2px;
         }
-        .product-qty-badge.show { display: block; }
+        .qty-control.show { display: flex; }
+        .qty-control button {
+            background: transparent;
+            border: none;
+            color: #0d9488;
+            width: 26px;
+            height: 26px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+        .qty-control button:hover { background: #0d9488; color: white; }
+        .qty-control input {
+            width: 38px;
+            height: 26px;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: bold;
+            color: #0f766e;
+            outline: none;
+        }
+        /* حذف فلش‌های پیش‌فرض input number */
+        .qty-control input::-webkit-outer-spin-button,
+        .qty-control input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .qty-control input[type=number] {
+            -moz-appearance: textfield;
+        }
 
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
         .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
@@ -236,7 +272,7 @@
         }
         .cart-footer button:hover { background: #0f766e; }
 
-        /* ====== دکمه شناور سبد خرید (مدرن) ====== */
+        /* ====== دکمه شناور سبد خرید ====== */
         .floating-cart-btn {
             position: fixed;
             bottom: 90px;
@@ -334,9 +370,13 @@
         <div class="product-top">
             <div class="product-image"><img src="67.png" alt="انواع سیمان"></div>
             <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('انواع سیمان', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-انواع سیمان"></span>
+            <div class="add-section" id="section-انواع سیمان">
+                <button class="add-icon-btn" onclick="activateProduct('انواع سیمان', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-انواع سیمان">
+                    <button onclick="decreaseQty('انواع سیمان')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع سیمان', this.value)" id="input-انواع سیمان">
+                    <button onclick="increaseQty('انواع سیمان')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -345,9 +385,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
             <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('بلوک تیغه', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-بلوک تیغه"></span>
+            <div class="add-section" id="section-بلوک تیغه">
+                <button class="add-icon-btn" onclick="activateProduct('بلوک تیغه', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-بلوک تیغه">
+                    <button onclick="decreaseQty('بلوک تیغه')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('بلوک تیغه', this.value)" id="input-بلوک تیغه">
+                    <button onclick="increaseQty('بلوک تیغه')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -356,9 +400,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
             <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('بلوک سقفی', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-بلوک سقفی"></span>
+            <div class="add-section" id="section-بلوک سقفی">
+                <button class="add-icon-btn" onclick="activateProduct('بلوک سقفی', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-بلوک سقفی">
+                    <button onclick="decreaseQty('بلوک سقفی')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('بلوک سقفی', this.value)" id="input-بلوک سقفی">
+                    <button onclick="increaseQty('بلوک سقفی')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -367,9 +415,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
             <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('کاشی', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-کاشی"></span>
+            <div class="add-section" id="section-کاشی">
+                <button class="add-icon-btn" onclick="activateProduct('کاشی', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-کاشی">
+                    <button onclick="decreaseQty('کاشی')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('کاشی', this.value)" id="input-کاشی">
+                    <button onclick="increaseQty('کاشی')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -378,9 +430,13 @@
         <div class="product-top">
             <div class="product-image"><img src="as.png" alt="سرامیک"></div>
             <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('سرامیک', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-سرامیک"></span>
+            <div class="add-section" id="section-سرامیک">
+                <button class="add-icon-btn" onclick="activateProduct('سرامیک', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-سرامیک">
+                    <button onclick="decreaseQty('سرامیک')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('سرامیک', this.value)" id="input-سرامیک">
+                    <button onclick="increaseQty('سرامیک')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -389,9 +445,13 @@
         <div class="product-top">
             <div class="product-image"><img src="76.png" alt="موزاییک"></div>
             <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('موزاییک', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-موزاییک"></span>
+            <div class="add-section" id="section-موزاییک">
+                <button class="add-icon-btn" onclick="activateProduct('موزاییک', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-موزاییک">
+                    <button onclick="decreaseQty('موزاییک')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('موزاییک', this.value)" id="input-موزاییک">
+                    <button onclick="increaseQty('موزاییک')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -400,9 +460,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
             <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('گچ', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-گچ"></span>
+            <div class="add-section" id="section-گچ">
+                <button class="add-icon-btn" onclick="activateProduct('گچ', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-گچ">
+                    <button onclick="decreaseQty('گچ')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('گچ', this.value)" id="input-گچ">
+                    <button onclick="increaseQty('گچ')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -411,9 +475,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
             <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('پودر سنگ', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-پودر سنگ"></span>
+            <div class="add-section" id="section-پودر سنگ">
+                <button class="add-icon-btn" onclick="activateProduct('پودر سنگ', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-پودر سنگ">
+                    <button onclick="decreaseQty('پودر سنگ')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('پودر سنگ', this.value)" id="input-پودر سنگ">
+                    <button onclick="increaseQty('پودر سنگ')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -422,9 +490,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
             <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('آجر گره‌ای', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-آجر گره‌ای"></span>
+            <div class="add-section" id="section-آجر گره‌ای">
+                <button class="add-icon-btn" onclick="activateProduct('آجر گره‌ای', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-آجر گره‌ای">
+                    <button onclick="decreaseQty('آجر گره‌ای')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('آجر گره‌ای', this.value)" id="input-آجر گره‌ای">
+                    <button onclick="increaseQty('آجر گره‌ای')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -433,9 +505,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
             <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('سیمان سفید', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-سیمان سفید"></span>
+            <div class="add-section" id="section-سیمان سفید">
+                <button class="add-icon-btn" onclick="activateProduct('سیمان سفید', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-سیمان سفید">
+                    <button onclick="decreaseQty('سیمان سفید')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('سیمان سفید', this.value)" id="input-سیمان سفید">
+                    <button onclick="increaseQty('سیمان سفید')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -444,9 +520,13 @@
         <div class="product-top">
             <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
             <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('آهک', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-آهک"></span>
+            <div class="add-section" id="section-آهک">
+                <button class="add-icon-btn" onclick="activateProduct('آهک', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-آهک">
+                    <button onclick="decreaseQty('آهک')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('آهک', this.value)" id="input-آهک">
+                    <button onclick="increaseQty('آهک')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -457,9 +537,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
             <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('انواع لوله', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-انواع لوله"></span>
+            <div class="add-section" id="section-انواع لوله">
+                <button class="add-icon-btn" onclick="activateProduct('انواع لوله', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-انواع لوله">
+                    <button onclick="decreaseQty('انواع لوله')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع لوله', this.value)" id="input-انواع لوله">
+                    <button onclick="increaseQty('انواع لوله')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -468,9 +552,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="اتصالات"></div>
             <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('اتصالات', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-اتصالات"></span>
+            <div class="add-section" id="section-اتصالات">
+                <button class="add-icon-btn" onclick="activateProduct('اتصالات', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-اتصالات">
+                    <button onclick="decreaseQty('اتصالات')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('اتصالات', this.value)" id="input-اتصالات">
+                    <button onclick="increaseQty('اتصالات')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -479,9 +567,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
             <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('شیرآلات', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-شیرآلات"></span>
+            <div class="add-section" id="section-شیرآلات">
+                <button class="add-icon-btn" onclick="activateProduct('شیرآلات', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-شیرآلات">
+                    <button onclick="decreaseQty('شیرآلات')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('شیرآلات', this.value)" id="input-شیرآلات">
+                    <button onclick="increaseQty('شیرآلات')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -490,9 +582,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="هود"></div>
             <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('هود', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-هود"></span>
+            <div class="add-section" id="section-هود">
+                <button class="add-icon-btn" onclick="activateProduct('هود', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-هود">
+                    <button onclick="decreaseQty('هود')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('هود', this.value)" id="input-هود">
+                    <button onclick="increaseQty('هود')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -501,9 +597,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
             <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('سینک', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-سینک"></span>
+            <div class="add-section" id="section-سینک">
+                <button class="add-icon-btn" onclick="activateProduct('سینک', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-سینک">
+                    <button onclick="decreaseQty('سینک')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('سینک', this.value)" id="input-سینک">
+                    <button onclick="increaseQty('سینک')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -512,9 +612,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
             <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('روشویی', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-روشویی"></span>
+            <div class="add-section" id="section-روشویی">
+                <button class="add-icon-btn" onclick="activateProduct('روشویی', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-روشویی">
+                    <button onclick="decreaseQty('روشویی')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('روشویی', this.value)" id="input-روشویی">
+                    <button onclick="increaseQty('روشویی')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -523,9 +627,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
             <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('چینی بهداشتی', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-چینی بهداشتی"></span>
+            <div class="add-section" id="section-چینی بهداشتی">
+                <button class="add-icon-btn" onclick="activateProduct('چینی بهداشتی', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-چینی بهداشتی">
+                    <button onclick="decreaseQty('چینی بهداشتی')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('چینی بهداشتی', this.value)" id="input-چینی بهداشتی">
+                    <button onclick="increaseQty('چینی بهداشتی')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -534,9 +642,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع فلاش تانک"></div>
             <div class="product-info"><h3>انواع فلاش تانک</h3><p>فلاش تانک توکار و روکار، در مدل‌های مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('انواع فلاش تانک', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-انواع فلاش تانک"></span>
+            <div class="add-section" id="section-انواع فلاش تانک">
+                <button class="add-icon-btn" onclick="activateProduct('انواع فلاش تانک', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-انواع فلاش تانک">
+                    <button onclick="decreaseQty('انواع فلاش تانک')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع فلاش تانک', this.value)" id="input-انواع فلاش تانک">
+                    <button onclick="increaseQty('انواع فلاش تانک')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -545,9 +657,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="جامایع"></div>
             <div class="product-info"><h3>جامایع</h3><p>جامایع در طرح‌ها و رنگ‌های متنوع.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('جامایع', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-جامایع"></span>
+            <div class="add-section" id="section-جامایع">
+                <button class="add-icon-btn" onclick="activateProduct('جامایع', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-جامایع">
+                    <button onclick="decreaseQty('جامایع')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('جامایع', this.value)" id="input-جامایع">
+                    <button onclick="increaseQty('جامایع')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -556,9 +672,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="جادستمال"></div>
             <div class="product-info"><h3>جادستمال</h3><p>جادستمال در طرح‌ها و رنگ‌های مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('جادستمال', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-جادستمال"></span>
+            <div class="add-section" id="section-جادستمال">
+                <button class="add-icon-btn" onclick="activateProduct('جادستمال', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-جادستمال">
+                    <button onclick="decreaseQty('جادستمال')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('جادستمال', this.value)" id="input-جادستمال">
+                    <button onclick="increaseQty('جادستمال')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -567,9 +687,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="آینه"></div>
             <div class="product-info"><h3>آینه</h3><p>آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('آینه', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-آینه"></span>
+            <div class="add-section" id="section-آینه">
+                <button class="add-icon-btn" onclick="activateProduct('آینه', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-آینه">
+                    <button onclick="decreaseQty('آینه')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('آینه', this.value)" id="input-آینه">
+                    <button onclick="increaseQty('آینه')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -578,9 +702,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
             <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('پکیج', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-پکیج"></span>
+            <div class="add-section" id="section-پکیج">
+                <button class="add-icon-btn" onclick="activateProduct('پکیج', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-پکیج">
+                    <button onclick="decreaseQty('پکیج')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('پکیج', this.value)" id="input-پکیج">
+                    <button onclick="increaseQty('پکیج')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -589,9 +717,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
             <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('رادیاتور', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-رادیاتور"></span>
+            <div class="add-section" id="section-رادیاتور">
+                <button class="add-icon-btn" onclick="activateProduct('رادیاتور', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-رادیاتور">
+                    <button onclick="decreaseQty('رادیاتور')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('رادیاتور', this.value)" id="input-رادیاتور">
+                    <button onclick="increaseQty('رادیاتور')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -600,9 +732,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
             <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('کولر سلولزی', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-کولر سلولزی"></span>
+            <div class="add-section" id="section-کولر سلولزی">
+                <button class="add-icon-btn" onclick="activateProduct('کولر سلولزی', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-کولر سلولزی">
+                    <button onclick="decreaseQty('کولر سلولزی')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('کولر سلولزی', this.value)" id="input-کولر سلولزی">
+                    <button onclick="increaseQty('کولر سلولزی')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -611,9 +747,13 @@
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
             <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
-            <div class="add-section">
-                <button class="add-icon-btn" onclick="addToCart('انواع مخازن آب', this)" title="افزودن به لیست">+</button>
-                <span class="product-qty-badge" id="badge-انواع مخازن آب"></span>
+            <div class="add-section" id="section-انواع مخازن آب">
+                <button class="add-icon-btn" onclick="activateProduct('انواع مخازن آب', this)" title="افزودن به لیست">+</button>
+                <div class="qty-control" id="qty-انواع مخازن آب">
+                    <button onclick="decreaseQty('انواع مخازن آب')">−</button>
+                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع مخازن آب', this.value)" id="input-انواع مخازن آب">
+                    <button onclick="increaseQty('انواع مخازن آب')">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -703,66 +843,108 @@
     // ====== لیست خرید ======
     let cart = [];
 
-    function addToCart(productName, btn) {
-        // پیدا کردن محصول در سبد
-        const existingItem = cart.find(item => item.name === productName);
+    // فعال‌سازی محصول (وقتی اولین بار + زده میشه)
+    function activateProduct(productName, btn) {
+        // مخفی کردن دکمه +
+        btn.style.display = 'none';
         
+        // نمایش کادر تعداد
+        const qtyControl = document.getElementById('qty-' + productName);
+        if (qtyControl) {
+            qtyControl.classList.add('show');
+        }
+        
+        // اضافه کردن به سبد
+        const existingItem = cart.find(item => item.name === productName);
         if (existingItem) {
-            if (existingItem.qty < 100) {
-                existingItem.qty++;
-            }
+            if (existingItem.qty < 100) existingItem.qty++;
         } else {
             cart.push({ name: productName, qty: 1 });
         }
         
-        updateCart();
-        updateProductBadge(productName);
-        
-        // انیمیشن دکمه
-        if (btn) {
-            btn.classList.add('added');
-            setTimeout(() => {
-                btn.classList.remove('added');
-            }, 500);
+        // آپدیت input
+        const input = document.getElementById('input-' + productName);
+        if (input) {
+            const item = cart.find(i => i.name === productName);
+            if (item) input.value = item.qty;
         }
+        
+        updateCart();
+    }
+
+    // کم کردن تعداد
+    function decreaseQty(productName) {
+        const item = cart.find(i => i.name === productName);
+        if (!item) return;
+        
+        if (item.qty > 1) {
+            item.qty--;
+        } else {
+            // اگه تعداد به ۱ رسید و باز − زد، کل محصول حذف بشه
+            cart = cart.filter(i => i.name !== productName);
+            const qtyControl = document.getElementById('qty-' + productName);
+            if (qtyControl) qtyControl.classList.remove('show');
+            
+            // نمایش مجدد دکمه +
+            const section = document.getElementById('section-' + productName);
+            if (section) {
+                const addBtn = section.querySelector('.add-icon-btn');
+                if (addBtn) addBtn.style.display = 'flex';
+            }
+        }
+        
+        // آپدیت input
+        const input = document.getElementById('input-' + productName);
+        const currentItem = cart.find(i => i.name === productName);
+        if (input && currentItem) input.value = currentItem.qty;
+        
+        updateCart();
+    }
+
+    // زیاد کردن تعداد
+    function increaseQty(productName) {
+        const item = cart.find(i => i.name === productName);
+        if (item && item.qty < 100) {
+            item.qty++;
+            const input = document.getElementById('input-' + productName);
+            if (input) input.value = item.qty;
+            updateCart();
+        }
+    }
+
+    // تنظیم دستی تعداد (با تایپ)
+    function setQty(productName, value) {
+        let qty = parseInt(value) || 1;
+        if (qty < 1) qty = 1;
+        if (qty > 100) qty = 100;
+        
+        const item = cart.find(i => i.name === productName);
+        if (item) {
+            item.qty = qty;
+        } else {
+            cart.push({ name: productName, qty: qty });
+        }
+        
+        const input = document.getElementById('input-' + productName);
+        if (input) input.value = qty;
+        
+        updateCart();
     }
 
     function removeFromCart(productName) {
         cart = cart.filter(item => item.name !== productName);
-        updateCart();
-        updateProductBadge(productName);
-    }
-
-    function increaseQty(productName) {
-        const item = cart.find(item => item.name === productName);
-        if (item && item.qty < 100) {
-            item.qty++;
-            updateCart();
-            updateProductBadge(productName);
-        }
-    }
-
-    function decreaseQty(productName) {
-        const item = cart.find(item => item.name === productName);
-        if (item && item.qty > 1) {
-            item.qty--;
-            updateCart();
-            updateProductBadge(productName);
-        }
-    }
-
-    // آپدیت شمارنده کنار محصول
-    function updateProductBadge(productName) {
-        const badge = document.getElementById('badge-' + productName);
-        if (!badge) return;
         
-        const item = cart.find(i => i.name === productName);
-        if (item && item.qty > 0) {
-            badge.textContent = item.qty;
-            badge.classList.add('show');
-        } else {
-            badge.classList.remove('show');
+        // مخفی کردن کادر تعداد و نمایش مجدد دکمه +
+        const qtyControl = document.getElementById('qty-' + productName);
+        if (qtyControl) qtyControl.classList.remove('show');
+        
+        const section = document.getElementById('section-' + productName);
+        if (section) {
+            const addBtn = section.querySelector('.add-icon-btn');
+            if (addBtn) addBtn.style.display = 'flex';
         }
+        
+        updateCart();
     }
 
     function updateCart() {
@@ -770,11 +952,9 @@
         const cartCount = document.getElementById('cartCount');
         const floatingCartBtn = document.getElementById('floatingCartBtn');
         
-        // محاسبه تعداد کل اقلام
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         cartCount.textContent = totalItems;
         
-        // نمایش یا مخفی کردن دکمه شناور سبد خرید
         if (cart.length > 0) {
             floatingCartBtn.classList.add('show');
         } else {
@@ -844,4 +1024,4 @@
 </script>
 
 </body>
-                                                                      </html>
+    </html>
