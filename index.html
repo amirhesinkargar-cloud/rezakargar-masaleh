@@ -143,7 +143,7 @@
 <nav>
     <a href="#">خانه</a>
     <a href="#about">درباره ما</a>
-    <a href="#why-us">چرا ما را انتخاب کنید؟</a>
+    <a href="#map">نقشه</a>
     <a href="#products">محصولات</a>
     <a href="#gallery">گالری</a>
     <a href="#contact">تماس با ما</a>
@@ -587,7 +587,7 @@
     </div>
 </section>
 
-<div class="map-container">
+<div class="map-container" id="map">
     <h2 style="text-align: center; color: #1f2937;">موقعیت روی نقشه</h2>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.123456789!2d55.110361!3d30.128111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzQxLjIiTiA1NcKwMDYnMzcuMyJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
 </div>
@@ -797,19 +797,16 @@
         document.getElementById("instaMenu").classList.toggle("show");
     }
 
-    // ====== بستن منوها وقتی جای دیگه کلیک میشه ======
     document.addEventListener("click", function(event) {
         var menu = document.getElementById("instaMenu");
         var instaBtn = document.querySelector(".floating-insta-btn");
         var cartWindow = document.getElementById("cartWindow");
         var cartBtn = document.getElementById("floatingCartBtn");
         
-        // بستن منوی اینستاگرام
         if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) {
             menu.classList.remove("show");
         }
         
-        // بستن پنجره سبد خرید فقط اگر کلیک روی دکمه شناور یا بیرون از پنجره باشه
         if (cartBtn && !cartBtn.contains(event.target) && 
             cartWindow && !cartWindow.contains(event.target)) {
             cartWindow.classList.remove("show");
