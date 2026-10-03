@@ -34,13 +34,34 @@
         .contact { background: #1f2937; color: white; padding: 30px; text-align: center; }
         .contact p { margin: 15px 0; font-size: 18px; line-height: 1.6; }
         .contact-logo { max-width: 100px; width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px; background: white; padding: 4px; }
-        .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; display: flex; overflow: hidden; transition: 0.3s; }
+        
+        .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
         .product-card:hover { box-shadow: 0 4px 15px #ccc; transform: translateY(-2px); }
+        .product-top { display: flex; }
         .product-image { width: 120px; min-width: 120px; height: 120px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; border-left: 1px solid #eee; overflow: hidden; }
         .product-image img { width: 100%; height: 100%; object-fit: contain; background: white; }
         .product-info { padding: 15px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .product-info h3 { margin: 0 0 8px 0; color: #1f2937; font-size: 18px; }
         .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
+        
+        .add-to-list-btn {
+            display: block;
+            width: 100%;
+            background: #f3f4f6;
+            color: #1f2937;
+            text-align: center;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .add-to-list-btn:hover { background: #25d366; color: white; }
+        .add-to-list-btn.added { background: #25d366; color: white; }
+
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
         .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
@@ -82,10 +103,130 @@
         .social-item a:hover { background: #c13584; transform: scale(1.1); }
         .social-item span { display: block; margin-top: 8px; font-size: 13px; color: #ddd; font-weight: bold; }
         
+        /* ====== پنجره لیست خرید ====== */
+        .cart-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 320px;
+            max-height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 1002;
+            overflow: hidden;
+        }
+        .cart-window.show { display: block; animation: fadeIn 0.3s; }
+        .cart-header {
+            background: #1f2937;
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header span { font-size: 15px; }
+        .cart-header button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .cart-items {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px 15px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 14px;
+        }
+        .cart-item button {
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .cart-empty {
+            text-align: center;
+            color: #9ca3af;
+            padding: 20px;
+            font-size: 14px;
+        }
+        .cart-footer {
+            padding: 12px 15px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+        }
+        .cart-footer button {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .cart-footer button:hover { background: #128c7e; }
+
+        /* دکمه شناور لیست خرید */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #d97706;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1000;
+            border: none;
+        }
+        .floating-cart-btn:hover { background: #b45309; transform: scale(1.1); }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) { 
             .two-column-layout { flex-direction: column; } 
             nav a { font-size: 13px; margin: 5px; }
             .header-logo { max-width: 200px; }
+            .cart-window { width: 290px; right: 10px; }
         }
     </style>
 </head>
@@ -137,135 +278,213 @@
     <div class="category-title construction">مصالح ساختمانی</div>
 
     <div class="product-card">
-        <div class="product-image"><img src="67.png" alt="انواع سیمان"></div>
-        <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="67.png" alt="انواع سیمان"></div>
+            <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('انواع سیمان')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
-        <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
+            <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('بلوک تیغه')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
-        <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
+            <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('بلوک سقفی')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
-        <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
+            <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('کاشی')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery1.jpg" alt="سرامیک"></div>
-        <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="as.png" alt="سرامیک"></div>
+            <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('سرامیک')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="76.png" alt="موزاییک"></div>
-        <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="76.png" alt="موزاییک"></div>
+            <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('موزاییک')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
-        <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
+            <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('گچ')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
-        <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
+            <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('پودر سنگ')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
-        <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
+            <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('آجر گره‌ای')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
-        <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
+            <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('سیمان سفید')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
-        <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
+            <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('آهک')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="category-title facilities">تجهیزات تاسیساتی</div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
-        <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
+            <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('انواع لوله')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="اتصالات"></div>
-        <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="اتصالات"></div>
+            <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('اتصالات')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
-        <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
+            <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('شیرآلات')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="هود"></div>
-        <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="هود"></div>
+            <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('هود')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
-        <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
+            <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('سینک')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
-        <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
+            <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('روشویی')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
-        <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
+            <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('چینی بهداشتی')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="انواع فلاش تانک"></div>
-        <div class="product-info"><h3>انواع فلاش تانک</h3><p>فلاش تانک توکار و روکار، در مدل‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="انواع فلاش تانک"></div>
+            <div class="product-info"><h3>انواع فلاش تانک</h3><p>فلاش تانک توکار و روکار، در مدل‌های مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('انواع فلاش تانک')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="جامایع"></div>
-        <div class="product-info"><h3>جامایع</h3><p>جامایع در طرح‌ها و رنگ‌های متنوع.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="جامایع"></div>
+            <div class="product-info"><h3>جامایع</h3><p>جامایع در طرح‌ها و رنگ‌های متنوع.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('جامایع')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="جادستمال"></div>
-        <div class="product-info"><h3>جادستمال</h3><p>جادستمال در طرح‌ها و رنگ‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="جادستمال"></div>
+            <div class="product-info"><h3>جادستمال</h3><p>جادستمال در طرح‌ها و رنگ‌های مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('جادستمال')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="آینه"></div>
-        <div class="product-info"><h3>آینه</h3><p>آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="آینه"></div>
+            <div class="product-info"><h3>آینه</h3><p>آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('آینه')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
-        <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
+            <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('پکیج')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
-        <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
+            <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('رادیاتور')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
-        <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
+            <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('کولر سلولزی')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
-        <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
+        <div class="product-top">
+            <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
+            <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
+        </div>
+        <button class="add-to-list-btn" onclick="addToCart('انواع مخازن آب')">➕ افزودن به لیست خرید</button>
     </div>
 
     <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
@@ -276,10 +495,10 @@
     <div class="gallery-grid">
         <div class="gallery-item"><img src="76.png" alt="تصویر فروشگاه ۱"></div>
         <div class="gallery-item"><img src="67.png" alt="تصویر فروشگاه ۲"></div>
-        <div class="gallery-item"><img src="gallery1.jpg" alt="تصویر فروشگاه ۳"></div>
-        <div class="gallery-item"><img src="gallery2.jpg" alt="تصویر فروشگاه ۴"></div>
-        <div class="gallery-item"><img src="gallery3.jpg" alt="تصویر فروشگاه ۵"></div>
-        <div class="gallery-item"><img src="gallery4.jpg" alt="تصویر فروشگاه ۶"></div>
+        <div class="gallery-item"><img src="as.png" alt="تصویر فروشگاه ۳"></div>
+        <div class="gallery-item"><img src="gallery1.jpg" alt="تصویر فروشگاه ۴"></div>
+        <div class="gallery-item"><img src="gallery2.jpg" alt="تصویر فروشگاه ۵"></div>
+        <div class="gallery-item"><img src="gallery3.jpg" alt="تصویر فروشگاه ۶"></div>
     </div>
 </section>
 
@@ -316,6 +535,26 @@
     </div>
 </section>
 
+<!-- ====== دکمه شناور لیست خرید ====== -->
+<button class="floating-cart-btn" onclick="toggleCart()" title="لیست خرید">
+    🛒
+    <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- ====== پنجره لیست خرید ====== -->
+<div class="cart-window" id="cartWindow">
+    <div class="cart-header">
+        <span>🛒 لیست خرید شما</span>
+        <button onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="cart-empty">لیست شما خالی است</div>
+    </div>
+    <div class="cart-footer">
+        <button onclick="copyCart()">📋 کپی لیست برای ارسال</button>
+    </div>
+</div>
+
 <a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">📞</a>
 <button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
     <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -328,6 +567,75 @@
 </div>
 
 <script>
+    // ====== لیست خرید ======
+    let cart = [];
+
+    function addToCart(productName) {
+        if (!cart.includes(productName)) {
+            cart.push(productName);
+            updateCart();
+            // انیمیشن دکمه
+            event.target.classList.add('added');
+            event.target.textContent = '✓ به لیست اضافه شد';
+            setTimeout(() => {
+                event.target.classList.remove('added');
+                event.target.textContent = '➕ افزودن به لیست خرید';
+            }, 1500);
+        } else {
+            alert('این محصول قبلاً به لیست اضافه شده است.');
+        }
+    }
+
+    function removeFromCart(productName) {
+        cart = cart.filter(item => item !== productName);
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        
+        cartCount.textContent = cart.length;
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<div class="cart-empty">لیست شما خالی است</div>';
+        } else {
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <span>${item}</span>
+                    <button onclick="removeFromCart('${item}')">✕</button>
+                </div>
+            `).join('');
+        }
+    }
+
+    function toggleCart() {
+        const cartWindow = document.getElementById('cartWindow');
+        cartWindow.classList.toggle('show');
+    }
+
+    function copyCart() {
+        if (cart.length === 0) {
+            alert('لیست شما خالی است.');
+            return;
+        }
+        const text = 'لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' + cart.map((item, i) => `${i+1}. ${item}`).join('\n');
+        
+        navigator.clipboard.writeText(text).then(() => {
+            alert('لیست شما کپی شد! می‌تونید اون رو در ایتا یا واتساپ برامون بفرستید.');
+        }).catch(() => {
+            // روش جایگزین برای مرورگرهای قدیمی
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('لیست شما کپی شد! می‌تونید اون رو در ایتا یا واتساپ برامون بفرستید.');
+        });
+    }
+
+    // ====== منوی اینستاگرام ======
     function toggleInstaMenu() {
         var menu = document.getElementById("instaMenu");
         menu.classList.toggle("show");
@@ -335,11 +643,18 @@
     document.addEventListener("click", function(event) {
         var menu = document.getElementById("instaMenu");
         var btn = document.querySelector(".floating-insta-btn");
-        if (!btn.contains(event.target) && !menu.contains(event.target)) {
+        var cartBtn = document.querySelector(".floating-cart-btn");
+        var cartWindow = document.getElementById("cartWindow");
+        
+        if (btn && !btn.contains(event.target) && menu && !menu.contains(event.target)) {
             menu.classList.remove("show");
+        }
+        // بستن لیست خرید وقتی جای دیگه کلیک شد
+        if (cartBtn && !cartBtn.contains(event.target) && cartWindow && !cartWindow.contains(event.target)) {
+            cartWindow.classList.remove("show");
         }
     });
 </script>
 
 </body>
-                                              </html>
+        </html>
