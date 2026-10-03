@@ -37,15 +37,15 @@
         .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; display: flex; overflow: hidden; transition: 0.3s; }
         .product-card:hover { box-shadow: 0 4px 15px #ccc; transform: translateY(-2px); }
         .product-image { width: 120px; min-width: 120px; height: 120px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; border-left: 1px solid #eee; overflow: hidden; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-image img { width: 100%; height: 100%; object-fit: contain; background: white; }
         .product-info { padding: 15px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .product-info h3 { margin: 0 0 8px 0; color: #1f2937; font-size: 18px; }
         .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
         .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: white; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: contain; background: white; transition: transform 0.3s; }
         .gallery-item img:hover { transform: scale(1.05); }
         .about-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; line-height: 2; border-right: 4px solid #1f2937; }
         .about-us h2 { color: #1f2937; margin-top: 0; }
@@ -136,45 +136,43 @@
 
     <div class="category-title construction">مصالح ساختمانی</div>
 
-    <!-- سیمان با عکس 67.png -->
     <div class="product-card">
         <div class="product-image"><img src="67.png" alt="انواع سیمان"></div>
         <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
+        <div class="product-image"><img src="گالری 4.jpg" alt="بلوک تیغه"></div>
         <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
+        <div class="product-image"><img src="گالری 3.jpg" alt="بلوک سقفی"></div>
         <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
+        <div class="product-image"><img src="گالری 1.jpg" alt="کاشی"></div>
         <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery1.jpg" alt="سرامیک"></div>
+        <div class="product-image"><img src="گالری 1.jpg" alt="سرامیک"></div>
         <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
     </div>
 
-    <!-- موزاییک با عکس 76.png -->
     <div class="product-card">
         <div class="product-image"><img src="76.png" alt="موزاییک"></div>
         <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
+        <div class="product-image"><img src="گالری 2.jpg" alt="گچ"></div>
         <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
+        <div class="product-image"><img src="گالری 2.jpg" alt="پودر سنگ"></div>
         <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
     </div>
 
@@ -184,12 +182,12 @@
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
+        <div class="product-image"><img src="گالری 2.jpg" alt="سیمان سفید"></div>
         <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
     </div>
 
     <div class="product-card">
-        <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
+        <div class="product-image"><img src="گالری 5.jpg" alt="آهک"></div>
         <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
     </div>
 
@@ -278,10 +276,10 @@
     <div class="gallery-grid">
         <div class="gallery-item"><img src="76.png" alt="تصویر فروشگاه ۱"></div>
         <div class="gallery-item"><img src="67.png" alt="تصویر فروشگاه ۲"></div>
-        <div class="gallery-item"><img src="gallery1.jpg" alt="تصویر فروشگاه ۳"></div>
-        <div class="gallery-item"><img src="gallery2.jpg" alt="تصویر فروشگاه ۴"></div>
-        <div class="gallery-item"><img src="gallery3.jpg" alt="تصویر فروشگاه ۵"></div>
-        <div class="gallery-item"><img src="gallery4.jpg" alt="تصویر فروشگاه ۶"></div>
+        <div class="gallery-item"><img src="گالری 1.jpg" alt="تصویر فروشگاه ۳"></div>
+        <div class="gallery-item"><img src="گالری 2.jpg" alt="تصویر فروشگاه ۴"></div>
+        <div class="gallery-item"><img src="گالری 3.jpg" alt="تصویر فروشگاه ۵"></div>
+        <div class="gallery-item"><img src="گالری 4.jpg" alt="تصویر فروشگاه ۶"></div>
     </div>
 </section>
 
@@ -344,4 +342,4 @@
 </script>
 
 </body>
-    </html>
+                                                   </html>
