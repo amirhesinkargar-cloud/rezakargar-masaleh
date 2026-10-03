@@ -13,8 +13,8 @@
     <style>
         body { font-family: Tahoma, Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; padding-bottom: 80px; }
         
-        header { background: #1f2937; color: white; padding: 15px 25px; text-align: center; position: relative; }
-        .header-logo { max-width: 260px; width: 100%; height: auto; display: block; margin: 0 auto; }
+        header { background: #1f2937; color: white; padding: 20px 25px; text-align: center; position: relative; }
+        .header-logo { max-width: 340px; width: 100%; height: auto; display: block; margin: 0 auto; }
 
         nav { background: #374151; padding: 12px; text-align: center; }
         nav a { color: white; text-decoration: none; margin: 8px; font-weight: bold; font-size: 14px; }
@@ -45,83 +45,19 @@
         .product-info h3 { margin: 0 0 5px 0; color: #1f2937; font-size: 16px; }
         .product-info p { margin: 0; font-size: 13px; color: #666; line-height: 1.5; }
         
-        /* ====== بخش افزودن به سبد ====== */
-        .add-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-left: 12px;
-            gap: 4px;
-            flex-shrink: 0;
-        }
+        .add-section { display: flex; flex-direction: column; align-items: center; margin-left: 12px; gap: 4px; flex-shrink: 0; }
         
-        /* دکمه + اولیه */
-        .add-icon-btn {
-            background: transparent;
-            color: #0d9488;
-            border: 2px solid #0d9488;
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
-            font-size: 22px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-            font-family: inherit;
-            font-weight: bold;
-        }
+        .add-icon-btn { background: transparent; color: #0d9488; border: 2px solid #0d9488; border-radius: 50%; width: 38px; height: 38px; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-family: inherit; font-weight: bold; }
         .add-icon-btn:hover { background: #0d9488; color: white; }
         
-        /* کادر تعداد (بعد از کلیک اول نمایش داده میشه) */
-        .qty-control {
-            display: none;
-            align-items: center;
-            gap: 3px;
-            background: #f0fdfa;
-            border: 1.5px solid #0d9488;
-            border-radius: 8px;
-            padding: 2px;
-        }
+        .qty-control { display: none; align-items: center; gap: 3px; background: #f0fdfa; border: 1.5px solid #0d9488; border-radius: 8px; padding: 2px; }
         .qty-control.show { display: flex; }
-        .qty-control button {
-            background: transparent;
-            border: none;
-            color: #0d9488;
-            width: 26px;
-            height: 26px;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-        }
+        .qty-control button { background: transparent; border: none; color: #0d9488; width: 26px; height: 26px; font-size: 18px; cursor: pointer; font-weight: bold; font-family: inherit; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         .qty-control button:hover { background: #0d9488; color: white; }
-        .qty-control input {
-            width: 38px;
-            height: 26px;
-            border: none;
-            background: transparent;
-            text-align: center;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: bold;
-            color: #0f766e;
-            outline: none;
-        }
-        /* حذف فلش‌های پیش‌فرض input number */
+        .qty-control input { width: 38px; height: 26px; border: none; background: transparent; text-align: center; font-family: inherit; font-size: 14px; font-weight: bold; color: #0f766e; outline: none; }
         .qty-control input::-webkit-outer-spin-button,
-        .qty-control input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .qty-control input[type=number] {
-            -moz-appearance: textfield;
-        }
+        .qty-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .qty-control input[type=number] { -moz-appearance: textfield; }
 
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
         .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
@@ -164,157 +100,34 @@
         .social-item a:hover { background: #c13584; transform: scale(1.1); }
         .social-item span { display: block; margin-top: 8px; font-size: 13px; color: #ddd; font-weight: bold; }
         
-        /* ====== پنجره لیست خرید ====== */
-        .cart-window {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 340px;
-            max-height: 500px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            z-index: 1002;
-            overflow: hidden;
-        }
+        .cart-window { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 1002; overflow: hidden; }
         .cart-window.show { display: block; animation: fadeIn 0.3s; }
-        .cart-header {
-            background: #0f766e;
-            color: white;
-            padding: 12px 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .cart-header { background: #0f766e; color: white; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         .cart-header span { font-size: 15px; }
-        .cart-header button {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .cart-items {
-            max-height: 320px;
-            overflow-y: auto;
-            padding: 10px 15px;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #f3f4f6;
-            font-size: 14px;
-            gap: 8px;
-        }
+        .cart-header button { background: transparent; border: none; color: white; font-size: 20px; cursor: pointer; font-weight: bold; }
+        .cart-items { max-height: 320px; overflow-y: auto; padding: 10px 15px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 14px; gap: 8px; }
         .cart-item-name { flex-grow: 1; color: #1f2937; }
-        .cart-item-qty {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .cart-item-qty button {
-            background: #e5e7eb;
-            color: #1f2937;
-            border: none;
-            border-radius: 5px;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-        }
+        .cart-item-qty { display: flex; align-items: center; gap: 5px; }
+        .cart-item-qty button { background: #e5e7eb; color: #1f2937; border: none; border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .cart-item-qty button:hover { background: #0d9488; color: white; }
-        .cart-item-qty span {
-            min-width: 25px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .cart-item-remove {
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-        .cart-empty {
-            text-align: center;
-            color: #9ca3af;
-            padding: 20px;
-            font-size: 14px;
-        }
-        .cart-footer {
-            padding: 12px 15px;
-            background: #f9fafb;
-            border-top: 1px solid #e5e7eb;
-        }
-        .cart-footer button {
-            width: 100%;
-            background: #0d9488;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: 0.3s;
-        }
+        .cart-item-qty span { min-width: 25px; text-align: center; font-weight: bold; }
+        .cart-item-remove { background: #ef4444; color: white; border: none; border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-weight: bold; flex-shrink: 0; }
+        .cart-empty { text-align: center; color: #9ca3af; padding: 20px; font-size: 14px; }
+        .cart-footer { padding: 12px 15px; background: #f9fafb; border-top: 1px solid #e5e7eb; }
+        .cart-footer button { width: 100%; background: #0d9488; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; font-family: inherit; transition: 0.3s; }
         .cart-footer button:hover { background: #0f766e; }
 
-        /* ====== دکمه شناور سبد خرید ====== */
-        .floating-cart-btn {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: #0d9488;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.5);
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 1000;
-            border: none;
-        }
+        .floating-cart-btn { position: fixed; bottom: 90px; right: 20px; background: #0d9488; color: white; width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.5); cursor: pointer; transition: 0.3s; z-index: 1000; border: none; }
         .floating-cart-btn.show { display: flex; }
         .floating-cart-btn:hover { background: #0f766e; transform: scale(1.1); }
         .cart-svg-icon { width: 28px; height: 28px; fill: white; }
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ef4444;
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
         @media (max-width: 768px) { 
             .two-column-layout { flex-direction: column; } 
             nav a { font-size: 13px; margin: 5px; }
-            .header-logo { max-width: 200px; }
+            .header-logo { max-width: 240px; }
             .cart-window { width: 300px; }
         }
     </style>
@@ -806,7 +619,6 @@
     </div>
 </section>
 
-<!-- ====== پنجره لیست خرید ====== -->
 <div class="cart-window" id="cartWindow">
     <div class="cart-header">
         <span>🛒 لیست خرید شما</span>
@@ -820,7 +632,6 @@
     </div>
 </div>
 
-<!-- ====== دکمه شناور سبد خرید ====== -->
 <button class="floating-cart-btn" id="floatingCartBtn" onclick="toggleCart()" title="لیست خرید">
     <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -840,21 +651,13 @@
 </div>
 
 <script>
-    // ====== لیست خرید ======
     let cart = [];
 
-    // فعال‌سازی محصول (وقتی اولین بار + زده میشه)
     function activateProduct(productName, btn) {
-        // مخفی کردن دکمه +
         btn.style.display = 'none';
-        
-        // نمایش کادر تعداد
         const qtyControl = document.getElementById('qty-' + productName);
-        if (qtyControl) {
-            qtyControl.classList.add('show');
-        }
+        if (qtyControl) qtyControl.classList.add('show');
         
-        // اضافه کردن به سبد
         const existingItem = cart.find(item => item.name === productName);
         if (existingItem) {
             if (existingItem.qty < 100) existingItem.qty++;
@@ -862,17 +665,14 @@
             cart.push({ name: productName, qty: 1 });
         }
         
-        // آپدیت input
         const input = document.getElementById('input-' + productName);
         if (input) {
             const item = cart.find(i => i.name === productName);
             if (item) input.value = item.qty;
         }
-        
         updateCart();
     }
 
-    // کم کردن تعداد
     function decreaseQty(productName) {
         const item = cart.find(i => i.name === productName);
         if (!item) return;
@@ -880,12 +680,9 @@
         if (item.qty > 1) {
             item.qty--;
         } else {
-            // اگه تعداد به ۱ رسید و باز − زد، کل محصول حذف بشه
             cart = cart.filter(i => i.name !== productName);
             const qtyControl = document.getElementById('qty-' + productName);
             if (qtyControl) qtyControl.classList.remove('show');
-            
-            // نمایش مجدد دکمه +
             const section = document.getElementById('section-' + productName);
             if (section) {
                 const addBtn = section.querySelector('.add-icon-btn');
@@ -893,15 +690,12 @@
             }
         }
         
-        // آپدیت input
         const input = document.getElementById('input-' + productName);
         const currentItem = cart.find(i => i.name === productName);
         if (input && currentItem) input.value = currentItem.qty;
-        
         updateCart();
     }
 
-    // زیاد کردن تعداد
     function increaseQty(productName) {
         const item = cart.find(i => i.name === productName);
         if (item && item.qty < 100) {
@@ -912,7 +706,6 @@
         }
     }
 
-    // تنظیم دستی تعداد (با تایپ)
     function setQty(productName, value) {
         let qty = parseInt(value) || 1;
         if (qty < 1) qty = 1;
@@ -927,23 +720,18 @@
         
         const input = document.getElementById('input-' + productName);
         if (input) input.value = qty;
-        
         updateCart();
     }
 
     function removeFromCart(productName) {
         cart = cart.filter(item => item.name !== productName);
-        
-        // مخفی کردن کادر تعداد و نمایش مجدد دکمه +
         const qtyControl = document.getElementById('qty-' + productName);
         if (qtyControl) qtyControl.classList.remove('show');
-        
         const section = document.getElementById('section-' + productName);
         if (section) {
             const addBtn = section.querySelector('.add-icon-btn');
             if (addBtn) addBtn.style.display = 'flex';
         }
-        
         updateCart();
     }
 
@@ -979,8 +767,7 @@
     }
 
     function toggleCart() {
-        const cartWindow = document.getElementById('cartWindow');
-        cartWindow.classList.toggle('show');
+        document.getElementById('cartWindow').classList.toggle('show');
     }
 
     function copyCart() {
@@ -991,7 +778,7 @@
         const text = 'لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' + cart.map((item, i) => `${i+1}. ${item.name} — تعداد: ${item.qty}`).join('\n');
         
         navigator.clipboard.writeText(text).then(() => {
-            alert('لیست شما کپی شد! می‌تونید اون رو در ایتا یا واتساپ برامون بفرستید.');
+            alert('لیست شما کپی شد! می‌تونید اون رو در ایتا برامون بفرستید.');
         }).catch(() => {
             const textarea = document.createElement('textarea');
             textarea.value = text;
@@ -999,14 +786,12 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            alert('لیست شما کپی شد! می‌تونید اون رو در ایتا یا واتساپ برامون بفرستید.');
+            alert('لیست شما کپی شد! می‌تونید اون رو در ایتا برامون بفرستید.');
         });
     }
 
-    // ====== منوی اینستاگرام ======
     function toggleInstaMenu() {
-        var menu = document.getElementById("instaMenu");
-        menu.classList.toggle("show");
+        document.getElementById("instaMenu").classList.toggle("show");
     }
     document.addEventListener("click", function(event) {
         var menu = document.getElementById("instaMenu");
@@ -1024,4 +809,5 @@
 </script>
 
 </body>
-    </html>
+                    </html>
+                
