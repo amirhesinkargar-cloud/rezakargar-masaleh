@@ -14,7 +14,7 @@
         body { font-family: Tahoma, Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; padding-bottom: 80px; }
         
         /* ====== هدر با رنگ دقیق لوگو ====== */
-        header { background: #0a2a4a; color: white; padding: 20px 25px; text-align: center; position: relative; }
+        header { background: #0a2540; color: white; padding: 20px 25px; text-align: center; position: relative; }
         .header-logo { max-width: 340px; width: 100%; height: auto; display: block; margin: 0 auto; }
 
         nav { background: #14395e; padding: 12px; text-align: center; }
@@ -33,7 +33,7 @@
         .category-title { color: white; padding: 12px 20px; border-radius: 8px; margin: 25px 0 15px 0; font-size: 20px; text-align: center; font-weight: bold; }
         .category-title.construction { background: #6b7280; }
         .category-title.facilities { background: #1e40af; }
-        .contact { background: #0a2a4a; color: white; padding: 30px; text-align: center; }
+        .contact { background: #0a2540; color: white; padding: 30px; text-align: center; }
         .contact p { margin: 15px 0; font-size: 18px; line-height: 1.6; }
         .contact-logo { max-width: 100px; width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px; background: white; padding: 4px; }
         
@@ -66,7 +66,7 @@
         .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: white; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
         .gallery-item img { width: 100%; height: 100%; object-fit: contain; background: white; transition: transform 0.3s; }
         .gallery-item img:hover { transform: scale(1.05); }
-        .about-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; line-height: 2; border-right: 4px solid #0a2a4a; }
+        .about-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; line-height: 2; border-right: 4px solid #0a2540; }
         .about-us h2 { color: #1f2937; margin-top: 0; }
         .why-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; border-right: 4px solid #25d366; }
         .why-us h2 { color: #1f2937; margin-top: 0; text-align: center; margin-bottom: 20px; }
@@ -103,7 +103,7 @@
         
         .cart-window { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 1002; overflow: hidden; }
         .cart-window.show { display: block; animation: fadeIn 0.3s; }
-        .cart-header { background: #0a2a4a; color: white; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .cart-header { background: #0a2540; color: white; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         .cart-header span { font-size: 15px; }
         .cart-header button { background: transparent; border: none; color: white; font-size: 20px; cursor: pointer; font-weight: bold; }
         .cart-items { max-height: 320px; overflow-y: auto; padding: 10px 15px; }
@@ -757,17 +757,18 @@
                 <div class="cart-item">
                     <span class="cart-item-name">${item.name}</span>
                     <div class="cart-item-qty">
-                        <button onclick="decreaseQty('${item.name}')">−</button>
+                        <button onclick="event.stopPropagation(); decreaseQty('${item.name}')">−</button>
                         <span>${item.qty}</span>
-                        <button onclick="increaseQty('${item.name}')">+</button>
+                        <button onclick="event.stopPropagation(); increaseQty('${item.name}')">+</button>
                     </div>
-                    <button class="cart-item-remove" onclick="removeFromCart('${item.name}')">✕</button>
+                    <button class="cart-item-remove" onclick="event.stopPropagation(); removeFromCart('${item.name}')">✕</button>
                 </div>
             `).join('');
         }
     }
 
-    function toggleCart() {
+    function toggleCart(event) {
+        if (event) event.stopPropagation();
         document.getElementById('cartWindow').classList.toggle('show');
     }
 
@@ -791,20 +792,24 @@
         });
     }
 
-    function toggleInstaMenu() {
+    function toggleInstaMenu(event) {
+        if (event) event.stopPropagation();
         document.getElementById("instaMenu").classList.toggle("show");
     }
 
+    // ====== بستن منوها وقتی جای دیگه کلیک میشه ======
     document.addEventListener("click", function(event) {
         var menu = document.getElementById("instaMenu");
         var instaBtn = document.querySelector(".floating-insta-btn");
         var cartWindow = document.getElementById("cartWindow");
         var cartBtn = document.getElementById("floatingCartBtn");
         
+        // بستن منوی اینستاگرام
         if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) {
             menu.classList.remove("show");
         }
         
+        // بستن پنجره سبد خرید فقط اگر کلیک روی دکمه شناور یا بیرون از پنجره باشه
         if (cartBtn && !cartBtn.contains(event.target) && 
             cartWindow && !cartWindow.contains(event.target)) {
             cartWindow.classList.remove("show");
@@ -813,4 +818,4 @@
 </script>
 
 </body>
-                        </html>
+    </html>
