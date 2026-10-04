@@ -152,7 +152,6 @@
         .map-container { max-width: 900px; margin: 20px auto; padding: 0 25px; }
         .map-container iframe { width: 100%; height: 300px; border-radius: 10px; border: 0; box-shadow: 0 2px 8px #ddd; }
         
-        /* ====== دکمه‌های شناور ====== */
         .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; }
         .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
         .floating-insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; cursor: pointer; border: none; }
@@ -223,12 +222,8 @@
             nav a { font-size: 13px; margin: 5px; }
             .header-logo { max-width: 240px; }
             .cart-window { width: 320px; }
-            
-            /* گالری دو ستونه در موبایل */
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
             .gallery-item { height: 140px; }
-            
-            /* کارت محصولات در موبایل */
             .product-image { width: 110px; min-width: 110px; height: 110px; }
             .product-info h3 { font-size: 16px; }
             .product-info p { font-size: 12px; }
@@ -509,9 +504,10 @@
         </div>
     </div>
 
+    <!-- ====== سینک با عکس جدید ====== -->
     <div class="product-card">
         <div class="product-top">
-            <div class="product-image"><img src="0987.jpg" alt="سینک"></div>
+            <div class="product-image"><img src="cv.png" alt="سینک"></div>
             <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
             <div class="add-section" id="section-سینک">
                 <button class="add-icon-btn" onclick="activateProduct('سینک', this)">+</button>
@@ -936,4 +932,4 @@
 </script>
 
 </body>
-                        </html>
+    </html>
