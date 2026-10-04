@@ -36,26 +36,50 @@
         .contact p { margin: 15px 0; font-size: 18px; line-height: 1.6; }
         .contact-logo { max-width: 100px; width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px; background: white; padding: 4px; }
         
-        .product-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px #ddd; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
-        .product-card:hover { box-shadow: 0 4px 15px #ccc; transform: translateY(-2px); }
-        .product-top { display: flex; align-items: center; }
-        .product-image { width: 100px; min-width: 100px; height: 100px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; border-left: 1px solid #eee; overflow: hidden; }
+        /* ====== کارت محصولات بزرگ‌تر و حرفه‌ای‌تر ====== */
+        .product-card { 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08); 
+            margin-bottom: 18px; 
+            overflow: hidden; 
+            transition: 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+        .product-card:hover { 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12); 
+            transform: translateY(-3px); 
+            border-color: #0d9488;
+        }
+        .product-top { display: flex; align-items: center; padding: 5px; }
+        .product-image { 
+            width: 130px; 
+            min-width: 130px; 
+            height: 130px; 
+            background: #e5e7eb; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 10px;
+            overflow: hidden; 
+            margin: 8px;
+        }
         .product-image img { width: 100%; height: 100%; object-fit: cover; }
-        .product-info { padding: 12px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-        .product-info h3 { margin: 0 0 5px 0; color: #1f2937; font-size: 16px; }
-        .product-info p { margin: 0; font-size: 13px; color: #666; line-height: 1.5; }
+        .product-info { padding: 15px 18px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .product-info h3 { margin: 0 0 8px 0; color: #0a2540; font-size: 18px; font-weight: bold; }
+        .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
         
-        .add-section { display: flex; flex-direction: column; align-items: center; margin-left: 12px; gap: 4px; flex-shrink: 0; position: relative; }
+        .add-section { display: flex; flex-direction: column; align-items: center; margin-left: 12px; gap: 4px; flex-shrink: 0; position: relative; padding-left: 8px; }
         
         /* ====== دکمه + با تولتیپ ====== */
         .add-icon-btn { 
-            background: transparent; 
+            background: #f0fdfa; 
             color: #0d9488; 
             border: 2px solid #0d9488; 
             border-radius: 50%; 
-            width: 38px; 
-            height: 38px; 
-            font-size: 22px; 
+            width: 42px; 
+            height: 42px; 
+            font-size: 24px; 
             cursor: pointer; 
             display: flex; 
             align-items: center; 
@@ -67,7 +91,6 @@
         }
         .add-icon-btn:hover { background: #0d9488; color: white; }
         
-        /* تولتیپ */
         .add-icon-btn::after {
             content: "افزودن به لیست خرید";
             position: absolute;
@@ -104,11 +127,11 @@
             opacity: 1;
         }
         
-        .qty-control { display: none; align-items: center; gap: 3px; background: #f0fdfa; border: 1.5px solid #0d9488; border-radius: 8px; padding: 2px; }
+        .qty-control { display: none; align-items: center; gap: 3px; background: #f0fdfa; border: 2px solid #0d9488; border-radius: 10px; padding: 3px; }
         .qty-control.show { display: flex; }
-        .qty-control button { background: transparent; border: none; color: #0d9488; width: 26px; height: 26px; font-size: 18px; cursor: pointer; font-weight: bold; font-family: inherit; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+        .qty-control button { background: transparent; border: none; color: #0d9488; width: 28px; height: 28px; font-size: 18px; cursor: pointer; font-weight: bold; font-family: inherit; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         .qty-control button:hover { background: #0d9488; color: white; }
-        .qty-control input { width: 55px; height: 26px; border: none; background: transparent; text-align: center; font-family: inherit; font-size: 14px; font-weight: bold; color: #0f766e; outline: none; }
+        .qty-control input { width: 55px; height: 28px; border: none; background: transparent; text-align: center; font-family: inherit; font-size: 14px; font-weight: bold; color: #0f766e; outline: none; }
         .qty-control input::-webkit-outer-spin-button,
         .qty-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .qty-control input[type=number] { -moz-appearance: textfield; }
@@ -130,6 +153,8 @@
         .feature-item p { margin: 0; font-size: 13px; color: #555; line-height: 1.5; }
         .map-container { max-width: 900px; margin: 20px auto; padding: 0 25px; }
         .map-container iframe { width: 100%; height: 300px; border-radius: 10px; border: 0; box-shadow: 0 2px 8px #ddd; }
+        
+        /* ====== دکمه‌های شناور (در دسکتاپ) ====== */
         .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; }
         .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
         .floating-insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; cursor: pointer; border: none; }
@@ -195,12 +220,96 @@
         .cart-svg-icon { width: 28px; height: 28px; fill: white; }
         .cart-count { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 
+        /* ====== نوار ثابت پایین (فقط موبایل) ====== */
+        .mobile-bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            z-index: 1003;
+            padding: 8px 0;
+        }
+        .mobile-bottom-bar-inner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 500px;
+            margin: auto;
+        }
+        .mobile-bar-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #0a2540;
+            font-size: 11px;
+            font-weight: bold;
+            gap: 3px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+        }
+        .mobile-bar-btn:active { background: #f3f4f6; }
+        .mobile-bar-icon {
+            width: 24px;
+            height: 24px;
+            fill: #0a2540;
+        }
+        .mobile-bar-cart-icon {
+            width: 24px;
+            height: 24px;
+            fill: #0d9488;
+        }
+        .mobile-bar-badge {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .mobile-bar-btn-wrapper {
+            position: relative;
+        }
+
         @media (max-width: 768px) { 
             .two-column-layout { flex-direction: column; } 
             nav a { font-size: 13px; margin: 5px; }
             .header-logo { max-width: 240px; }
             .cart-window { width: 320px; }
-            .add-icon-btn::after { font-size: 11px; padding: 5px 8px; }
+            
+            /* نمایش نوار ثابت پایین در موبایل */
+            .mobile-bottom-bar { display: block; }
+            
+            /* حذف دکمه‌های شناور در موبایل */
+            .floating-call-btn, .floating-insta-btn, .floating-cart-btn { display: none !important; }
+            
+            /* فاصله پایین صفحه برای نوار */
+            body { padding-bottom: 70px; }
+            
+            /* گالری دو ستونه در موبایل */
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .gallery-item { height: 140px; }
+            
+            /* کارت محصولات در موبایل */
+            .product-image { width: 110px; min-width: 110px; height: 110px; }
+            .product-info h3 { font-size: 16px; }
+            .product-info p { font-size: 12px; }
         }
     </style>
 </head>
@@ -704,16 +813,37 @@
     </div>
 </div>
 
+<!-- ====== نوار ثابت پایین (فقط موبایل) ====== -->
+<div class="mobile-bottom-bar">
+    <div class="mobile-bottom-bar-inner">
+        <a href="tel:+983434130386" class="mobile-bar-btn">
+            <svg class="mobile-bar-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            تماس
+        </a>
+        <a href="#map" class="mobile-bar-btn">
+            <svg class="mobile-bar-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            مسیریابی
+        </a>
+        <div class="mobile-bar-btn-wrapper">
+            <button class="mobile-bar-btn" onclick="toggleCart()">
+                <svg class="mobile-bar-cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                لیست خرید
+                <span class="mobile-bar-badge" id="mobileCartCount">0</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">📞</a>
+<button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
+    <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</button>
+
 <button class="floating-cart-btn" id="floatingCartBtn" onclick="toggleCart()" title="لیست خرید">
     <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
     </svg>
     <span class="cart-count" id="cartCount">0</span>
-</button>
-
-<a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">📞</a>
-<button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
-    <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
 </button>
 
 <div class="insta-menu" id="instaMenu">
@@ -810,6 +940,7 @@
         
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         document.getElementById('cartCount').textContent = totalItems;
+        document.getElementById('mobileCartCount').textContent = totalItems;
     }
 
     function removeFromCart(productName) {
@@ -827,10 +958,12 @@
     function updateCart() {
         const cartItems = document.getElementById('cartItems');
         const cartCount = document.getElementById('cartCount');
+        const mobileCartCount = document.getElementById('mobileCartCount');
         const floatingCartBtn = document.getElementById('floatingCartBtn');
         
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         cartCount.textContent = totalItems;
+        if (mobileCartCount) mobileCartCount.textContent = totalItems;
         
         if (cart.length > 0) {
             floatingCartBtn.classList.add('show');
@@ -905,4 +1038,4 @@
 </script>
 
 </body>
-            </html>
+                                           </html>
