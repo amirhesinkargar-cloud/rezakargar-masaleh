@@ -13,7 +13,6 @@
     <style>
         body { font-family: Tahoma, Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; padding-bottom: 80px; }
         
-        /* ====== هدر با رنگ دقیق لوگو ====== */
         header { background: #0a2540; color: white; padding: 20px 25px; text-align: center; position: relative; }
         .header-logo { max-width: 340px; width: 100%; height: auto; display: block; margin: 0 auto; }
 
@@ -41,7 +40,7 @@
         .product-card:hover { box-shadow: 0 4px 15px #ccc; transform: translateY(-2px); }
         .product-top { display: flex; align-items: center; }
         .product-image { width: 100px; min-width: 100px; height: 100px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; border-left: 1px solid #eee; overflow: hidden; }
-        .product-image img { width: 100%; height: 100%; object-fit: contain; background: white; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
         .product-info { padding: 12px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .product-info h3 { margin: 0 0 5px 0; color: #1f2937; font-size: 16px; }
         .product-info p { margin: 0; font-size: 13px; color: #666; line-height: 1.5; }
@@ -55,7 +54,7 @@
         .qty-control.show { display: flex; }
         .qty-control button { background: transparent; border: none; color: #0d9488; width: 26px; height: 26px; font-size: 18px; cursor: pointer; font-weight: bold; font-family: inherit; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         .qty-control button:hover { background: #0d9488; color: white; }
-        .qty-control input { width: 38px; height: 26px; border: none; background: transparent; text-align: center; font-family: inherit; font-size: 14px; font-weight: bold; color: #0f766e; outline: none; }
+        .qty-control input { width: 55px; height: 26px; border: none; background: transparent; text-align: center; font-family: inherit; font-size: 14px; font-weight: bold; color: #0f766e; outline: none; }
         .qty-control input::-webkit-outer-spin-button,
         .qty-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .qty-control input[type=number] { -moz-appearance: textfield; }
@@ -63,8 +62,8 @@
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
         .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: white; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: contain; background: white; transition: transform 0.3s; }
+        .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
         .gallery-item img:hover { transform: scale(1.05); }
         .about-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; line-height: 2; border-right: 4px solid #0a2540; }
         .about-us h2 { color: #1f2937; margin-top: 0; }
@@ -101,7 +100,7 @@
         .social-item a:hover { background: #c13584; transform: scale(1.1); }
         .social-item span { display: block; margin-top: 8px; font-size: 13px; color: #ddd; font-weight: bold; }
         
-        .cart-window { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 1002; overflow: hidden; }
+        .cart-window { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 360px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 1002; overflow: hidden; }
         .cart-window.show { display: block; animation: fadeIn 0.3s; }
         .cart-header { background: #0a2540; color: white; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         .cart-header span { font-size: 15px; }
@@ -112,7 +111,25 @@
         .cart-item-qty { display: flex; align-items: center; gap: 5px; }
         .cart-item-qty button { background: #e5e7eb; color: #1f2937; border: none; border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .cart-item-qty button:hover { background: #0d9488; color: white; }
-        .cart-item-qty span { min-width: 25px; text-align: center; font-weight: bold; }
+        /* ====== ورودی تعداد داخل سبد خرید ====== */
+        .cart-item-qty input {
+            width: 60px;
+            height: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
+            text-align: center;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: bold;
+            color: #0f766e;
+            background: #f9fafb;
+            outline: none;
+        }
+        .cart-item-qty input:focus { border-color: #0d9488; background: white; }
+        .cart-item-qty input::-webkit-outer-spin-button,
+        .cart-item-qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .cart-item-qty input[type=number] { -moz-appearance: textfield; }
+        
         .cart-item-remove { background: #ef4444; color: white; border: none; border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-weight: bold; flex-shrink: 0; }
         .cart-empty { text-align: center; color: #9ca3af; padding: 20px; font-size: 14px; }
         .cart-footer { padding: 12px 15px; background: #f9fafb; border-top: 1px solid #e5e7eb; }
@@ -129,7 +146,7 @@
             .two-column-layout { flex-direction: column; } 
             nav a { font-size: 13px; margin: 5px; }
             .header-logo { max-width: 240px; }
-            .cart-window { width: 300px; }
+            .cart-window { width: 320px; }
         }
     </style>
 </head>
@@ -188,7 +205,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('انواع سیمان', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-انواع سیمان">
                     <button onclick="decreaseQty('انواع سیمان')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع سیمان', this.value)" id="input-انواع سیمان">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع سیمان', this.value)" id="input-انواع سیمان">
                     <button onclick="increaseQty('انواع سیمان')">+</button>
                 </div>
             </div>
@@ -203,7 +220,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('بلوک تیغه', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-بلوک تیغه">
                     <button onclick="decreaseQty('بلوک تیغه')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('بلوک تیغه', this.value)" id="input-بلوک تیغه">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('بلوک تیغه', this.value)" id="input-بلوک تیغه">
                     <button onclick="increaseQty('بلوک تیغه')">+</button>
                 </div>
             </div>
@@ -218,7 +235,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('بلوک سقفی', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-بلوک سقفی">
                     <button onclick="decreaseQty('بلوک سقفی')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('بلوک سقفی', this.value)" id="input-بلوک سقفی">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('بلوک سقفی', this.value)" id="input-بلوک سقفی">
                     <button onclick="increaseQty('بلوک سقفی')">+</button>
                 </div>
             </div>
@@ -233,7 +250,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('کاشی', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-کاشی">
                     <button onclick="decreaseQty('کاشی')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('کاشی', this.value)" id="input-کاشی">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('کاشی', this.value)" id="input-کاشی">
                     <button onclick="increaseQty('کاشی')">+</button>
                 </div>
             </div>
@@ -248,7 +265,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('سرامیک', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-سرامیک">
                     <button onclick="decreaseQty('سرامیک')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('سرامیک', this.value)" id="input-سرامیک">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('سرامیک', this.value)" id="input-سرامیک">
                     <button onclick="increaseQty('سرامیک')">+</button>
                 </div>
             </div>
@@ -263,7 +280,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('موزاییک', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-موزاییک">
                     <button onclick="decreaseQty('موزاییک')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('موزاییک', this.value)" id="input-موزاییک">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('موزاییک', this.value)" id="input-موزاییک">
                     <button onclick="increaseQty('موزاییک')">+</button>
                 </div>
             </div>
@@ -278,7 +295,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('گچ', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-گچ">
                     <button onclick="decreaseQty('گچ')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('گچ', this.value)" id="input-گچ">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('گچ', this.value)" id="input-گچ">
                     <button onclick="increaseQty('گچ')">+</button>
                 </div>
             </div>
@@ -293,7 +310,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('پودر سنگ', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-پودر سنگ">
                     <button onclick="decreaseQty('پودر سنگ')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('پودر سنگ', this.value)" id="input-پودر سنگ">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('پودر سنگ', this.value)" id="input-پودر سنگ">
                     <button onclick="increaseQty('پودر سنگ')">+</button>
                 </div>
             </div>
@@ -308,7 +325,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('آجر گره‌ای', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-آجر گره‌ای">
                     <button onclick="decreaseQty('آجر گره‌ای')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('آجر گره‌ای', this.value)" id="input-آجر گره‌ای">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('آجر گره‌ای', this.value)" id="input-آجر گره‌ای">
                     <button onclick="increaseQty('آجر گره‌ای')">+</button>
                 </div>
             </div>
@@ -323,7 +340,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('سیمان سفید', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-سیمان سفید">
                     <button onclick="decreaseQty('سیمان سفید')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('سیمان سفید', this.value)" id="input-سیمان سفید">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('سیمان سفید', this.value)" id="input-سیمان سفید">
                     <button onclick="increaseQty('سیمان سفید')">+</button>
                 </div>
             </div>
@@ -338,7 +355,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('آهک', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-آهک">
                     <button onclick="decreaseQty('آهک')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('آهک', this.value)" id="input-آهک">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('آهک', this.value)" id="input-آهک">
                     <button onclick="increaseQty('آهک')">+</button>
                 </div>
             </div>
@@ -355,7 +372,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('انواع لوله', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-انواع لوله">
                     <button onclick="decreaseQty('انواع لوله')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع لوله', this.value)" id="input-انواع لوله">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع لوله', this.value)" id="input-انواع لوله">
                     <button onclick="increaseQty('انواع لوله')">+</button>
                 </div>
             </div>
@@ -370,7 +387,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('اتصالات', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-اتصالات">
                     <button onclick="decreaseQty('اتصالات')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('اتصالات', this.value)" id="input-اتصالات">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('اتصالات', this.value)" id="input-اتصالات">
                     <button onclick="increaseQty('اتصالات')">+</button>
                 </div>
             </div>
@@ -385,7 +402,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('شیرآلات', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-شیرآلات">
                     <button onclick="decreaseQty('شیرآلات')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('شیرآلات', this.value)" id="input-شیرآلات">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('شیرآلات', this.value)" id="input-شیرآلات">
                     <button onclick="increaseQty('شیرآلات')">+</button>
                 </div>
             </div>
@@ -400,7 +417,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('هود', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-هود">
                     <button onclick="decreaseQty('هود')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('هود', this.value)" id="input-هود">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('هود', this.value)" id="input-هود">
                     <button onclick="increaseQty('هود')">+</button>
                 </div>
             </div>
@@ -415,7 +432,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('سینک', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-سینک">
                     <button onclick="decreaseQty('سینک')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('سینک', this.value)" id="input-سینک">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('سینک', this.value)" id="input-سینک">
                     <button onclick="increaseQty('سینک')">+</button>
                 </div>
             </div>
@@ -430,7 +447,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('روشویی', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-روشویی">
                     <button onclick="decreaseQty('روشویی')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('روشویی', this.value)" id="input-روشویی">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('روشویی', this.value)" id="input-روشویی">
                     <button onclick="increaseQty('روشویی')">+</button>
                 </div>
             </div>
@@ -445,7 +462,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('چینی بهداشتی', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-چینی بهداشتی">
                     <button onclick="decreaseQty('چینی بهداشتی')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('چینی بهداشتی', this.value)" id="input-چینی بهداشتی">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('چینی بهداشتی', this.value)" id="input-چینی بهداشتی">
                     <button onclick="increaseQty('چینی بهداشتی')">+</button>
                 </div>
             </div>
@@ -460,7 +477,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('انواع فلاش تانک', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-انواع فلاش تانک">
                     <button onclick="decreaseQty('انواع فلاش تانک')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع فلاش تانک', this.value)" id="input-انواع فلاش تانک">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع فلاش تانک', this.value)" id="input-انواع فلاش تانک">
                     <button onclick="increaseQty('انواع فلاش تانک')">+</button>
                 </div>
             </div>
@@ -475,7 +492,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('جامایع', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-جامایع">
                     <button onclick="decreaseQty('جامایع')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('جامایع', this.value)" id="input-جامایع">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('جامایع', this.value)" id="input-جامایع">
                     <button onclick="increaseQty('جامایع')">+</button>
                 </div>
             </div>
@@ -490,7 +507,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('جادستمال', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-جادستمال">
                     <button onclick="decreaseQty('جادستمال')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('جادستمال', this.value)" id="input-جادستمال">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('جادستمال', this.value)" id="input-جادستمال">
                     <button onclick="increaseQty('جادستمال')">+</button>
                 </div>
             </div>
@@ -505,7 +522,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('آینه', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-آینه">
                     <button onclick="decreaseQty('آینه')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('آینه', this.value)" id="input-آینه">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('آینه', this.value)" id="input-آینه">
                     <button onclick="increaseQty('آینه')">+</button>
                 </div>
             </div>
@@ -520,7 +537,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('پکیج', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-پکیج">
                     <button onclick="decreaseQty('پکیج')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('پکیج', this.value)" id="input-پکیج">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('پکیج', this.value)" id="input-پکیج">
                     <button onclick="increaseQty('پکیج')">+</button>
                 </div>
             </div>
@@ -535,7 +552,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('رادیاتور', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-رادیاتور">
                     <button onclick="decreaseQty('رادیاتور')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('رادیاتور', this.value)" id="input-رادیاتور">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('رادیاتور', this.value)" id="input-رادیاتور">
                     <button onclick="increaseQty('رادیاتور')">+</button>
                 </div>
             </div>
@@ -550,7 +567,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('کولر سلولزی', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-کولر سلولزی">
                     <button onclick="decreaseQty('کولر سلولزی')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('کولر سلولزی', this.value)" id="input-کولر سلولزی">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('کولر سلولزی', this.value)" id="input-کولر سلولزی">
                     <button onclick="increaseQty('کولر سلولزی')">+</button>
                 </div>
             </div>
@@ -565,7 +582,7 @@
                 <button class="add-icon-btn" onclick="activateProduct('انواع مخازن آب', this)" title="افزودن به لیست">+</button>
                 <div class="qty-control" id="qty-انواع مخازن آب">
                     <button onclick="decreaseQty('انواع مخازن آب')">−</button>
-                    <input type="number" value="1" min="1" max="100" onchange="setQty('انواع مخازن آب', this.value)" id="input-انواع مخازن آب">
+                    <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع مخازن آب', this.value)" id="input-انواع مخازن آب">
                     <button onclick="increaseQty('انواع مخازن آب')">+</button>
                 </div>
             </div>
@@ -661,7 +678,7 @@
         
         const existingItem = cart.find(item => item.name === productName);
         if (existingItem) {
-            if (existingItem.qty < 100) existingItem.qty++;
+            if (existingItem.qty < 100000) existingItem.qty++;
         } else {
             cart.push({ name: productName, qty: 1 });
         }
@@ -699,7 +716,7 @@
 
     function increaseQty(productName) {
         const item = cart.find(i => i.name === productName);
-        if (item && item.qty < 100) {
+        if (item && item.qty < 100000) {
             item.qty++;
             const input = document.getElementById('input-' + productName);
             if (input) input.value = item.qty;
@@ -710,7 +727,7 @@
     function setQty(productName, value) {
         let qty = parseInt(value) || 1;
         if (qty < 1) qty = 1;
-        if (qty > 100) qty = 100;
+        if (qty > 100000) qty = 100000;
         
         const item = cart.find(i => i.name === productName);
         if (item) {
@@ -722,6 +739,26 @@
         const input = document.getElementById('input-' + productName);
         if (input) input.value = qty;
         updateCart();
+    }
+
+    // ====== تغییر تعداد از داخل سبد خرید (با کیبورد) ======
+    function setCartQty(productName, value) {
+        let qty = parseInt(value) || 1;
+        if (qty < 1) qty = 1;
+        if (qty > 100000) qty = 100000;
+        
+        const item = cart.find(i => i.name === productName);
+        if (item) {
+            item.qty = qty;
+        }
+        
+        // آپدیت input کنار محصول
+        const productInput = document.getElementById('input-' + productName);
+        if (productInput) productInput.value = qty;
+        
+        // آپدیت تعداد کل و شمارنده
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.getElementById('cartCount').textContent = totalItems;
     }
 
     function removeFromCart(productName) {
@@ -758,7 +795,9 @@
                     <span class="cart-item-name">${item.name}</span>
                     <div class="cart-item-qty">
                         <button onclick="event.stopPropagation(); decreaseQty('${item.name}')">−</button>
-                        <span>${item.qty}</span>
+                        <input type="number" value="${item.qty}" min="1" max="100000" 
+                               onchange="event.stopPropagation(); setCartQty('${item.name}', this.value)" 
+                               onclick="event.stopPropagation();">
                         <button onclick="event.stopPropagation(); increaseQty('${item.name}')">+</button>
                     </div>
                     <button class="cart-item-remove" onclick="event.stopPropagation(); removeFromCart('${item.name}')">✕</button>
@@ -815,4 +854,4 @@
 </script>
 
 </body>
-    </html>
+            </html>
