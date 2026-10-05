@@ -26,6 +26,91 @@
         .inquiry-btn { display: inline-block; background: #d97706; color: white; padding: 14px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 18px; transition: 0.3s; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4); }
         .inquiry-btn:hover { background: #b45309; transform: scale(1.05); }
 
+        /* ==================== جستجو ==================== */
+        .search-container {
+            max-width: 900px;
+            margin: 25px auto 0 auto;
+            padding: 0 25px;
+        }
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            background: white;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+            color: #1f2937;
+        }
+        .search-input:focus {
+            border-color: #0d9488;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15);
+        }
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 20px;
+            pointer-events: none;
+        }
+        .search-clear {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            padding: 0;
+        }
+        .search-clear.show {
+            display: flex;
+        }
+        .search-clear:hover {
+            background: #dc2626;
+        }
+        .search-result-info {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .search-result-info strong {
+            color: #0d9488;
+        }
+        .no-result {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9ca3af;
+            font-size: 16px;
+            display: none;
+        }
+        .no-result.show {
+            display: block;
+        }
+        .no-result-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
         .two-column-layout { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1100px; margin: 20px auto; padding: 0 25px; }
         .two-column-layout > section { flex: 1; min-width: 300px; margin: 0; }
         .products { padding: 25px; max-width: 900px; margin: auto; }
@@ -292,7 +377,6 @@
             align-items: center;
             justify-content: flex-end;
         }
-        /* آنتن */
         .robot-icon::before {
             content: "";
             position: absolute;
@@ -311,7 +395,6 @@
             background: white;
             border-radius: 50%;
         }
-        /* سر ربات */
         .robot-head {
             width: 26px;
             height: 18px;
@@ -324,14 +407,12 @@
             gap: 6px;
             margin-top: 9px;
         }
-        /* چشم‌ها */
         .robot-eye {
             width: 4px;
             height: 4px;
             background: #6366f1;
             border-radius: 50%;
         }
-        /* گوش‌ها */
         .robot-ear {
             position: absolute;
             top: 50%;
@@ -435,6 +516,7 @@
             .product-info h3 { font-size: 16px; }
             .product-info p { font-size: 12px; }
             .assistant-window { width: calc(100% - 40px); left: 20px; right: 20px; }
+            .search-input { padding: 13px 45px 13px 15px; font-size: 15px; }
         }
     </style>
 </head>
@@ -480,12 +562,28 @@
     </section>
 </div>
 
+<!-- ==================== جستجوی محصولات ==================== -->
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول... (مثلاً: سیمان، لوله، کاشی)" oninput="searchProducts()">
+        <span class="search-icon">🔍</span>
+        <button class="search-clear" id="searchClear" onclick="clearSearch()" title="پاک کردن">✕</button>
+    </div>
+    <div class="search-result-info" id="searchResultInfo"></div>
+</div>
+
 <section class="products" id="products">
     <h2 style="text-align: center; color: #1f2937;">محصولات ما</h2>
 
-    <div class="category-title construction">مصالح ساختمانی</div>
+    <div class="no-result" id="noResult">
+        <div class="no-result-icon">🔍</div>
+        محصولی با این نام پیدا نشد.<br>
+        لطفاً کلمه دیگه‌ای رو امتحان کن یا با ما تماس بگیر.
+    </div>
 
-    <div class="product-card">
+    <div class="category-title construction" data-category="construction">مصالح ساختمانی</div>
+
+    <div class="product-card" data-name="انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی">
         <div class="product-top">
             <div class="product-image"><img src="67.png" alt="انواع سیمان"></div>
             <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
@@ -500,7 +598,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="بلوک تیغه سبک دیوارچینی داخلی">
         <div class="product-top">
             <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
             <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
@@ -515,7 +613,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="بلوک سقفی سبک مقاوم تیرچه بلوک">
         <div class="product-top">
             <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
             <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
@@ -530,7 +628,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="کاشی دیواری کف طرح رنگ متنوع">
         <div class="product-top">
             <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
             <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
@@ -545,7 +643,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="سرامیک کف دیوار مقاومت بالا">
         <div class="product-top">
             <div class="product-image"><img src="as.png" alt="سرامیک"></div>
             <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
@@ -560,7 +658,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="موزاییک پرسی معمولی محوطه‌سازی">
         <div class="product-top">
             <div class="product-image"><img src="76.png" alt="موزاییک"></div>
             <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
@@ -575,7 +673,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="گچ ساختمانی سفیدکاری کیسه ۳۰ ۴۰ کیلوگرمی">
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
             <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
@@ -590,7 +688,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="پودر سنگ جوشقان معادن بتن ملات">
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
             <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
@@ -605,7 +703,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="آجر گره‌ای سفال دیوارچینی نماکاری">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
             <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
@@ -620,7 +718,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="سیمان سفید پاکتی نما بندکشی">
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
             <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
@@ -635,7 +733,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="آهک کیسه‌ای ساختمانی ملات شفته‌ریزی">
         <div class="product-top">
             <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
             <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
@@ -650,9 +748,9 @@
         </div>
     </div>
 
-    <div class="category-title facilities">تجهیزات تاسیساتی</div>
+    <div class="category-title facilities" data-category="facilities">تجهیزات تاسیساتی</div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="لوله پلیکا پنبه‌ای پنج لایه فلزی سایز">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
             <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
@@ -667,7 +765,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="اتصالات لوله‌کشی آب فاضلاب">
         <div class="product-top">
             <div class="product-image"><img src="10.png" alt="اتصالات"></div>
             <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
@@ -682,7 +780,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="شیرآلات بهداشتی ساختمانی برند معتبر">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
             <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
@@ -697,7 +795,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="هود آشپزخانه مدل مختلف">
         <div class="product-top">
             <div class="product-image"><img src="Gho.jpg" alt="هود"></div>
             <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
@@ -712,7 +810,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="سینک ظرفشویی استیل گرانیتی ابعاد">
         <div class="product-top">
             <div class="product-image"><img src="cv.png" alt="سینک"></div>
             <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
@@ -727,7 +825,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="روشویی دستشویی طرح مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
             <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
@@ -742,7 +840,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="چینی بهداشتی توالت ایرانی فرنگی برند معتبر">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
             <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
@@ -757,7 +855,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="فلاش تانک توکار روکار مدل مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع فلاش تانک"></div>
             <div class="product-info"><h3>انواع فلاش تانک</h3><p>فلاش تانک توکار و روکار، در مدل‌های مختلف.</p></div>
@@ -772,7 +870,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="جامایع طرح رنگ متنوع">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="جامایع"></div>
             <div class="product-info"><h3>جامایع</h3><p>جامایع در طرح‌ها و رنگ‌های متنوع.</p></div>
@@ -787,7 +885,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="جادستمال طرح رنگ مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="جادستمال"></div>
             <div class="product-info"><h3>جادستمال</h3><p>جادستمال در طرح‌ها و رنگ‌های مختلف.</p></div>
@@ -802,7 +900,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="آینه سرویس بهداشتی ابعاد طرح متنوع">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="آینه"></div>
             <div class="product-info"><h3>آینه</h3><p>آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.</p></div>
@@ -817,7 +915,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="پکیج دیواری زمینی گارانتی">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
             <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
@@ -832,7 +930,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="رادیاتور پنلی آلومینیومی ابعاد مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
             <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
@@ -847,7 +945,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="کولر سلولزی آبی مصرف بهینه آب برق">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
             <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
@@ -862,7 +960,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="مخازن آب افقی عمودی ایستاده خوابیده ظرفیت">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
             <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
@@ -877,7 +975,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="پمپ آب خانگی نیمه صنعتی صنعتی توان">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="پمپ آب"></div>
             <div class="product-info"><h3>پمپ آب</h3><p>پمپ آب خانگی، نیمه صنعتی و صنعتی در توان‌های مختلف.</p></div>
@@ -892,7 +990,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="ست کنترل پمپ آب اتوماتیک هوشمند">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="ست کنترل پمپ آب"></div>
             <div class="product-info"><h3>ست کنترل پمپ آب</h3><p>ست کنترل اتوماتیک برای روشن و خاموش کردن هوشمند پمپ آب.</p></div>
@@ -907,7 +1005,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card" data-name="گاز صفحه‌ای مدل سایز آشپزخانه مدرن">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="گاز صفحه‌ای"></div>
             <div class="product-info"><h3>گاز صفحه‌ای</h3><p>گاز صفحه‌ای در مدل‌ها و سایزهای مختلف، مناسب برای آشپزخانه‌های مدرن.</p></div>
@@ -1214,6 +1312,78 @@
         document.getElementById("assistantWindow").classList.remove("show");
     }
 
+    // ==================== توابع جستجو ====================
+    function searchProducts() {
+        const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.product-card');
+        const categoryTitles = document.querySelectorAll('.category-title');
+        const clearBtn = document.getElementById('searchClear');
+        const resultInfo = document.getElementById('searchResultInfo');
+        const noResult = document.getElementById('noResult');
+        const productsSection = document.getElementById('products');
+        
+        if (query === '') {
+            // نمایش همه محصولات
+            cards.forEach(card => card.style.display = '');
+            categoryTitles.forEach(title => title.style.display = '');
+            clearBtn.classList.remove('show');
+            resultInfo.innerHTML = '';
+            noResult.classList.remove('show');
+            if (productsSection) productsSection.style.display = '';
+            return;
+        }
+        
+        clearBtn.classList.add('show');
+        if (productsSection) productsSection.style.display = 'block';
+        
+        let visibleCount = 0;
+        
+        cards.forEach(card => {
+            const name = card.getAttribute('data-name') || '';
+            const h3 = card.querySelector('h3');
+            const p = card.querySelector('p');
+            const title = h3 ? h3.textContent.toLowerCase() : '';
+            const desc = p ? p.textContent.toLowerCase() : '';
+            
+            if (name.toLowerCase().includes(query) || 
+                title.includes(query) || 
+                desc.includes(query)) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // مخفی کردن عنوان دسته‌بندی‌ها اگه هیچ محصولی از اون دسته پیدا نشد
+        categoryTitles.forEach(title => {
+            let next = title.nextElementSibling;
+            let hasVisible = false;
+            while (next && !next.classList.contains('category-title')) {
+                if (next.classList.contains('product-card') && next.style.display !== 'none') {
+                    hasVisible = true;
+                    break;
+                }
+                next = next.nextElementSibling;
+            }
+            title.style.display = hasVisible ? '' : 'none';
+        });
+        
+        if (visibleCount === 0) {
+            noResult.classList.add('show');
+            resultInfo.innerHTML = '';
+        } else {
+            noResult.classList.remove('show');
+            resultInfo.innerHTML = '🔍 <strong>' + visibleCount + '</strong> محصول پیدا شد';
+        }
+    }
+
+    function clearSearch() {
+        document.getElementById('searchInput').value = '';
+        searchProducts();
+        document.getElementById('searchInput').focus();
+    }
+
     // ==================== توابع دستیار خرید ====================
     const knowledgeBase = {
         'دیوار': 'برای هر متر مربع دیوار تیغه‌ای حدود ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان لازم داری. برای اطلاع دقیق‌تر با شماره ۰۹۱۳۳۹۰۸۲۳۰ تماس بگیر.',
@@ -1292,4 +1462,4 @@
 </script>
 
 </body>
-    </html>
+                </html>
