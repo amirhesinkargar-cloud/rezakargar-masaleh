@@ -275,15 +275,74 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0;
         }
         .floating-assistant-btn:hover {
             background: #4f46e5;
             transform: scale(1.1);
         }
-        .floating-assistant-btn svg {
+
+        /* آیکون ربات با CSS خالص */
+        .robot-icon {
             width: 28px;
             height: 28px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
         }
+        /* آنتن */
+        .robot-icon::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            width: 2px;
+            height: 7px;
+            background: white;
+            border-radius: 1px;
+        }
+        .robot-icon::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+        }
+        /* سر ربات */
+        .robot-head {
+            width: 26px;
+            height: 18px;
+            background: white;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 9px;
+        }
+        /* چشم‌ها */
+        .robot-eye {
+            width: 4px;
+            height: 4px;
+            background: #6366f1;
+            border-radius: 50%;
+        }
+        /* گوش‌ها */
+        .robot-ear {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 8px;
+            background: white;
+            border-radius: 2px;
+        }
+        .robot-ear.left { left: -5px; }
+        .robot-ear.right { right: -5px; }
 
         /* دکمه سبد خرید - بالای دکمه اینستاگرام */
         .floating-cart-btn {
@@ -920,15 +979,14 @@
 
 <!-- دستیار خرید - بالای تماس -->
 <button class="floating-assistant-btn" onclick="toggleAssistant()" title="مشاور خرید">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2V4M12 4C9.5 4 7.5 5.5 6.5 7.5M12 4C14.5 4 16.5 5.5 17.5 7.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-        <rect x="4" y="8" width="16" height="12" rx="4" stroke="white" stroke-width="1.8"/>
-        <circle cx="9" cy="13" r="1.5" fill="white"/>
-        <circle cx="15" cy="13" r="1.5" fill="white"/>
-        <path d="M9 17H15" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="2" cy="13" r="1.5" fill="white"/>
-        <circle cx="22" cy="13" r="1.5" fill="white"/>
-    </svg>
+    <div class="robot-icon">
+        <div class="robot-head">
+            <span class="robot-eye"></span>
+            <span class="robot-eye"></span>
+            <span class="robot-ear left"></span>
+            <span class="robot-ear right"></span>
+        </div>
+    </div>
 </button>
 
 <!-- اینستاگرام - پایین راست -->
