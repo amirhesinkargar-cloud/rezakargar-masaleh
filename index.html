@@ -5,122 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مصالح ساختمانی و تاسیسات مرکزی کارگر | شهربابک</title>
     <meta name="description" content="فروش انواع مصالح ساختمانی و تجهیزات تاسیساتی در شهربابک. سیمان، بلوک، کاشی، سرامیک، لوله، شیرآلات، پکیج، رادیاتور و... با قیمت مناسب و ارسال سریع.">
-    <meta name="keywords" content="مصالح ساختمانی, تاسیسات, مصالح ساختمانی شهربابک, تاسیسات شهربابک, سیمان, بلوک, کاشی, سرامیک, لوله, شیرآلات, پکیج, رادیاتور, فلاش تانک, جامایع, آینه">
+    <meta name="keywords" content="مصالح ساختمانی, تاسیسات, مصالح ساختمانی شهربابک, تاسیسات شهربابک, سیمان, بلوک, کاشی, سرامیک, لوله, شیرآلات, پکیج, رادیاتور">
     <meta name="robots" content="index, follow">
     <link rel="icon" type="image/jpeg" href="0987.jpg">
     <link rel="apple-touch-icon" href="0987.jpg">
 
     <style>
         body { font-family: Tahoma, Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; padding-bottom: 80px; }
-        
         header { background: #0a2540; color: white; padding: 20px 25px; text-align: center; position: relative; }
         .header-logo { max-width: 340px; width: 100%; height: auto; display: block; margin: 0 auto; }
-
         nav { background: #14395e; padding: 12px; text-align: center; }
         nav a { color: white; text-decoration: none; margin: 8px; font-weight: bold; font-size: 14px; }
-
         .hero { background: white; padding: 40px 20px; text-align: center; }
         .hero h1 { font-size: 28px; margin-bottom: 10px; }
         .hero p { color: #555; margin-bottom: 20px; }
-        
         .inquiry-btn { display: inline-block; background: #d97706; color: white; padding: 14px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 18px; transition: 0.3s; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4); }
         .inquiry-btn:hover { background: #b45309; transform: scale(1.05); }
 
-        /* ==================== جستجو ==================== */
-        .search-container {
-            max-width: 900px;
-            margin: 20px auto 0 auto;
-            padding: 0 25px;
-        }
-        .search-box {
-            position: relative;
-            width: 100%;
-        }
-        .search-input {
-            width: 100%;
-            padding: 15px 52px 15px 45px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 16px;
-            background: white;
-            outline: none;
-            transition: 0.3s;
-            box-sizing: border-box;
-            color: #1f2937;
-        }
-        .search-input:focus {
-            border-color: #0d9488;
-            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15);
-        }
-        .search-input::placeholder {
-            color: #9ca3af;
-        }
-        .search-icon {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-            width: 22px;
-            height: 22px;
-            pointer-events: none;
-            transition: 0.3s;
-        }
-        .search-input:focus ~ .search-icon {
-            color: #0d9488;
-        }
-        .search-clear {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            cursor: pointer;
-            font-size: 14px;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            padding: 0;
-            transition: 0.2s;
-        }
-        .search-clear.show {
-            display: flex;
-        }
-        .search-clear:hover {
-            background: #dc2626;
-            transform: translateY(-50%) scale(1.1);
-        }
-        .search-result-info {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 14px;
-            color: #6b7280;
-            min-height: 20px;
-        }
-        .search-result-info strong {
-            color: #0d9488;
-        }
-        .no-result {
-            text-align: center;
-            padding: 40px 20px;
-            color: #9ca3af;
-            font-size: 16px;
-            display: none;
-        }
-        .no-result.show {
-            display: block;
-        }
-        .no-result-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
+        .search-container { max-width: 900px; margin: 0 auto 20px auto; padding: 0 25px; }
+        .search-box { position: relative; width: 100%; }
+        .search-input { width: 100%; padding: 15px 52px 15px 45px; border: 2px solid #e5e7eb; border-radius: 12px; font-family: inherit; font-size: 16px; background: white; outline: none; transition: 0.3s; box-sizing: border-box; color: #1f2937; }
+        .search-input:focus { border-color: #0d9488; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15); }
+        .search-input::placeholder { color: #9ca3af; }
+        .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #9ca3af; width: 22px; height: 22px; pointer-events: none; transition: 0.3s; }
+        .search-input:focus ~ .search-icon { color: #0d9488; }
+        .search-clear { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); background: #ef4444; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 14px; display: none; align-items: center; justify-content: center; font-weight: bold; padding: 0; transition: 0.2s; }
+        .search-clear.show { display: flex; }
+        .search-result-info { text-align: center; margin-top: 12px; font-size: 14px; color: #6b7280; min-height: 20px; }
+        .search-result-info strong { color: #0d9488; }
+        .no-result { text-align: center; padding: 40px 20px; color: #9ca3af; font-size: 16px; display: none; }
+        .no-result.show { display: block; }
+        .no-result-icon { font-size: 50px; margin-bottom: 15px; }
 
         .two-column-layout { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1100px; margin: 20px auto; padding: 0 25px; }
         .two-column-layout > section { flex: 1; min-width: 300px; margin: 0; }
@@ -132,102 +47,25 @@
         .contact p { margin: 15px 0; font-size: 18px; line-height: 1.6; }
         .contact-logo { max-width: 100px; width: 100%; height: auto; margin-bottom: 15px; border-radius: 10px; background: white; padding: 4px; }
         
-        .product-card { 
-            background: white; 
-            border-radius: 12px; 
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08); 
-            margin-bottom: 18px; 
-            overflow: hidden; 
-            transition: 0.3s;
-            border: 1px solid #f0f0f0;
-        }
-        .product-card:hover { 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12); 
-            transform: translateY(-3px); 
-            border-color: #0d9488;
-        }
+        .product-card { background: white; border-radius: 12px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); margin-bottom: 18px; overflow: hidden; transition: 0.3s; border: 1px solid #f0f0f0; }
+        .product-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.12); transform: translateY(-3px); border-color: #0d9488; }
         .product-top { display: flex; align-items: center; padding: 5px; }
-        .product-image { 
-            width: 130px; 
-            min-width: 130px; 
-            height: 130px; 
-            background: #e5e7eb; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border-radius: 10px;
-            overflow: hidden; 
-            margin: 8px;
-        }
+        .product-image { width: 130px; min-width: 130px; height: 130px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; border-radius: 10px; overflow: hidden; margin: 8px; }
         .product-image img { width: 100%; height: 100%; object-fit: cover; }
         .product-info { padding: 15px 18px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .product-info h3 { margin: 0 0 8px 0; color: #0a2540; font-size: 18px; font-weight: bold; }
         .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
         
         .add-section { display: flex; flex-direction: column; align-items: center; margin-left: 12px; gap: 4px; flex-shrink: 0; position: relative; padding-left: 8px; }
-        
-        .add-icon-btn { 
-            background: #f0fdfa; 
-            color: #0d9488; 
-            border: 2px solid #0d9488; 
-            border-radius: 50%; 
-            width: 42px; 
-            height: 42px; 
-            font-size: 24px; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: 0.3s; 
-            font-family: inherit; 
-            font-weight: bold;
-            position: relative;
-        }
+        .add-icon-btn { background: #f0fdfa; color: #0d9488; border: 2px solid #0d9488; border-radius: 50%; width: 42px; height: 42px; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-family: inherit; font-weight: bold; position: relative; }
         .add-icon-btn:hover { background: #0d9488; color: white; }
-        
-        .add-icon-btn::after {
-            content: "افزودن به لیست خرید";
-            position: absolute;
-            bottom: 120%;
-            right: 50%;
-            transform: translateX(50%);
-            background: #1f2937;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.3s;
-            font-weight: normal;
-            z-index: 10;
-        }
-        .add-icon-btn::before {
-            content: "";
-            position: absolute;
-            bottom: 100%;
-            right: 50%;
-            transform: translateX(50%);
-            border: 6px solid transparent;
-            border-top-color: #1f2937;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.3s;
-            z-index: 10;
-        }
-        .add-icon-btn:hover::after,
-        .add-icon-btn:hover::before {
-            opacity: 1;
-        }
         
         .qty-control { display: none; align-items: center; gap: 3px; background: #f0fdfa; border: 2px solid #0d9488; border-radius: 10px; padding: 3px; }
         .qty-control.show { display: flex; }
         .qty-control button { background: transparent; border: none; color: #0d9488; width: 28px; height: 28px; font-size: 18px; cursor: pointer; font-weight: bold; font-family: inherit; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         .qty-control button:hover { background: #0d9488; color: white; }
         .qty-control input { width: 55px; height: 28px; border: none; background: transparent; text-align: center; font-family: inherit; font-size: 14px; font-weight: bold; color: #0f766e; outline: none; }
-        .qty-control input::-webkit-outer-spin-button,
-        .qty-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .qty-control input::-webkit-outer-spin-button, .qty-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .qty-control input[type=number] { -moz-appearance: textfield; }
 
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
@@ -251,7 +89,6 @@
         .working-hours { background: #e5e7eb; padding: 15px; text-align: center; font-weight: bold; color: #1f2937; margin-top: 20px; border-radius: 10px; }
         .call-btn { display: inline-block; background: #25d366; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; margin-top: 15px; transition: 0.3s; }
         .call-btn:hover { background: #128c7e; }
-        
         .personal-call-btn { display: inline-block; background: #374151; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin: 8px; transition: 0.3s; border: 2px solid #25d366; }
         .personal-call-btn:hover { background: #25d366; }
 
@@ -264,247 +101,52 @@
         .cart-window { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 360px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 1002; overflow: hidden; }
         .cart-window.show { display: block; animation: fadeIn 0.3s; }
         .cart-header { background: #0a2540; color: white; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .cart-header span { font-size: 15px; }
         .cart-header button { background: transparent; border: none; color: white; font-size: 20px; cursor: pointer; font-weight: bold; }
         .cart-items { max-height: 320px; overflow-y: auto; padding: 10px 15px; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 14px; gap: 8px; }
         .cart-item-name { flex-grow: 1; color: #1f2937; }
         .cart-item-qty { display: flex; align-items: center; gap: 5px; }
         .cart-item-qty button { background: #e5e7eb; color: #1f2937; border: none; border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-weight: bold; font-size: 14px; }
-        .cart-item-qty button:hover { background: #0d9488; color: white; }
-        .cart-item-qty input {
-            width: 60px;
-            height: 24px;
-            border: 1px solid #e5e7eb;
-            border-radius: 5px;
-            text-align: center;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: bold;
-            color: #0f766e;
-            background: #f9fafb;
-            outline: none;
-        }
-        .cart-item-qty input:focus { border-color: #0d9488; background: white; }
-        .cart-item-qty input::-webkit-outer-spin-button,
-        .cart-item-qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        .cart-item-qty input[type=number] { -moz-appearance: textfield; }
-        
+        .cart-item-qty input { width: 60px; height: 24px; border: 1px solid #e5e7eb; border-radius: 5px; text-align: center; font-family: inherit; font-size: 13px; font-weight: bold; color: #0f766e; background: #f9fafb; outline: none; }
         .cart-item-remove { background: #ef4444; color: white; border: none; border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-weight: bold; flex-shrink: 0; }
         .cart-empty { text-align: center; color: #9ca3af; padding: 20px; font-size: 14px; }
         .cart-footer { padding: 12px 15px; background: #f9fafb; border-top: 1px solid #e5e7eb; }
-        .cart-footer button { width: 100%; background: #0d9488; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; font-family: inherit; transition: 0.3s; }
-        .cart-footer button:hover { background: #0f766e; }
+        .cart-footer button { width: 100%; background: #0d9488; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; font-family: inherit; }
 
-        /* ==================== دکمه‌های شناور ==================== */
+        .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); text-decoration: none; transition: 0.3s; z-index: 1000; }
+        .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
 
-        /* دکمه تماس فوری - پایین چپ */
-        .floating-call-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-            text-decoration: none;
-            transition: 0.3s;
-            z-index: 1000;
-        }
-        .floating-call-btn:hover {
-            background: #128c7e;
-            transform: scale(1.1);
-        }
+        .floating-insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(225, 48, 108, 0.5); transition: 0.3s; z-index: 1000; cursor: pointer; border: none; }
+        .floating-insta-btn:hover { background: #c13584; transform: scale(1.1); }
+        .insta-icon { width: 30px; height: 30px; fill: white; }
 
-        /* دکمه اینستاگرام - پایین راست */
-        .floating-insta-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #e1306c;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.5);
-            text-decoration: none;
-            transition: 0.3s;
-            z-index: 1000;
-            cursor: pointer;
-            border: none;
-        }
-        .floating-insta-btn:hover {
-            background: #c13584;
-            transform: scale(1.1);
-        }
-        .insta-icon {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
+        .floating-assistant-btn { position: fixed; bottom: 88px; left: 22px; background: #6366f1; color: white; width: 55px; height: 55px; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); transition: 0.3s; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 0; }
+        .floating-assistant-btn:hover { background: #4f46e5; transform: scale(1.1); }
 
-        /* دکمه دستیار خرید - بالای دکمه تماس */
-        .floating-assistant-btn {
-            position: fixed;
-            bottom: 88px;
-            left: 22px;
-            background: #6366f1;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-            transition: 0.3s;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-        .floating-assistant-btn:hover {
-            background: #4f46e5;
-            transform: scale(1.1);
-        }
-
-        /* آیکون ربات با CSS خالص */
-        .robot-icon {
-            width: 28px;
-            height: 28px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        .robot-icon::before {
-            content: "";
-            position: absolute;
-            top: 2px;
-            width: 2px;
-            height: 7px;
-            background: white;
-            border-radius: 1px;
-        }
-        .robot-icon::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 5px;
-            height: 5px;
-            background: white;
-            border-radius: 50%;
-        }
-        .robot-head {
-            width: 26px;
-            height: 18px;
-            background: white;
-            border-radius: 5px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 9px;
-        }
-        .robot-eye {
-            width: 4px;
-            height: 4px;
-            background: #6366f1;
-            border-radius: 50%;
-        }
-        .robot-ear {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 8px;
-            background: white;
-            border-radius: 2px;
-        }
+        .robot-icon { width: 28px; height: 28px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+        .robot-icon::before { content: ""; position: absolute; top: 2px; width: 2px; height: 7px; background: white; border-radius: 1px; }
+        .robot-icon::after { content: ""; position: absolute; top: 0; width: 5px; height: 5px; background: white; border-radius: 50%; }
+        .robot-head { width: 26px; height: 18px; background: white; border-radius: 5px; position: relative; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 9px; }
+        .robot-eye { width: 4px; height: 4px; background: #6366f1; border-radius: 50%; }
+        .robot-ear { position: absolute; top: 50%; transform: translateY(-50%); width: 3px; height: 8px; background: white; border-radius: 2px; }
         .robot-ear.left { left: -5px; }
         .robot-ear.right { right: -5px; }
 
-        /* دکمه سبد خرید - بالای دکمه اینستاگرام */
-        .floating-cart-btn {
-            position: fixed;
-            bottom: 88px;
-            right: 22px;
-            background: #0d9488;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5);
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 1000;
-            border: none;
-        }
-        .floating-cart-btn.show {
-            display: flex;
-        }
-        .floating-cart-btn:hover {
-            background: #0f766e;
-            transform: scale(1.1);
-        }
-        .cart-svg-icon {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ef4444;
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
+        .floating-cart-btn { position: fixed; bottom: 88px; right: 22px; background: #0d9488; color: white; width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5); cursor: pointer; transition: 0.3s; z-index: 1000; border: none; }
+        .floating-cart-btn.show { display: flex; }
+        .floating-cart-btn:hover { background: #0f766e; transform: scale(1.1); }
+        .cart-svg-icon { width: 28px; height: 28px; fill: white; }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        /* منوی اینستاگرام */
         .insta-menu { display: none; position: fixed; bottom: 90px; right: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); padding: 10px; z-index: 1001; min-width: 200px; text-align: center; }
         .insta-menu.show { display: block; animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .insta-menu p { margin: 5px 0 10px 0; font-weight: bold; color: #1f2937; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         .insta-menu a { display: block; padding: 10px; text-decoration: none; color: #1f2937; border-radius: 8px; margin: 5px 0; transition: 0.2s; font-size: 15px; font-weight: bold; }
-        .insta-menu a:hover { background: #f3f4f6; color: #e1306c; }
 
-        /* ==================== دستیار خرید ==================== */
-        .assistant-window {
-            display: none; position: fixed; bottom: 155px; left: 20px;
-            width: 340px; max-height: 500px; background: white;
-            border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            z-index: 1002; overflow: hidden; flex-direction: column;
-        }
+        .assistant-window { display: none; position: fixed; bottom: 155px; left: 20px; width: 340px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 1002; overflow: hidden; flex-direction: column; }
         .assistant-window.show { display: flex; animation: fadeIn 0.3s; }
-        .assistant-header {
-            background: #6366f1; color: white; padding: 12px 15px;
-            font-weight: bold; display: flex; justify-content: space-between;
-            align-items: center;
-        }
+        .assistant-header { background: #6366f1; color: white; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         .assistant-header button { background: transparent; border: none; color: white; font-size: 18px; cursor: pointer; }
         .assistant-messages { flex: 1; overflow-y: auto; padding: 15px; max-height: 350px; }
         .assistant-msg { padding: 10px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; line-height: 1.7; }
@@ -514,7 +156,6 @@
         .assistant-input input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; }
         .assistant-input input:focus { border-color: #6366f1; }
         .assistant-input button { background: #6366f1; color: white; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-size: 18px; }
-        .assistant-input button:hover { background: #4f46e5; }
 
         @media (max-width: 768px) { 
             .two-column-layout { flex-direction: column; } 
@@ -577,8 +218,8 @@
 <section class="products" id="products">
     <h2 style="text-align: center; color: #1f2937; margin-bottom: 20px;">محصولات ما</h2>
 
-    <!-- ==================== جستجوی محصولات ==================== -->
-    <div class="search-container" style="margin-top: 0; padding: 0;">
+    <!-- ==================== جستجو (بعد از محصولات ما) ==================== -->
+    <div class="search-container" style="padding: 0; margin-bottom: 20px;">
         <div class="search-box">
             <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول..." oninput="searchProducts()">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -596,7 +237,7 @@
         لطفاً کلمه دیگه‌ای رو امتحان کن یا با ما تماس بگیر.
     </div>
 
-    <div class="category-title construction" data-category="construction">مصالح ساختمانی</div>
+    <div class="category-title construction">مصالح ساختمانی</div>
 
     <div class="product-card" data-name="انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی">
         <div class="product-top">
@@ -763,7 +404,7 @@
         </div>
     </div>
 
-    <div class="category-title facilities" data-category="facilities">تجهیزات تاسیساتی</div>
+    <div class="category-title facilities">تجهیزات تاسیساتی</div>
 
     <div class="product-card" data-name="لوله پلیکا پنبه‌ای پنج لایه فلزی سایز">
         <div class="product-top">
@@ -1085,12 +726,8 @@
     </div>
 </section>
 
-<!-- ==================== دکمه‌های شناور ==================== -->
-
-<!-- تماس فوری - پایین چپ -->
 <a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">📞</a>
 
-<!-- دستیار خرید - بالای تماس -->
 <button class="floating-assistant-btn" onclick="toggleAssistant()" title="مشاور خرید">
     <div class="robot-icon">
         <div class="robot-head">
@@ -1102,12 +739,10 @@
     </div>
 </button>
 
-<!-- اینستاگرام - پایین راست -->
 <button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
     <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
 </button>
 
-<!-- سبد خرید - بالای اینستاگرام -->
 <button class="floating-cart-btn" id="floatingCartBtn" onclick="toggleCart()" title="لیست خرید">
     <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -1115,14 +750,12 @@
     <span class="cart-count" id="cartCount">0</span>
 </button>
 
-<!-- منوی اینستاگرام -->
 <div class="insta-menu" id="instaMenu">
     <p>صفحه اینستاگرام ما:</p>
     <a href="https://instagram.com/rezakargar_masaleh" target="_blank">پیج مصالح</a>
     <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">پیج تاسیسات</a>
 </div>
 
-<!-- ==================== دستیار خرید ==================== -->
 <div class="assistant-window" id="assistantWindow">
     <div class="assistant-header">
         <span>💬 مشاور خرید</span>
@@ -1144,7 +777,6 @@
     </div>
 </div>
 
-<!-- ==================== پنجره سبد خرید ==================== -->
 <div class="cart-window" id="cartWindow">
     <div class="cart-header">
         <span>🛒 لیست خرید شما</span>
@@ -1165,39 +797,25 @@
         btn.style.display = 'none';
         const qtyControl = document.getElementById('qty-' + productName);
         if (qtyControl) qtyControl.classList.add('show');
-        
         const existingItem = cart.find(item => item.name === productName);
-        if (existingItem) {
-            if (existingItem.qty < 100000) existingItem.qty++;
-        } else {
-            cart.push({ name: productName, qty: 1 });
-        }
-        
+        if (existingItem) { if (existingItem.qty < 100000) existingItem.qty++; }
+        else { cart.push({ name: productName, qty: 1 }); }
         const input = document.getElementById('input-' + productName);
-        if (input) {
-            const item = cart.find(i => i.name === productName);
-            if (item) input.value = item.qty;
-        }
+        if (input) { const item = cart.find(i => i.name === productName); if (item) input.value = item.qty; }
         updateCart();
     }
 
     function decreaseQty(productName) {
         const item = cart.find(i => i.name === productName);
         if (!item) return;
-        
-        if (item.qty > 1) {
-            item.qty--;
-        } else {
+        if (item.qty > 1) { item.qty--; }
+        else {
             cart = cart.filter(i => i.name !== productName);
             const qtyControl = document.getElementById('qty-' + productName);
             if (qtyControl) qtyControl.classList.remove('show');
             const section = document.getElementById('section-' + productName);
-            if (section) {
-                const addBtn = section.querySelector('.add-icon-btn');
-                if (addBtn) addBtn.style.display = 'flex';
-            }
+            if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
         }
-        
         const input = document.getElementById('input-' + productName);
         const currentItem = cart.find(i => i.name === productName);
         if (input && currentItem) input.value = currentItem.qty;
@@ -1218,14 +836,8 @@
         let qty = parseInt(value) || 1;
         if (qty < 1) qty = 1;
         if (qty > 100000) qty = 100000;
-        
         const item = cart.find(i => i.name === productName);
-        if (item) {
-            item.qty = qty;
-        } else {
-            cart.push({ name: productName, qty: qty });
-        }
-        
+        if (item) { item.qty = qty; } else { cart.push({ name: productName, qty: qty }); }
         const input = document.getElementById('input-' + productName);
         if (input) input.value = qty;
         updateCart();
@@ -1235,15 +847,10 @@
         let qty = parseInt(value) || 1;
         if (qty < 1) qty = 1;
         if (qty > 100000) qty = 100000;
-        
         const item = cart.find(i => i.name === productName);
-        if (item) {
-            item.qty = qty;
-        }
-        
+        if (item) { item.qty = qty; }
         const productInput = document.getElementById('input-' + productName);
         if (productInput) productInput.value = qty;
-        
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         document.getElementById('cartCount').textContent = totalItems;
     }
@@ -1253,10 +860,7 @@
         const qtyControl = document.getElementById('qty-' + productName);
         if (qtyControl) qtyControl.classList.remove('show');
         const section = document.getElementById('section-' + productName);
-        if (section) {
-            const addBtn = section.querySelector('.add-icon-btn');
-            if (addBtn) addBtn.style.display = 'flex';
-        }
+        if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
         updateCart();
     }
 
@@ -1264,16 +868,10 @@
         const cartItems = document.getElementById('cartItems');
         const cartCount = document.getElementById('cartCount');
         const floatingCartBtn = document.getElementById('floatingCartBtn');
-        
         const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
         cartCount.textContent = totalItems;
-        
-        if (cart.length > 0) {
-            floatingCartBtn.classList.add('show');
-        } else {
-            floatingCartBtn.classList.remove('show');
-        }
-        
+        if (cart.length > 0) { floatingCartBtn.classList.add('show'); }
+        else { floatingCartBtn.classList.remove('show'); }
         if (cart.length === 0) {
             cartItems.innerHTML = '<div class="cart-empty">لیست شما خالی است</div>';
         } else {
@@ -1301,12 +899,8 @@
     }
 
     function copyCart() {
-        if (cart.length === 0) {
-            alert('لیست شما خالی است.');
-            return;
-        }
+        if (cart.length === 0) { alert('لیست شما خالی است.'); return; }
         const text = 'لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' + cart.map((item, i) => `${i+1}. ${item.name} — تعداد: ${item.qty}`).join('\n');
-        
         navigator.clipboard.writeText(text).then(() => {
             alert('لیست شما کپی شد! می‌تونید اون رو در ایتا برامون بفرستید.');
         }).catch(() => {
@@ -1327,7 +921,6 @@
         document.getElementById("assistantWindow").classList.remove("show");
     }
 
-    // ==================== توابع جستجو ====================
     function searchProducts() {
         const query = document.getElementById('searchInput').value.trim().toLowerCase();
         const cards = document.querySelectorAll('.product-card');
@@ -1335,7 +928,6 @@
         const clearBtn = document.getElementById('searchClear');
         const resultInfo = document.getElementById('searchResultInfo');
         const noResult = document.getElementById('noResult');
-        
         if (query === '') {
             cards.forEach(card => card.style.display = '');
             categoryTitles.forEach(title => title.style.display = '');
@@ -1344,41 +936,30 @@
             noResult.classList.remove('show');
             return;
         }
-        
         clearBtn.classList.add('show');
-        
         let visibleCount = 0;
-        
         cards.forEach(card => {
             const name = card.getAttribute('data-name') || '';
             const h3 = card.querySelector('h3');
             const p = card.querySelector('p');
             const title = h3 ? h3.textContent.toLowerCase() : '';
             const desc = p ? p.textContent.toLowerCase() : '';
-            
-            if (name.toLowerCase().includes(query) || 
-                title.includes(query) || 
-                desc.includes(query)) {
+            if (name.toLowerCase().includes(query) || title.includes(query) || desc.includes(query)) {
                 card.style.display = '';
                 visibleCount++;
             } else {
                 card.style.display = 'none';
             }
         });
-        
         categoryTitles.forEach(title => {
             let next = title.nextElementSibling;
             let hasVisible = false;
             while (next && !next.classList.contains('category-title')) {
-                if (next.classList.contains('product-card') && next.style.display !== 'none') {
-                    hasVisible = true;
-                    break;
-                }
+                if (next.classList.contains('product-card') && next.style.display !== 'none') { hasVisible = true; break; }
                 next = next.nextElementSibling;
             }
             title.style.display = hasVisible ? '' : 'none';
         });
-        
         if (visibleCount === 0) {
             noResult.classList.add('show');
             resultInfo.innerHTML = '';
@@ -1394,18 +975,36 @@
         document.getElementById('searchInput').focus();
     }
 
-    // ==================== توابع دستیار خرید ====================
+    // ==================== دستیار هوشمند ====================
     const knowledgeBase = {
-        'دیوار': 'برای هر متر مربع دیوار تیغه‌ای حدود ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان لازم داری. برای اطلاع دقیق‌تر با شماره ۰۹۱۳۳۹۰۸۲۳۰ تماس بگیر.',
-        'سقف': 'برای سقف تیرچه بلوک، برای هر متر مربع حدود ۲ عدد بلوک سقفی + تیرچه + میلگرد لازمه. برای محاسبه دقیق با ما تماس بگیر.',
-        'سیمان': 'سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات. قیمت روز رو می‌تونی از شماره ۰۹۱۳۳۹۰۸۲۳۰ بپرسی.',
-        'گچ': 'گچ سفیدکاری برای لایه آخر و گچ ساختمانی برای زیرکار. کیسه‌ها ۳۰ و ۴۰ کیلویی موجوده.',
-        'لوله': 'لوله پلیکا برای فاضلاب، پنج لایه برای آب گرم و سرد، پنبه‌ای برای آب. برای انتخاب سایز مناسب با کارشناس ما تماس بگیر.',
-        'پکیج': 'پکیج‌های دیواری و زمینی با گارانتی موجوده. برای انتخاب ظرفیت مناسب (۲۴ یا ۲۸) با ما مشورت کن.',
-        'قیمت': 'برای استعلام قیمت روز، لطفاً با شماره‌های زیر تماس بگیرید:\n📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
-        'تماس': '📞 شماره‌های تماس:\nمصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\nمغازه: ۰۳۴-۳۴۳۴۱۳۰۳',
-        'آدرس': '📍 آدرس: شهربابک، خیابان مطهری، نبش کوچه ۱۱\nساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
-        'ارسال': '✅ ارسال سریع با ناوگان خودمون در شهربابک و حومه انجام می‌شه.',
+        'سیمان': 'سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات. قیمت روز: ۰۹۱۳۳۹۰۸۲۳۰',
+        'بلوک': 'بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک. برای هر متر مربع دیوار حدود ۱۰ عدد بلوک. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'کاشی': 'کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'سرامیک': 'سرامیک کف و دیوار با مقاومت بالا. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'گچ': 'گچ سفیدکاری و ساختمانی، کیسه‌های ۳۰ و ۴۰ کیلویی. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'لوله': 'لوله پلیکا، پنج لایه، پنبه‌ای و فلزی در سایزهای مختلف. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'پکیج': 'پکیج دیواری و زمینی با گارانتی. برای انتخاب ظرفیت مشورت کن: ۰۹۱۳۳۹۰۸۳۹۳',
+        'رادیاتور': 'رادیاتور پنلی و آلومینیومی در ابعاد مختلف. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'شیر': 'شیرآلات بهداشتی و ساختمانی از برندهای معتبر. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'سینک': 'سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'چینی': 'توالت ایرانی و فرنگی از برندهای معتبر. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'پمپ': 'پمپ آب خانگی، نیمه صنعتی و صنعتی. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'مخزن': 'مخازن آب افقی، عمودی، ایستاده و خوابیده. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'هود': 'هود آشپزخانه در مدل‌های مختلف. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'گاز': 'گاز صفحه‌ای در مدل‌ها و سایزهای مختلف. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'آینه': 'آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'فلاش': 'فلاش تانک توکار و روکار در مدل‌های مختلف. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'موزاییک': 'موزاییک پرسی و معمولی برای محوطه‌سازی. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'آجر': 'آجر گره‌ای و سفال برای دیوارچینی و نماکاری. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'آهک': 'آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'پودر سنگ': 'پودر سنگ جوشقان و سایر معادن. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+        'اتصالات': 'انواع اتصالات لوله‌کشی آب و فاضلاب. قیمت: ۰۹۱۳۳۹۰۸۳۹۳',
+        'دیوار': 'برای هر متر مربع دیوار تیغه‌ای: ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان. مشاوره: ۰۹۱۳۳۹۰۸۲۳۰',
+        'سقف': 'برای هر متر مربع سقف تیرچه بلوک: ۲ عدد بلوک سقفی + تیرچه + میلگرد. مشاوره: ۰۹۱۳۳۹۰۸۲۳۰',
+        'قیمت': 'برای استعلام قیمت روز:\n📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
+        'تماس': '📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\n📞 مغازه: ۰۳۴-۳۴۳۴۱۳۰۳',
+        'آدرس': '📍 شهربابک، خیابان مطهری، نبش کوچه ۱۱\n⏰ شنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
+        'ارسال': '✅ ارسال سریع با ناوگان خودمون در شهربابک و حومه.',
         'سلام': 'سلام و خوش آمدید! 😊 چطور می‌تونم کمکتون کنم؟',
     };
 
@@ -1420,14 +1019,20 @@
         const input = document.getElementById('assistantInput');
         const msg = input.value.trim();
         if (!msg) return;
-        
         addMsg(msg, 'user');
         input.value = '';
-        
         setTimeout(() => {
             const reply = getAssistantReply(msg);
             addMsg(reply, 'bot');
-        }, 500);
+        }, 400);
+    }
+
+    function getAssistantReply(msg) {
+        const lower = msg.toLowerCase().trim();
+        for (const key in knowledgeBase) {
+            if (lower.includes(key)) return knowledgeBase[key];
+        }
+        return 'متأسفم، متوجه نشدم. 🤔\n\nمی‌تونید اینا رو بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n• پکیج دارید؟\n\nیا تماس بگیرید:\n📞 ۰۹۱۳۳۹۰۸۲۳۰';
     }
 
     function addMsg(text, type) {
@@ -1439,14 +1044,6 @@
         container.scrollTop = container.scrollHeight;
     }
 
-    function getAssistantReply(msg) {
-        const lower = msg.toLowerCase();
-        for (const key in knowledgeBase) {
-            if (lower.includes(key)) return knowledgeBase[key];
-        }
-        return 'متأسفم، متوجه نشدم. 🤔 لطفاً سوالت رو یه جور دیگه بپرس یا با شماره ۰۹۱۳۳۹۰۸۲۳۰ تماس بگیر.';
-    }
-
     document.addEventListener("click", function(event) {
         var menu = document.getElementById("instaMenu");
         var instaBtn = document.querySelector(".floating-insta-btn");
@@ -1454,20 +1051,9 @@
         var cartBtn = document.getElementById("floatingCartBtn");
         var assistantWindow = document.getElementById("assistantWindow");
         var assistantBtn = document.querySelector(".floating-assistant-btn");
-        
-        if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) {
-            menu.classList.remove("show");
-        }
-        
-        if (cartBtn && !cartBtn.contains(event.target) && 
-            cartWindow && !cartWindow.contains(event.target)) {
-            cartWindow.classList.remove("show");
-        }
-        
-        if (assistantBtn && !assistantBtn.contains(event.target) && 
-            assistantWindow && !assistantWindow.contains(event.target)) {
-            assistantWindow.classList.remove("show");
-        }
+        if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) { menu.classList.remove("show"); }
+        if (cartBtn && !cartBtn.contains(event.target) && cartWindow && !cartWindow.contains(event.target)) { cartWindow.classList.remove("show"); }
+        if (assistantBtn && !assistantBtn.contains(event.target) && assistantWindow && !assistantWindow.contains(event.target)) { assistantWindow.classList.remove("show"); }
     });
 </script>
 
