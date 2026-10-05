@@ -152,17 +152,6 @@
         .map-container { max-width: 900px; margin: 20px auto; padding: 0 25px; }
         .map-container iframe { width: 100%; height: 300px; border-radius: 10px; border: 0; box-shadow: 0 2px 8px #ddd; }
         
-        .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; }
-        .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
-        .floating-insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; z-index: 1000; cursor: pointer; border: none; }
-        .floating-insta-btn:hover { background: #c13584; transform: scale(1.1); }
-        .insta-icon { width: 28px; height: 28px; fill: white; }
-        .insta-menu { display: none; position: fixed; bottom: 90px; right: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); padding: 10px; z-index: 1001; min-width: 200px; text-align: center; }
-        .insta-menu.show { display: block; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .insta-menu p { margin: 5px 0 10px 0; font-weight: bold; color: #1f2937; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .insta-menu a { display: block; padding: 10px; text-decoration: none; color: #1f2937; border-radius: 8px; margin: 5px 0; transition: 0.2s; font-size: 15px; font-weight: bold; }
-        .insta-menu a:hover { background: #f3f4f6; color: #e1306c; }
         .working-hours { background: #e5e7eb; padding: 15px; text-align: center; font-weight: bold; color: #1f2937; margin-top: 20px; border-radius: 10px; }
         .call-btn { display: inline-block; background: #25d366; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; margin-top: 15px; transition: 0.3s; }
         .call-btn:hover { background: #128c7e; }
@@ -211,24 +200,150 @@
         .cart-footer button { width: 100%; background: #0d9488; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; font-family: inherit; transition: 0.3s; }
         .cart-footer button:hover { background: #0f766e; }
 
-        .floating-cart-btn { position: fixed; bottom: 90px; right: 20px; background: #0d9488; color: white; width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.5); cursor: pointer; transition: 0.3s; z-index: 1000; border: none; }
-        .floating-cart-btn.show { display: flex; }
-        .floating-cart-btn:hover { background: #0f766e; transform: scale(1.1); }
-        .cart-svg-icon { width: 28px; height: 28px; fill: white; }
-        .cart-count { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        /* ==================== دکمه‌های شناور ==================== */
 
-        /* ==================== استایل دستیار خرید ==================== */
-        .floating-assistant-btn {
-            position: fixed; bottom: 160px; left: 20px;
-            background: #6366f1; color: white; width: 55px; height: 55px;
-            border-radius: 50%; border: none; font-size: 26px; cursor: pointer;
-            box-shadow: 0 4px 12px rgba(99,102,241,0.5);
-            transition: 0.3s; z-index: 1000;
+        /* دکمه تماس فوری - پایین چپ */
+        .floating-call-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 1000;
         }
-        .floating-assistant-btn:hover { background: #4f46e5; transform: scale(1.1); }
+        .floating-call-btn:hover {
+            background: #128c7e;
+            transform: scale(1.1);
+        }
 
+        /* دکمه اینستاگرام - پایین راست */
+        .floating-insta-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e1306c;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.5);
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+        }
+        .floating-insta-btn:hover {
+            background: #c13584;
+            transform: scale(1.1);
+        }
+        .insta-icon {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* دکمه دستیار خرید - بالای دکمه تماس */
+        .floating-assistant-btn {
+            position: fixed;
+            bottom: 88px;
+            left: 22px;
+            background: #6366f1;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+            transition: 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .floating-assistant-btn:hover {
+            background: #4f46e5;
+            transform: scale(1.1);
+        }
+        .floating-assistant-btn svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* دکمه سبد خرید - بالای دکمه اینستاگرام */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 88px;
+            right: 22px;
+            background: #0d9488;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5);
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1000;
+            border: none;
+        }
+        .floating-cart-btn.show {
+            display: flex;
+        }
+        .floating-cart-btn:hover {
+            background: #0f766e;
+            transform: scale(1.1);
+        }
+        .cart-svg-icon {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* منوی اینستاگرام */
+        .insta-menu { display: none; position: fixed; bottom: 90px; right: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); padding: 10px; z-index: 1001; min-width: 200px; text-align: center; }
+        .insta-menu.show { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .insta-menu p { margin: 5px 0 10px 0; font-weight: bold; color: #1f2937; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .insta-menu a { display: block; padding: 10px; text-decoration: none; color: #1f2937; border-radius: 8px; margin: 5px 0; transition: 0.2s; font-size: 15px; font-weight: bold; }
+        .insta-menu a:hover { background: #f3f4f6; color: #e1306c; }
+
+        /* ==================== دستیار خرید ==================== */
         .assistant-window {
-            display: none; position: fixed; bottom: 90px; left: 20px;
+            display: none; position: fixed; bottom: 155px; left: 20px;
             width: 340px; max-height: 500px; background: white;
             border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             z-index: 1002; overflow: hidden; flex-direction: column;
@@ -260,6 +375,7 @@
             .product-image { width: 110px; min-width: 110px; height: 110px; }
             .product-info h3 { font-size: 16px; }
             .product-info p { font-size: 12px; }
+            .assistant-window { width: calc(100% - 40px); left: 20px; right: 20px; }
         }
     </style>
 </head>
@@ -797,24 +913,30 @@
     </div>
 </section>
 
-<div class="cart-window" id="cartWindow">
-    <div class="cart-header">
-        <span>🛒 لیست خرید شما</span>
-        <button onclick="toggleCart()">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-        <div class="cart-empty">لیست شما خالی است</div>
-    </div>
-    <div class="cart-footer">
-        <button onclick="copyCart()">📋 کپی لیست برای ارسال</button>
-    </div>
-</div>
+<!-- ==================== دکمه‌های شناور ==================== -->
 
+<!-- تماس فوری - پایین چپ -->
 <a href="tel:+983434130386" class="floating-call-btn" title="تماس فوری">📞</a>
+
+<!-- دستیار خرید - بالای تماس -->
+<button class="floating-assistant-btn" onclick="toggleAssistant()" title="مشاور خرید">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2V4M12 4C9.5 4 7.5 5.5 6.5 7.5M12 4C14.5 4 16.5 5.5 17.5 7.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <rect x="4" y="8" width="16" height="12" rx="4" stroke="white" stroke-width="1.8"/>
+        <circle cx="9" cy="13" r="1.5" fill="white"/>
+        <circle cx="15" cy="13" r="1.5" fill="white"/>
+        <path d="M9 17H15" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="2" cy="13" r="1.5" fill="white"/>
+        <circle cx="22" cy="13" r="1.5" fill="white"/>
+    </svg>
+</button>
+
+<!-- اینستاگرام - پایین راست -->
 <button class="floating-insta-btn" onclick="toggleInstaMenu()" title="اینستاگرام">
     <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
 </button>
 
+<!-- سبد خرید - بالای اینستاگرام -->
 <button class="floating-cart-btn" id="floatingCartBtn" onclick="toggleCart()" title="لیست خرید">
     <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -822,6 +944,7 @@
     <span class="cart-count" id="cartCount">0</span>
 </button>
 
+<!-- منوی اینستاگرام -->
 <div class="insta-menu" id="instaMenu">
     <p>صفحه اینستاگرام ما:</p>
     <a href="https://instagram.com/rezakargar_masaleh" target="_blank">پیج مصالح</a>
@@ -829,18 +952,14 @@
 </div>
 
 <!-- ==================== دستیار خرید ==================== -->
-<button class="floating-assistant-btn" onclick="toggleAssistant()" title="دستیار خرید">
-    🤖
-</button>
-
 <div class="assistant-window" id="assistantWindow">
     <div class="assistant-header">
-        <span>🤖 دستیار خرید کارگر</span>
+        <span>💬 مشاور خرید</span>
         <button onclick="toggleAssistant()">✕</button>
     </div>
     <div class="assistant-messages" id="assistantMessages">
         <div class="assistant-msg bot">
-            سلام! 👋 من دستیار خرید شما هستم. چطور می‌تونم کمکتون کنم؟
+            سلام! 👋 من مشاور خرید شما هستم. چطور می‌تونم کمکتون کنم؟
             <br><br>
             <b>می‌تونید بپرسید:</b><br>
             • برای دیوارچینی چی لازم دارم؟<br>
@@ -851,6 +970,20 @@
     <div class="assistant-input">
         <input type="text" id="assistantInput" placeholder="سوالت رو بنویس..." onkeypress="if(event.key==='Enter') sendAssistantMsg()">
         <button onclick="sendAssistantMsg()">➤</button>
+    </div>
+</div>
+
+<!-- ==================== پنجره سبد خرید ==================== -->
+<div class="cart-window" id="cartWindow">
+    <div class="cart-header">
+        <span>🛒 لیست خرید شما</span>
+        <button onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="cart-empty">لیست شما خالی است</div>
+    </div>
+    <div class="cart-footer">
+        <button onclick="copyCart()">📋 کپی لیست برای ارسال</button>
     </div>
 </div>
 
@@ -992,6 +1125,8 @@
     function toggleCart(event) {
         if (event) event.stopPropagation();
         document.getElementById('cartWindow').classList.toggle('show');
+        document.getElementById('instaMenu').classList.remove('show');
+        document.getElementById('assistantWindow').classList.remove('show');
     }
 
     function copyCart() {
@@ -1017,6 +1152,8 @@
     function toggleInstaMenu(event) {
         if (event) event.stopPropagation();
         document.getElementById("instaMenu").classList.toggle("show");
+        document.getElementById("cartWindow").classList.remove("show");
+        document.getElementById("assistantWindow").classList.remove("show");
     }
 
     // ==================== توابع دستیار خرید ====================
@@ -1037,6 +1174,8 @@
     function toggleAssistant(event) {
         if (event) event.stopPropagation();
         document.getElementById('assistantWindow').classList.toggle('show');
+        document.getElementById('instaMenu').classList.remove('show');
+        document.getElementById('cartWindow').classList.remove('show');
     }
 
     function sendAssistantMsg() {
@@ -1095,4 +1234,4 @@
 </script>
 
 </body>
-                                           </html>
+    </html>
