@@ -29,7 +29,7 @@
         /* ==================== جستجو ==================== */
         .search-container {
             max-width: 900px;
-            margin: 25px auto 0 auto;
+            margin: 20px auto 0 auto;
             padding: 0 25px;
         }
         .search-box {
@@ -38,7 +38,7 @@
         }
         .search-input {
             width: 100%;
-            padding: 15px 50px 15px 20px;
+            padding: 15px 52px 15px 45px;
             border: 2px solid #e5e7eb;
             border-radius: 12px;
             font-family: inherit;
@@ -53,26 +53,34 @@
             border-color: #0d9488;
             box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15);
         }
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
         .search-icon {
             position: absolute;
             right: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: #9ca3af;
-            font-size: 20px;
+            width: 22px;
+            height: 22px;
             pointer-events: none;
+            transition: 0.3s;
+        }
+        .search-input:focus ~ .search-icon {
+            color: #0d9488;
         }
         .search-clear {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             background: #ef4444;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             cursor: pointer;
             font-size: 14px;
             display: none;
@@ -80,18 +88,21 @@
             justify-content: center;
             font-weight: bold;
             padding: 0;
+            transition: 0.2s;
         }
         .search-clear.show {
             display: flex;
         }
         .search-clear:hover {
             background: #dc2626;
+            transform: translateY(-50%) scale(1.1);
         }
         .search-result-info {
             text-align: center;
             margin-top: 12px;
             font-size: 14px;
             color: #6b7280;
+            min-height: 20px;
         }
         .search-result-info strong {
             color: #0d9488;
@@ -516,7 +527,8 @@
             .product-info h3 { font-size: 16px; }
             .product-info p { font-size: 12px; }
             .assistant-window { width: calc(100% - 40px); left: 20px; right: 20px; }
-            .search-input { padding: 13px 45px 13px 15px; font-size: 15px; }
+            .search-input { padding: 13px 48px 13px 42px; font-size: 15px; }
+            .search-icon { width: 20px; height: 20px; right: 16px; }
         }
     </style>
 </head>
@@ -562,18 +574,21 @@
     </section>
 </div>
 
-<!-- ==================== جستجوی محصولات ==================== -->
-<div class="search-container">
-    <div class="search-box">
-        <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول... (مثلاً: سیمان، لوله، کاشی)" oninput="searchProducts()">
-        <span class="search-icon">🔍</span>
-        <button class="search-clear" id="searchClear" onclick="clearSearch()" title="پاک کردن">✕</button>
-    </div>
-    <div class="search-result-info" id="searchResultInfo"></div>
-</div>
-
 <section class="products" id="products">
-    <h2 style="text-align: center; color: #1f2937;">محصولات ما</h2>
+    <h2 style="text-align: center; color: #1f2937; margin-bottom: 20px;">محصولات ما</h2>
+
+    <!-- ==================== جستجوی محصولات ==================== -->
+    <div class="search-container" style="margin-top: 0; padding: 0;">
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول..." oninput="searchProducts()">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <button class="search-clear" id="searchClear" onclick="clearSearch()" title="پاک کردن">✕</button>
+        </div>
+        <div class="search-result-info" id="searchResultInfo"></div>
+    </div>
 
     <div class="no-result" id="noResult">
         <div class="no-result-icon">🔍</div>
@@ -1320,21 +1335,17 @@
         const clearBtn = document.getElementById('searchClear');
         const resultInfo = document.getElementById('searchResultInfo');
         const noResult = document.getElementById('noResult');
-        const productsSection = document.getElementById('products');
         
         if (query === '') {
-            // نمایش همه محصولات
             cards.forEach(card => card.style.display = '');
             categoryTitles.forEach(title => title.style.display = '');
             clearBtn.classList.remove('show');
             resultInfo.innerHTML = '';
             noResult.classList.remove('show');
-            if (productsSection) productsSection.style.display = '';
             return;
         }
         
         clearBtn.classList.add('show');
-        if (productsSection) productsSection.style.display = 'block';
         
         let visibleCount = 0;
         
@@ -1355,7 +1366,6 @@
             }
         });
         
-        // مخفی کردن عنوان دسته‌بندی‌ها اگه هیچ محصولی از اون دسته پیدا نشد
         categoryTitles.forEach(title => {
             let next = title.nextElementSibling;
             let hasVisible = false;
