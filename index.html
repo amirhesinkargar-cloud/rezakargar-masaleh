@@ -136,7 +136,6 @@
         .cart-empty { text-align: center; color: #9ca3af; padding: 50px 20px; font-size: 14px; }
         .cart-empty-icon { font-size: 50px; margin-bottom: 15px; }
         
-        /* فوتر سبد خرید */
         .cart-footer { padding: 15px 20px; background: #f9fafb; border-top: 1px solid #e5e7eb; display: flex; flex-direction: column; gap: 10px; }
         .cart-footer-label { font-size: 13px; color: #6b7280; text-align: center; font-weight: bold; }
         .cart-footer-row { display: flex; gap: 8px; }
@@ -197,6 +196,103 @@
 
         /* ==================== نظرات مشتریان ==================== */
         .reviews { padding: 25px; max-width: 900px; margin: auto; }
+        
+        /* باکس میانگین امتیاز */
+        .rating-summary {
+            background: linear-gradient(135deg, #0a2540 0%, #14395e 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(10, 37, 64, 0.25);
+        }
+        .rating-average-box {
+            text-align: center;
+            flex-shrink: 0;
+            min-width: 130px;
+        }
+        .rating-average-num {
+            font-size: 54px;
+            font-weight: bold;
+            color: #fbbf24;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .rating-average-stars {
+            font-size: 20px;
+            color: #fbbf24;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        .rating-average-count {
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+        
+        /* نمودار ستاره‌ها */
+        .rating-bars {
+            flex: 1;
+            min-width: 220px;
+        }
+        .rating-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .rating-bar-label {
+            min-width: 55px;
+            color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .rating-bar-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .rating-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+        .rating-bar-count {
+            min-width: 25px;
+            text-align: left;
+            color: #cbd5e1;
+            font-size: 12px;
+        }
+        
+        /* درصد رضایت */
+        .satisfaction-box {
+            text-align: center;
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            min-width: 140px;
+            flex-shrink: 0;
+        }
+        .satisfaction-num {
+            font-size: 32px;
+            font-weight: bold;
+            color: #10b981;
+            line-height: 1;
+        }
+        .satisfaction-lbl {
+            font-size: 12px;
+            color: #cbd5e1;
+            margin-top: 5px;
+        }
+        
         .review-submit-btn { background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); color: white; border: none; padding: 14px 28px; border-radius: 12px; font-family: inherit; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.4); transition: 0.3s; }
         .review-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 148, 136, 0.6); }
         .review-form-window { display: none; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin-bottom: 25px; overflow: hidden; animation: fadeIn 0.3s; }
@@ -242,6 +338,11 @@
             .review-text { padding-right: 0; }
             .review-stars { font-size: 14px; }
             .star { font-size: 28px; }
+            .rating-summary { flex-direction: column; text-align: center; gap: 20px; padding: 20px; }
+            .rating-average-box { min-width: auto; }
+            .rating-average-num { font-size: 48px; }
+            .satisfaction-box { width: 100%; }
+            .rating-bars { width: 100%; }
         }
     </style>
 </head>
@@ -813,6 +914,48 @@
 <section class="reviews" id="reviews">
     <h2 style="text-align: center; color: #1f2937; margin-bottom: 25px;">💬 نظرات مشتریان</h2>
     
+    <!-- ==================== باکس میانگین امتیاز ==================== -->
+    <div class="rating-summary">
+        <div class="rating-average-box">
+            <div class="rating-average-num" id="averageNum">۴.۷</div>
+            <div class="rating-average-stars">★★★★★</div>
+            <div class="rating-average-count" id="averageCount">از ۱۲ نظر</div>
+        </div>
+        
+        <div class="rating-bars">
+            <div class="rating-bar-row">
+                <div class="rating-bar-label">۵ ★</div>
+                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 75%;"></div></div>
+                <div class="rating-bar-count">۹</div>
+            </div>
+            <div class="rating-bar-row">
+                <div class="rating-bar-label">۴ ★</div>
+                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 25%;"></div></div>
+                <div class="rating-bar-count">۳</div>
+            </div>
+            <div class="rating-bar-row">
+                <div class="rating-bar-label">۳ ★</div>
+                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
+                <div class="rating-bar-count">۰</div>
+            </div>
+            <div class="rating-bar-row">
+                <div class="rating-bar-label">۲ ★</div>
+                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
+                <div class="rating-bar-count">۰</div>
+            </div>
+            <div class="rating-bar-row">
+                <div class="rating-bar-label">۱ ★</div>
+                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
+                <div class="rating-bar-count">۰</div>
+            </div>
+        </div>
+        
+        <div class="satisfaction-box">
+            <div class="satisfaction-num">۱۰۰٪</div>
+            <div class="satisfaction-lbl">رضایت مشتریان</div>
+        </div>
+    </div>
+    
     <div style="text-align: center; margin-bottom: 25px;">
         <button onclick="openReviewForm()" class="review-submit-btn" style="display: inline-flex; align-items: center; gap: 8px;">
             ✍️ ثبت نظر جدید
@@ -845,7 +988,6 @@
     </div>
     
     <div class="reviews-list" id="reviewsList">
-        <!-- نمونه نظر (این‌ها رو بعداً با نظرات واقعی عوض کن) -->
         <div class="review-card">
             <div class="review-header">
                 <div class="review-avatar">ع</div>
@@ -982,7 +1124,6 @@
     </div>
 </div>
 
-<!-- ==================== سبد خرید ==================== -->
 <div class="cart-window" id="cartWindow">
     <div class="cart-header">
         <span>🛒 لیست خرید شما</span>
@@ -1162,24 +1303,17 @@
         document.getElementById('assistantWindow').classList.remove('show');
     }
 
-    // ==================== ارسال لیست به ایتا ====================
     function sendToEita(type) {
         if (cart.length === 0) { alert('لیست شما خالی است.'); return; }
-        
         const text = 
             '🛒 لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' + 
             cart.map((item, i) => `${i+1}. ${item.name} — تعداد: ${item.qty}`).join('\n') +
             `\n\n📦 مجموع: ${cart.length} قلم کالا — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
-        
-        // کپی کردن در کلیپ‌بورد
         navigator.clipboard.writeText(text).then(() => {
             const phone = type === 'masaleh' ? '09133908230' : '09133908393';
             const label = type === 'masaleh' ? 'مصالح' : 'تاسیسات';
             alert('✅ لیست شما کپی شد!\n\nحالا ایتا باز می‌شه. لیست رو برامون پیست کنید.\n\n📞 شماره ' + label + ': ' + phone);
-            // باز کردن ایتا
-            setTimeout(() => {
-                window.location.href = 'eitaa://';
-            }, 500);
+            setTimeout(() => { window.location.href = 'eitaa://'; }, 500);
         }).catch(() => {
             const textarea = document.createElement('textarea');
             textarea.value = text;
@@ -1190,9 +1324,7 @@
             const phone = type === 'masaleh' ? '09133908230' : '09133908393';
             const label = type === 'masaleh' ? 'مصالح' : 'تاسیسات';
             alert('✅ لیست شما کپی شد!\n\nحالا ایتا باز می‌شه. لیست رو برامون پیست کنید.\n\n📞 شماره ' + label + ': ' + phone);
-            setTimeout(() => {
-                window.location.href = 'eitaa://';
-            }, 500);
+            setTimeout(() => { window.location.href = 'eitaa://'; }, 500);
         });
     }
 
@@ -1297,11 +1429,8 @@
     function updateStars(value) {
         document.querySelectorAll('.star').forEach(star => {
             const starVal = parseInt(star.getAttribute('data-value'));
-            if (starVal <= value) {
-                star.classList.add('active');
-            } else {
-                star.classList.remove('active');
-            }
+            if (starVal <= value) { star.classList.add('active'); }
+            else { star.classList.remove('active'); }
         });
     }
 
@@ -1325,9 +1454,7 @@
         
         navigator.clipboard.writeText(message).then(() => {
             alert('✅ ممنون از نظر شما!\n\nنظر شما کپی شد و ایتا باز می‌شه.\nلطفاً اون رو برامون بفرستید تا بعد از تأیید، توی سایت نمایش داده بشه.\n\n📞 شماره مصالح: ۰۹۱۳۳۹۰۸۲۳۰');
-            setTimeout(() => {
-                window.location.href = 'eitaa://';
-            }, 500);
+            setTimeout(() => { window.location.href = 'eitaa://'; }, 500);
             closeReviewForm();
         }).catch(() => {
             const textarea = document.createElement('textarea');
@@ -1337,9 +1464,7 @@
             document.execCommand('copy');
             document.body.removeChild(textarea);
             alert('✅ ممنون از نظر شما!\n\nنظر شما کپی شد و ایتا باز می‌شه.\nلطفاً اون رو برامون بفرستید تا بعد از تأیید، توی سایت نمایش داده بشه.\n\n📞 شماره مصالح: ۰۹۱۳۳۹۰۸۲۳۰');
-            setTimeout(() => {
-                window.location.href = 'eitaa://';
-            }, 500);
+            setTimeout(() => { window.location.href = 'eitaa://'; }, 500);
             closeReviewForm();
         });
     }
@@ -1426,4 +1551,4 @@
 </script>
 
 </body>
-                                           </html>
+    </html>
