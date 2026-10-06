@@ -56,9 +56,16 @@
         .product-info h3 { margin: 0 0 8px 0; color: #0a2540; font-size: 18px; font-weight: bold; }
         .product-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.6; }
         
-        .add-section { display: flex; flex-direction: column; align-items: center; margin-left: 12px; gap: 4px; flex-shrink: 0; position: relative; padding-left: 8px; }
-        .add-icon-btn { background: #f0fdfa; color: #0d9488; border: 2px solid #0d9488; border-radius: 50%; width: 42px; height: 42px; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-family: inherit; font-weight: bold; position: relative; }
+        /* ==================== دکمه + و متن زیرش ==================== */
+        .add-section { display: flex; flex-direction: column; align-items: center; margin-left: 12px; gap: 4px; flex-shrink: 0; padding-left: 8px; }
+        .add-icon-btn { background: #f0fdfa; color: #0d9488; border: 2px solid #0d9488; border-radius: 50%; width: 42px; height: 42px; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-family: inherit; font-weight: bold; padding: 0; }
         .add-icon-btn:hover { background: #0d9488; color: white; }
+        .add-label { font-size: 10px; color: #0d9488; font-weight: bold; text-align: center; max-width: 70px; line-height: 1.2; }
+        .add-label.hidden { display: none; }
+        
+        /* ==================== وضعیت موجودی ==================== */
+        .stock-status { display: flex; align-items: center; gap: 5px; padding: 0 18px 12px 18px; font-size: 13px; color: #059669; font-weight: bold; }
+        .stock-dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
         
         .qty-control { display: none; align-items: center; gap: 3px; background: #f0fdfa; border: 2px solid #0d9488; border-radius: 10px; padding: 3px; }
         .qty-control.show { display: flex; }
@@ -170,6 +177,7 @@
             .assistant-window { width: calc(100% - 40px); left: 20px; right: 20px; }
             .search-input { padding: 13px 48px 13px 42px; font-size: 15px; }
             .search-icon { width: 20px; height: 20px; right: 16px; }
+            .add-label { font-size: 9px; max-width: 60px; }
         }
     </style>
 </head>
@@ -218,7 +226,7 @@
 <section class="products" id="products">
     <h2 style="text-align: center; color: #1f2937; margin-bottom: 20px;">محصولات ما</h2>
 
-    <!-- ==================== جستجو (بعد از محصولات ما) ==================== -->
+    <!-- ==================== جستجو ==================== -->
     <div class="search-container" style="padding: 0; margin-bottom: 20px;">
         <div class="search-box">
             <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول..." oninput="searchProducts()">
@@ -239,12 +247,14 @@
 
     <div class="category-title construction">مصالح ساختمانی</div>
 
+    <!-- انواع سیمان -->
     <div class="product-card" data-name="انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی">
         <div class="product-top">
             <div class="product-image"><img src="67.png" alt="انواع سیمان"></div>
             <div class="product-info"><h3>انواع سیمان</h3><p>سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.</p></div>
             <div class="add-section" id="section-انواع سیمان">
                 <button class="add-icon-btn" onclick="activateProduct('انواع سیمان', this)">+</button>
+                <span class="add-label" id="label-انواع سیمان">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-انواع سیمان">
                     <button onclick="decreaseQty('انواع سیمان')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع سیمان', this.value)" id="input-انواع سیمان">
@@ -252,14 +262,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- بلوک تیغه -->
     <div class="product-card" data-name="بلوک تیغه سبک دیوارچینی داخلی">
         <div class="product-top">
             <div class="product-image"><img src="gallery4.jpg" alt="بلوک تیغه"></div>
             <div class="product-info"><h3>بلوک تیغه</h3><p>بلوک سبک تیغه‌ای برای دیوارچینی داخلی.</p></div>
             <div class="add-section" id="section-بلوک تیغه">
                 <button class="add-icon-btn" onclick="activateProduct('بلوک تیغه', this)">+</button>
+                <span class="add-label" id="label-بلوک تیغه">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-بلوک تیغه">
                     <button onclick="decreaseQty('بلوک تیغه')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('بلوک تیغه', this.value)" id="input-بلوک تیغه">
@@ -267,14 +280,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- بلوک سقفی -->
     <div class="product-card" data-name="بلوک سقفی سبک مقاوم تیرچه بلوک">
         <div class="product-top">
             <div class="product-image"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
             <div class="product-info"><h3>بلوک سقفی</h3><p>بلوک سقفی سبک و مقاوم برای تیرچه بلوک.</p></div>
             <div class="add-section" id="section-بلوک سقفی">
                 <button class="add-icon-btn" onclick="activateProduct('بلوک سقفی', this)">+</button>
+                <span class="add-label" id="label-بلوک سقفی">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-بلوک سقفی">
                     <button onclick="decreaseQty('بلوک سقفی')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('بلوک سقفی', this.value)" id="input-بلوک سقفی">
@@ -282,14 +298,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- کاشی -->
     <div class="product-card" data-name="کاشی دیواری کف طرح رنگ متنوع">
         <div class="product-top">
             <div class="product-image"><img src="gallery1.jpg" alt="کاشی"></div>
             <div class="product-info"><h3>کاشی</h3><p>کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.</p></div>
             <div class="add-section" id="section-کاشی">
                 <button class="add-icon-btn" onclick="activateProduct('کاشی', this)">+</button>
+                <span class="add-label" id="label-کاشی">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-کاشی">
                     <button onclick="decreaseQty('کاشی')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('کاشی', this.value)" id="input-کاشی">
@@ -297,14 +316,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- سرامیک -->
     <div class="product-card" data-name="سرامیک کف دیوار مقاومت بالا">
         <div class="product-top">
             <div class="product-image"><img src="as.png" alt="سرامیک"></div>
             <div class="product-info"><h3>سرامیک</h3><p>سرامیک کف و دیوار با مقاومت بالا.</p></div>
             <div class="add-section" id="section-سرامیک">
                 <button class="add-icon-btn" onclick="activateProduct('سرامیک', this)">+</button>
+                <span class="add-label" id="label-سرامیک">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-سرامیک">
                     <button onclick="decreaseQty('سرامیک')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('سرامیک', this.value)" id="input-سرامیک">
@@ -312,14 +334,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- موزاییک -->
     <div class="product-card" data-name="موزاییک پرسی معمولی محوطه‌سازی">
         <div class="product-top">
             <div class="product-image"><img src="76.png" alt="موزاییک"></div>
             <div class="product-info"><h3>موزاییک</h3><p>موزاییک پرسی و معمولی برای محوطه‌سازی.</p></div>
             <div class="add-section" id="section-موزاییک">
                 <button class="add-icon-btn" onclick="activateProduct('موزاییک', this)">+</button>
+                <span class="add-label" id="label-موزاییک">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-موزاییک">
                     <button onclick="decreaseQty('موزاییک')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('موزاییک', this.value)" id="input-موزاییک">
@@ -327,14 +352,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- گچ -->
     <div class="product-card" data-name="گچ ساختمانی سفیدکاری کیسه ۳۰ ۴۰ کیلوگرمی">
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="گچ"></div>
             <div class="product-info"><h3>گچ</h3><p>گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.</p></div>
             <div class="add-section" id="section-گچ">
                 <button class="add-icon-btn" onclick="activateProduct('گچ', this)">+</button>
+                <span class="add-label" id="label-گچ">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-گچ">
                     <button onclick="decreaseQty('گچ')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('گچ', this.value)" id="input-گچ">
@@ -342,14 +370,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- پودر سنگ -->
     <div class="product-card" data-name="پودر سنگ جوشقان معادن بتن ملات">
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="پودر سنگ"></div>
             <div class="product-info"><h3>پودر سنگ</h3><p>پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.</p></div>
             <div class="add-section" id="section-پودر سنگ">
                 <button class="add-icon-btn" onclick="activateProduct('پودر سنگ', this)">+</button>
+                <span class="add-label" id="label-پودر سنگ">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-پودر سنگ">
                     <button onclick="decreaseQty('پودر سنگ')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('پودر سنگ', this.value)" id="input-پودر سنگ">
@@ -357,14 +388,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- آجر گره‌ای -->
     <div class="product-card" data-name="آجر گره‌ای سفال دیوارچینی نماکاری">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="آجر گره‌ای"></div>
             <div class="product-info"><h3>آجر گره‌ای</h3><p>آجر گره‌ای و سفال برای دیوارچینی و نماکاری.</p></div>
             <div class="add-section" id="section-آجر گره‌ای">
                 <button class="add-icon-btn" onclick="activateProduct('آجر گره‌ای', this)">+</button>
+                <span class="add-label" id="label-آجر گره‌ای">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-آجر گره‌ای">
                     <button onclick="decreaseQty('آجر گره‌ای')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('آجر گره‌ای', this.value)" id="input-آجر گره‌ای">
@@ -372,14 +406,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- سیمان سفید -->
     <div class="product-card" data-name="سیمان سفید پاکتی نما بندکشی">
         <div class="product-top">
             <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
             <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
             <div class="add-section" id="section-سیمان سفید">
                 <button class="add-icon-btn" onclick="activateProduct('سیمان سفید', this)">+</button>
+                <span class="add-label" id="label-سیمان سفید">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-سیمان سفید">
                     <button onclick="decreaseQty('سیمان سفید')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('سیمان سفید', this.value)" id="input-سیمان سفید">
@@ -387,14 +424,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- آهک -->
     <div class="product-card" data-name="آهک کیسه‌ای ساختمانی ملات شفته‌ریزی">
         <div class="product-top">
             <div class="product-image"><img src="gallery5.jpg" alt="آهک"></div>
             <div class="product-info"><h3>آهک</h3><p>آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.</p></div>
             <div class="add-section" id="section-آهک">
                 <button class="add-icon-btn" onclick="activateProduct('آهک', this)">+</button>
+                <span class="add-label" id="label-آهک">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-آهک">
                     <button onclick="decreaseQty('آهک')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('آهک', this.value)" id="input-آهک">
@@ -402,16 +442,19 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
     <div class="category-title facilities">تجهیزات تاسیساتی</div>
 
+    <!-- انواع لوله -->
     <div class="product-card" data-name="لوله پلیکا پنبه‌ای پنج لایه فلزی سایز">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع لوله"></div>
             <div class="product-info"><h3>انواع لوله</h3><p>لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.</p></div>
             <div class="add-section" id="section-انواع لوله">
                 <button class="add-icon-btn" onclick="activateProduct('انواع لوله', this)">+</button>
+                <span class="add-label" id="label-انواع لوله">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-انواع لوله">
                     <button onclick="decreaseQty('انواع لوله')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع لوله', this.value)" id="input-انواع لوله">
@@ -419,14 +462,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- اتصالات -->
     <div class="product-card" data-name="اتصالات لوله‌کشی آب فاضلاب">
         <div class="product-top">
             <div class="product-image"><img src="10.png" alt="اتصالات"></div>
             <div class="product-info"><h3>اتصالات</h3><p>انواع اتصالات لوله‌کشی آب و فاضلاب.</p></div>
             <div class="add-section" id="section-اتصالات">
                 <button class="add-icon-btn" onclick="activateProduct('اتصالات', this)">+</button>
+                <span class="add-label" id="label-اتصالات">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-اتصالات">
                     <button onclick="decreaseQty('اتصالات')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('اتصالات', this.value)" id="input-اتصالات">
@@ -434,14 +480,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- شیرآلات -->
     <div class="product-card" data-name="شیرآلات بهداشتی ساختمانی برند معتبر">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
             <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
             <div class="add-section" id="section-شیرآلات">
                 <button class="add-icon-btn" onclick="activateProduct('شیرآلات', this)">+</button>
+                <span class="add-label" id="label-شیرآلات">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-شیرآلات">
                     <button onclick="decreaseQty('شیرآلات')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('شیرآلات', this.value)" id="input-شیرآلات">
@@ -449,14 +498,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- هود -->
     <div class="product-card" data-name="هود آشپزخانه مدل مختلف">
         <div class="product-top">
             <div class="product-image"><img src="Gho.jpg" alt="هود"></div>
             <div class="product-info"><h3>هود</h3><p>هود آشپزخانه در مدل‌های مختلف.</p></div>
             <div class="add-section" id="section-هود">
                 <button class="add-icon-btn" onclick="activateProduct('هود', this)">+</button>
+                <span class="add-label" id="label-هود">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-هود">
                     <button onclick="decreaseQty('هود')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('هود', this.value)" id="input-هود">
@@ -464,14 +516,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- سینک -->
     <div class="product-card" data-name="سینک ظرفشویی استیل گرانیتی ابعاد">
         <div class="product-top">
             <div class="product-image"><img src="cv.png" alt="سینک"></div>
             <div class="product-info"><h3>سینک</h3><p>سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.</p></div>
             <div class="add-section" id="section-سینک">
                 <button class="add-icon-btn" onclick="activateProduct('سینک', this)">+</button>
+                <span class="add-label" id="label-سینک">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-سینک">
                     <button onclick="decreaseQty('سینک')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('سینک', this.value)" id="input-سینک">
@@ -479,14 +534,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- روشویی -->
     <div class="product-card" data-name="روشویی دستشویی طرح مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
             <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
             <div class="add-section" id="section-روشویی">
                 <button class="add-icon-btn" onclick="activateProduct('روشویی', this)">+</button>
+                <span class="add-label" id="label-روشویی">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-روشویی">
                     <button onclick="decreaseQty('روشویی')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('روشویی', this.value)" id="input-روشویی">
@@ -494,14 +552,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- چینی بهداشتی -->
     <div class="product-card" data-name="چینی بهداشتی توالت ایرانی فرنگی برند معتبر">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="چینی بهداشتی"></div>
             <div class="product-info"><h3>چینی بهداشتی</h3><p>توالت ایرانی و فرنگی از برندهای معتبر.</p></div>
             <div class="add-section" id="section-چینی بهداشتی">
                 <button class="add-icon-btn" onclick="activateProduct('چینی بهداشتی', this)">+</button>
+                <span class="add-label" id="label-چینی بهداشتی">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-چینی بهداشتی">
                     <button onclick="decreaseQty('چینی بهداشتی')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('چینی بهداشتی', this.value)" id="input-چینی بهداشتی">
@@ -509,14 +570,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- فلاش تانک -->
     <div class="product-card" data-name="فلاش تانک توکار روکار مدل مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع فلاش تانک"></div>
             <div class="product-info"><h3>انواع فلاش تانک</h3><p>فلاش تانک توکار و روکار، در مدل‌های مختلف.</p></div>
             <div class="add-section" id="section-انواع فلاش تانک">
                 <button class="add-icon-btn" onclick="activateProduct('انواع فلاش تانک', this)">+</button>
+                <span class="add-label" id="label-انواع فلاش تانک">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-انواع فلاش تانک">
                     <button onclick="decreaseQty('انواع فلاش تانک')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع فلاش تانک', this.value)" id="input-انواع فلاش تانک">
@@ -524,14 +588,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- جامایع -->
     <div class="product-card" data-name="جامایع طرح رنگ متنوع">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="جامایع"></div>
             <div class="product-info"><h3>جامایع</h3><p>جامایع در طرح‌ها و رنگ‌های متنوع.</p></div>
             <div class="add-section" id="section-جامایع">
                 <button class="add-icon-btn" onclick="activateProduct('جامایع', this)">+</button>
+                <span class="add-label" id="label-جامایع">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-جامایع">
                     <button onclick="decreaseQty('جامایع')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('جامایع', this.value)" id="input-جامایع">
@@ -539,14 +606,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- جادستمال -->
     <div class="product-card" data-name="جادستمال طرح رنگ مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="جادستمال"></div>
             <div class="product-info"><h3>جادستمال</h3><p>جادستمال در طرح‌ها و رنگ‌های مختلف.</p></div>
             <div class="add-section" id="section-جادستمال">
                 <button class="add-icon-btn" onclick="activateProduct('جادستمال', this)">+</button>
+                <span class="add-label" id="label-جادستمال">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-جادستمال">
                     <button onclick="decreaseQty('جادستمال')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('جادستمال', this.value)" id="input-جادستمال">
@@ -554,14 +624,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- آینه -->
     <div class="product-card" data-name="آینه سرویس بهداشتی ابعاد طرح متنوع">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="آینه"></div>
             <div class="product-info"><h3>آینه</h3><p>آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.</p></div>
             <div class="add-section" id="section-آینه">
                 <button class="add-icon-btn" onclick="activateProduct('آینه', this)">+</button>
+                <span class="add-label" id="label-آینه">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-آینه">
                     <button onclick="decreaseQty('آینه')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('آینه', this.value)" id="input-آینه">
@@ -569,14 +642,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- پکیج -->
     <div class="product-card" data-name="پکیج دیواری زمینی گارانتی">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="پکیج"></div>
             <div class="product-info"><h3>پکیج</h3><p>پکیج دیواری و زمینی با گارانتی.</p></div>
             <div class="add-section" id="section-پکیج">
                 <button class="add-icon-btn" onclick="activateProduct('پکیج', this)">+</button>
+                <span class="add-label" id="label-پکیج">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-پکیج">
                     <button onclick="decreaseQty('پکیج')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('پکیج', this.value)" id="input-پکیج">
@@ -584,14 +660,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- رادیاتور -->
     <div class="product-card" data-name="رادیاتور پنلی آلومینیومی ابعاد مختلف">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="رادیاتور"></div>
             <div class="product-info"><h3>رادیاتور</h3><p>رادیاتور پنلی و آلومینیومی در ابعاد مختلف.</p></div>
             <div class="add-section" id="section-رادیاتور">
                 <button class="add-icon-btn" onclick="activateProduct('رادیاتور', this)">+</button>
+                <span class="add-label" id="label-رادیاتور">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-رادیاتور">
                     <button onclick="decreaseQty('رادیاتور')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('رادیاتور', this.value)" id="input-رادیاتور">
@@ -599,14 +678,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- کولر سلولزی -->
     <div class="product-card" data-name="کولر سلولزی آبی مصرف بهینه آب برق">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="کولر سلولزی"></div>
             <div class="product-info"><h3>کولر سلولزی</h3><p>کولر آبی سلولزی با مصرف بهینه آب و برق.</p></div>
             <div class="add-section" id="section-کولر سلولزی">
                 <button class="add-icon-btn" onclick="activateProduct('کولر سلولزی', this)">+</button>
+                <span class="add-label" id="label-کولر سلولزی">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-کولر سلولزی">
                     <button onclick="decreaseQty('کولر سلولزی')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('کولر سلولزی', this.value)" id="input-کولر سلولزی">
@@ -614,14 +696,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- مخازن آب -->
     <div class="product-card" data-name="مخازن آب افقی عمودی ایستاده خوابیده ظرفیت">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="انواع مخازن آب"></div>
             <div class="product-info"><h3>انواع مخازن آب</h3><p>مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.</p></div>
             <div class="add-section" id="section-انواع مخازن آب">
                 <button class="add-icon-btn" onclick="activateProduct('انواع مخازن آب', this)">+</button>
+                <span class="add-label" id="label-انواع مخازن آب">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-انواع مخازن آب">
                     <button onclick="decreaseQty('انواع مخازن آب')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('انواع مخازن آب', this.value)" id="input-انواع مخازن آب">
@@ -629,14 +714,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- پمپ آب -->
     <div class="product-card" data-name="پمپ آب خانگی نیمه صنعتی صنعتی توان">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="پمپ آب"></div>
             <div class="product-info"><h3>پمپ آب</h3><p>پمپ آب خانگی، نیمه صنعتی و صنعتی در توان‌های مختلف.</p></div>
             <div class="add-section" id="section-پمپ آب">
                 <button class="add-icon-btn" onclick="activateProduct('پمپ آب', this)">+</button>
+                <span class="add-label" id="label-پمپ آب">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-پمپ آب">
                     <button onclick="decreaseQty('پمپ آب')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('پمپ آب', this.value)" id="input-پمپ آب">
@@ -644,14 +732,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- ست کنترل پمپ -->
     <div class="product-card" data-name="ست کنترل پمپ آب اتوماتیک هوشمند">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="ست کنترل پمپ آب"></div>
             <div class="product-info"><h3>ست کنترل پمپ آب</h3><p>ست کنترل اتوماتیک برای روشن و خاموش کردن هوشمند پمپ آب.</p></div>
             <div class="add-section" id="section-ست کنترل پمپ آب">
                 <button class="add-icon-btn" onclick="activateProduct('ست کنترل پمپ آب', this)">+</button>
+                <span class="add-label" id="label-ست کنترل پمپ آب">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-ست کنترل پمپ آب">
                     <button onclick="decreaseQty('ست کنترل پمپ آب')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('ست کنترل پمپ آب', this.value)" id="input-ست کنترل پمپ آب">
@@ -659,14 +750,17 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- گاز صفحه‌ای -->
     <div class="product-card" data-name="گاز صفحه‌ای مدل سایز آشپزخانه مدرن">
         <div class="product-top">
             <div class="product-image"><img src="0987.jpg" alt="گاز صفحه‌ای"></div>
             <div class="product-info"><h3>گاز صفحه‌ای</h3><p>گاز صفحه‌ای در مدل‌ها و سایزهای مختلف، مناسب برای آشپزخانه‌های مدرن.</p></div>
             <div class="add-section" id="section-گاز صفحه‌ای">
                 <button class="add-icon-btn" onclick="activateProduct('گاز صفحه‌ای', this)">+</button>
+                <span class="add-label" id="label-گاز صفحه‌ای">افزودن به لیست خرید</span>
                 <div class="qty-control" id="qty-گاز صفحه‌ای">
                     <button onclick="decreaseQty('گاز صفحه‌ای')">−</button>
                     <input type="number" value="1" min="1" max="100000" onchange="setQty('گاز صفحه‌ای', this.value)" id="input-گاز صفحه‌ای">
@@ -674,6 +768,7 @@
                 </div>
             </div>
         </div>
+        <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
     <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
@@ -795,6 +890,8 @@
 
     function activateProduct(productName, btn) {
         btn.style.display = 'none';
+        const label = document.getElementById('label-' + productName);
+        if (label) label.classList.add('hidden');
         const qtyControl = document.getElementById('qty-' + productName);
         if (qtyControl) qtyControl.classList.add('show');
         const existingItem = cart.find(item => item.name === productName);
@@ -815,6 +912,8 @@
             if (qtyControl) qtyControl.classList.remove('show');
             const section = document.getElementById('section-' + productName);
             if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
+            const label = document.getElementById('label-' + productName);
+            if (label) label.classList.remove('hidden');
         }
         const input = document.getElementById('input-' + productName);
         const currentItem = cart.find(i => i.name === productName);
@@ -861,6 +960,8 @@
         if (qtyControl) qtyControl.classList.remove('show');
         const section = document.getElementById('section-' + productName);
         if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
+        const label = document.getElementById('label-' + productName);
+        if (label) label.classList.remove('hidden');
         updateCart();
     }
 
@@ -975,7 +1076,6 @@
         document.getElementById('searchInput').focus();
     }
 
-    // ==================== دستیار ====================
     const knowledgeBase = {
         'سیمان': 'سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات. قیمت روز: ۰۹۱۳۳۹۰۸۲۳۰',
         'بلوک': 'بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک. برای هر متر مربع دیوار حدود ۱۰ عدد بلوک. قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
@@ -1058,4 +1158,4 @@
 </script>
 
 </body>
-    </html>
+                </html>
