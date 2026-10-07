@@ -140,15 +140,49 @@
         .cart-footer-label { font-size: 13px; color: #6b7280; text-align: center; font-weight: bold; }
         .cart-footer-row { display: flex; gap: 8px; }
         .cart-footer button { flex: 1; padding: 12px; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer; font-family: inherit; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        .btn-eita-masaleh { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
-        .btn-eita-masaleh:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5); }
-        .btn-eita-tasisat { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; }
-        .btn-eita-tasisat:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); }
-        .btn-copy { background: #6366f1; color: white; flex: 0 0 auto; padding: 12px 15px; }
+        
+        /* ==================== دکمه‌های ارسال ==================== */
+        .btn-eita-masaleh { 
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%); 
+            color: white; 
+        }
+        .btn-eita-masaleh:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(107, 114, 128, 0.5); 
+        }
+        .btn-eita-tasisat { 
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); 
+            color: white; 
+        }
+        .btn-eita-tasisat:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); 
+        }
+        .btn-copy { 
+            background: #6366f1; 
+            color: white; 
+            flex: 1;
+        }
         .btn-copy:hover { background: #4f46e5; }
-        .btn-clear { background: #fee2e2; color: #ef4444; flex: 0 0 auto; padding: 12px 15px; }
+        
+        /* دکمه سطل آشغال مدرن */
+        .btn-clear { 
+            background: #fee2e2; 
+            color: #ef4444; 
+            flex: 0 0 auto; 
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .btn-clear:hover { background: #ef4444; color: white; }
+        .btn-clear svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
 
+        /* ==================== دکمه‌های شناور ==================== */
         .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); text-decoration: none; transition: 0.3s; z-index: 1000; }
         .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
 
@@ -197,7 +231,6 @@
         /* ==================== نظرات مشتریان ==================== */
         .reviews { padding: 25px; max-width: 900px; margin: auto; }
         
-        /* باکس میانگین امتیاز */
         .rating-summary {
             background: linear-gradient(135deg, #0a2540 0%, #14395e 100%);
             color: white;
@@ -233,7 +266,6 @@
             color: #cbd5e1;
         }
         
-        /* نمودار ستاره‌ها */
         .rating-bars {
             flex: 1;
             min-width: 220px;
@@ -272,7 +304,6 @@
             font-size: 12px;
         }
         
-        /* درصد رضایت */
         .satisfaction-box {
             text-align: center;
             padding: 15px 20px;
@@ -910,11 +941,9 @@
     <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
 </section>
 
-<!-- ==================== نظرات مشتریان ==================== -->
 <section class="reviews" id="reviews">
     <h2 style="text-align: center; color: #1f2937; margin-bottom: 25px;">💬 نظرات مشتریان</h2>
     
-    <!-- ==================== باکس میانگین امتیاز ==================== -->
     <div class="rating-summary">
         <div class="rating-average-box">
             <div class="rating-average-num" id="averageNum">۴.۷</div>
@@ -1156,8 +1185,12 @@
             <button class="btn-eita-tasisat" onclick="sendToEita('tasisat')">🔧 ایتا تاسیسات</button>
         </div>
         <div class="cart-footer-row">
-            <button class="btn-copy" onclick="copyCart()" style="flex: 1;">📋 کپی لیست</button>
-            <button class="btn-clear" onclick="clearCart()" title="پاک کردن">🗑️</button>
+            <button class="btn-copy" onclick="copyCart()">📋 کپی لیست</button>
+            <button class="btn-clear" onclick="clearCart()" title="پاک کردن">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9zM7 6h10v13H7V6zm2 2v9h2V8H9zm4 0v9h2V8h-2z"/>
+                </svg>
+            </button>
         </div>
     </div>
 </div>
@@ -1407,7 +1440,6 @@
         document.getElementById('searchInput').focus();
     }
 
-    // ==================== نظرات مشتریان ====================
     function openReviewForm() {
         document.getElementById('reviewFormWindow').classList.add('show');
         document.getElementById('reviewFormWindow').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1437,7 +1469,6 @@
     function submitReview() {
         const name = document.getElementById('reviewName').value.trim();
         const text = document.getElementById('reviewText').value.trim();
-        
         if (!name) { alert('لطفاً نام خودتون رو وارد کنید.'); return; }
         if (name.length < 2) { alert('نام باید حداقل ۲ حرف باشه.'); return; }
         if (currentRating === 0) { alert('لطفاً امتیاز خودتون رو انتخاب کنید (روی ستاره‌ها بزنید).'); return; }
@@ -1551,4 +1582,4 @@
 </script>
 
 </body>
-    </html>
+                                                                             </html>
