@@ -103,7 +103,6 @@
         .social-item a:hover { background: #c13584; transform: scale(1.1); }
         .social-item span { display: block; margin-top: 8px; font-size: 13px; color: #ddd; font-weight: bold; }
         
-        /* ==================== سبد خرید ==================== */
         .cart-window { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 420px; max-height: 650px; background: white; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 1002; overflow: hidden; flex-direction: column; }
         .cart-window.show { display: flex; animation: fadeIn 0.3s; }
         
@@ -140,49 +139,16 @@
         .cart-footer-label { font-size: 13px; color: #6b7280; text-align: center; font-weight: bold; }
         .cart-footer-row { display: flex; gap: 8px; }
         .cart-footer button { flex: 1; padding: 12px; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer; font-family: inherit; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        
-        /* ==================== دکمه‌های ارسال ==================== */
-        .btn-eita-masaleh { 
-            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%); 
-            color: white; 
-        }
-        .btn-eita-masaleh:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(107, 114, 128, 0.5); 
-        }
-        .btn-eita-tasisat { 
-            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); 
-            color: white; 
-        }
-        .btn-eita-tasisat:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); 
-        }
-        .btn-copy { 
-            background: #6366f1; 
-            color: white; 
-            flex: 1;
-        }
+        .btn-eita-masaleh { background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%); color: white; }
+        .btn-eita-masaleh:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(107, 114, 128, 0.5); }
+        .btn-eita-tasisat { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; }
+        .btn-eita-tasisat:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); }
+        .btn-copy { background: #6366f1; color: white; flex: 1; }
         .btn-copy:hover { background: #4f46e5; }
-        
-        /* دکمه سطل آشغال مدرن */
-        .btn-clear { 
-            background: #fee2e2; 
-            color: #ef4444; 
-            flex: 0 0 auto; 
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .btn-clear { background: #fee2e2; color: #ef4444; flex: 0 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: center; }
         .btn-clear:hover { background: #ef4444; color: white; }
-        .btn-clear svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
+        .btn-clear svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* ==================== دکمه‌های شناور ==================== */
         .floating-call-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); text-decoration: none; transition: 0.3s; z-index: 1000; }
         .floating-call-btn:hover { background: #128c7e; transform: scale(1.1); }
 
@@ -228,101 +194,24 @@
         .assistant-input input:focus { border-color: #6366f1; }
         .assistant-input button { background: #6366f1; color: white; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-size: 18px; }
 
-        /* ==================== نظرات مشتریان ==================== */
         .reviews { padding: 25px; max-width: 900px; margin: auto; }
         
-        .rating-summary {
-            background: linear-gradient(135deg, #0a2540 0%, #14395e 100%);
-            color: white;
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(10, 37, 64, 0.25);
-        }
-        .rating-average-box {
-            text-align: center;
-            flex-shrink: 0;
-            min-width: 130px;
-        }
-        .rating-average-num {
-            font-size: 54px;
-            font-weight: bold;
-            color: #fbbf24;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-        .rating-average-stars {
-            font-size: 20px;
-            color: #fbbf24;
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-        }
-        .rating-average-count {
-            font-size: 13px;
-            color: #cbd5e1;
-        }
+        .rating-summary { background: linear-gradient(135deg, #0a2540 0%, #14395e 100%); color: white; border-radius: 16px; padding: 25px; margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 25px; align-items: center; box-shadow: 0 10px 30px rgba(10, 37, 64, 0.25); }
+        .rating-average-box { text-align: center; flex-shrink: 0; min-width: 130px; }
+        .rating-average-num { font-size: 54px; font-weight: bold; color: #fbbf24; line-height: 1; margin-bottom: 5px; }
+        .rating-average-stars { font-size: 20px; color: #fbbf24; letter-spacing: 3px; margin-bottom: 8px; }
+        .rating-average-count { font-size: 13px; color: #cbd5e1; }
         
-        .rating-bars {
-            flex: 1;
-            min-width: 220px;
-        }
-        .rating-bar-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            font-size: 13px;
-        }
-        .rating-bar-label {
-            min-width: 55px;
-            color: #e5e7eb;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-        .rating-bar-track {
-            flex: 1;
-            height: 8px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .rating-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
-            border-radius: 4px;
-            transition: width 0.5s;
-        }
-        .rating-bar-count {
-            min-width: 25px;
-            text-align: left;
-            color: #cbd5e1;
-            font-size: 12px;
-        }
+        .rating-bars { flex: 1; min-width: 220px; }
+        .rating-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+        .rating-bar-label { min-width: 55px; color: #e5e7eb; display: flex; align-items: center; gap: 3px; }
+        .rating-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; overflow: hidden; }
+        .rating-bar-fill { height: 100%; background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); border-radius: 4px; transition: width 0.5s; }
+        .rating-bar-count { min-width: 25px; text-align: left; color: #cbd5e1; font-size: 12px; }
         
-        .satisfaction-box {
-            text-align: center;
-            padding: 15px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            min-width: 140px;
-            flex-shrink: 0;
-        }
-        .satisfaction-num {
-            font-size: 32px;
-            font-weight: bold;
-            color: #10b981;
-            line-height: 1;
-        }
-        .satisfaction-lbl {
-            font-size: 12px;
-            color: #cbd5e1;
-            margin-top: 5px;
-        }
+        .satisfaction-box { text-align: center; padding: 15px 20px; background: rgba(255,255,255,0.1); border-radius: 12px; min-width: 140px; flex-shrink: 0; }
+        .satisfaction-num { font-size: 32px; font-weight: bold; color: #10b981; line-height: 1; }
+        .satisfaction-lbl { font-size: 12px; color: #cbd5e1; margin-top: 5px; }
         
         .review-submit-btn { background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); color: white; border: none; padding: 14px 28px; border-radius: 12px; font-family: inherit; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.4); transition: 0.3s; }
         .review-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 148, 136, 0.6); }
@@ -596,9 +485,10 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- ✅ سیمان سفید با عکس جدید -->
     <div class="product-card" data-name="سیمان سفید پاکتی نما بندکشی">
         <div class="product-top">
-            <div class="product-image"><img src="gallery2.jpg" alt="سیمان سفید"></div>
+            <div class="product-image"><img src="simans.png" alt="سیمان سفید"></div>
             <div class="product-info"><h3>سیمان سفید</h3><p>سیمان سفید پاکتی برای کارهای نما و بندکشی.</p></div>
             <div class="add-section" id="section-سیمان سفید">
                 <button class="add-icon-btn" onclick="activateProduct('سیمان سفید', this)">+</button>
@@ -887,9 +777,10 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- ✅ پمپ آب با عکس جدید -->
     <div class="product-card" data-name="پمپ آب خانگی نیمه صنعتی صنعتی توان">
         <div class="product-top">
-            <div class="product-image"><img src="0987.jpg" alt="پمپ آب"></div>
+            <div class="product-image"><img src="poump.png" alt="پمپ آب"></div>
             <div class="product-info"><h3>پمپ آب</h3><p>پمپ آب خانگی، نیمه صنعتی و صنعتی در توان‌های مختلف.</p></div>
             <div class="add-section" id="section-پمپ آب">
                 <button class="add-icon-btn" onclick="activateProduct('پمپ آب', this)">+</button>
@@ -1181,8 +1072,8 @@
     <div class="cart-footer">
         <div class="cart-footer-label">📤 ارسال لیست به:</div>
         <div class="cart-footer-row">
-            <button class="btn-eita-masaleh" onclick="sendToEita('masaleh')">📦 ایتا مصالح</button>
-            <button class="btn-eita-tasisat" onclick="sendToEita('tasisat')">🔧 ایتا تاسیسات</button>
+            <button class="btn-eita-masaleh" onclick="sendToEita('masaleh')">ایتا مصالح</button>
+            <button class="btn-eita-tasisat" onclick="sendToEita('tasisat')">ایتا تاسیسات</button>
         </div>
         <div class="cart-footer-row">
             <button class="btn-copy" onclick="copyCart()">📋 کپی لیست</button>
@@ -1582,4 +1473,4 @@
 </script>
 
 </body>
-    </html>
+                        </html>
