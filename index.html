@@ -73,12 +73,50 @@
         .qty-control input::-webkit-outer-spin-button, .qty-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .qty-control input[type=number] { -moz-appearance: textfield; }
 
+        /* ==================== گالری دو ستونه ==================== */
         .gallery { padding: 25px; max-width: 900px; margin: auto; }
-        .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 20px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-item { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #ddd; height: 200px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 40px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery h2 { text-align: center; color: #1f2937; margin-bottom: 25px; }
+        .gallery-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .gallery-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .gallery-column-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .gallery-column-title.construction { background: #6b7280; }
+        .gallery-column-title.facilities { background: #1e40af; }
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px #ddd;
+            height: 200px;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 40px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
         .gallery-item img:hover { transform: scale(1.05); }
+
         .about-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; line-height: 2; border-right: 4px solid #0a2540; }
         .about-us h2 { color: #1f2937; margin-top: 0; }
         .why-us { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px #ddd; border-right: 4px solid #25d366; }
@@ -223,8 +261,9 @@
             nav a { font-size: 13px; margin: 5px; }
             .header-logo { max-width: 240px; }
             .cart-window { width: calc(100% - 30px); }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .gallery-columns { gap: 12px; }
             .gallery-item { height: 140px; }
+            .gallery-column-title { font-size: 14px; padding: 8px; }
             .product-image { width: 110px; min-width: 110px; height: 110px; }
             .product-info h3 { font-size: 16px; }
             .product-info p { font-size: 12px; }
@@ -525,7 +564,6 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
-    <!-- ✅ شیرآلات با عکس جدید -->
     <div class="product-card" data-name="شیرآلات بهداشتی ساختمانی برند معتبر">
         <div class="product-top">
             <div class="product-image"><img src="shiralat.png" alt="شیرآلات"></div>
@@ -577,7 +615,6 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
-    <!-- ✅ روشویی با عکس جدید -->
     <div class="product-card" data-name="روشویی دستشویی طرح مختلف">
         <div class="product-top">
             <div class="product-image"><img src="roshoii.png" alt="روشویی"></div>
@@ -845,17 +882,25 @@
     </div>
 </section>
 
+<!-- ==================== گالری دو ستونه ==================== -->
 <section class="gallery" id="gallery">
     <h2>گالری تصاویر فروشگاه</h2>
-    <div class="gallery-grid">
-        <div class="gallery-item"><img src="76.png" alt="تصویر فروشگاه ۱"></div>
-        <div class="gallery-item"><img src="67.png" alt="تصویر فروشگاه ۲"></div>
-        <div class="gallery-item"><img src="as.png" alt="تصویر فروشگاه ۳"></div>
-        <div class="gallery-item"><img src="gallery1.jpg" alt="تصویر فروشگاه ۴"></div>
-        <div class="gallery-item"><img src="gallery2.jpg" alt="تصویر فروشگاه ۵"></div>
-        <div class="gallery-item"><img src="gallery3.jpg" alt="تصویر فروشگاه ۶"></div>
-        <div class="gallery-item"><img src="gallery4.jpg" alt="تصویر فروشگاه ۷"></div>
-        <div class="gallery-item"><img src="gallery5.jpg" alt="تصویر فروشگاه ۸"></div>
+    <div class="gallery-columns">
+        <!-- ستون اول - مصالح ساختمانی -->
+        <div class="gallery-column">
+            <div class="gallery-column-title construction">🧱 مصالح ساختمانی</div>
+            <div class="gallery-item"><img src="67.png" alt="سیمان"></div>
+            <div class="gallery-item"><img src="76.png" alt="موزاییک"></div>
+            <div class="gallery-item"><img src="simans.png" alt="سیمان سفید"></div>
+            <div class="gallery-item"><img src="gallery3.jpg" alt="بلوک سقفی"></div>
+        </div>
+        <!-- ستون دوم - تجهیزات تاسیساتی -->
+        <div class="gallery-column">
+            <div class="gallery-column-title facilities">🔧 تجهیزات تاسیساتی</div>
+            <div class="gallery-item"><img src="shiralat.png" alt="شیرآلات"></div>
+            <div class="gallery-item"><img src="roshoii.png" alt="روشویی"></div>
+            <div class="gallery-item"><img src="10.png" alt="اتصالات"></div>
+        </div>
     </div>
 </section>
 
@@ -1372,4 +1417,4 @@
 </script>
 
 </body>
-                    </html>
+    </html>
