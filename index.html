@@ -196,23 +196,6 @@
 
         .reviews { padding: 25px; max-width: 900px; margin: auto; }
         
-        .rating-summary { background: linear-gradient(135deg, #0a2540 0%, #14395e 100%); color: white; border-radius: 16px; padding: 25px; margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 25px; align-items: center; box-shadow: 0 10px 30px rgba(10, 37, 64, 0.25); }
-        .rating-average-box { text-align: center; flex-shrink: 0; min-width: 130px; }
-        .rating-average-num { font-size: 54px; font-weight: bold; color: #fbbf24; line-height: 1; margin-bottom: 5px; }
-        .rating-average-stars { font-size: 20px; color: #fbbf24; letter-spacing: 3px; margin-bottom: 8px; }
-        .rating-average-count { font-size: 13px; color: #cbd5e1; }
-        
-        .rating-bars { flex: 1; min-width: 220px; }
-        .rating-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
-        .rating-bar-label { min-width: 55px; color: #e5e7eb; display: flex; align-items: center; gap: 3px; }
-        .rating-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; overflow: hidden; }
-        .rating-bar-fill { height: 100%; background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); border-radius: 4px; transition: width 0.5s; }
-        .rating-bar-count { min-width: 25px; text-align: left; color: #cbd5e1; font-size: 12px; }
-        
-        .satisfaction-box { text-align: center; padding: 15px 20px; background: rgba(255,255,255,0.1); border-radius: 12px; min-width: 140px; flex-shrink: 0; }
-        .satisfaction-num { font-size: 32px; font-weight: bold; color: #10b981; line-height: 1; }
-        .satisfaction-lbl { font-size: 12px; color: #cbd5e1; margin-top: 5px; }
-        
         .review-submit-btn { background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); color: white; border: none; padding: 14px 28px; border-radius: 12px; font-family: inherit; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.4); transition: 0.3s; }
         .review-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 148, 136, 0.6); }
         .review-form-window { display: none; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin-bottom: 25px; overflow: hidden; animation: fadeIn 0.3s; }
@@ -230,16 +213,10 @@
         .star:hover, .star:hover ~ .star, .star.active, .star.active ~ .star { color: #fbbf24; transform: scale(1.15); }
         .review-send-btn { background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; border: none; padding: 14px; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
         .review-send-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
+        
         .reviews-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .review-card { background: white; border-radius: 14px; padding: 18px 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.06); border-right: 4px solid #fbbf24; transition: 0.3s; }
-        .review-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.1); transform: translateY(-2px); }
-        .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .review-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; flex-shrink: 0; }
-        .review-user { flex-grow: 1; }
-        .review-name { font-weight: bold; color: #1f2937; font-size: 15px; margin-bottom: 2px; }
-        .review-date { font-size: 12px; color: #9ca3af; }
-        .review-stars { color: #fbbf24; font-size: 16px; letter-spacing: 2px; flex-shrink: 0; }
-        .review-text { color: #4b5563; font-size: 14px; line-height: 1.8; padding-right: 57px; }
+        .no-reviews-yet { text-align: center; padding: 50px 20px; color: #9ca3af; font-size: 15px; background: white; border-radius: 14px; box-shadow: 0 3px 12px rgba(0,0,0,0.06); }
+        .no-reviews-icon { font-size: 50px; margin-bottom: 15px; }
 
         @media (max-width: 768px) { 
             .two-column-layout { flex-direction: column; } 
@@ -255,14 +232,7 @@
             .search-input { padding: 13px 48px 13px 42px; font-size: 15px; }
             .search-icon { width: 20px; height: 20px; right: 16px; }
             .add-label { font-size: 9px; max-width: 60px; }
-            .review-text { padding-right: 0; }
-            .review-stars { font-size: 14px; }
             .star { font-size: 28px; }
-            .rating-summary { flex-direction: column; text-align: center; gap: 20px; padding: 20px; }
-            .rating-average-box { min-width: auto; }
-            .rating-average-num { font-size: 48px; }
-            .satisfaction-box { width: 100%; }
-            .rating-bars { width: 100%; }
         }
     </style>
 </head>
@@ -485,7 +455,6 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
-    <!-- ✅ سیمان سفید با عکس جدید -->
     <div class="product-card" data-name="سیمان سفید پاکتی نما بندکشی">
         <div class="product-top">
             <div class="product-image"><img src="simans.png" alt="سیمان سفید"></div>
@@ -556,9 +525,10 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- ✅ شیرآلات با عکس جدید -->
     <div class="product-card" data-name="شیرآلات بهداشتی ساختمانی برند معتبر">
         <div class="product-top">
-            <div class="product-image"><img src="0987.jpg" alt="شیرآلات"></div>
+            <div class="product-image"><img src="shiralat.png" alt="شیرآلات"></div>
             <div class="product-info"><h3>شیرآلات</h3><p>شیرآلات بهداشتی و ساختمانی از برندهای معتبر.</p></div>
             <div class="add-section" id="section-شیرآلات">
                 <button class="add-icon-btn" onclick="activateProduct('شیرآلات', this)">+</button>
@@ -607,9 +577,10 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
+    <!-- ✅ روشویی با عکس جدید -->
     <div class="product-card" data-name="روشویی دستشویی طرح مختلف">
         <div class="product-top">
-            <div class="product-image"><img src="0987.jpg" alt="روشویی"></div>
+            <div class="product-image"><img src="roshoii.png" alt="روشویی"></div>
             <div class="product-info"><h3>روشویی</h3><p>روشویی و دستشویی در طرح‌های مختلف.</p></div>
             <div class="add-section" id="section-روشویی">
                 <button class="add-icon-btn" onclick="activateProduct('روشویی', this)">+</button>
@@ -777,7 +748,6 @@
         <div class="stock-status"><span class="stock-dot"></span> موجود</div>
     </div>
 
-    <!-- ✅ پمپ آب با عکس جدید -->
     <div class="product-card" data-name="پمپ آب خانگی نیمه صنعتی صنعتی توان">
         <div class="product-top">
             <div class="product-image"><img src="poump.png" alt="پمپ آب"></div>
@@ -835,47 +805,6 @@
 <section class="reviews" id="reviews">
     <h2 style="text-align: center; color: #1f2937; margin-bottom: 25px;">💬 نظرات مشتریان</h2>
     
-    <div class="rating-summary">
-        <div class="rating-average-box">
-            <div class="rating-average-num" id="averageNum">۴.۷</div>
-            <div class="rating-average-stars">★★★★★</div>
-            <div class="rating-average-count" id="averageCount">از ۱۲ نظر</div>
-        </div>
-        
-        <div class="rating-bars">
-            <div class="rating-bar-row">
-                <div class="rating-bar-label">۵ ★</div>
-                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 75%;"></div></div>
-                <div class="rating-bar-count">۹</div>
-            </div>
-            <div class="rating-bar-row">
-                <div class="rating-bar-label">۴ ★</div>
-                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 25%;"></div></div>
-                <div class="rating-bar-count">۳</div>
-            </div>
-            <div class="rating-bar-row">
-                <div class="rating-bar-label">۳ ★</div>
-                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
-                <div class="rating-bar-count">۰</div>
-            </div>
-            <div class="rating-bar-row">
-                <div class="rating-bar-label">۲ ★</div>
-                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
-                <div class="rating-bar-count">۰</div>
-            </div>
-            <div class="rating-bar-row">
-                <div class="rating-bar-label">۱ ★</div>
-                <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
-                <div class="rating-bar-count">۰</div>
-            </div>
-        </div>
-        
-        <div class="satisfaction-box">
-            <div class="satisfaction-num">۱۰۰٪</div>
-            <div class="satisfaction-lbl">رضایت مشتریان</div>
-        </div>
-    </div>
-    
     <div style="text-align: center; margin-bottom: 25px;">
         <button onclick="openReviewForm()" class="review-submit-btn" style="display: inline-flex; align-items: center; gap: 8px;">
             ✍️ ثبت نظر جدید
@@ -908,40 +837,10 @@
     </div>
     
     <div class="reviews-list" id="reviewsList">
-        <div class="review-card">
-            <div class="review-header">
-                <div class="review-avatar">ع</div>
-                <div class="review-user">
-                    <div class="review-name">علی محمدی</div>
-                    <div class="review-date">۲ هفته پیش</div>
-                </div>
-                <div class="review-stars">★★★★★</div>
-            </div>
-            <div class="review-text">سفارش سیمان و بلوک دادم، سریع رسید و کیفیت عالی بود. قیمت هم منصفانه بود. حتماً دوباره خرید می‌کنم.</div>
-        </div>
-        
-        <div class="review-card">
-            <div class="review-header">
-                <div class="review-avatar">ر</div>
-                <div class="review-user">
-                    <div class="review-name">رضا کریمی</div>
-                    <div class="review-date">۱ ماه پیش</div>
-                </div>
-                <div class="review-stars">★★★★★</div>
-            </div>
-            <div class="review-text">برای پروژه ساختمانی‌م همه چیز از اینجا خریدم. تنوع کامل، قیمت رقابتی و ارسال سریع. ممنون از تیم خوبتون.</div>
-        </div>
-        
-        <div class="review-card">
-            <div class="review-header">
-                <div class="review-avatar">م</div>
-                <div class="review-user">
-                    <div class="review-name">مریم احمدی</div>
-                    <div class="review-date">۱ ماه پیش</div>
-                </div>
-                <div class="review-stars">★★★★☆</div>
-            </div>
-            <div class="review-text">برای بازسازی خونه پکیج و رادیاتور خریدم. کارشناساشون خیلی کمک کردن تا ظرفیت مناسب رو انتخاب کنم. فقط ارسالش یه روز دیرتر رسید.</div>
+        <div class="no-reviews-yet">
+            <div class="no-reviews-icon">💬</div>
+            هنوز نظری ثبت نشده.<br>
+            اولین نفری باشید که نظر می‌ده!
         </div>
     </div>
 </section>
@@ -1375,7 +1274,7 @@
             '📅 تاریخ: ' + new Date().toLocaleDateString('fa-IR');
         
         navigator.clipboard.writeText(message).then(() => {
-            alert('✅ ممنون از نظر شما!\n\nنظر شما کپی شد و ایتا باز می‌شه.\nلطفاً اون رو برامون بفرستید تا بعد از تأیید، توی سایت نمایش داده بشه.\n\n📞 شماره مصالح: ۰۹۱۳۳۹۰۸۲۳۰');
+            alert('✅ ممنون از نظر شما!\n\nنظر شما کپی شد و ایتا باز می‌شه.\nلطفاً اون رو برامون بفرستید تا بعد از تأیید، توی سایت نمایش داده بشه.\n\n📞 شماره: ۰۹۳۶۴۱۲۷۳۱۹');
             setTimeout(() => { window.location.href = 'eitaa://'; }, 500);
             closeReviewForm();
         }).catch(() => {
@@ -1385,7 +1284,7 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            alert('✅ ممنون از نظر شما!\n\nنظر شما کپی شد و ایتا باز می‌شه.\nلطفاً اون رو برامون بفرستید تا بعد از تأیید، توی سایت نمایش داده بشه.\n\n📞 شماره مصالح: ۰۹۱۳۳۹۰۸۲۳۰');
+            alert('✅ ممنون از نظر شما!\n\nنظر شما کپی شد و ایتا باز می‌شه.\nلطفاً اون رو برامون بفرستید تا بعد از تأیید، توی سایت نمایش داده بشه.\n\n📞 شماره: ۰۹۳۶۴۱۲۷۳۱۹');
             setTimeout(() => { window.location.href = 'eitaa://'; }, 500);
             closeReviewForm();
         });
@@ -1473,4 +1372,4 @@
 </script>
 
 </body>
-                        </html>
+                    </html>
