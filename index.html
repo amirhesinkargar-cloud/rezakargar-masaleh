@@ -132,15 +132,14 @@ body {
 
 /* ===================== HEADER ===================== */
 header {
-  /* رنگ پس‌زمینه دقیقا هم‌رنگ لوگو شد */
-  background: #0f2537;
+  background: #0f2537; /* رنگ هم‌رنگ لوگو */
   color: white;
   padding: 45px 25px 35px;
   text-align: center;
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(15, 23, 42, 0.3);
-  border-bottom: 3px solid #f59e0b;
+  border-bottom: 3px solid #f59e0b; /* نوار نارنجی */
 }
 .header-logo {
   max-width: 260px; width: 100%; height: auto;
@@ -1117,8 +1116,7 @@ nav a:hover::after { width: 100%; right: 0; }
   .blog-grid { grid-template-columns: 1fr; }
   .modal-body { padding: 18px; }
 }
-</style>
-</head>
+    </style></head>
 
 <body>
 
@@ -1126,7 +1124,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <header>
   <img src="iu.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="header-logo" id="headerLogo" onclick="tripleClickLogo()" title="فروشگاه کارگر">
   <div class="header-title">مصالح ساختمانی و تاسیسات مرکزی کارگر</div>
-  <!-- شعار جدید جایگزین شد و ایموجی ها حذف شدند -->
+  <!-- شعار جدید و بدون ایموجی -->
   <div class="header-subtitle">کیفیت برتر، همراه همیشگی سازندگان</div>
 </header>
 
@@ -1146,6 +1144,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <section class="hero">
   <h1>مصالح ساختمانی و تاسیسات <span>با کیفیت تضمینی</span></h1>
   <p>عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی با قیمت مناسب و ارسال سریع در شهربابک و حومه</p>
+  <!-- حذف ایموجی دکمه‌ها -->
   <a href="#contact" class="inquiry-btn">استعلام قیمت روز</a>
   <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
     <button onclick="openOrderForm()" class="inquiry-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); font-size: 15px; padding: 14px 30px;">
@@ -1160,12 +1159,14 @@ nav a:hover::after { width: 100%; right: 0; }
 <!-- ================= ABOUT + WHY US ================= -->
 <div class="two-column-layout">
   <section class="about-us reveal" id="about">
+    <!-- حذف ایموجی -->
     <h2>درباره ما</h2>
     <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.</p>
     <p>ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. <strong>رضایت شما، بزرگترین سرمایه ماست.</strong></p>
   </section>
 
   <section class="why-us reveal">
+    <!-- حذف ایموجی -->
     <h2>چرا ما را انتخاب کنید؟</h2>
     <div class="features-grid">
       <div class="feature-item"><span class="icon">✓</span><div><strong>کیفیت تضمینی</strong><p>تمام محصولات از برندهای معتبر و با ضمانت کیفیت عرضه می‌شوند.</p></div></div>
@@ -1180,6 +1181,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= PRODUCTS ================= -->
 <section class="products" id="products">
+  <!-- حذف ایموجی -->
   <h2 class="section-title">محصولات ما</h2>
 
   <div class="search-container" style="padding: 0; margin-bottom: 25px;">
@@ -1202,6 +1204,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
   <div class="category-title construction">مصالح ساختمانی</div>
 
+  <!-- محصولات بدون تغییر باقی مانده‌اند -->
   <div class="product-card reveal" data-name="انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی">
     <div class="product-top">
       <div class="product-image"><img src="67.png" alt="انواع سیمان" loading="lazy"></div>
@@ -1697,17 +1700,20 @@ nav a:hover::after { width: 100%; right: 0; }
     <div class="stock-status"><span class="stock-dot"></span> موجود در انبار</div>
   </div>
 
+  <!-- حذف ایموجی از ساعات کاری -->
   <div class="working-hours">ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
 </section>
 
 <!-- ================= BLOG ================= -->
 <section class="blog-section" id="blog">
+  <!-- حذف ایموجی -->
   <h2 class="section-title">مقالات آموزشی</h2>
   <div class="blog-grid" id="blogGrid"></div>
 </section>
 
 <!-- ================= FAQ ================= -->
 <section class="faq-section" id="faq">
+  <!-- حذف ایموجی -->
   <h2 class="section-title">سوالات متداول</h2>
 
   <div class="faq-item reveal">
@@ -1738,6 +1744,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= REVIEWS ================= -->
 <section class="reviews" id="reviews">
+  <!-- حذف ایموجی -->
   <h2 class="section-title">نظرات مشتریان</h2>
 
   <div style="text-align: center; margin-bottom: 25px;">
@@ -1780,6 +1787,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= GALLERY ================= -->
 <section class="gallery" id="gallery">
+  <!-- حذف ایموجی -->
   <h2 class="section-title">گالری تصاویر فروشگاه</h2>
   <div class="gallery-columns">
     <div class="gallery-column">
@@ -1799,6 +1807,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= MAP ================= -->
 <div class="map-container" id="map">
+  <!-- حذف ایموجی -->
   <h2 class="section-title">موقعیت روی نقشه</h2>
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.123456789!2d55.110361!3d30.128111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzQxLjIiTiA1NcKwMDYnMzcuMyJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen loading="lazy"></iframe>
 </div>
@@ -1807,6 +1816,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <section class="contact" id="contact">
   <img src="0987.jpg" alt="لوگو" class="contact-logo">
   <h2>تماس با ما</h2>
+  <!-- حذف ایموجی -->
   <p>شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
   <p>آدرس: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
 
@@ -1868,6 +1878,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= INSTA MENU ================= -->
 <div class="insta-menu" id="instaMenu">
+  <!-- حذف ایموجی -->
   <p>صفحه اینستاگرام ما:</p>
   <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener">پیج مصالح</a>
   <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener">پیج تاسیسات</a>
@@ -1876,6 +1887,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <!-- ================= ASSISTANT WINDOW ================= -->
 <div class="assistant-window" id="assistantWindow">
   <div class="assistant-header">
+    <!-- حذف ایموجی -->
     <span>مشاور خرید هوشمند</span>
     <button onclick="toggleAssistant()">✕</button>
   </div>
@@ -1898,6 +1910,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <!-- ================= CART WINDOW ================= -->
 <div class="cart-window" id="cartWindow">
   <div class="cart-header">
+    <!-- حذف ایموجی -->
     <span>لیست خرید شما</span>
     <button onclick="toggleCart()">✕</button>
   </div>
@@ -1922,6 +1935,7 @@ nav a:hover::after { width: 100%; right: 0; }
   </div>
 
   <div class="cart-footer">
+    <!-- حذف ایموجی -->
     <div class="cart-footer-label">ارسال لیست به:</div>
     <div class="cart-footer-row">
       <button class="btn-eita-masaleh" onclick="sendToEita('masaleh')">ایتا مصالح</button>
@@ -1938,6 +1952,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <div class="modal-overlay" id="orderModal">
   <div class="modal-content">
     <div class="modal-header">
+      <!-- حذف ایموجی -->
       <h3>ثبت سفارش آنلاین</h3>
       <button onclick="closeOrderForm()">✕</button>
     </div>
@@ -1977,6 +1992,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <div class="modal-overlay" id="calcModal">
   <div class="modal-content">
     <div class="modal-header">
+      <!-- حذف ایموجی -->
       <h3>محاسبه‌گر آنلاین مصالح</h3>
       <button onclick="closeCalculator()">✕</button>
     </div>
@@ -3112,4 +3128,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 </body>
-      </html>
+  </html>
