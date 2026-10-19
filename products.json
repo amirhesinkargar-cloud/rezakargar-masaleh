@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-10-19T18:32:15.869Z",
+  "lastUpdate": "2026-10-19T20:16:52.232Z",
   "products": [
     {
       "id": "cement-types",
@@ -224,6 +224,15 @@
       "image": "67png",
       "category": "construction",
       "keywords": "سیمان سفید پاکتی",
+      "inStock": true
+    },
+    {
+      "id": "azmayesh",
+      "name": "آزمایشی",
+      "desc": "۵ عدد",
+      "image": "67.png",
+      "category": "construction",
+      "keywords": "مرغ",
       "inStock": true
     }
   ]
