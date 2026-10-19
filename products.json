@@ -1,14 +1,14 @@
 {
-  "lastUpdate": "2026-10-19T00:00:00.000Z",
+  "lastUpdate": "2026-10-19T14:47:32.400Z",
   "products": [
     {
       "id": "cement-types",
       "name": "انواع سیمان",
       "desc": "سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.",
       "image": "67.png",
-      "category": "basic",
+      "category": "",
       "keywords": "انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی",
-      "inStock": true
+      "inStock": false
     },
     {
       "id": "cement-white",
