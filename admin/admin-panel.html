@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>پنل مدیریت محصولات | کارگر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Vazirmatn', Tahoma, sans-serif; margin: 0; background: #f1f5f9; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 20px; }
+  .card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 6px 24px rgba(15,23,42,.06); margin-bottom: 20px; }
+  h1 { font-size: 20px; margin: 0 0 16px; color: #0f172a; }
+  h2 { font-size: 16px; margin: 0 0 14px; color: #0f766e; }
+  label { display: block; font-weight: 700; font-size: 13px; margin: 12px 0 6px; color: #334155; }
+  input, textarea, select { width: 100%; padding: 11px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-family: inherit; font-size: 14px; outline: none; background: #f8fafc; color: #1e293b; }
+  input:focus, textarea:focus, select:focus { border-color: #0d9488; background: #fff; }
+  textarea { resize: vertical; min-height: 70px; }
+  button { padding: 11px 22px; border: none; border-radius: 10px; font-family: inherit; font-weight: 800; font-size: 14px; cursor: pointer; transition: .2s; }
+  .btn-primary { background: linear-gradient(135deg,#0d9488,#0f766e); color: #fff; }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-danger { background: #fee2e2; color: #dc2626; }
+  .btn-danger:hover { background: #dc2626; color: #fff; }
+  .btn-secondary { background: #e2e8f0; color: #475569; }
+  .btn-secondary:hover { background: #cbd5e1; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .row > * { flex: 1; min-width: 180px; }
+  .product-item { display: flex; gap: 12px; align-items: center; padding: 14px; background: #f8fafc; border-radius: 12px; margin-bottom: 10px; border-right: 4px solid #0d9488; }
+  .product-item img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #e2e8f0; }
+  .product-item .info { flex: 1; }
+  .product-item .name { font-weight: 800; font-size: 14px; }
+  .product-item .desc { font-size: 12px; color: #64748b; }
+  .product-item .cat { font-size: 11px; color: #0d9488; font-weight: 700; }
+  .product-item .actions { display: flex; gap: 6px; }
+  .product-item .actions button { padding: 7px 12px; font-size: 12px; }
+  .status { padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; margin-bottom: 14px; display: none; }
+  .status.show { display: block; }
+  .status.ok { background: #dcfce7; color: #166534; }
+  .status.err { background: #fee2e2; color: #991b1b; }
+  .status.info { background: #dbeafe; color: #1e40af; }
+  .login-box { max-width: 420px; margin: 60px auto; }
+  .login-box p { font-size: 13px; color: #64748b; }
+  .login-box a { color: #0d9488; }
+  .empty { text-align: center; color: #94a3b8; padding: 30px; font-size: 14px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-right: 6px; }
+  .badge.construction { background: #e2e8f0; color: #334155; }
+  .badge.facilities { background: #ccfbf1; color: #0f766e; }
+  .hint { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card login-box" id="loginBox">
+    <h1>🔐 ورود به پنل مدیریت محصولات</h1>
+    <p>برای ورود، یک <strong>Personal Access Token</strong> از گیت‌هاب بسازید و اینجا وارد کنید.</p>
+    <label>GitHub Token</label>
+    <input type="password" id="tokenInput" placeholder="ghp_... یا github_pat_..." dir="ltr" autocomplete="off">
+    <div class="row" style="margin-top:14px;">
+      <button class="btn-primary" onclick="login()">🔓 ورود</button>
+      <a href="https://github.com/settings/tokens/new?scopes=repo&description=Kargar-Admin" target="_blank" class="btn-secondary" style="text-decoration:none;text-align:center;padding:11px 22px;border-radius:10px;font-weight:800;font-size:14px;color:#475569;">ساخت توکن</a>
+    </div>
+    <div class="status" id="loginStatus"></div>
+    <p class="hint">⚠️ توکن فقط توی همین مرورگر ذخیره میشه و با بستن تب پاک میشه.</p>
+  </div>
+
+  <div id="panelBox" style="display:none;">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+        <h1 style="margin:0;">📦 مدیریت محصولات</h1>
+        <div style="display:flex;gap:8px;">
+          <button class="btn-secondary" onclick="loadProducts()">🔄 بروزرسانی</button>
+          <button class="btn-danger" onclick="logout()">🚪 خروج</button>
+        </div>
+      </div>
+      <div class="status" id="panelStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="formTitle">➕ افزودن محصول جدید</h2>
+      <input type="hidden" id="editId">
+      <div class="row">
+        <div>
+          <label>شناسه (انگلیسی، یکتا) *</label>
+          <input type="text" id="pId" placeholder="cement-types" dir="ltr">
+        </div>
+        <div>
+          <label>نام محصول *</label>
+          <input type="text" id="pName" placeholder="انواع سیمان">
+        </div>
+      </div>
+      <label>توضیحات *</label>
+      <textarea id="pDesc" placeholder="سیمان تیپ ۱، تیپ ۲، ..."></textarea>
+      <div class="row">
+        <div>
+          <label>نام فایل تصویر *</label>
+          <input type="text" id="pImage" placeholder="67.png" dir="ltr">
+          <div class="hint">فایل باید از قبل در ریشه مخزن آپلود شده باشد.</div>
+        </div>
+        <div>
+          <label>دسته‌بندی *</label>
+          <select id="pCategory">
+            <option value="construction">🏗 مصالح ساختمانی</option>
+            <option value="facilities">🔧 تجهیزات تاسیساتی</option>
+          </select>
+        </div>
+      </div>
+      <label>کلمات کلیدی جستجو (اختیاری)</label>
+      <input type="text" id="pKeywords" placeholder="سیمان تیپ ۱ سفید پاکتی">
+      <label style="display:flex;align-items:center;gap:8px;margin-top:14px;">
+        <input type="checkbox" id="pInStock" checked style="width:auto;"> موجود در انبار
+      </label>
+      <div class="row" style="margin-top:16px;">
+        <button class="btn-primary" onclick="saveProduct()">💾 ذخیره محصول</button>
+        <button class="btn-secondary" onclick="resetForm()">✖ انصراف</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📋 محصولات فعلی (<span id="countProducts">0</span>)</h2>
+      <div id="productsList"><div class="empty">در حال بارگذاری...</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const REPO = 'amirhesinkargar-cloud/rezakargar-masaleh';
+const FILE_PATH = 'products.json';
+const API = 'https://api.github.com/repos/' + REPO + '/contents/' + FILE_PATH;
+
+let token = sessionStorage.getItem('gh_token') || '';
+let productsData = { products: [] };
+let fileSha = null;
+
+function status(msg, type = 'info', target = 'panelStatus') {
+  const el = document.getElementById(target);
+  el.textContent = msg;
+  el.className = 'status show ' + type;
+  if (type !== 'err') setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+function headers() {
+  return { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' };
+}
+
+function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
+function b64DecodeUnicode(str) { return decodeURIComponent(escape(atob(str.replace(/\s/g, '')))); }
+
+async function login() {
+  const t = document.getElementById('tokenInput').value.trim();
+  if (!t) { status('توکن را وارد کنید', 'err', 'loginStatus'); return; }
+  token = t;
+  try {
+    const res = await fetch(API, { headers: headers() });
+    if (res.status === 401) { status('❌ توکن نامعتبر است', 'err', 'loginStatus'); return; }
+    if (res.status === 404) { status('❌ فایل products.json پیدا نشد.', 'err', 'loginStatus'); return; }
+    if (!res.ok) { status('❌ خطا: ' + res.status, 'err', 'loginStatus'); return; }
+    sessionStorage.setItem('gh_token', token);
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('panelBox').style.display = 'block';
+    await loadProducts();
+  } catch (e) { status('❌ خطای شبکه: ' + e.message, 'err', 'loginStatus'); }
+}
+
+function logout() { sessionStorage.removeItem('gh_token'); token = ''; location.reload(); }
+
+async function loadProducts() {
+  status('در حال بارگذاری...', 'info');
+  try {
+    const res = await fetch(API, { headers: headers() });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    fileSha = data.sha;
+    productsData = JSON.parse(b64DecodeUnicode(data.content));
+    if (!productsData.products) productsData.products = [];
+    renderProducts();
+    status('✅ بارگذاری شد (' + productsData.products.length + ' محصول)', 'ok');
+  } catch (e) { status('❌ خطا در بارگذاری: ' + e.message, 'err'); }
+}
+
+function renderProducts() {
+  const list = document.getElementById('productsList');
+  document.getElementById('countProducts').textContent = productsData.products.length;
+  if (productsData.products.length === 0) { list.innerHTML = '<div class="empty">📭 هنوز محصولی ثبت نشده</div>'; return; }
+  list.innerHTML = productsData.products.map(p => `
+    <div class="product-item">
+      <img src="../${p.image}" alt="${p.name}" onerror="this.style.background='#e2e8f0'">
+      <div class="info">
+        <div class="name">${escapeHtml(p.name)}</div>
+        <div class="desc">${escapeHtml(p.desc)}</div>
+        <span class="badge ${p.category}">${p.category === 'construction' ? 'مصالح' : 'تاسیسات'}</span>
+        <span style="font-size:11px;color:${p.inStock ? '#059669' : '#dc2626'};font-weight:700;">${p.inStock ? '✅ موجود' : '❌ ناموجود'}</span>
+      </div>
+      <div class="actions">
+        <button class="btn-secondary" onclick='editProduct("${p.id}")'>✏️ ویرایش</button>
+        <button class="btn-danger" onclick='deleteProduct("${p.id}")'>🗑 حذف</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+async function saveProduct() {
+  const id = document.getElementById('editId').value.trim();
+  const name = document.getElementById('pName').value.trim();
+  const desc = document.getElementById('pDesc').value.trim();
+  const image = document.getElementById('pImage').value.trim();
+  const category = document.getElementById('pCategory').value;
+  const keywords = document.getElementById('pKeywords').value.trim();
+  const inStock = document.getElementById('pInStock').checked;
+  const newId = document.getElementById('pId').value.trim();
+
+  if (!newId || !name || !desc || !image) { status('⚠️ همه فیلدهای ستاره‌دار را پر کنید', 'err'); return; }
+  if (!/^[a-z0-9-]+$/.test(newId)) { status('⚠️ شناسه فقط حروف کوچک انگلیسی، عدد و خط تیره', 'err'); return; }
+  if (!id && productsData.products.some(p => p.id === newId)) { status('⚠️ این شناسه قبلاً استفاده شده', 'err'); return; }
+
+  const product = { id: newId, name, desc, image, category, keywords: keywords || name, inStock };
+  if (id) {
+    const idx = productsData.products.findIndex(p => p.id === id);
+    if (idx >= 0) productsData.products[idx] = product;
+  } else { productsData.products.push(product); }
+  await pushToGitHub(id ? 'ویرایش محصول: ' + name : 'افزودن محصول: ' + name);
+}
+
+async function deleteProduct(id) {
+  if (!confirm('آیا از حذف این محصول مطمئن هستید؟')) return;
+  productsData.products = productsData.products.filter(p => p.id !== id);
+  await pushToGitHub('حذف محصول: ' + id);
+}
+
+async function pushToGitHub(message) {
+  status('در حال ذخیره در گیت‌هاب...', 'info');
+  productsData.lastUpdate = new Date().toISOString();
+  const content = b64EncodeUnicode(JSON.stringify(productsData, null, 2));
+  try {
+    const res = await fetch(API, { method: 'PUT', headers: headers(), body: JSON.stringify({ message, content, sha: fileSha }) });
+    if (!res.ok) { const err = await res.json(); throw new Error(err.message || 'HTTP ' + res.status); }
+    const data = await res.json();
+    fileSha = data.content.sha;
+    renderProducts(); resetForm();
+    status('✅ ذخیره شد. سایت تا ~۱ دقیقه دیگر آپدیت می‌شود.', 'ok');
+  } catch (e) { status('❌ خطا در ذخیره: ' + e.message, 'err'); }
+}
+
+function editProduct(id) {
+  const p = productsData.products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('editId').value = p.id;
+  document.getElementById('pId').value = p.id;
+  document.getElementById('pId').disabled = true;
+  document.getElementById('pName').value = p.name;
+  document.getElementById('pDesc').value = p.desc;
+  document.getElementById('pImage').value = p.image;
+  document.getElementById('pCategory').value = p.category;
+  document.getElementById('pKeywords').value = p.keywords || '';
+  document.getElementById('pInStock').checked = p.inStock !== false;
+  document.getElementById('formTitle').textContent = '✏️ ویرایش محصول: ' + p.name;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetForm() {
+  document.getElementById('editId').value = '';
+  document.getElementById('pId').value = '';
+  document.getElementById('pId').disabled = false;
+  document.getElementById('pName').value = '';
+  document.getElementById('pDesc').value = '';
+  document.getElementById('pImage').value = '';
+  document.getElementById('pCategory').value = 'construction';
+  document.getElementById('pKeywords').value = '';
+  document.getElementById('pInStock').checked = true;
+  document.getElementById('formTitle').textContent = '➕ افزودن محصول جدید';
+}
+
+if (token) {
+  document.getElementById('loginBox').style.display = 'none';
+  document.getElementById('panelBox').style.display = 'block';
+  loadProducts();
+}
+</script>
+</body>
+  </html>
