@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-10-19T18:30:12.674Z",
+  "lastUpdate": "2026-10-19T18:32:15.869Z",
   "products": [
     {
       "id": "cement-types",
@@ -215,6 +215,15 @@
       "image": "0987.jpg",
       "category": "water",
       "keywords": "ست کنترل پمپ آب اتوماتیک",
+      "inStock": true
+    },
+    {
+      "id": "caserk",
+      "name": "مرغ",
+      "desc": "چاق",
+      "image": "67png",
+      "category": "construction",
+      "keywords": "سیمان سفید پاکتی",
       "inStock": true
     }
   ]
