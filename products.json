@@ -1,22 +1,103 @@
 {
-  "lastUpdate": "2026-10-19T12:45:50.942Z",
+  "lastUpdate": "2026-10-19T00:00:00.000Z",
   "products": [
     {
       "id": "cement-types",
       "name": "انواع سیمان",
       "desc": "سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.",
       "image": "67.png",
-      "category": "construction",
+      "category": "basic",
       "keywords": "انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی",
-      "inStock": false
+      "inStock": true
+    },
+    {
+      "id": "cement-white",
+      "name": "سیمان سفید",
+      "desc": "سیمان سفید پاکتی برای کارهای نما و بندکشی.",
+      "image": "simans.png",
+      "category": "basic",
+      "keywords": "سیمان سفید پاکتی نما بندکشی",
+      "inStock": true
+    },
+    {
+      "id": "gach",
+      "name": "گچ",
+      "desc": "گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.",
+      "image": "gallery2.jpg",
+      "category": "basic",
+      "keywords": "گچ ساختمانی سفیدکاری کیسه",
+      "inStock": true
+    },
+    {
+      "id": "poudr-sang",
+      "name": "پودر سنگ",
+      "desc": "پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.",
+      "image": "gallery2.jpg",
+      "category": "basic",
+      "keywords": "پودر سنگ جوشقان بتن ملات",
+      "inStock": true
+    },
+    {
+      "id": "ahak",
+      "name": "آهک",
+      "desc": "آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.",
+      "image": "gallery5.jpg",
+      "category": "basic",
+      "keywords": "آهک کیسه‌ای ساختمانی ملات",
+      "inStock": true
     },
     {
       "id": "block-tiqhe",
       "name": "بلوک تیغه",
       "desc": "بلوک سبک تیغه‌ای برای دیوارچینی داخلی.",
       "image": "gallery4.jpg",
-      "category": "construction",
+      "category": "wall",
       "keywords": "بلوک تیغه سبک دیوارچینی داخلی",
+      "inStock": true
+    },
+    {
+      "id": "block-saqfi",
+      "name": "بلوک سقفی",
+      "desc": "بلوک سقفی سبک و مقاوم برای تیرچه بلوک.",
+      "image": "gallery3.jpg",
+      "category": "wall",
+      "keywords": "بلوک سقفی سبک مقاوم تیرچه",
+      "inStock": true
+    },
+    {
+      "id": "ajar",
+      "name": "آجر گره‌ای",
+      "desc": "آجر گره‌ای و سفال برای دیوارچینی و نماکاری.",
+      "image": "0987.jpg",
+      "category": "wall",
+      "keywords": "آجر گره‌ای سفال دیوارچینی نماکاری",
+      "inStock": true
+    },
+    {
+      "id": "kashi",
+      "name": "کاشی",
+      "desc": "کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.",
+      "image": "gallery1.jpg",
+      "category": "tile",
+      "keywords": "کاشی دیواری کف طرح رنگ",
+      "inStock": true
+    },
+    {
+      "id": "seramik",
+      "name": "سرامیک",
+      "desc": "سرامیک کف و دیوار با مقاومت بالا.",
+      "image": "as.png",
+      "category": "tile",
+      "keywords": "سرامیک کف دیوار مقاومت",
+      "inStock": true
+    },
+    {
+      "id": "mozaik",
+      "name": "موزاییک",
+      "desc": "موزاییک پرسی و معمولی برای محوطه‌سازی.",
+      "image": "76.png",
+      "category": "tile",
+      "keywords": "موزاییک پرسی معمولی محوطه",
       "inStock": true
     },
     {
@@ -24,8 +105,116 @@
       "name": "انواع لوله",
       "desc": "لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.",
       "image": "0987.jpg",
-      "category": "facilities",
-      "keywords": "لوله پلیکا پنبه‌ای پنج لایه فلزی سایز",
+      "category": "pipe",
+      "keywords": "لوله پلیکا پنبه‌ای پنج لایه فلزی",
+      "inStock": true
+    },
+    {
+      "id": "etesalat",
+      "name": "اتصالات",
+      "desc": "انواع اتصالات لوله‌کشی آب و فاضلاب.",
+      "image": "10.png",
+      "category": "pipe",
+      "keywords": "اتصالات لوله‌کشی آب فاضلاب",
+      "inStock": true
+    },
+    {
+      "id": "shiralat",
+      "name": "شیرآلات",
+      "desc": "شیرآلات بهداشتی و ساختمانی از برندهای معتبر.",
+      "image": "shiralat.png",
+      "category": "sanitary",
+      "keywords": "شیرآلات بهداشتی ساختمانی برند",
+      "inStock": true
+    },
+    {
+      "id": "sink",
+      "name": "سینک",
+      "desc": "سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.",
+      "image": "cv.png",
+      "category": "sanitary",
+      "keywords": "سینک ظرفشویی استیل گرانیتی",
+      "inStock": true
+    },
+    {
+      "id": "roshoyi",
+      "name": "روشویی",
+      "desc": "روشویی و دستشویی در طرح‌های مختلف.",
+      "image": "roshoii.png",
+      "category": "sanitary",
+      "keywords": "روشویی دستشویی طرح",
+      "inStock": true
+    },
+    {
+      "id": "chini",
+      "name": "چینی بهداشتی",
+      "desc": "توالت ایرانی و فرنگی از برندهای معتبر.",
+      "image": "file_0000000073e881f48aff32b3a446cd5f.png",
+      "category": "sanitary",
+      "keywords": "چینی بهداشتی توالت ایرانی فرنگی",
+      "inStock": true
+    },
+    {
+      "id": "flash-tank",
+      "name": "انواع فلاش تانک",
+      "desc": "فلاش تانک توکار و روکار، در مدل‌های مختلف.",
+      "image": "file_00000000614c81f48075e69377334388.png",
+      "category": "sanitary",
+      "keywords": "فلاش تانک توکار روکار",
+      "inStock": true
+    },
+    {
+      "id": "packij",
+      "name": "پکیج",
+      "desc": "پکیج دیواری و زمینی با گارانتی.",
+      "image": "0987.jpg",
+      "category": "hvac",
+      "keywords": "پکیج دیواری زمینی گارانتی",
+      "inStock": true
+    },
+    {
+      "id": "radiator",
+      "name": "رادیاتور",
+      "desc": "رادیاتور پنلی و آلومینیومی در ابعاد مختلف.",
+      "image": "file_000000000d54824689102bfa7c628d6b.png",
+      "category": "hvac",
+      "keywords": "رادیاتور پنلی آلومینیومی",
+      "inStock": true
+    },
+    {
+      "id": "kooler",
+      "name": "کولر سلولزی",
+      "desc": "کولر آبی سلولزی با مصرف بهینه آب و برق.",
+      "image": "0987.jpg",
+      "category": "hvac",
+      "keywords": "کولر سلولزی آبی مصرف بهینه",
+      "inStock": true
+    },
+    {
+      "id": "pomp",
+      "name": "پمپ آب",
+      "desc": "پمپ آب خانگی، نیمه صنعتی و صنعتی در توان‌های مختلف.",
+      "image": "poump.png",
+      "category": "water",
+      "keywords": "پمپ آب خانگی نیمه صنعتی",
+      "inStock": true
+    },
+    {
+      "id": "makhzan",
+      "name": "انواع مخازن آب",
+      "desc": "مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.",
+      "image": "0987.jpg",
+      "category": "water",
+      "keywords": "مخازن آب افقی عمودی",
+      "inStock": true
+    },
+    {
+      "id": "set-control",
+      "name": "ست کنترل پمپ آب",
+      "desc": "ست کنترل اتوماتیک برای روشن و خاموش کردن هوشمند پمپ آب.",
+      "image": "0987.jpg",
+      "category": "water",
+      "keywords": "ست کنترل پمپ آب اتوماتیک",
       "inStock": true
     }
   ]
