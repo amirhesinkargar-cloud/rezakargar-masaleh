@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-10-19T00:00:00.000Z",
+  "lastUpdate": "2026-10-19T12:44:19.493Z",
   "products": [
     {
       "id": "cement-types",
@@ -8,7 +8,7 @@
       "image": "67.png",
       "category": "construction",
       "keywords": "انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی",
-      "inStock": true
+      "inStock": false
     },
     {
       "id": "block-tiqhe",
