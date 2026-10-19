@@ -1,0 +1,32 @@
+{
+  "lastUpdate": "2026-10-19T00:00:00.000Z",
+  "products": [
+    {
+      "id": "cement-types",
+      "name": "انواع سیمان",
+      "desc": "سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.",
+      "image": "67.png",
+      "category": "construction",
+      "keywords": "انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی",
+      "inStock": true
+    },
+    {
+      "id": "block-tiqhe",
+      "name": "بلوک تیغه",
+      "desc": "بلوک سبک تیغه‌ای برای دیوارچینی داخلی.",
+      "image": "gallery4.jpg",
+      "category": "construction",
+      "keywords": "بلوک تیغه سبک دیوارچینی داخلی",
+      "inStock": true
+    },
+    {
+      "id": "pipe-types",
+      "name": "انواع لوله",
+      "desc": "لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.",
+      "image": "0987.jpg",
+      "category": "facilities",
+      "keywords": "لوله پلیکا پنبه‌ای پنج لایه فلزی سایز",
+      "inStock": true
+    }
+  ]
+}
