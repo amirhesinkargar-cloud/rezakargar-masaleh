@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-10-19T20:21:42.094Z",
+  "lastUpdate": "2026-10-19T20:21:46.400Z",
   "products": [
     {
       "id": "cement-types",
@@ -215,15 +215,6 @@
       "image": "0987.jpg",
       "category": "water",
       "keywords": "ست کنترل پمپ آب اتوماتیک",
-      "inStock": true
-    },
-    {
-      "id": "azmayesh",
-      "name": "آزمایشی",
-      "desc": "۵ عدد",
-      "image": "67.png",
-      "category": "construction",
-      "keywords": "مرغ",
       "inStock": true
     }
   ]
