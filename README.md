@@ -1,1 +1,2266 @@
-# rezakargar-masaleh
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مصالح ساختمانی و تاسیسات مرکزی کارگر | شهربابک</title>
+
+<!-- ================= SEO META ================= -->
+<meta name="description" content="فروشگاه مصالح ساختمانی و تاسیسات مرکزی کارگر در شهربابک. عرضه سیمان، بلوک، کاشی، سرامیک، لوله، شیرآلات، پکیج، رادیاتور، پمپ آب و... با کیفیت تضمینی، قیمت مناسب و ارسال سریع.">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="canonical" href="https://amirhesinkargar-cloud.github.io/rezakargar-masaleh/">
+
+<!-- Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  margin: 0;
+  background: #f8fafc;
+  color: #1e293b;
+  padding-bottom: 100px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+  50% { transform: scale(1.08); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===================== HEADER (آبی نفتی روشن) ===================== */
+header {
+  background: #1e3a5f; /* آبی نفتی شاداب */
+  color: white;
+  padding: 45px 25px 35px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(30, 58, 95, 0.4);
+  border-bottom: 4px solid #ff9800; /* نوار نارنجی */
+}
+.header-logo {
+  max-width: 260px; width: 100%; height: auto;
+  display: block; margin: 0 auto 12px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+  border-radius: 18px; position: relative; z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.header-logo:hover { transform: scale(1.06) rotate(-1deg); }
+.header-title {
+  font-size: 22px; font-weight: 800;
+  position: relative; z-index: 1; margin: 10px 0 5px;
+  color: #f8fafc;
+}
+.header-title span { color: #ff9800; }
+.header-subtitle { font-size: 13px; color: #cbd5e1; position: relative; z-index: 1; letter-spacing: 2px; }
+
+/* ===================== NAV ===================== */
+nav {
+  background: #152c48;
+  padding: 12px; text-align: center;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(255, 152, 0, 0.3);
+}
+nav a {
+  color: #cbd5e1; text-decoration: none;
+  margin: 6px 10px; font-weight: 600; font-size: 13.5px;
+  position: relative; padding: 6px 4px;
+  transition: color 0.3s; display: inline-block;
+}
+nav a::after {
+  content: ''; position: absolute; bottom: 0; right: 50%;
+  width: 0; height: 2px;
+  background: #ff9800;
+  transition: all 0.3s ease; border-radius: 2px;
+}
+nav a:hover { color: #ff9800; }
+nav a:hover::after { width: 100%; right: 0; }
+
+/* ===================== HERO ===================== */
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  padding: 70px 20px 60px; text-align: center;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid #e2e8f0;
+}
+.hero h1 {
+  font-size: clamp(24px, 5vw, 42px);
+  margin: 0 0 15px; font-weight: 900;
+  color: #1e3a5f; position: relative; z-index: 1; line-height: 1.3;
+}
+.hero h1 span { color: #ff9800; }
+.hero p {
+  color: #475569; margin: 0 auto 30px;
+  font-size: clamp(14px, 2.5vw, 17px);
+  max-width: 600px; position: relative; z-index: 1;
+}
+.inquiry-btn {
+  display: inline-block;
+  background: #1e3a5f;
+  color: white; padding: 16px 42px; text-decoration: none;
+  border-radius: 50px; font-weight: 800; font-size: 17px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 30px rgba(30, 58, 95, 0.3);
+  position: relative; z-index: 1; overflow: hidden;
+  border: none; cursor: pointer; font-family: inherit;
+}
+.inquiry-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 16px 40px rgba(30, 58, 95, 0.4); background: #152c48; }
+
+.inquiry-btn.secondary { background: #ff9800; color: white; box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3); }
+.inquiry-btn.secondary:hover { background: #f57c00; }
+.inquiry-btn.tertiary { background: #ea580c; box-shadow: 0 10px 30px rgba(234, 88, 12, 0.3); }
+.inquiry-btn.tertiary:hover { background: #c2410c; }
+
+/* ===================== SECTION TITLES ===================== */
+.section-title {
+  text-align: center; color: #1e3a5f;
+  margin: 0 0 30px; font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 800; position: relative; padding-bottom: 15px;
+}
+.section-title::after {
+  content: ''; position: absolute; bottom: 0;
+  right: 50%; transform: translateX(50%);
+  width: 70px; height: 4px;
+  background: linear-gradient(90deg, #1e3a5f, #ff9800);
+  border-radius: 4px;
+}
+
+/* ===================== TWO COLUMN ===================== */
+.two-column-layout {
+  display: flex; flex-wrap: wrap; gap: 22px;
+  max-width: 1150px; margin: 40px auto; padding: 0 25px;
+}
+.two-column-layout > section { flex: 1; min-width: 300px; margin: 0; }
+.about-us, .why-us {
+  background: white; padding: 30px; border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(30, 58, 95, 0.06);
+  line-height: 2; position: relative; overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.about-us:hover, .why-us:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(30, 58, 95, 0.1); }
+.about-us { border-right: 5px solid #1e3a5f; }
+.about-us h2, .why-us h2 {
+  color: #1e3a5f; margin-top: 0; font-size: 22px;
+  font-weight: 800; display: flex; align-items: center; gap: 10px;
+}
+.why-us { border-right: 5px solid #ff9800; }
+.why-us h2 { text-align: right; margin-bottom: 20px; }
+.features-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.feature-item {
+  background: #f8fafc;
+  padding: 14px 16px; border-radius: 12px;
+  border-right: 4px solid #ff9800;
+  display: flex; align-items: flex-start; gap: 12px;
+  transition: all 0.3s;
+}
+.feature-item:hover {
+  background: #fff7ed;
+  transform: translateX(-5px);
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.15);
+}
+.feature-item .icon {
+  width: 26px; height: 26px; background: #ff9800;
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 14px; font-weight: bold;
+}
+.feature-item strong { color: #1e3a5f; display: block; margin-bottom: 3px; font-size: 14.5px; font-weight: 700; }
+.feature-item p { margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.6; }
+
+/* ===================== CATEGORY GRID ===================== */
+.category-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px; max-width: 900px; margin: 0 auto 40px; padding: 0 20px;
+}
+.category-card {
+  background: white; border-radius: 16px; padding: 20px 10px;
+  text-align: center; text-decoration: none; color: #1e293b;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;
+  border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.category-card:hover {
+  transform: translateY(-5px); border-color: #ff9800;
+  box-shadow: 0 10px 25px rgba(255, 152, 0, 0.2);
+}
+.category-card .cat-icon { font-size: 40px; margin-bottom: 10px; }
+.category-card h3 { margin: 0; font-size: 14px; font-weight: 800; color: #1e3a5f; }
+
+/* ===================== SEARCH ===================== */
+.search-container { max-width: 900px; margin: 0 auto 25px; padding: 0 25px; }
+.search-box { position: relative; width: 100%; }
+.search-input {
+  width: 100%; padding: 16px 54px 16px 48px;
+  border: 2px solid #e2e8f0; border-radius: 16px;
+  font-family: inherit; font-size: 15px;
+  background: white; outline: none;
+  transition: all 0.3s; color: #1e293b;
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.04);
+}
+.search-input:focus {
+  border-color: #1e3a5f;
+  box-shadow: 0 8px 25px rgba(30, 58, 95, 0.1);
+  transform: translateY(-2px);
+}
+.search-icon {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  color: #94a3b8; width: 22px; height: 22px; pointer-events: none;
+}
+.search-clear {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  background: #ef4444; color: white; border: none; border-radius: 50%;
+  width: 28px; height: 28px; cursor: pointer; font-size: 14px;
+  display: none; align-items: center; justify-content: center;
+  font-weight: bold; padding: 0;
+}
+.search-clear.show { display: flex; }
+.search-result-info {
+  text-align: center; margin-top: 12px;
+  font-size: 14px; color: #64748b; min-height: 20px; font-weight: 500;
+}
+.search-result-info strong { color: #ff9800; font-weight: 800; }
+
+/* ===================== PRODUCTS ===================== */
+.products { padding: 30px 25px; max-width: 950px; margin: auto; }
+.category-title {
+  color: white; padding: 16px 24px; border-radius: 14px;
+  margin: 30px 0 20px; font-size: 19px; text-align: center;
+  font-weight: 800; box-shadow: 0 8px 24px rgba(30, 58, 95, 0.15);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+/* رنگ‌بندی هدر دسته‌بندی‌ها */
+.category-title.cat-cement { background: #475569; }
+.category-title.cat-brick { background: #b45309; }
+.category-title.cat-gach { background: #64748b; }
+.category-title.cat-tile { background: #1e3a5f; }
+.category-title.cat-pipe { background: #ff9800; }
+
+.product-card {
+  background: white; border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
+  margin-bottom: 18px; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid #f1f5f9; position: relative;
+}
+.product-card:hover {
+  box-shadow: 0 20px 50px rgba(30, 58, 95, 0.1);
+  transform: translateY(-5px); border-color: #ffcc80;
+}
+.product-top { display: flex; align-items: center; padding: 6px; }
+.product-image {
+  width: 130px; min-width: 130px; height: 130px;
+  background: #f1f5f9;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px; overflow: hidden; margin: 10px;
+  transition: transform 0.4s;
+}
+.product-card:hover .product-image { transform: scale(1.05) rotate(-2deg); }
+.product-image img { width: 100%; height: 100%; object-fit: cover; }
+.product-info { padding: 15px 18px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+.product-info h3 { margin: 0 0 8px; color: #1e3a5f; font-size: 17px; font-weight: 800; }
+.product-info p { margin: 0; font-size: 13px; color: #64748b; line-height: 1.7; }
+.add-section {
+  display: flex; flex-direction: column; align-items: center;
+  margin-left: 14px; gap: 6px; flex-shrink: 0; padding-left: 10px;
+}
+.add-icon-btn {
+  background: #fff7ed;
+  color: #ff9800; border: 2px solid #ff9800; border-radius: 50%;
+  width: 44px; height: 44px; font-size: 24px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-weight: bold; padding: 0;
+}
+.add-icon-btn:hover {
+  background: #ff9800;
+  color: white; transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+.add-label { font-size: 10px; color: #ff9800; font-weight: 700; text-align: center; max-width: 72px; line-height: 1.3; }
+.add-label.hidden { display: none; }
+.stock-status {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 20px 14px; font-size: 12.5px;
+  color: #059669; font-weight: 700;
+}
+.stock-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+.qty-control {
+  display: none; align-items: center; gap: 3px;
+  background: #f8fafc;
+  border: 2px solid #1e3a5f; border-radius: 12px; padding: 4px;
+}
+.qty-control.show { display: flex; animation: fadeInUp 0.3s; }
+.qty-control button {
+  background: white; border: none; color: #1e3a5f;
+  width: 30px; height: 30px; font-size: 18px; cursor: pointer;
+  font-weight: bold; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; transition: all 0.2s;
+}
+.qty-control button:hover { background: #1e3a5f; color: white; transform: scale(1.1); }
+.qty-control input {
+  width: 55px; height: 30px; border: none; background: transparent;
+  text-align: center; font-size: 14px;
+  font-weight: 800; color: #1e3a5f; outline: none;
+}
+
+/* ===================== NO RESULT ===================== */
+.no-result {
+  text-align: center; padding: 50px 20px; color: #94a3b8;
+  font-size: 15px; display: none;
+  background: white; border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(30, 58, 95, 0.06);
+}
+.no-result.show { display: block; animation: fadeInUp 0.4s; }
+.no-result-icon { font-size: 60px; margin-bottom: 15px; opacity: 0.5; }
+
+/* ===================== FAQ ===================== */
+.faq-section { max-width: 900px; margin: 50px auto; padding: 0 25px; }
+.faq-item {
+  background: white; border-radius: 14px;
+  margin-bottom: 12px; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.05);
+  transition: all 0.3s; border-right: 4px solid #1e3a5f;
+}
+.faq-item:hover { box-shadow: 0 8px 25px rgba(30, 58, 95, 0.1); }
+.faq-question {
+  padding: 18px 22px; cursor: pointer;
+  font-weight: 700; color: #1e3a5f; font-size: 15px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 0.3s;
+}
+.faq-question:hover { background: #f8fafc; }
+.faq-question::after {
+  content: '+'; font-size: 24px; color: #ff9800;
+  font-weight: 300; transition: transform 0.3s; line-height: 1;
+}
+.faq-item.open .faq-question::after { transform: rotate(45deg); }
+.faq-item.open { border-right-color: #ff9800; }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0 22px; color: #475569; font-size: 14px; line-height: 1.9;
+}
+.faq-item.open .faq-answer { max-height: 300px; padding: 0 22px 18px; }
+
+/* ===================== WORKING HOURS ===================== */
+.working-hours {
+  background: #1e3a5f;
+  color: #ffcc80; padding: 20px; text-align: center;
+  font-weight: 700; margin-top: 30px; border-radius: 14px;
+  font-size: 15px; box-shadow: 0 8px 24px rgba(30, 58, 95, 0.2);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+/* ===================== REVIEWS ===================== */
+.reviews { padding: 30px 25px; max-width: 900px; margin: auto; }
+.review-submit-btn {
+  background: #1e3a5f;
+  color: white; border: none; padding: 15px 32px;
+  border-radius: 14px; font-family: inherit;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 8px 22px rgba(30, 58, 95, 0.3);
+  transition: all 0.3s;
+}
+.review-submit-btn:hover { transform: translateY(-3px) scale(1.03); background: #152c48; }
+.review-form-window {
+  display: none; background: white; border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(30, 58, 95, 0.15);
+  margin-bottom: 25px; overflow: hidden;
+}
+.review-form-window.show { display: block; animation: fadeInUp 0.4s; }
+.review-form-header {
+  background: #1e3a5f;
+  color: white; padding: 16px 22px; font-weight: 800;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.review-form-header button {
+  background: rgba(255,255,255,0.15); border: none; color: white;
+  font-size: 18px; cursor: pointer; width: 34px; height: 34px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.review-form-body { padding: 22px; }
+.review-form-body label { display: block; font-weight: 700; color: #334155; margin-bottom: 8px; font-size: 14px; margin-top: 16px; }
+.review-form-body label:first-child { margin-top: 0; }
+.review-form-body input, .review-form-body textarea {
+  width: 100%; padding: 13px 16px; border: 2px solid #e2e8f0;
+  border-radius: 12px; font-family: inherit; font-size: 14px;
+  outline: none; transition: all 0.3s; box-sizing: border-box;
+  resize: vertical; background: #f8fafc;
+}
+.review-form-body input:focus, .review-form-body textarea:focus {
+  border-color: #1e3a5f; background: white;
+  box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.1);
+}
+.star-rating { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 6px; margin-bottom: 10px; }
+.star { font-size: 34px; color: #cbd5e1; cursor: pointer; transition: all 0.2s; user-select: none; }
+.star:hover, .star:hover ~ .star, .star.active, .star.active ~ .star {
+  color: #ff9800; transform: scale(1.15);
+  text-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
+}
+.review-send-btn {
+  background: #25d366;
+  color: white; border: none; padding: 15px; border-radius: 12px;
+  font-family: inherit; font-size: 15px; font-weight: 800;
+  cursor: pointer; width: 100%; margin-top: 20px;
+  transition: all 0.3s; box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+}
+.review-send-btn:hover { transform: translateY(-2px); background: #128c7e; }
+.reviews-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.review-card {
+  background: white; padding: 20px; border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
+  border-right: 4px solid #ff9800;
+  animation: fadeInUp 0.5s;
+}
+.review-head {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 10px;
+  flex-wrap: wrap; gap: 8px;
+}
+.review-author {
+  font-weight: 800; color: #1e3a5f;
+  display: flex; align-items: center; gap: 10px;
+}
+.review-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: #1e3a5f;
+  color: white; display: flex; align-items: center;
+  justify-content: center; font-weight: 800; font-size: 16px;
+}
+.review-stars { color: #ff9800; font-size: 16px; letter-spacing: 2px; }
+.review-text { color: #475569; font-size: 14px; line-height: 1.9; margin: 0; }
+.review-date { font-size: 11px; color: #94a3b8; margin-top: 8px; display: block; }
+.no-reviews-yet {
+  text-align: center; padding: 55px 20px; color: #94a3b8;
+  font-size: 15px; background: white; border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(30, 58, 95, 0.05);
+}
+.no-reviews-icon { font-size: 60px; margin-bottom: 15px; opacity: 0.5; }
+
+/* ===================== GALLERY ===================== */
+.gallery { padding: 30px 25px; max-width: 950px; margin: auto; }
+.gallery-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.gallery-column { display: flex; flex-direction: column; gap: 18px; }
+.gallery-item {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 8px 22px rgba(30, 58, 95, 0.1);
+  height: 210px; background: #e2e8f0;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s;
+}
+.gallery-item:hover img { transform: scale(1.12); }
+
+/* ===================== MAP ===================== */
+.map-container { max-width: 950px; margin: 40px auto; padding: 0 25px; }
+.map-container iframe {
+  width: 100%; height: 340px; border-radius: 18px;
+  border: 0; box-shadow: 0 12px 35px rgba(30, 58, 95, 0.15);
+}
+
+/* ===================== CONTACT ===================== */
+.contact {
+  background: #1e3a5f;
+  color: white; padding: 50px 25px; text-align: center;
+  border-top: 4px solid #ff9800;
+}
+.contact-logo {
+  max-width: 110px; width: 100%; height: auto;
+  margin-bottom: 20px; border-radius: 16px;
+  background: white; padding: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.contact h2 { font-size: 26px; font-weight: 900; margin: 0 0 25px; color: #ffcc80; }
+.contact p {
+  margin: 14px 0; font-size: 16px; line-height: 1.8;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap;
+}
+.contact h3 { color: #cbd5e1; margin-top: 30px; font-weight: 700; }
+.call-btn {
+  display: inline-block; background: #25d366;
+  color: white; padding: 15px 32px; text-decoration: none;
+  border-radius: 50px; font-weight: 800; font-size: 16px;
+  margin-top: 20px; transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+}
+.call-btn:hover { transform: translateY(-4px) scale(1.03); background: #128c7e; }
+.personal-call-btn {
+  display: inline-block; background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px); color: white;
+  padding: 14px 26px; text-decoration: none;
+  border-radius: 12px; font-weight: 700; font-size: 15px;
+  margin: 8px; transition: all 0.3s;
+  border: 2px solid rgba(255, 152, 0, 0.4);
+}
+.personal-call-btn:hover {
+  background: rgba(255, 152, 0, 0.2);
+  border-color: #ff9800; transform: translateY(-3px);
+}
+
+/* ===================== SOCIAL ===================== */
+.social-links { margin-top: 30px; display: flex; justify-content: center; gap: 30px; }
+.social-item { text-align: center; }
+.social-item a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px;
+  background: linear-gradient(135deg, #e1306c, #c13584);
+  color: white; border-radius: 50%; text-decoration: none;
+  transition: all 0.4s;
+  box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4);
+}
+.social-item a:hover { transform: translateY(-6px) scale(1.1); }
+.social-item span { display: block; margin-top: 10px; font-size: 13px; color: #cbd5e1; font-weight: 700; }
+
+/* ===================== FLOATING BUTTONS ===================== */
+.float-btn {
+  position: fixed; width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; text-decoration: none; border: none;
+  cursor: pointer; z-index: 1000;
+  transition: all 0.4s; padding: 0;
+}
+.float-btn:hover { transform: scale(1.12) translateY(-3px); }
+.float-btn-label {
+  position: fixed; z-index: 999;
+  background: rgba(30, 58, 95, 0.92);
+  color: white; padding: 5px 10px;
+  border-radius: 8px; font-size: 11px; font-weight: 700;
+  pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  white-space: nowrap;
+}
+.float-wrap:hover .float-btn-label { opacity: 1; }
+.floating-call-btn {
+  bottom: 22px; left: 22px;
+  background: #25d366;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+  font-size: 26px; animation: pulse 2.5s infinite;
+}
+.floating-insta-btn {
+  bottom: 22px; right: 22px;
+  background: linear-gradient(135deg, #e1306c, #c13584);
+  box-shadow: 0 8px 25px rgba(225, 48, 108, 0.5);
+}
+.floating-assistant-btn {
+  bottom: 90px; left: 22px;
+  background: #1e3a5f;
+  box-shadow: 0 8px 25px rgba(30, 58, 95, 0.5);
+}
+.floating-cart-btn {
+  bottom: 90px; right: 22px;
+  background: #ff9800;
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.5);
+  display: none;
+}
+.floating-cart-btn.show { display: flex; animation: fadeInUp 0.4s; }
+.cart-svg-icon { width: 26px; height: 26px; fill: white; }
+.insta-icon { width: 28px; height: 28px; fill: white; }
+.cart-count {
+  position: absolute; top: -5px; right: -5px;
+  background: #ef4444;
+  color: white; border-radius: 50%;
+  width: 24px; height: 24px; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; border: 2px solid white;
+  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.5);
+}
+
+/* ===================== ROBOT ICON ===================== */
+.robot-icon { width: 30px; height: 30px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.robot-icon::before { content: ""; position: absolute; top: 2px; width: 2px; height: 7px; background: #ff9800; border-radius: 1px; }
+.robot-icon::after { content: ""; position: absolute; top: 0; width: 5px; height: 5px; background: #ff9800; border-radius: 50%; }
+.robot-head {
+  width: 28px; height: 20px; background: white; border-radius: 6px;
+  position: relative; display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 9px;
+}
+.robot-eye { width: 4px; height: 4px; background: #1e3a5f; border-radius: 50%; }
+.robot-ear { position: absolute; top: 50%; transform: translateY(-50%); width: 3px; height: 8px; background: white; border-radius: 2px; }
+.robot-ear.left { left: -5px; }
+.robot-ear.right { right: -5px; }
+
+/* ===================== WINDOWS ===================== */
+.cart-window, .assistant-window {
+  display: none; position: fixed;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 440px; max-width: calc(100% - 30px);
+  max-height: 88vh; background: white; border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  z-index: 1002; overflow: hidden; flex-direction: column;
+}
+.cart-window.show, .assistant-window.show { display: flex; animation: fadeInUp 0.4s; }
+.assistant-window {
+  top: auto; bottom: 160px; left: 20px;
+  transform: none; width: 360px; max-height: 520px;
+}
+.cart-header, .assistant-header {
+  background: #1e3a5f;
+  color: white; padding: 18px 22px;
+  font-weight: 800; display: flex;
+  justify-content: space-between; align-items: center;
+}
+.assistant-header { background: #152c48; }
+.cart-header span, .assistant-header span { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.cart-header button, .assistant-header button {
+  background: rgba(255,255,255,0.15); border: none; color: white;
+  font-size: 18px; cursor: pointer; font-weight: bold;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-summary {
+  background: #f8fafc;
+  padding: 15px 22px; display: flex; justify-content: space-around;
+  border-bottom: 1px solid #e2e8f0;
+}
+.summary-item { text-align: center; flex: 1; }
+.summary-item .num { font-size: 24px; font-weight: 900; color: #ff9800; display: block; }
+.summary-item .lbl { font-size: 12px; color: #64748b; margin-top: 2px; font-weight: 600; }
+.summary-divider { width: 1px; background: #cbd5e1; }
+.cart-items { max-height: 340px; overflow-y: auto; padding: 10px 16px; }
+.cart-item {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9; font-size: 14px; gap: 10px;
+}
+.cart-item-info { flex-grow: 1; }
+.cart-item-name { color: #1e3a5f; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.cart-item-index { color: #94a3b8; font-size: 11px; }
+.cart-item-qty {
+  display: flex; align-items: center; gap: 4px;
+  background: #f8fafc; border: 1px solid #e2e8f0;
+  border-radius: 10px; padding: 3px;
+}
+.cart-item-qty button {
+  background: white; color: #1e3a5f; border: none;
+  border-radius: 6px; width: 26px; height: 26px;
+  cursor: pointer; font-weight: bold; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-item-qty input {
+  width: 42px; height: 26px; border: none;
+  text-align: center; font-size: 13px; font-weight: 800;
+  color: #1e3a5f; background: transparent; outline: none;
+}
+.cart-item-remove {
+  background: #fee2e2; color: #ef4444; border: none;
+  border-radius: 50%; width: 28px; height: 28px;
+  cursor: pointer; font-weight: bold; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-item-remove:hover { background: #ef4444; color: white; }
+.cart-empty { text-align: center; color: #94a3b8; padding: 55px 20px; font-size: 14px; }
+.cart-empty-icon { font-size: 55px; margin-bottom: 15px; opacity: 0.5; }
+.cart-footer {
+  padding: 16px 22px; background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.cart-footer-label { font-size: 13px; color: #64748b; text-align: center; font-weight: 700; }
+.cart-footer-row { display: flex; gap: 8px; }
+.cart-footer button {
+  flex: 1; padding: 13px; border: none;
+  border-radius: 12px; font-weight: 800;
+  font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-eita-masaleh { background: #475569; color: white; }
+.btn-eita-tasisat { background: #1e3a5f; color: white; }
+.btn-copy { background: #ff9800; color: white; }
+.btn-clear { background: #fee2e2; color: #ef4444; flex: 0 0 auto; padding: 13px 18px; }
+
+/* ===================== ASSISTANT ===================== */
+.assistant-messages { flex: 1; overflow-y: auto; padding: 16px; max-height: 350px; background: #f8fafc; }
+.assistant-msg {
+  padding: 11px 14px; border-radius: 12px;
+  margin-bottom: 10px; font-size: 13.5px;
+  line-height: 1.8; max-width: 88%;
+}
+.assistant-msg.bot {
+  background: white; color: #1e293b;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 3px 10px rgba(30, 58, 95, 0.06);
+}
+.assistant-msg.user {
+  background: #1e3a5f;
+  color: white; margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+.assistant-input {
+  display: flex; padding: 12px;
+  border-top: 1px solid #e2e8f0; gap: 6px; background: white;
+}
+.assistant-input input {
+  flex: 1; padding: 11px 14px;
+  border: 2px solid #e2e8f0; border-radius: 10px;
+  font-family: inherit; font-size: 14px; outline: none;
+}
+.assistant-input button {
+  background: #1e3a5f;
+  color: white; border: none; padding: 0 18px;
+  border-radius: 10px; cursor: pointer; font-size: 18px;
+}
+
+/* ===================== INSTA MENU ===================== */
+.insta-menu {
+  display: none; position: fixed;
+  bottom: 92px; right: 22px;
+  background: white; border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  padding: 12px; z-index: 1001;
+  min-width: 210px; text-align: center;
+}
+.insta-menu.show { display: block; animation: fadeInUp 0.3s; }
+.insta-menu p {
+  margin: 4px 0 10px; font-weight: 800;
+  color: #1e3a5f; font-size: 13px;
+  border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;
+}
+.insta-menu a {
+  display: block; padding: 11px;
+  text-decoration: none; color: #1e3a5f;
+  border-radius: 10px; margin: 5px 0;
+  font-size: 14px; font-weight: 700;
+}
+.insta-menu a:hover { background: #f8fafc; color: #ff9800; }
+
+/* ===================== TOAST ===================== */
+.toast-container {
+  position: fixed; bottom: 100px; left: 50%;
+  transform: translateX(-50%); z-index: 10000;
+  display: flex; flex-direction: column; gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  background: #1e3a5f;
+  color: white; padding: 14px 24px;
+  border-radius: 12px; font-weight: 700;
+  font-size: 14px; min-width: 260px;
+  text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  animation: toastIn 0.4s;
+  border-right: 4px solid #10b981;
+  pointer-events: all;
+}
+.toast.error { border-right-color: #ef4444; }
+.toast.info { border-right-color: #3b82f6; }
+
+/* ===================== MODALS (ORDER/CALC/ARTICLE) ===================== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(30, 58, 95, 0.85);
+  backdrop-filter: blur(8px); z-index: 9998;
+  align-items: center; justify-content: center;
+  padding: 20px; overflow-y: auto;
+}
+.modal-overlay.show { display: flex; animation: fadeIn 0.3s; }
+.modal-content {
+  background: white; border-radius: 20px;
+  max-width: 620px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  animation: fadeInUp 0.4s;
+}
+.modal-header {
+  background: #1e3a5f;
+  color: white; padding: 18px 24px;
+  display: flex; justify-content: space-between;
+  align-items: center; border-radius: 20px 20px 0 0;
+  position: sticky; top: 0; z-index: 10;
+}
+.modal-header h3 { margin: 0; font-size: 17px; font-weight: 800; }
+.modal-header button {
+  background: rgba(255,255,255,0.15); border: none;
+  color: white; font-size: 18px; cursor: pointer;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-body { padding: 24px; }
+.modal-body label {
+  display: block; font-weight: 700; color: #334155;
+  margin-bottom: 8px; font-size: 14px; margin-top: 14px;
+}
+.modal-body label:first-child { margin-top: 0; }
+.modal-body input, .modal-body textarea, .modal-body select {
+  width: 100%; padding: 12px 16px;
+  border: 2px solid #e2e8f0; border-radius: 12px;
+  font-family: inherit; font-size: 14px;
+  outline: none; transition: all 0.3s;
+  box-sizing: border-box; background: #f8fafc; color: #1e293b;
+}
+.modal-body input:focus, .modal-body textarea:focus, .modal-body select:focus {
+  border-color: #1e3a5f; background: white;
+  box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.1);
+}
+.modal-body textarea { resize: vertical; min-height: 80px; }
+.modal-footer {
+  padding: 16px 24px; background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex; gap: 10px; border-radius: 0 0 20px 20px;
+}
+.modal-footer button {
+  flex: 1; padding: 14px; border: none;
+  border-radius: 12px; font-family: inherit;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+}
+.btn-primary {
+  background: #1e3a5f;
+  color: white; box-shadow: 0 8px 22px rgba(30, 58, 95, 0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); background: #152c48; }
+.btn-secondary { background: #e2e8f0; color: #475569; }
+.btn-secondary:hover { background: #cbd5e1; }
+.modal-notice {
+  background: #fff7ed; border-right: 4px solid #ff9800;
+  padding: 12px 16px; border-radius: 10px;
+  font-size: 13px; color: #92400e;
+  margin-top: 14px; line-height: 1.7;
+}
+
+/* ===================== CALCULATOR ===================== */
+.calc-tabs {
+  display: flex; gap: 6px; margin-bottom: 20px;
+  flex-wrap: wrap; border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+.calc-tab {
+  background: transparent; border: none;
+  padding: 10px 16px; border-radius: 10px;
+  font-family: inherit; font-weight: 800;
+  font-size: 13px; color: #64748b; cursor: pointer;
+}
+.calc-tab.active {
+  background: #1e3a5f;
+  color: white;
+}
+.calc-panel { display: none; }
+.calc-panel.active { display: block; animation: fadeInUp 0.3s; }
+.calc-result {
+  background: #f8fafc;
+  border-radius: 14px; padding: 18px;
+  margin-top: 18px; border-right: 4px solid #1e3a5f;
+}
+.calc-result h4 { margin: 0 0 12px; color: #1e3a5f; font-size: 16px; font-weight: 800; }
+.calc-result-item {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 8px 0;
+  border-bottom: 1px dashed #cbd5e1; font-size: 14px;
+}
+.calc-result-item:last-child { border-bottom: none; font-weight: 800; color: #ff9800; }
+.calc-result-item span:first-child { color: #475569; font-weight: 600; }
+.calc-result-item span:last-child { color: #1e3a5f; font-weight: 800; }
+
+/* ===================== BLOG ===================== */
+.blog-section { padding: 40px 25px; max-width: 950px; margin: auto; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.blog-card {
+  background: white; border-radius: 16px;
+  overflow: hidden; box-shadow: 0 6px 20px rgba(30, 58, 95, 0.06);
+  cursor: pointer; transition: all 0.4s;
+  border: 1px solid #f1f5f9;
+}
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(30, 58, 95, 0.15);
+  border-color: #ffcc80;
+}
+.blog-card-img {
+  height: 140px; background: #1e3a5f;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; color: #ff9800;
+}
+.blog-card-body { padding: 18px; }
+.blog-card-body h3 { margin: 0 0 8px; color: #1e3a5f; font-size: 16px; font-weight: 800; line-height: 1.5; }
+.blog-card-body p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.7; }
+.blog-card-meta {
+  margin-top: 12px; font-size: 11px; color: #94a3b8;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.blog-card-tag {
+  background: #f8fafc; color: #1e3a5f;
+  padding: 3px 10px; border-radius: 20px;
+  font-weight: 700; font-size: 10.5px;
+}
+.blog-article { line-height: 2; color: #334155; }
+.blog-article h2 { color: #1e3a5f; font-size: 20px; margin: 22px 0 12px; font-weight: 800; }
+.blog-article h3 { color: #ea580c; font-size: 17px; margin: 18px 0 10px; font-weight: 800; }
+.blog-article p { margin: 0 0 14px; font-size: 14.5px; }
+.blog-article ul, .blog-article ol { padding-right: 22px; margin: 0 0 14px; }
+.blog-article li { margin-bottom: 6px; font-size: 14.5px; }
+.blog-article strong { color: #1e3a5f; }
+.blog-article .highlight {
+  background: #f8fafc;
+  border-right: 4px solid #1e3a5f;
+  padding: 14px 18px; border-radius: 10px;
+  margin: 14px 0; font-size: 14px;
+}
+.blog-meta {
+  display: flex; gap: 15px;
+  font-size: 12px; color: #94a3b8;
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9; flex-wrap: wrap;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .two-column-layout { flex-direction: column; padding: 0 16px; }
+  nav a { font-size: 12.5px; margin: 4px 6px; }
+  .header-logo { max-width: 200px; }
+  .cart-window { width: calc(100% - 24px); }
+  .assistant-window { width: calc(100% - 40px); left: 20px; right: 20px; }
+  .gallery-columns { gap: 12px; }
+  .gallery-item { height: 150px; }
+  .product-image { width: 105px; min-width: 105px; height: 105px; }
+  .product-info h3 { font-size: 15.5px; }
+  .product-info p { font-size: 12px; }
+  .add-label { font-size: 9px; max-width: 60px; }
+  .float-btn { width: 52px; height: 52px; }
+  .hero { padding: 55px 20px 45px; }
+  .products, .reviews, .gallery, .blog-section { padding: 25px 16px; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .modal-body { padding: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <img src="iu.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="header-logo" id="headerLogo" title="فروشگاه کارگر">
+  <div class="header-title">مصالح ساختمانی و تاسیسات <span>مرکزی کارگر</span></div>
+  <div class="header-subtitle">شهربابک • از سال‌ها پیش در خدمت شما</div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav>
+  <a href="#">خانه</a>
+  <a href="#about">درباره ما</a>
+  <a href="#products">محصولات</a>
+  <a href="#blog">مقالات</a>
+  <a href="#faq">سوالات</a>
+  <a href="#reviews">نظرات</a>
+  <a href="#gallery">گالری</a>
+  <a href="#contact">تماس</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <h1>مصالح ساختمانی و تاسیسات <span>با کیفیت تضمینی</span></h1>
+  <p>عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی با قیمت مناسب و ارسال سریع در شهربابک و حومه</p>
+  <a href="#contact" class="inquiry-btn">📞 استعلام قیمت روز</a>
+  <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
+    <button onclick="openOrderForm()" class="inquiry-btn secondary" style="font-size: 15px; padding: 14px 30px;">
+      📝 ثبت سفارش آنلاین
+    </button>
+    <button onclick="openCalculator()" class="inquiry-btn tertiary" style="font-size: 15px; padding: 14px 30px;">
+      🧮 محاسبه‌گر مصالح
+    </button>
+  </div>
+</section>
+
+<!-- ================= ABOUT + WHY US ================= -->
+<div class="two-column-layout">
+  <section class="about-us reveal" id="about">
+    <h2>🏢 درباره ما</h2>
+    <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.</p>
+    <p>ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. <strong>رضایت شما، بزرگترین سرمایه ماست.</strong></p>
+  </section>
+
+  <section class="why-us reveal">
+    <h2>⭐ چرا ما را انتخاب کنید؟</h2>
+    <div class="features-grid">
+      <div class="feature-item"><span class="icon">✓</span><div><strong>کیفیت تضمینی</strong><p>تمام محصولات از برندهای معتبر و با ضمانت کیفیت عرضه می‌شوند.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>قیمت مناسب</strong><p>خرید مستقیم از تولیدکننده و ارائه قیمت رقابتی به شما.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>تنوع کامل</strong><p>از مصالح ساختمانی تا تجهیزات تاسیساتی، همه چیز یکجا.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>ارسال سریع</strong><p>با ناوگان حمل و نقل خودمان، سفارش در کمترین زمان ارسال می‌شود.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>مشاوره رایگان</strong><p>کارشناسان ما آماده راهنمایی شما در انتخاب بهترین محصول هستند.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>سابقه درخشان</strong><p>سال‌هاست در خدمت هم‌شهری‌های عزیز در شهربابک و حومه هستیم.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="products" id="products">
+  <h2 class="section-title">🛍 دسته‌بندی محصولات</h2>
+
+  <!-- بخش آیکون‌های دسته‌بندی (مثل هایپرساز) -->
+  <div class="category-grid" id="categoryIcons">
+    <!-- توسط جاوا اسکریپت پر می‌شود -->
+  </div>
+
+  <div class="search-container" style="padding: 0; margin-bottom: 25px;">
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول (مثلاً: سیمان، کاشی، پکیج...)" oninput="searchProducts()">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" title="پاک کردن">✕</button>
+    </div>
+    <div class="search-result-info" id="searchResultInfo"></div>
+  </div>
+
+  <div class="no-result" id="noResult">
+    <div class="no-result-icon">🔍</div>
+    محصولی با این نام پیدا نشد.<br>
+    لطفاً کلمه دیگه‌ای رو امتحان کن یا با ما تماس بگیر.
+  </div>
+
+  <!-- این بخش توسط جاوا اسکریپت پر می‌شود -->
+  <div id="productsContainer">
+    <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
+  </div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section class="blog-section" id="blog">
+  <h2 class="section-title">📚 مقالات آموزشی</h2>
+  <div class="blog-grid" id="blogGrid"></div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq-section" id="faq">
+  <h2 class="section-title">❓ سوالات متداول</h2>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">ساعات کاری فروشگاه چه زمانی است؟</div>
+    <div class="faq-answer">ما شنبه تا پنجشنبه از ساعت ۸ صبح تا ۸ شب در خدمت شما هستیم. جمعه‌ها تعطیل می‌باشیم.</div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">چطور می‌توانم استعلام قیمت بگیرم؟</div>
+    <div class="faq-answer">می‌توانید با شماره‌های ۰۹۱۳۳۹۰۸۲۳۰ (مصالح) و ۰۹۱۳۳۹۰۸۳۹۳ (تاسیسات) تماس بگیرید، یا از طریق لیست خرید سایت، لیست خود را در ایتا برای ما ارسال کنید.</div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">آیا ارسال به شهرهای اطراف دارید؟</div>
+    <div class="faq-answer">بله، با ناوگان حمل و نقل خودمان ارسال سریع به شهربابک و حومه انجام می‌شود. برای سفارش‌های بزرگ هماهنگی لازم است.</div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">برای ساخت یک واحد مسکونی ۱۰۰ متری چقدر سیمان لازم است؟</div>
+    <div class="faq-answer">به‌طور تقریبی بین ۱۵۰ تا ۲۲۰ کیسه سیمان (بسته به نوع سازه و مرحله کار). برای محاسبه دقیق با کارشناسان ما تماس بگیرید یا از محاسبه‌گر آنلاین سایت استفاده کنید.</div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">آیا امکان تخفیف برای خرید عمده وجود دارد؟</div>
+    <div class="faq-answer">بله، برای خریدهای عمده و پروژه‌های ساختمانی، تخفیف ویژه در نظر گرفته می‌شود. لطفاً با شماره تماس تماس بگیرید.</div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews" id="reviews">
+  <h2 class="section-title">💬 نظرات مشتریان</h2>
+
+  <div style="text-align: center; margin-bottom: 25px;">
+    <button onclick="openReviewForm()" class="review-submit-btn">✍️ ثبت نظر جدید</button>
+  </div>
+
+  <div class="review-form-window" id="reviewFormWindow">
+    <div class="review-form-header">
+      <span>✍️ ثبت نظر شما</span>
+      <button onclick="closeReviewForm()">✕</button>
+    </div>
+    <div class="review-form-body">
+      <label>نام شما:</label>
+      <input type="text" id="reviewName" placeholder="مثلاً: علی محمدی">
+
+      <label>امتیاز شما:</label>
+      <div class="star-rating" id="starRating">
+        <span class="star" data-value="1" onclick="setRating(1)">★</span>
+        <span class="star" data-value="2" onclick="setRating(2)">★</span>
+        <span class="star" data-value="3" onclick="setRating(3)">★</span>
+        <span class="star" data-value="4" onclick="setRating(4)">★</span>
+        <span class="star" data-value="5" onclick="setRating(5)">★</span>
+      </div>
+
+      <label>نظر شما:</label>
+      <textarea id="reviewText" rows="4" placeholder="تجربه‌تون رو با ما بنویسید..."></textarea>
+
+      <button onclick="submitReview()" class="review-send-btn">📤 ارسال نظر</button>
+    </div>
+  </div>
+
+  <div class="reviews-list" id="reviewsList">
+    <div class="no-reviews-yet">
+      <div class="no-reviews-icon">💬</div>
+      هنوز نظری ثبت نشده.<br>
+      اولین نفری باشید که نظر می‌ده!
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery" id="gallery">
+  <h2 class="section-title">📸 گالری تصاویر فروشگاه</h2>
+  <div class="gallery-columns">
+    <div class="gallery-column">
+      <div class="gallery-item reveal"><img src="67.png" alt="سیمان" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="76.png" alt="موزاییک" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="simans.png" alt="سیمان سفید" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gallery3.jpg" alt="بلوک سقفی" loading="lazy"></div>
+    </div>
+    <div class="gallery-column">
+      <div class="gallery-item reveal"><img src="shiralat.png" alt="شیرآلات" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="roshoii.png" alt="روشویی" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="10.png" alt="اتصالات" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gallery5.jpg" alt="آهک" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<div class="map-container" id="map">
+  <h2 class="section-title">📍 موقعیت روی نقشه</h2>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.123456789!2d55.110361!3d30.128111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzQxLjIiTiA1NcKwMDYnMzcuMyJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen loading="lazy"></iframe>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <img src="0987.jpg" alt="لوگو" class="contact-logo">
+  <h2>تماس با ما</h2>
+  <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
+  <p>📍 آدرس: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
+
+  <h3>📱 برای استعلام قیمت با ما تماس بگیرید:</h3>
+  <a href="tel:09133908230" class="personal-call-btn">📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰</a>
+  <a href="tel:09133908393" class="personal-call-btn">📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳</a>
+
+  <br>
+  <a href="tel:+983434130386" class="call-btn">📞 تماس با مغازه</a>
+
+  <div class="social-links">
+    <div class="social-item">
+      <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener" title="پیج مصالح">
+        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <span>مصالح</span>
+    </div>
+    <div class="social-item">
+      <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener" title="پیج تاسیسات">
+        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <span>تاسیسات</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLOATING BUTTONS ================= -->
+<div class="float-wrap">
+  <a href="tel:+983434130386" class="float-btn floating-call-btn" title="تماس فوری">📞</a>
+</div>
+
+<div class="float-wrap">
+  <button class="float-btn floating-assistant-btn" onclick="toggleAssistant()" title="مشاور خرید">
+    <div class="robot-icon">
+      <div class="robot-head">
+        <span class="robot-eye"></span>
+        <span class="robot-eye"></span>
+        <span class="robot-ear left"></span>
+        <span class="robot-ear right"></span>
+      </div>
+    </div>
+  </button>
+</div>
+
+<div class="float-wrap">
+  <button class="float-btn floating-insta-btn" onclick="toggleInstaMenu(event)" title="اینستاگرام">
+    <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </button>
+</div>
+
+<div class="float-wrap">
+  <button class="float-btn floating-cart-btn" id="floatingCartBtn" onclick="toggleCart(event)" title="لیست خرید">
+    <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</div>
+
+<!-- ================= INSTA MENU ================= -->
+<div class="insta-menu" id="instaMenu">
+  <p>📸 صفحه اینستاگرام ما:</p>
+  <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener">🏗 پیج مصالح</a>
+  <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener">🔧 پیج تاسیسات</a>
+</div>
+
+<!-- ================= ASSISTANT WINDOW ================= -->
+<div class="assistant-window" id="assistantWindow">
+  <div class="assistant-header">
+    <span>💬 مشاور خرید هوشمند</span>
+    <button onclick="toggleAssistant()">✕</button>
+  </div>
+  <div class="assistant-messages" id="assistantMessages">
+    <div class="assistant-msg bot">
+      سلام! 👋 من مشاور خرید شما هستم. چطور می‌تونم کمکتون کنم؟
+      <br><br>
+      <b>می‌تونید بپرسید:</b><br>
+      • برای دیوارچینی چی لازم دارم؟<br>
+      • قیمت سیمان تیپ ۲ چنده؟<br>
+      • برای سقف ۱۰۰ متری چقدر بلوک لازمه؟
+    </div>
+  </div>
+  <div class="assistant-input">
+    <input type="text" id="assistantInput" placeholder="سوالت رو بنویس..." onkeypress="if(event.key==='Enter') sendAssistantMsg()">
+    <button onclick="sendAssistantMsg()">➤</button>
+  </div>
+</div>
+
+<!-- ================= CART WINDOW ================= -->
+<div class="cart-window" id="cartWindow">
+  <div class="cart-header">
+    <span>🛒 لیست خرید شما</span>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+
+  <div class="cart-summary">
+    <div class="summary-item">
+      <span class="num" id="summaryTypes">0</span>
+      <span class="lbl">قلم کالا</span>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-item">
+      <span class="num" id="summaryTotal">0</span>
+      <span class="lbl">مجموع تعداد</span>
+    </div>
+  </div>
+
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      لیست شما خالی است
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-footer-label">📤 ارسال لیست به:</div>
+    <div class="cart-footer-row">
+      <button class="btn-eita-masaleh" onclick="sendToEita('masaleh')">ایتا مصالح</button>
+      <button class="btn-eita-tasisat" onclick="sendToEita('tasisat')">ایتا تاسیسات</button>
+    </div>
+    <div class="cart-footer-row">
+      <button class="btn-copy" onclick="copyCart()">📋 کپی لیست</button>
+      <button class="btn-clear" onclick="clearCart()" title="پاک کردن">🗑</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ORDER FORM MODAL ================= -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>📝 ثبت سفارش آنلاین</h3>
+      <button onclick="closeOrderForm()">✕</button>
+    </div>
+    <div class="modal-body">
+      <label>نام و نام خانوادگی: *</label>
+      <input type="text" id="orderName" placeholder="مثلاً: علی محمدی">
+
+      <label>شماره تماس: *</label>
+      <input type="tel" id="orderPhone" placeholder="مثلاً: 09123456789" dir="ltr">
+
+      <label>آدرس تحویل: *</label>
+      <textarea id="orderAddress" rows="2" placeholder="شهربابک، خیابان..."></textarea>
+
+      <label>نوع سفارش:</label>
+      <select id="orderType">
+        <option value="masaleh">🏗 مصالح ساختمانی (۰۹۱۳۳۹۰۸۲۳۰)</option>
+        <option value="tasisat">🔧 تجهیزات تاسیساتی (۰۹۱۳۳۹۰۸۳۹۳)</option>
+        <option value="both">🎯 هر دو</option>
+      </select>
+
+      <label>توضیحات (اختیاری):</label>
+      <textarea id="orderNote" rows="2" placeholder="مثلاً: برای پروژه ۱۵۰ متری، تحویل فوری..."></textarea>
+
+      <div class="modal-notice">
+        ⚠️ <strong>توجه:</strong> لیست خرید فعلی شما (اگر خالی نباشد) به همراه این فرم ارسال می‌شود.
+        <br>💰 <strong>قیمت نهایی پس از تأیید موجودی اعلام می‌شود.</strong>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeOrderForm()">انصراف</button>
+      <button class="btn-primary" onclick="submitOrder()">📤 ارسال سفارش</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CALCULATOR MODAL ================= -->
+<div class="modal-overlay" id="calcModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>🧮 محاسبه‌گر آنلاین مصالح</h3>
+      <button onclick="closeCalculator()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="calc-tabs">
+        <button class="calc-tab active" onclick="switchCalc('wall', this)">🧱 دیوارچینی</button>
+        <button class="calc-tab" onclick="switchCalc('ceiling', this)">🏗 سقف</button>
+        <button class="calc-tab" onclick="switchCalc('concrete', this)">🪨 بتن</button>
+        <button class="calc-tab" onclick="switchCalc('tile', this)">🔲 کاشی‌کاری</button>
+      </div>
+
+      <div class="calc-panel active" id="calc-wall">
+        <label>طول دیوار (متر):</label>
+        <input type="number" id="wallLength" value="10" min="0" step="0.1" oninput="calcWall()">
+        <label>ارتفاع دیوار (متر):</label>
+        <input type="number" id="wallHeight" value="3" min="0" step="0.1" oninput="calcWall()">
+        <label>نوع بلوک:</label>
+        <select id="wallType" onchange="calcWall()">
+          <option value="10">بلوک تیغه ۱۰ سانتی (۱۰ عدد در متر مربع)</option>
+          <option value="15">بلوک تیغه ۱۵ سانتی (۷ عدد در متر مربع)</option>
+          <option value="20">بلوک تیغه ۲۰ سانتی (۵ عدد در متر مربع)</option>
+        </select>
+        <div class="calc-result" id="wallResult"></div>
+      </div>
+
+      <div class="calc-panel" id="calc-ceiling">
+        <label>مساحت سقف (متر مربع):</label>
+        <input type="number" id="ceilingArea" value="100" min="0" step="0.1" oninput="calcCeiling()">
+        <div class="calc-result" id="ceilingResult"></div>
+      </div>
+
+      <div class="calc-panel" id="calc-concrete">
+        <label>حجم بتن (متر مکعب):</label>
+        <input type="number" id="concreteVol" value="10" min="0" step="0.1" oninput="calcConcrete()">
+        <label>عیار سیمان:</label>
+        <select id="concreteGrade" onchange="calcConcrete()">
+          <option value="150">۱۵۰ (نظافت و ملات)</option>
+          <option value="250" selected>۲۵۰ (سازه معمولی)</option>
+          <option value="350">۳۵۰ (سازه مقاوم)</option>
+          <option value="400">۴۰۰ (سازه‌های خاص)</option>
+        </select>
+        <div class="calc-result" id="concreteResult"></div>
+      </div>
+
+      <div class="calc-panel" id="calc-tile">
+        <label>مساحت کاشی‌کاری (متر مربع):</label>
+        <input type="number" id="tileArea" value="50" min="0" step="0.1" oninput="calcTile()">
+        <label>ابعاد کاشی:</label>
+        <select id="tileSize" onchange="calcTile()">
+          <option value="30x30">۳۰×۳۰ سانتی (۱۱ عدد در متر مربع)</option>
+          <option value="40x40" selected>۴۰×۴۰ سانتی (۶.۲۵ عدد در متر مربع)</option>
+          <option value="60x60">۶۰×۶۰ سانتی (۲.۸ عدد در متر مربع)</option>
+          <option value="80x80">۸۰×۸۰ سانتی (۱.۵۶ عدد در متر مربع)</option>
+        </select>
+        <div class="calc-result" id="tileResult"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeCalculator()">بستن</button>
+      <button class="btn-primary" onclick="addCalcToCart()">➕ افزودن به لیست خرید</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ARTICLE MODAL ================= -->
+<div class="modal-overlay" id="articleModal">
+  <div class="modal-content" style="max-width: 780px;">
+    <div class="modal-header">
+      <h3 id="articleTitle">📖 مقاله</h3>
+      <button onclick="closeArticle()">✕</button>
+    </div>
+    <div class="modal-body blog-article" id="articleContent"></div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeArticle()">بستن</button>
+      <button class="btn-primary" onclick="callForArticle()">📞 مشاوره تلفنی</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ================== CONFIG ================== */
+const ADMIN_PASSWORD = 'admin1234';
+
+/* ================== STATE ================== */
+let cart = [];
+let currentRating = 0;
+let reviews = [];
+let currentFilter = 'all';
+let isAdminLoggedIn = false;
+let logoClickCount = 0;
+let logoClickTimer = null;
+
+/* ================== CATEGORIES MAPPING ================== */
+const CATEGORIES = {
+  'cement': { id: 'cement', name: 'سیمان', icon: '🏗' },
+  'brick': { id: 'brick', name: 'آجر و سفال', icon: '🧱' },
+  'gach': { id: 'gach', name: 'گچ', icon: '🪣' },
+  'tile': { id: 'tile', name: 'کاشی و سرامیک', icon: '🔲' },
+  'pipe': { id: 'pipe', name: 'لوله و اتصالات', icon: '🔧' },
+  'other': { id: 'other', name: 'سایر محصولات', icon: '📦' }
+};
+
+/* ================== FALLBACK PRODUCTS ================== */
+const FALLBACK_PRODUCTS = [
+  { id: 'cement-t2', name: 'سیمان تیپ ۲', desc: 'سیمان تیپ ۲ پاکتی - مناسب برای بتن‌ریزی عمومی.', image: '67.png', category: 'cement', keywords: 'سیمان تیپ ۲', inStock: true },
+  { id: 'cement-t5', name: 'سیمان تیپ ۵', desc: 'سیمان تیپ ۵ - مقاوم در برابر سولفات.', image: '67.png', category: 'cement', keywords: 'سیمان تیپ ۵', inStock: true },
+  { id: 'cement-white', name: 'سیمان سفید', desc: 'سیمان سفید پاکتی برای نما و بندکشی.', image: 'simans.png', category: 'cement', keywords: 'سیمان سفید', inStock: true },
+  
+  { id: 'brick-ajar', name: 'آجر گره‌ای', desc: 'آجر گره‌ای با کیفیت برای دیوارچینی.', image: '0987.jpg', category: 'brick', keywords: 'آجر گره‌ای', inStock: true },
+  { id: 'block-5', name: 'تیغه ۵ سانتی', desc: 'بلوک تیغه ۵ سانتی برای دیوارهای سبک.', image: 'gallery4.jpg', category: 'brick', keywords: 'تیغه ۵ سانتی', inStock: true },
+  { id: 'block-10', name: 'تیغه ۱۰ سانتی', desc: 'بلوک تیغه ۱۰ سانتی برای دیوارچینی داخلی.', image: 'gallery4.jpg', category: 'brick', keywords: 'تیغه ۱۰ سانتی', inStock: true },
+  { id: 'block-saqfi', name: 'بلوک سقفی', desc: 'بلوک سقفی سبک و مقاوم برای تیرچه بلوک.', image: 'gallery3.jpg', category: 'brick', keywords: 'بلوک سقفی', inStock: true },
+
+  { id: 'gach-khorshid', name: 'گچ خورشید', desc: 'گچ ساختمانی خورشید - کیفیت عالی.', image: 'gallery2.jpg', category: 'gach', keywords: 'گچ خورشید', inStock: true },
+  { id: 'gach-shadian', name: 'گچ شادیان', desc: 'گچ ساختمانی شادیان - سفیدکاری.', image: 'gallery2.jpg', category: 'gach', keywords: 'گچ شادیان', inStock: true },
+  { id: 'gach-rangin', name: 'گچ رنگین کمان', desc: 'گچ رنگین کمان - مناسب برای انواع کارها.', image: 'gallery2.jpg', category: 'gach', keywords: 'گچ رنگین کمان', inStock: true },
+  { id: 'gach-shore', name: 'گچ شوره (یزد)', desc: 'گچ شوره یزد - کیفیت ممتاز.', image: 'gallery2.jpg', category: 'gach', keywords: 'گچ شوره یزد', inStock: true },
+
+  { id: 'kashi-60-120', name: 'کاشی ۶۰×۱۲۰ (براق و فوق براق)', desc: 'کاشی ۶۰ در ۱۲۰ براق و فوق براق.', image: 'gallery1.jpg', category: 'tile', keywords: 'کاشی ۶۰ ۱۲۰ براق', inStock: true },
+  { id: 'seramik-40-120', name: 'سرامیک ۴۰×۱۲۰ (نما و حیاط)', desc: 'سرامیک ۴۰ در ۱۲۰ مناسب برای نما و حیاط.', image: 'as.png', category: 'tile', keywords: 'سرامیک ۴۰ ۱۲۰ نما', inStock: true },
+  { id: 'kashi-80-80', name: 'کاشی ۸۰×۸۰ (کف)', desc: 'کاشی ۸۰ در ۸۰ برای کف.', image: 'gallery1.jpg', category: 'tile', keywords: 'کاشی ۸۰ ۸۰ کف', inStock: true },
+  { id: 'kashi-60-60', name: 'کاشی ۶۰×۶۰ (کف)', desc: 'کاشی ۶۰ در ۶۰ برای کف.', image: 'gallery1.jpg', category: 'tile', keywords: 'کاشی ۶۰ ۶۰ کف', inStock: true },
+  { id: 'kashi-30-30', name: 'کاشی ۳۰×۳۰ (کف)', desc: 'کاشی ۳۰ در ۳۰ برای کف.', image: 'gallery1.jpg', category: 'tile', keywords: 'کاشی ۳۰ ۳۰ کف', inStock: true },
+
+  { id: 'pipe-types', name: 'لوله', desc: 'لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی.', image: '0987.jpg', category: 'pipe', keywords: 'لوله پلیکا', inStock: true },
+  { id: 'etesalat', name: 'اتصالات', desc: 'انواع اتصالات لوله‌کشی آب و فاضلاب.', image: '10.png', category: 'pipe', keywords: 'اتصالات لوله‌کشی', inStock: true }
+];
+
+/* ================== LOAD/SAVE REVIEWS ================== */
+function loadReviews() {
+  try {
+    const saved = localStorage.getItem('kargar_reviews');
+    reviews = saved ? JSON.parse(saved) : [];
+  } catch { reviews = []; }
+}
+
+function saveReviews() {
+  try {
+    localStorage.setItem('kargar_reviews', JSON.stringify(reviews));
+  } catch (e) { showToast('❌ خطا در ذخیره نظرات', 'error'); }
+}
+
+/* ================== TOAST ================== */
+function showToast(msg, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 3200);
+}
+
+/* ================== REVEAL ON SCROLL ================== */
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ================== CART & PRODUCTS LOGIC ================== */
+function activateProduct(productId, btn) {
+  btn.style.display = 'none';
+  const label = document.getElementById('label-' + productId);
+  if (label) label.classList.add('hidden');
+  const qtyControl = document.getElementById('qty-' + productId);
+  if (qtyControl) qtyControl.classList.add('show');
+  
+  const productName = btn.getAttribute('data-product-name') || productId;
+  
+  const existingItem = cart.find(item => item.name === productId);
+  if (existingItem) { if (existingItem.qty < 100000) existingItem.qty++; }
+  else { cart.push({ name: productId, displayName: productName, qty: 1 }); }
+  
+  const input = document.getElementById('input-' + productId);
+  if (input) { const item = cart.find(i => i.name === productId); if (item) input.value = item.qty; }
+  updateCart();
+  showToast('✅ به لیست خرید اضافه شد');
+}
+
+function decreaseQty(productId) {
+  const item = cart.find(i => i.name === productId);
+  if (!item) return;
+  if (item.qty > 1) { item.qty--; }
+  else {
+    cart = cart.filter(i => i.name !== productId);
+    const qtyControl = document.getElementById('qty-' + productId);
+    if (qtyControl) qtyControl.classList.remove('show');
+    const section = document.getElementById('section-' + productId);
+    if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
+    const label = document.getElementById('label-' + productId);
+    if (label) label.classList.remove('hidden');
+  }
+  const input = document.getElementById('input-' + productId);
+  const currentItem = cart.find(i => i.name === productId);
+  if (input && currentItem) input.value = currentItem.qty;
+  updateCart();
+}
+
+function increaseQty(productId) {
+  const item = cart.find(i => i.name === productId);
+  if (item && item.qty < 100000) {
+    item.qty++;
+    const input = document.getElementById('input-' + productId);
+    if (input) input.value = item.qty;
+    updateCart();
+  }
+}
+
+function setQty(productId, value) {
+  let qty = parseInt(value) || 1;
+  if (qty < 1) qty = 1;
+  if (qty > 100000) qty = 100000;
+  const item = cart.find(i => i.name === productId);
+  if (item) { item.qty = qty; } 
+  else { 
+    const card = document.getElementById('section-' + productId);
+    const name = card ? card.querySelector('.add-icon-btn').getAttribute('data-product-name') : productId;
+    cart.push({ name: productId, displayName: name, qty }); 
+  }
+  const input = document.getElementById('input-' + productId);
+  if (input) input.value = qty;
+  updateCart();
+}
+
+function setCartQty(productId, value) {
+  let qty = parseInt(value) || 1;
+  if (qty < 1) qty = 1;
+  if (qty > 100000) qty = 100000;
+  const item = cart.find(i => i.name === productId);
+  if (item) { item.qty = qty; }
+  const productInput = document.getElementById('input-' + productId);
+  if (productInput) productInput.value = qty;
+  updateCart();
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.name !== productId);
+  const qtyControl = document.getElementById('qty-' + productId);
+  if (qtyControl) qtyControl.classList.remove('show');
+  const section = document.getElementById('section-' + productId);
+  if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
+  const label = document.getElementById('label-' + productId);
+  if (label) label.classList.remove('hidden');
+  updateCart();
+}
+
+function clearCart() {
+  if (cart.length === 0) return;
+  if (!confirm('آیا از پاک کردن کل لیست مطمئن هستید؟')) return;
+  cart.forEach(item => {
+    const qtyControl = document.getElementById('qty-' + item.name);
+    if (qtyControl) qtyControl.classList.remove('show');
+    const section = document.getElementById('section-' + item.name);
+    if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
+    const label = document.getElementById('label-' + item.name);
+    if (label) label.classList.remove('hidden');
+  });
+  cart = [];
+  updateCart();
+  showToast('🗑 لیست خرید پاک شد', 'info');
+}
+
+function updateCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartCount = document.getElementById('cartCount');
+  const floatingCartBtn = document.getElementById('floatingCartBtn');
+  const summaryTypes = document.getElementById('summaryTypes');
+  const summaryTotal = document.getElementById('summaryTotal');
+
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalTypes = cart.length;
+
+  cartCount.textContent = totalItems;
+  summaryTypes.textContent = totalTypes;
+  summaryTotal.textContent = totalItems;
+
+  if (cart.length > 0) { floatingCartBtn.classList.add('show'); }
+  else { floatingCartBtn.classList.remove('show'); }
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div>لیست شما خالی است</div>';
+  } else {
+    cartItems.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.displayName || item.name}</div>
+          <div class="cart-item-index">آیتم ${idx + 1}</div>
+        </div>
+        <div class="cart-item-qty">
+          <button onclick="event.stopPropagation(); decreaseQty('${item.name}')">−</button>
+          <input type="number" value="${item.qty}" min="1" max="100000"
+                 onchange="event.stopPropagation(); setCartQty('${item.name}', this.value)"
+                 onclick="event.stopPropagation();">
+          <button onclick="event.stopPropagation(); increaseQty('${item.name}')">+</button>
+        </div>
+        <button class="cart-item-remove" onclick="event.stopPropagation(); removeFromCart('${item.name}')" title="حذف">✕</button>
+      </div>
+    `).join('');
+  }
+}
+
+function toggleCart(event) {
+  if (event) event.stopPropagation();
+  document.getElementById('cartWindow').classList.toggle('show');
+  document.getElementById('instaMenu').classList.remove('show');
+  document.getElementById('assistantWindow').classList.remove('show');
+}
+
+function cartToText() {
+  return '🛒 لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' +
+    cart.map((item, i) => `${i+1}. ${item.displayName || item.name} — تعداد: ${item.qty}`).join('\n') +
+    `\n\n📦 مجموع: ${cart.length} قلم کالا — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
+}
+
+function sendToEita(type) {
+  if (cart.length === 0) { showToast('⚠️ لیست شما خالی است', 'error'); return; }
+  const text = cartToText();
+  copyToClipboard(text).then(() => {
+    showToast('✅ لیست کپی شد. ایتا باز می‌شود...');
+    setTimeout(() => { window.location.href = 'eitaa://'; }, 700);
+  });
+}
+
+function copyCart() {
+  if (cart.length === 0) { showToast('⚠️ لیست شما خالی است', 'error'); return; }
+  copyToClipboard(cartToText()).then(() => showToast('✅ لیست کپی شد'));
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch {}
+    document.body.removeChild(ta);
+    resolve();
+  });
+}
+
+/* ================== SEARCH ================== */
+function normalize(str) {
+  return (str || '').toString().toLowerCase()
+    .replace(/[يى]/g, 'ی')
+    .replace(/ك/g, 'ک')
+    .replace(/[ۀهٔ]/g, 'ه')
+    .replace(/[\u064B-\u065F\u0670]/g, '')
+    .trim();
+}
+
+function searchProducts() {
+  const query = normalize(document.getElementById('searchInput').value);
+  const cards = document.querySelectorAll('.product-card');
+  const categoryTitles = document.querySelectorAll('.category-title');
+  const clearBtn = document.getElementById('searchClear');
+  const resultInfo = document.getElementById('searchResultInfo');
+  const noResult = document.getElementById('noResult');
+
+  if (query === '') {
+    cards.forEach(card => card.style.display = '');
+    categoryTitles.forEach(title => title.style.display = '');
+    clearBtn.classList.remove('show');
+    resultInfo.innerHTML = '';
+    noResult.classList.remove('show');
+    return;
+  }
+
+  clearBtn.classList.add('show');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const name = normalize(card.getAttribute('data-name'));
+    const h3 = card.querySelector('h3');
+    const p = card.querySelector('p');
+    const title = normalize(h3 ? h3.textContent : '');
+    const desc = normalize(p ? p.textContent : '');
+
+    if (name.includes(query) || title.includes(query) || desc.includes(query)) {
+      card.style.display = '';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  categoryTitles.forEach(title => {
+    let next = title.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('category-title')) {
+      if (next.classList.contains('product-card') && next.style.display !== 'none') {
+        hasVisible = true; break;
+      }
+      next = next.nextElementSibling;
+    }
+    title.style.display = hasVisible ? '' : 'none';
+  });
+
+  if (visibleCount === 0) {
+    noResult.classList.add('show');
+    resultInfo.innerHTML = '';
+  } else {
+    noResult.classList.remove('show');
+    resultInfo.innerHTML = '🔍 <strong>' + visibleCount + '</strong> محصول پیدا شد';
+  }
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  searchProducts();
+  document.getElementById('searchInput').focus();
+}
+
+/* ================== FAQ ================== */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ================== REVIEWS ================== */
+function openReviewForm() {
+  document.getElementById('reviewFormWindow').classList.add('show');
+  document.getElementById('reviewFormWindow').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function closeReviewForm() {
+  document.getElementById('reviewFormWindow').classList.remove('show');
+  document.getElementById('reviewName').value = '';
+  document.getElementById('reviewText').value = '';
+  currentRating = 0;
+  updateStars(0);
+}
+
+function setRating(value) {
+  currentRating = value;
+  updateStars(value);
+}
+
+function updateStars(value) {
+  document.querySelectorAll('.star').forEach(star => {
+    const v = parseInt(star.getAttribute('data-value'));
+    star.classList.toggle('active', v <= value);
+  });
+}
+
+function submitReview() {
+  const name = document.getElementById('reviewName').value.trim();
+  const text = document.getElementById('reviewText').value.trim();
+
+  if (!name) { showToast('⚠️ لطفاً نام خود را وارد کنید', 'error'); return; }
+  if (currentRating === 0) { showToast('⚠️ لطفاً امتیاز خود را انتخاب کنید', 'error'); return; }
+  if (!text) { showToast('⚠️ لطفاً نظر خود را بنویسید', 'error'); return; }
+
+  const review = {
+    id: Date.now(), name, text, rating: currentRating, status: 'pending', date: new Date().toISOString()
+  };
+  reviews.push(review);
+  saveReviews();
+  renderReviewsList();
+  showToast('✅ نظر شما ثبت شد. پس از تأیید نمایش داده می‌شود.');
+  closeReviewForm();
+}
+
+function renderReviewsList() {
+  const container = document.getElementById('reviewsList');
+  const approved = reviews.filter(r => r.status === 'approved');
+  if (approved.length === 0) {
+    container.innerHTML = `<div class="no-reviews-yet"><div class="no-reviews-icon">💬</div>هنوز نظری ثبت نشده.<br>اولین نفری باشید که نظر می‌ده!</div>`;
+    return;
+  }
+  container.innerHTML = approved.slice().reverse().map(r => {
+    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    const initials = r.name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('');
+    const dateStr = new Date(r.date).toLocaleDateString('fa-IR');
+    return `
+      <div class="review-card">
+        <div class="review-head">
+          <div class="review-author">
+            <div class="review-avatar">${initials}</div>
+            <span>${escapeHtml(r.name)}</span>
+          </div>
+          <div class="review-stars">${stars}</div>
+        </div>
+        <p class="review-text">${escapeHtml(r.text)}</p>
+        <span class="review-date">📅 ${dateStr}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ================== ASSISTANT ================== */
+function toggleAssistant(event) {
+  if (event) event.stopPropagation();
+  document.getElementById('assistantWindow').classList.toggle('show');
+  document.getElementById('instaMenu').classList.remove('show');
+  document.getElementById('cartWindow').classList.remove('show');
+}
+
+function sendAssistantMsg() {
+  const input = document.getElementById('assistantInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  addMsg(msg, 'user');
+  input.value = '';
+  setTimeout(() => {
+    const reply = getAssistantReply(msg);
+    addMsg(reply, 'bot');
+  }, 400);
+}
+
+const knowledgeBase = {
+  'سیمان': '💡 سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'بلوک': '💡 بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\n📏 برای هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'لوله': '💡 لوله پلیکا، پنج لایه، پنبه‌ای و فلزی در سایزهای مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
+  'پکیج': '💡 پکیج دیواری و زمینی با گارانتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
+  'قیمت': '💰 برای استعلام قیمت روز:\n📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
+  'آدرس': '📍 شهربابک، خیابان مطهری، نبش کوچه ۱۱\n⏰ شنبه تا پنجشنبه، ۸ صبح تا ۸ شب'
+};
+
+function getAssistantReply(msg) {
+  const lower = normalize(msg);
+  for (const key in knowledgeBase) {
+    if (lower.includes(normalize(key))) return knowledgeBase[key];
+  }
+  return 'متأسفم، متوجه نشدم. 🤔\n\nبرای استعلام قیمت تماس بگیرید:\n📞 ۰۹۱۳۳۹۰۸۲۳۰';
+}
+
+function addMsg(text, type) {
+  const container = document.getElementById('assistantMessages');
+  const div = document.createElement('div');
+  div.className = 'assistant-msg ' + type;
+  div.innerHTML = text.replace(/\n/g, '<br>');
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+/* ================== INSTA MENU ================== */
+function toggleInstaMenu(event) {
+  if (event) event.stopPropagation();
+  document.getElementById('instaMenu').classList.toggle('show');
+  document.getElementById('cartWindow').classList.remove('show');
+  document.getElementById('assistantWindow').classList.remove('show');
+}
+
+/* ================== GLOBAL CLICK ================== */
+document.addEventListener('click', function(event) {
+  const menu = document.getElementById('instaMenu');
+  const instaBtn = document.querySelector('.floating-insta-btn');
+  const cartWindow = document.getElementById('cartWindow');
+  const cartBtn = document.getElementById('floatingCartBtn');
+  const assistantWindow = document.getElementById('assistantWindow');
+  const assistantBtn = document.querySelector('.floating-assistant-btn');
+
+  if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) {
+    menu.classList.remove('show');
+  }
+  if (cartBtn && !cartBtn.contains(event.target) && cartWindow && !cartWindow.contains(event.target)) {
+    cartWindow.classList.remove('show');
+  }
+  if (assistantBtn && !assistantBtn.contains(event.target) && assistantWindow && !assistantWindow.contains(event.target)) {
+    assistantWindow.classList.remove('show');
+  }
+  if (event.target.classList && event.target.classList.contains('modal-overlay')) {
+    event.target.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
+/* ================== KEYBOARD SHORTCUT ================== */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.getElementById('cartWindow').classList.remove('show');
+    document.getElementById('assistantWindow').classList.remove('show');
+    document.getElementById('instaMenu').classList.remove('show');
+    document.querySelectorAll('.modal-overlay.show').forEach(m => {
+      m.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+/* ================== ORDER FORM ================== */
+function openOrderForm() {
+  document.getElementById('orderModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOrderForm() {
+  document.getElementById('orderModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function submitOrder() {
+  const name = document.getElementById('orderName').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+  const address = document.getElementById('orderAddress').value.trim();
+  const type = document.getElementById('orderType').value;
+  const note = document.getElementById('orderNote').value.trim();
+
+  if (!name || name.length < 2) { showToast('⚠️ نام را درست وارد کنید', 'error'); return; }
+  if (!/^09\d{9}$/.test(phone)) { showToast('⚠️ شماره موبایل معتبر وارد کنید', 'error'); return; }
+  if (!address || address.length < 5) { showToast('⚠️ آدرس را کامل وارد کنید', 'error'); return; }
+
+  let text = '🛒 سفارش آنلاین جدید از سایت کارگر:\n\n';
+  text += '👤 نام: ' + name + '\n';
+  text += '📞 تلفن: ' + phone + '\n';
+  text += '📍 آدرس: ' + address + '\n';
+  text += '📦 نوع: ' + (type === 'masaleh' ? 'مصالح' : type === 'tasisat' ? 'تاسیسات' : 'هر دو') + '\n';
+  if (note) text += '📝 توضیحات: ' + note + '\n';
+
+  if (cart.length > 0) {
+    text += '\n--- لیست خرید ---\n';
+    cart.forEach((item, i) => { text += `${i+1}. ${item.displayName || item.name} — تعداد: ${item.qty}\n`; });
+    text += `\n📦 مجموع: ${cart.length} قلم — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
+  } else {
+    text += '\n(لیست خرید خالی)';
+  }
+
+  copyToClipboard(text).then(() => {
+    showToast('✅ سفارش کپی شد. در حال باز کردن ایتا...');
+    setTimeout(() => {
+      if (cart.length > 0) {
+        cart = [];
+        updateCart();
+        document.querySelectorAll('[id^="qty-"]').forEach(el => el.classList.remove('show'));
+        document.querySelectorAll('.add-icon-btn').forEach(b => b.style.display = 'flex');
+        document.querySelectorAll('.add-label').forEach(l => l.classList.remove('hidden'));
+      }
+      closeOrderForm();
+    }, 1500);
+  });
+}
+
+/* ================== CALCULATOR ================== */
+function openCalculator() {
+  document.getElementById('calcModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  calcWall(); calcCeiling(); calcConcrete(); calcTile();
+}
+
+function closeCalculator() {
+  document.getElementById('calcModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function switchCalc(name, btn) {
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-' + name).classList.add('active');
+}
+
+function calcWall() {
+  const L = parseFloat(document.getElementById('wallLength').value) || 0;
+  const H = parseFloat(document.getElementById('wallHeight').value) || 0;
+  const perSqm = parseFloat(document.getElementById('wallType').value);
+  const area = L * H;
+  const blocks = Math.ceil(area * perSqm);
+  const cement = Math.ceil(area * 0.5);
+  document.getElementById('wallResult').innerHTML = `
+    <h4>📊 نتیجه محاسبه</h4>
+    <div class="calc-result-item"><span>مساحت دیوار:</span><span>${area.toFixed(2)} متر مربع</span></div>
+    <div class="calc-result-item"><span>تعداد بلوک:</span><span>${blocks} عدد</span></div>
+    <div class="calc-result-item"><span>سیمان (تخمینی):</span><span>${cement} کیسه</span></div>
+  `;
+  window._lastCalc = { blocks, cement, area };
+}
+
+function calcCeiling() {
+  const area = parseFloat(document.getElementById('ceilingArea').value) || 0;
+  const blocks = Math.ceil(area * 2);
+  const cement = Math.ceil(area * 0.8);
+  document.getElementById('ceilingResult').innerHTML = `
+    <h4>📊 نتیجه محاسبه سقف</h4>
+    <div class="calc-result-item"><span>مساحت سقف:</span><span>${area.toFixed(2)} متر مربع</span></div>
+    <div class="calc-result-item"><span>بلوک سقفی:</span><span>${blocks} عدد</span></div>
+    <div class="calc-result-item"><span>سیمان (تخمینی):</span><span>${cement} کیسه</span></div>
+  `;
+  window._lastCalc = { blocks, cement, area };
+}
+
+function calcConcrete() {
+  const vol = parseFloat(document.getElementById('concreteVol').value) || 0;
+  const grade = parseFloat(document.getElementById('concreteGrade').value);
+  const cementPerM3 = grade * 1.0;
+  const cement = Math.ceil(vol * cementPerM3 / 50);
+  document.getElementById('concreteResult').innerHTML = `
+    <h4>📊 نتیجه محاسبه بتن</h4>
+    <div class="calc-result-item"><span>حجم بتن:</span><span>${vol.toFixed(2)} متر مکعب</span></div>
+    <div class="calc-result-item"><span>عیار سیمان:</span><span>${grade} kg/m³</span></div>
+    <div class="calc-result-item"><span>سیمان:</span><span>${cement} کیسه ۵۰ کیلویی</span></div>
+  `;
+  window._lastCalc = { cement, vol };
+}
+
+function calcTile() {
+  const area = parseFloat(document.getElementById('tileArea').value) || 0;
+  const size = document.getElementById('tileSize').value.split('x');
+  const tileArea = (parseFloat(size[0]) * parseFloat(size[1])) / 10000;
+  const totalTiles = Math.ceil(area * (1 / tileArea) * 1.1);
+  const cement = Math.ceil(area * 0.4);
+  document.getElementById('tileResult').innerHTML = `
+    <h4>📊 نتیجه محاسبه کاشی‌کاری</h4>
+    <div class="calc-result-item"><span>مساحت:</span><span>${area.toFixed(2)} متر مربع</span></div>
+    <div class="calc-result-item"><span>تعداد کاشی (با پرت ۱۰٪):</span><span>${totalTiles} عدد</span></div>
+    <div class="calc-result-item"><span>سیمان (تخمینی):</span><span>${cement} کیسه</span></div>
+  `;
+  window._lastCalc = { totalTiles, cement, area };
+}
+
+function addCalcToCart() {
+  const activePanel = document.querySelector('.calc-panel.active').id;
+  const nameMap = { 'calc-wall': 'بلوک تیغه', 'calc-ceiling': 'بلوک سقفی', 'calc-concrete': 'سیمان', 'calc-tile': 'کاشی' };
+  const productName = nameMap[activePanel];
+  let qty = 1;
+  if (activePanel === 'calc-wall' && window._lastCalc) qty = window._lastCalc.blocks;
+  if (activePanel === 'calc-ceiling' && window._lastCalc) qty = window._lastCalc.blocks;
+  if (activePanel === 'calc-concrete' && window._lastCalc) qty = window._lastCalc.cement;
+  if (activePanel === 'calc-tile' && window._lastCalc) qty = window._lastCalc.totalTiles;
+  
+  const existing = cart.find(i => i.name === productName);
+  if (existing) existing.qty += qty;
+  else cart.push({ name: productName, displayName: productName, qty: qty });
+  updateCart();
+  showToast(`✅ ${qty} عدد ${productName} به لیست اضافه شد`);
+  closeCalculator();
+}
+
+/* ================== BLOG ================== */
+const blogPosts = [
+  { id: 'cement-guide', tag: 'مصالح', icon: '🏗', title: 'راهنمای کامل انتخاب سیمان مناسب برای پروژه', excerpt: 'سیمان تیپ ۱، ۲، ۵ یا سفید؟ کدوم برای پروژه شما مناسبه؟ تفاوت‌ها و کاربردهای هرکدوم رو بررسی می‌کنیم.', date: '۱۴۰۳/۰۸/۱۵', content: `<h2>مقدمه</h2><p>انتخاب سیمان مناسب، یکی از مهم‌ترین تصمیمات در هر پروژه ساختمانی است.</p><h3>۱. سیمان تیپ ۱ (معمولی)</h3><p>پرمصرف‌ترین نوع سیمان برای کارهای عمومی ساختمانی.</p><h3>۲. سیمان تیپ ۲</h3><p>سیمان اصلاح‌شده که حرارت هیدراتاسیون کمتری دارد.</p><h3>۳. سیمان تیپ ۵</h3><p>سیمان ضد سولفات برای محیط‌های خورنده.</p><div class="highlight">💡 برای پروژه‌های خاص با کارشناس ما مشورت کنید. تماس: ۰۹۱۳۳۹۰۸۲۳۰</div>` },
+  { id: 'wall-blocks', tag: 'مصالح', icon: '🧱', title: 'چگونه تعداد بلوک مورد نیاز دیوار را محاسبه کنیم؟', excerpt: 'فرمول ساده محاسبه بلوک تیغه و سقفی + نکات مهم در خرید.', date: '۱۴۰۳/۰۸/۱۰', content: `<h2>مقدمه</h2><p>محاسبه دقیق بلوک باعث می‌شود نه اضافه بخری و نه وسط کار بمانی!</p><h3>فرمول:</h3><p><strong>تعداد بلوک = مساحت دیوار × تعداد بلوک در متر مربع</strong></p><ul><li>بلوک ۱۰ سانتی: ۱۰ عدد در متر مربع</li><li>بلوک ۱۵ سانتی: ۷ عدد در متر مربع</li><li>بلوک ۲۰ سانتی: ۵ عدد در متر مربع</li></ul><div class="highlight">⚠️ همیشه ۵٪ پرت اضافه کن.</div>` },
+  { id: 'pipes-guide', tag: 'تاسیسات', icon: '🔧', title: 'انواع لوله ساختمانی و کاربرد هرکدام', excerpt: 'پلیکا، پنج لایه، پنبه‌ای یا فلزی؟ کدام برای آب سرد و گرم مناسب است؟', date: '۱۴۰۳/۰۸/۰۵', content: `<h2>مقدمه</h2><p>انتخاب لوله مناسب نقش کلیدی در دوام تاسیسات دارد.</p><h3>۱. لوله پلیکا (PVC)</h3><p>برای فاضلاب و آب سرد.</p><h3>۲. لوله پنج لایه</h3><p>برای آب گرم و سرد و گرمایش از کف.</p><div class="highlight">💡 توصیه: برای آب گرم از پنج لایه، برای فاضلاب از پلیکا استفاده کنید.</div>` },
+  { id: 'package-guide', tag: 'تاسیسات', icon: '🔥', title: 'راهنمای خرید پکیج دیواری؛ ظرفیت مناسب', excerpt: 'پکیج ۲۴ یا ۲۸؟ برای خانه ۱۰۰ متری چی بگیریم؟', date: '۱۴۰۳/۰۷/۲۸', content: `<h2>مقدمه</h2><p>انتخاب اشتباه ظرفیت پکیج باعث هدررفت انرژی می‌شود.</p><ul><li>تا ۸۰ متر → پکیج ۲۴</li><li>۸۰ تا ۱۲۰ متر → پکیج ۲۴ یا ۲۸</li><li>بالای ۱۲۰ متر → پکیج ۳۲ به بالا</li></ul>` },
+  { id: 'sanitary-guide', tag: 'تاسیسات', icon: '🚽', title: 'چگونه چینی بهداشتی باکیفیت بخریم؟', excerpt: 'ملاک‌های تشخیص کیفیت چینی بهداشتی چیست؟', date: '۱۴۰۳/۰۷/۲۰', content: `<h2>مقدمه</h2><p>چینی بهداشتی سال‌ها در خانه می‌ماند، پس کیفیت مهم است.</p><h3>ملاک‌ها:</h3><ul><li>لعاب صاف و براق</li><li>ضخامت و وزن مناسب</li><li>نشان استاندارد</li></ul>` }
+];
+
+function renderBlog() {
+  const grid = document.getElementById('blogGrid');
+  if (!grid) return;
+  grid.innerHTML = blogPosts.map(p => `
+    <div class="blog-card" onclick="openArticle('${p.id}')">
+      <div class="blog-card-img">${p.icon}</div>
+      <div class="blog-card-body">
+        <h3>${p.title}</h3>
+        <p>${p.excerpt}</p>
+        <div class="blog-card-meta">
+          <span class="blog-card-tag">${p.tag}</span>
+          <span>📅 ${p.date}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openArticle(id) {
+  const post = blogPosts.find(p => p.id === id);
+  if (!post) return;
+  document.getElementById('articleTitle').innerHTML = post.icon + ' ' + post.title;
+  document.getElementById('articleContent').innerHTML = `
+    <div class="blog-meta"><span>🏷 ${post.tag}</span><span>📅 ${post.date}</span></div>
+    ${post.content}
+  `;
+  document.getElementById('articleModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('articleModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function callForArticle() {
+  window.location.href = 'tel:09133908230';
+}
+
+/* ================== PRODUCTS FROM JSON (FALLBACK LOGIC) ================== */
+async function loadProductsFromJSON() {
+  let products = FALLBACK_PRODUCTS;
+
+  try {
+    const res = await fetch('products.json?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (data.products && data.products.length > 0) {
+        products = data.products;
+      }
+    }
+  } catch (e) {
+    console.warn('JSON بارگذاری نشد، از محصولات پیش‌فرض استفاده می‌شود.');
+  }
+
+  renderCategoryIcons();
+  renderProductsGrid(products);
+}
+
+function renderCategoryIcons() {
+  const container = document.getElementById('categoryIcons');
+  if (!container) return;
+  
+  container.innerHTML = Object.values(CATEGORIES).filter(c => c.id !== 'other').map(cat => `
+    <a href="#cat-${cat.id}" class="category-card">
+      <div class="cat-icon">${cat.icon}</div>
+      <h3>${cat.name}</h3>
+    </a>
+  `).join('');
+}
+
+function renderProductsGrid(products) {
+  const container = document.getElementById('productsContainer');
+  if (!container) return;
+
+  const anchor = container.querySelector('.working-hours');
+  const fragment = document.createDocumentFragment();
+
+  // ۱. گروه‌بندی محصولات
+  const grouped = {};
+  products.forEach(p => {
+    const catKey = p.category || 'other';
+    if (!grouped[catKey]) grouped[catKey] = [];
+    grouped[catKey].push(p);
+  });
+
+  // ۲. ترتیب نمایش
+  const order = ['cement', 'brick', 'gach', 'tile', 'pipe'];
+
+  // ۳. رسم دسته‌بندی‌های شناخته شده
+  order.forEach((catId) => {
+    const catProducts = grouped[catId];
+    if (catProducts && catProducts.length > 0) {
+      const catInfo = CATEGORIES[catId] || { name: 'سایر', icon: '📦' };
+      
+      const title = document.createElement('div');
+      title.className = 'category-title cat-' + catId;
+      title.id = 'cat-' + catId;
+      title.innerHTML = catInfo.icon + ' ' + catInfo.name;
+      fragment.appendChild(title);
+
+      catProducts.forEach(p => fragment.appendChild(makeProductCard(p)));
+      
+      delete grouped[catId]; 
+    }
+  });
+
+  // ۴. رسم محصولات باقی‌مانده
+  const remainingKeys = Object.keys(grouped);
+  if (remainingKeys.length > 0) {
+    const title = document.createElement('div');
+    title.className = 'category-title cat-cement';
+    title.id = 'cat-other';
+    title.innerHTML = '📦 سایر محصولات';
+    fragment.appendChild(title);
+
+    remainingKeys.forEach(key => {
+      grouped[key].forEach(p => fragment.appendChild(makeProductCard(p)));
+    });
+  }
+
+  container.innerHTML = '';
+  container.appendChild(fragment);
+  
+  const wh = document.createElement('div');
+  wh.className = 'working-hours';
+  wh.innerHTML = '⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب';
+  container.appendChild(wh);
+
+  if (typeof initReveal === 'function') initReveal();
+  syncCartUIWithProducts();
+}
+
+function makeProductCard(p) {
+  const div = document.createElement('div');
+  div.className = 'product-card reveal';
+  div.setAttribute('data-name', (p.keywords || '') + ' ' + p.name + ' ' + p.desc);
+  div.innerHTML = `
+    <div class="product-top">
+      <div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+      </div>
+      <div class="add-section" id="section-${p.id}">
+        <button class="add-icon-btn" onclick="activateProduct('${p.id}', this)" data-product-id="${p.id}" data-product-name="${p.name}">+</button>
+        <span class="add-label" id="label-${p.id}">افزودن به لیست</span>
+        <div class="qty-control" id="qty-${p.id}">
+          <button onclick="decreaseQty('${p.id}')">−</button>
+          <input type="number" value="1" min="1" max="100000" onchange="setQty('${p.id}', this.value)" id="input-${p.id}">
+          <button onclick="increaseQty('${p.id}')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="stock-status">
+      <span class="stock-dot" style="${p.inStock === false ? 'background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.2);' : ''}"></span>
+      ${p.inStock === false ? 'ناموجود' : 'موجود در انبار'}
+    </div>
+  `;
+  return div;
+}
+
+function syncCartUIWithProducts() {
+  if (typeof cart === 'undefined') return;
+  cart.forEach(item => {
+    const qtyControl = document.getElementById('qty-' + item.name);
+    if (qtyControl) qtyControl.classList.add('show');
+    const section = document.getElementById('section-' + item.name);
+    if (section) { const b = section.querySelector('.add-icon-btn'); if (b) b.style.display = 'none'; }
+    const label = document.getElementById('label-' + item.name);
+    if (label) label.classList.add('hidden');
+    const input = document.getElementById('input-' + item.name);
+    if (input) input.value = item.qty;
+  });
+}
+
+/* ================== INIT ================== */
+document.addEventListener('DOMContentLoaded', () => {
+  loadReviews();
+  renderReviewsList();
+  updateCart();
+  initReveal();
+  renderBlog();
+  loadProductsFromJSON();
+  
+  const firstFaq = document.querySelector('.faq-item');
+  if (firstFaq) firstFaq.classList.add('open');
+});
+</script>
+</body>
+</html>
