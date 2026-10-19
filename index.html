@@ -132,15 +132,15 @@ body {
 
 /* ===================== HEADER ===================== */
 header {
-  background: linear-gradient(-45deg, #0f172a, #134e4a, #0f766e, #115e59);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  /* رنگ پس‌زمینه دقیقا هم‌رنگ لوگو شد */
+  background: #0f2537;
   color: white;
   padding: 45px 25px 35px;
   text-align: center;
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(15, 23, 42, 0.3);
+  border-bottom: 3px solid #f59e0b;
 }
 .header-logo {
   max-width: 260px; width: 100%; height: auto;
@@ -154,19 +154,18 @@ header {
 .header-title {
   font-size: 22px; font-weight: 800;
   position: relative; z-index: 1; margin: 10px 0 5px;
-  background: linear-gradient(90deg, #fff, #99f6e4);
+  background: linear-gradient(90deg, #fff, #fbbf24);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .header-subtitle { font-size: 13px; color: #94a3b8; position: relative; z-index: 1; letter-spacing: 2px; }
 
 /* ===================== NAV ===================== */
 nav {
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  background: #0f2537;
   padding: 12px; text-align: center;
   position: sticky; top: 0; z-index: 100;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.3);
 }
 nav a {
   color: #cbd5e1; text-decoration: none;
@@ -177,22 +176,22 @@ nav a {
 nav a::after {
   content: ''; position: absolute; bottom: 0; right: 50%;
   width: 0; height: 2px;
-  background: linear-gradient(90deg, #14b8a6, #f59e0b);
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
   transition: all 0.3s ease; border-radius: 2px;
 }
-nav a:hover { color: #5eead4; }
+nav a:hover { color: #fbbf24; }
 nav a:hover::after { width: 100%; right: 0; }
 
 /* ===================== HERO ===================== */
 .hero {
-  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   padding: 70px 20px 60px; text-align: center;
   position: relative; overflow: hidden;
 }
 .hero h1 {
   font-size: clamp(24px, 5vw, 42px);
   margin: 0 0 15px; font-weight: 900;
-  color: #0f172a; position: relative; z-index: 1; line-height: 1.3;
+  color: #0f2537; position: relative; z-index: 1; line-height: 1.3;
 }
 .hero h1 span {
   background: linear-gradient(90deg, #0d9488, #f59e0b, #0d9488);
@@ -219,7 +218,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 /* ===================== SECTION TITLES ===================== */
 .section-title {
-  text-align: center; color: #0f172a;
+  text-align: center; color: #0f2537;
   margin: 0 0 30px; font-size: clamp(20px, 3.5vw, 28px);
   font-weight: 800; position: relative; padding-bottom: 15px;
 }
@@ -227,7 +226,7 @@ nav a:hover::after { width: 100%; right: 0; }
   content: ''; position: absolute; bottom: 0;
   right: 50%; transform: translateX(50%);
   width: 70px; height: 4px;
-  background: linear-gradient(90deg, #0d9488, #f59e0b);
+  background: linear-gradient(90deg, #0f2537, #f59e0b);
   border-radius: 4px;
 }
 
@@ -244,9 +243,9 @@ nav a:hover::after { width: 100%; right: 0; }
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .about-us:hover, .why-us:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(15, 23, 42, 0.1); }
-.about-us { border-right: 5px solid #0d9488; }
+.about-us { border-right: 5px solid #0f2537; }
 .about-us h2, .why-us h2 {
-  color: #0f172a; margin-top: 0; font-size: 22px;
+  color: #0f2537; margin-top: 0; font-size: 22px;
   font-weight: 800; display: flex; align-items: center; gap: 10px;
 }
 .why-us { border-right: 5px solid #f59e0b; }
@@ -270,7 +269,7 @@ nav a:hover::after { width: 100%; right: 0; }
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; font-size: 14px; font-weight: bold;
 }
-.feature-item strong { color: #0f172a; display: block; margin-bottom: 3px; font-size: 14.5px; font-weight: 700; }
+.feature-item strong { color: #0f2537; display: block; margin-bottom: 3px; font-size: 14.5px; font-weight: 700; }
 .feature-item p { margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.6; }
 
 /* ===================== SEARCH ===================== */
@@ -338,7 +337,7 @@ nav a:hover::after { width: 100%; right: 0; }
 .product-card:hover .product-image { transform: scale(1.05) rotate(-2deg); }
 .product-image img { width: 100%; height: 100%; object-fit: cover; }
 .product-info { padding: 15px 18px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-.product-info h3 { margin: 0 0 8px; color: #0f172a; font-size: 17px; font-weight: 800; }
+.product-info h3 { margin: 0 0 8px; color: #0f2537; font-size: 17px; font-weight: 800; }
 .product-info p { margin: 0; font-size: 13px; color: #64748b; line-height: 1.7; }
 .add-section {
   display: flex; flex-direction: column; align-items: center;
@@ -404,12 +403,12 @@ nav a:hover::after { width: 100%; right: 0; }
   background: white; border-radius: 14px;
   margin-bottom: 12px; overflow: hidden;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
-  transition: all 0.3s; border-right: 4px solid #0d9488;
+  transition: all 0.3s; border-right: 4px solid #0f2537;
 }
 .faq-item:hover { box-shadow: 0 8px 25px rgba(13, 148, 136, 0.12); }
 .faq-question {
   padding: 18px 22px; cursor: pointer;
-  font-weight: 700; color: #0f172a; font-size: 15px;
+  font-weight: 700; color: #0f2537; font-size: 15px;
   display: flex; justify-content: space-between; align-items: center;
   transition: background 0.3s;
 }
@@ -429,7 +428,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 /* ===================== WORKING HOURS ===================== */
 .working-hours {
-  background: linear-gradient(135deg, #0f172a, #134e4a);
+  background: #0f2537;
   color: white; padding: 20px; text-align: center;
   font-weight: 700; margin-top: 30px; border-radius: 14px;
   font-size: 15px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
@@ -454,7 +453,7 @@ nav a:hover::after { width: 100%; right: 0; }
 }
 .review-form-window.show { display: block; animation: fadeInUp 0.4s; }
 .review-form-header {
-  background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%);
+  background: #0f2537;
   color: white; padding: 16px 22px; font-weight: 800;
   display: flex; justify-content: space-between; align-items: center;
 }
@@ -503,7 +502,7 @@ nav a:hover::after { width: 100%; right: 0; }
   flex-wrap: wrap; gap: 8px;
 }
 .review-author {
-  font-weight: 800; color: #0f172a;
+  font-weight: 800; color: #0f2537;
   display: flex; align-items: center; gap: 10px;
 }
 .review-avatar {
@@ -548,7 +547,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 /* ===================== CONTACT ===================== */
 .contact {
-  background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%);
+  background: #0f2537;
   color: white; padding: 50px 25px; text-align: center;
 }
 .contact-logo {
@@ -681,7 +680,7 @@ nav a:hover::after { width: 100%; right: 0; }
   transform: none; width: 360px; max-height: 520px;
 }
 .cart-header, .assistant-header {
-  background: linear-gradient(135deg, #0f172a, #134e4a);
+  background: #0f2537;
   color: white; padding: 18px 22px;
   font-weight: 800; display: flex;
   justify-content: space-between; align-items: center;
@@ -710,7 +709,7 @@ nav a:hover::after { width: 100%; right: 0; }
   border-bottom: 1px solid #f1f5f9; font-size: 14px; gap: 10px;
 }
 .cart-item-info { flex-grow: 1; }
-.cart-item-name { color: #0f172a; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.cart-item-name { color: #0f2537; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
 .cart-item-index { color: #94a3b8; font-size: 11px; }
 .cart-item-qty {
   display: flex; align-items: center; gap: 4px;
@@ -799,12 +798,12 @@ nav a:hover::after { width: 100%; right: 0; }
 .insta-menu.show { display: block; animation: fadeInUp 0.3s; }
 .insta-menu p {
   margin: 4px 0 10px; font-weight: 800;
-  color: #0f172a; font-size: 13px;
+  color: #0f2537; font-size: 13px;
   border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;
 }
 .insta-menu a {
   display: block; padding: 11px;
-  text-decoration: none; color: #0f172a;
+  text-decoration: none; color: #0f2537;
   border-radius: 10px; margin: 5px 0;
   font-size: 14px; font-weight: 700;
 }
@@ -818,7 +817,7 @@ nav a:hover::after { width: 100%; right: 0; }
   pointer-events: none;
 }
 .toast {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  background: linear-gradient(135deg, #0f2537, #1e293b);
   color: white; padding: 14px 24px;
   border-radius: 12px; font-weight: 700;
   font-size: 14px; min-width: 260px;
@@ -845,7 +844,7 @@ nav a:hover::after { width: 100%; right: 0; }
   max-height: 90vh; overflow-y: auto;
 }
 .admin-header {
-  background: linear-gradient(135deg, #0f172a, #134e4a);
+  background: #0f2537;
   color: white; padding: 20px 26px;
   display: flex; justify-content: space-between;
   align-items: center; position: sticky; top: 0;
@@ -859,7 +858,7 @@ nav a:hover::after { width: 100%; right: 0; }
 }
 .admin-body { padding: 26px; }
 .admin-login { text-align: center; padding: 30px 10px; }
-.admin-login h3 { color: #0f172a; margin-top: 0; }
+.admin-login h3 { color: #0f2537; margin-top: 0; }
 .admin-login input {
   width: 100%; max-width: 320px;
   padding: 14px 18px; border: 2px solid #e2e8f0;
@@ -915,7 +914,7 @@ nav a:hover::after { width: 100%; right: 0; }
   align-items: center; margin-bottom: 8px;
   flex-wrap: wrap; gap: 8px;
 }
-.admin-review-name { font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+.admin-review-name { font-weight: 800; color: #0f2537; display: flex; align-items: center; gap: 8px; }
 .admin-review-stars { color: #f59e0b; font-size: 15px; }
 .admin-review-text { color: #475569; font-size: 13.5px; line-height: 1.8; margin: 8px 0; }
 .admin-review-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
@@ -959,7 +958,7 @@ nav a:hover::after { width: 100%; right: 0; }
   animation: fadeInUp 0.4s;
 }
 .modal-header {
-  background: linear-gradient(135deg, #0f172a, #134e4a);
+  background: #0f2537;
   color: white; padding: 18px 24px;
   display: flex; justify-content: space-between;
   align-items: center; border-radius: 20px 20px 0 0;
@@ -1062,12 +1061,12 @@ nav a:hover::after { width: 100%; right: 0; }
   border-color: #5eead4;
 }
 .blog-card-img {
-  height: 140px; background: linear-gradient(135deg, #0d9488, #0f766e);
+  height: 140px; background: #0f2537;
   display: flex; align-items: center; justify-content: center;
   font-size: 48px; color: white;
 }
 .blog-card-body { padding: 18px; }
-.blog-card-body h3 { margin: 0 0 8px; color: #0f172a; font-size: 16px; font-weight: 800; line-height: 1.5; }
+.blog-card-body h3 { margin: 0 0 8px; color: #0f2537; font-size: 16px; font-weight: 800; line-height: 1.5; }
 .blog-card-body p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.7; }
 .blog-card-meta {
   margin-top: 12px; font-size: 11px; color: #94a3b8;
@@ -1079,12 +1078,12 @@ nav a:hover::after { width: 100%; right: 0; }
   font-weight: 700; font-size: 10.5px;
 }
 .blog-article { line-height: 2; color: #334155; }
-.blog-article h2 { color: #0f172a; font-size: 20px; margin: 22px 0 12px; font-weight: 800; }
+.blog-article h2 { color: #0f2537; font-size: 20px; margin: 22px 0 12px; font-weight: 800; }
 .blog-article h3 { color: #0f766e; font-size: 17px; margin: 18px 0 10px; font-weight: 800; }
 .blog-article p { margin: 0 0 14px; font-size: 14.5px; }
 .blog-article ul, .blog-article ol { padding-right: 22px; margin: 0 0 14px; }
 .blog-article li { margin-bottom: 6px; font-size: 14.5px; }
-.blog-article strong { color: #0f172a; }
+.blog-article strong { color: #0f2537; }
 .blog-article .highlight {
   background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
   border-right: 4px solid #0d9488;
@@ -1127,7 +1126,8 @@ nav a:hover::after { width: 100%; right: 0; }
 <header>
   <img src="iu.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="header-logo" id="headerLogo" onclick="tripleClickLogo()" title="فروشگاه کارگر">
   <div class="header-title">مصالح ساختمانی و تاسیسات مرکزی کارگر</div>
-  <div class="header-subtitle">شهربابک • از سال‌ها پیش در خدمت شما</div>
+  <!-- شعار جدید جایگزین شد و ایموجی ها حذف شدند -->
+  <div class="header-subtitle">کیفیت برتر، همراه همیشگی سازندگان</div>
 </header>
 
 <!-- ================= NAV ================= -->
@@ -1146,13 +1146,13 @@ nav a:hover::after { width: 100%; right: 0; }
 <section class="hero">
   <h1>مصالح ساختمانی و تاسیسات <span>با کیفیت تضمینی</span></h1>
   <p>عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی با قیمت مناسب و ارسال سریع در شهربابک و حومه</p>
-  <a href="#contact" class="inquiry-btn">📞 استعلام قیمت روز</a>
+  <a href="#contact" class="inquiry-btn">استعلام قیمت روز</a>
   <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
     <button onclick="openOrderForm()" class="inquiry-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); font-size: 15px; padding: 14px 30px;">
-      📝 ثبت سفارش آنلاین
+      ثبت سفارش آنلاین
     </button>
     <button onclick="openCalculator()" class="inquiry-btn" style="background: linear-gradient(135deg, #6366f1, #4f46e5); font-size: 15px; padding: 14px 30px;">
-      🧮 محاسبه‌گر مصالح
+      محاسبه‌گر مصالح
     </button>
   </div>
 </section>
@@ -1160,13 +1160,13 @@ nav a:hover::after { width: 100%; right: 0; }
 <!-- ================= ABOUT + WHY US ================= -->
 <div class="two-column-layout">
   <section class="about-us reveal" id="about">
-    <h2>🏢 درباره ما</h2>
+    <h2>درباره ما</h2>
     <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.</p>
     <p>ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. <strong>رضایت شما، بزرگترین سرمایه ماست.</strong></p>
   </section>
 
   <section class="why-us reveal">
-    <h2>⭐ چرا ما را انتخاب کنید؟</h2>
+    <h2>چرا ما را انتخاب کنید؟</h2>
     <div class="features-grid">
       <div class="feature-item"><span class="icon">✓</span><div><strong>کیفیت تضمینی</strong><p>تمام محصولات از برندهای معتبر و با ضمانت کیفیت عرضه می‌شوند.</p></div></div>
       <div class="feature-item"><span class="icon">✓</span><div><strong>قیمت مناسب</strong><p>خرید مستقیم از تولیدکننده و ارائه قیمت رقابتی به شما.</p></div></div>
@@ -1180,7 +1180,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= PRODUCTS ================= -->
 <section class="products" id="products">
-  <h2 class="section-title">🛍 محصولات ما</h2>
+  <h2 class="section-title">محصولات ما</h2>
 
   <div class="search-container" style="padding: 0; margin-bottom: 25px;">
     <div class="search-box">
@@ -1195,12 +1195,12 @@ nav a:hover::after { width: 100%; right: 0; }
   </div>
 
   <div class="no-result" id="noResult">
-    <div class="no-result-icon">🔍</div>
+    <div class="no-result-icon"></div>
     محصولی با این نام پیدا نشد.<br>
     لطفاً کلمه دیگه‌ای رو امتحان کن یا با ما تماس بگیر.
   </div>
 
-  <div class="category-title construction">🏗 مصالح ساختمانی</div>
+  <div class="category-title construction">مصالح ساختمانی</div>
 
   <div class="product-card reveal" data-name="انواع سیمان سیمان تیپ ۱ ۲ ۵ سفید پاکتی">
     <div class="product-top">
@@ -1389,7 +1389,7 @@ nav a:hover::after { width: 100%; right: 0; }
     <div class="stock-status"><span class="stock-dot"></span> موجود در انبار</div>
   </div>
 
-  <div class="category-title facilities">🔧 تجهیزات تاسیساتی</div>
+  <div class="category-title facilities">تجهیزات تاسیساتی</div>
 
   <div class="product-card reveal" data-name="لوله پلیکا پنبه‌ای پنج لایه فلزی سایز">
     <div class="product-top">
@@ -1697,18 +1697,18 @@ nav a:hover::after { width: 100%; right: 0; }
     <div class="stock-status"><span class="stock-dot"></span> موجود در انبار</div>
   </div>
 
-  <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
+  <div class="working-hours">ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
 </section>
 
 <!-- ================= BLOG ================= -->
 <section class="blog-section" id="blog">
-  <h2 class="section-title">📚 مقالات آموزشی</h2>
+  <h2 class="section-title">مقالات آموزشی</h2>
   <div class="blog-grid" id="blogGrid"></div>
 </section>
 
 <!-- ================= FAQ ================= -->
 <section class="faq-section" id="faq">
-  <h2 class="section-title">❓ سوالات متداول</h2>
+  <h2 class="section-title">سوالات متداول</h2>
 
   <div class="faq-item reveal">
     <div class="faq-question" onclick="toggleFaq(this)">ساعات کاری فروشگاه چه زمانی است؟</div>
@@ -1738,15 +1738,15 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= REVIEWS ================= -->
 <section class="reviews" id="reviews">
-  <h2 class="section-title">💬 نظرات مشتریان</h2>
+  <h2 class="section-title">نظرات مشتریان</h2>
 
   <div style="text-align: center; margin-bottom: 25px;">
-    <button onclick="openReviewForm()" class="review-submit-btn">✍️ ثبت نظر جدید</button>
+    <button onclick="openReviewForm()" class="review-submit-btn">ثبت نظر جدید</button>
   </div>
 
   <div class="review-form-window" id="reviewFormWindow">
     <div class="review-form-header">
-      <span>✍️ ثبت نظر شما</span>
+      <span>ثبت نظر شما</span>
       <button onclick="closeReviewForm()">✕</button>
     </div>
     <div class="review-form-body">
@@ -1765,13 +1765,13 @@ nav a:hover::after { width: 100%; right: 0; }
       <label>نظر شما:</label>
       <textarea id="reviewText" rows="4" placeholder="تجربه‌تون رو با ما بنویسید..."></textarea>
 
-      <button onclick="submitReview()" class="review-send-btn">📤 ارسال نظر</button>
+      <button onclick="submitReview()" class="review-send-btn">ارسال نظر</button>
     </div>
   </div>
 
   <div class="reviews-list" id="reviewsList">
     <div class="no-reviews-yet">
-      <div class="no-reviews-icon">💬</div>
+      <div class="no-reviews-icon"></div>
       هنوز نظری ثبت نشده.<br>
       اولین نفری باشید که نظر می‌ده!
     </div>
@@ -1780,7 +1780,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= GALLERY ================= -->
 <section class="gallery" id="gallery">
-  <h2 class="section-title">📸 گالری تصاویر فروشگاه</h2>
+  <h2 class="section-title">گالری تصاویر فروشگاه</h2>
   <div class="gallery-columns">
     <div class="gallery-column">
       <div class="gallery-item reveal"><img src="67.png" alt="سیمان" loading="lazy"></div>
@@ -1799,7 +1799,7 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= MAP ================= -->
 <div class="map-container" id="map">
-  <h2 class="section-title">📍 موقعیت روی نقشه</h2>
+  <h2 class="section-title">موقعیت روی نقشه</h2>
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.123456789!2d55.110361!3d30.128111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzQxLjIiTiA1NcKwMDYnMzcuMyJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen loading="lazy"></iframe>
 </div>
 
@@ -1807,15 +1807,15 @@ nav a:hover::after { width: 100%; right: 0; }
 <section class="contact" id="contact">
   <img src="0987.jpg" alt="لوگو" class="contact-logo">
   <h2>تماس با ما</h2>
-  <p>📞 شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
-  <p>📍 آدرس: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
+  <p>شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
+  <p>آدرس: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
 
-  <h3>📱 برای استعلام قیمت با ما تماس بگیرید:</h3>
-  <a href="tel:09133908230" class="personal-call-btn">📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰</a>
-  <a href="tel:09133908393" class="personal-call-btn">📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳</a>
+  <h3>برای استعلام قیمت با ما تماس بگیرید:</h3>
+  <a href="tel:09133908230" class="personal-call-btn">مصالح: ۰۹۱۳۳۹۰۸۲۳۰</a>
+  <a href="tel:09133908393" class="personal-call-btn">تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳</a>
 
   <br>
-  <a href="tel:+983434130386" class="call-btn">📞 تماس با مغازه</a>
+  <a href="tel:+983434130386" class="call-btn">تماس با مغازه</a>
 
   <div class="social-links">
     <div class="social-item">
@@ -1868,20 +1868,20 @@ nav a:hover::after { width: 100%; right: 0; }
 
 <!-- ================= INSTA MENU ================= -->
 <div class="insta-menu" id="instaMenu">
-  <p>📸 صفحه اینستاگرام ما:</p>
-  <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener">🏗 پیج مصالح</a>
-  <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener">🔧 پیج تاسیسات</a>
+  <p>صفحه اینستاگرام ما:</p>
+  <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener">پیج مصالح</a>
+  <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener">پیج تاسیسات</a>
 </div>
 
 <!-- ================= ASSISTANT WINDOW ================= -->
 <div class="assistant-window" id="assistantWindow">
   <div class="assistant-header">
-    <span>💬 مشاور خرید هوشمند</span>
+    <span>مشاور خرید هوشمند</span>
     <button onclick="toggleAssistant()">✕</button>
   </div>
   <div class="assistant-messages" id="assistantMessages">
     <div class="assistant-msg bot">
-      سلام! 👋 من مشاور خرید شما هستم. چطور می‌تونم کمکتون کنم؟
+      سلام! من مشاور خرید شما هستم. چطور می‌تونم کمکتون کنم؟
       <br><br>
       <b>می‌تونید بپرسید:</b><br>
       • برای دیوارچینی چی لازم دارم؟<br>
@@ -1898,7 +1898,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <!-- ================= CART WINDOW ================= -->
 <div class="cart-window" id="cartWindow">
   <div class="cart-header">
-    <span>🛒 لیست خرید شما</span>
+    <span>لیست خرید شما</span>
     <button onclick="toggleCart()">✕</button>
   </div>
 
@@ -1916,19 +1916,19 @@ nav a:hover::after { width: 100%; right: 0; }
 
   <div class="cart-items" id="cartItems">
     <div class="cart-empty">
-      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-icon"></div>
       لیست شما خالی است
     </div>
   </div>
 
   <div class="cart-footer">
-    <div class="cart-footer-label">📤 ارسال لیست به:</div>
+    <div class="cart-footer-label">ارسال لیست به:</div>
     <div class="cart-footer-row">
       <button class="btn-eita-masaleh" onclick="sendToEita('masaleh')">ایتا مصالح</button>
       <button class="btn-eita-tasisat" onclick="sendToEita('tasisat')">ایتا تاسیسات</button>
     </div>
     <div class="cart-footer-row">
-      <button class="btn-copy" onclick="copyCart()">📋 کپی لیست</button>
+      <button class="btn-copy" onclick="copyCart()">کپی لیست</button>
       <button class="btn-clear" onclick="clearCart()" title="پاک کردن">🗑</button>
     </div>
   </div>
@@ -1938,7 +1938,7 @@ nav a:hover::after { width: 100%; right: 0; }
 <div class="modal-overlay" id="orderModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>📝 ثبت سفارش آنلاین</h3>
+      <h3>ثبت سفارش آنلاین</h3>
       <button onclick="closeOrderForm()">✕</button>
     </div>
     <div class="modal-body">
@@ -1953,22 +1953,22 @@ nav a:hover::after { width: 100%; right: 0; }
 
       <label>نوع سفارش:</label>
       <select id="orderType">
-        <option value="masaleh">🏗 مصالح ساختمانی (۰۹۱۳۳۹۰۸۲۳۰)</option>
-        <option value="tasisat">🔧 تجهیزات تاسیساتی (۰۹۱۳۳۹۰۸۳۹۳)</option>
-        <option value="both">🎯 هر دو</option>
+        <option value="masaleh">مصالح ساختمانی (۰۹۱۳۳۹۰۸۲۳۰)</option>
+        <option value="tasisat">تجهیزات تاسیساتی (۰۹۱۳۳۹۰۸۳۹۳)</option>
+        <option value="both">هر دو</option>
       </select>
 
       <label>توضیحات (اختیاری):</label>
       <textarea id="orderNote" rows="2" placeholder="مثلاً: برای پروژه ۱۵۰ متری، تحویل فوری..."></textarea>
 
       <div class="modal-notice">
-        ⚠️ <strong>توجه:</strong> لیست خرید فعلی شما (اگر خالی نباشد) به همراه این فرم ارسال می‌شود.
-        <br>💰 <strong>قیمت نهایی پس از تأیید موجودی اعلام می‌شود.</strong>
+        <strong>توجه:</strong> لیست خرید فعلی شما (اگر خالی نباشد) به همراه این فرم ارسال می‌شود.
+        <br><strong>قیمت نهایی پس از تأیید موجودی اعلام می‌شود.</strong>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeOrderForm()">انصراف</button>
-      <button class="btn-primary" onclick="submitOrder()">📤 ارسال سفارش</button>
+      <button class="btn-primary" onclick="submitOrder()">ارسال سفارش</button>
     </div>
   </div>
 </div>
@@ -1977,15 +1977,15 @@ nav a:hover::after { width: 100%; right: 0; }
 <div class="modal-overlay" id="calcModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>🧮 محاسبه‌گر آنلاین مصالح</h3>
+      <h3>محاسبه‌گر آنلاین مصالح</h3>
       <button onclick="closeCalculator()">✕</button>
     </div>
     <div class="modal-body">
       <div class="calc-tabs">
-        <button class="calc-tab active" onclick="switchCalc('wall', this)">🧱 دیوارچینی</button>
-        <button class="calc-tab" onclick="switchCalc('ceiling', this)">🏗 سقف</button>
-        <button class="calc-tab" onclick="switchCalc('concrete', this)">🪨 بتن</button>
-        <button class="calc-tab" onclick="switchCalc('tile', this)">🔲 کاشی‌کاری</button>
+        <button class="calc-tab active" onclick="switchCalc('wall', this)">دیوارچینی</button>
+        <button class="calc-tab" onclick="switchCalc('ceiling', this)">سقف</button>
+        <button class="calc-tab" onclick="switchCalc('concrete', this)">بتن</button>
+        <button class="calc-tab" onclick="switchCalc('tile', this)">کاشی‌کاری</button>
       </div>
 
       <div class="calc-panel active" id="calc-wall">
@@ -2036,7 +2036,7 @@ nav a:hover::after { width: 100%; right: 0; }
     </div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeCalculator()">بستن</button>
-      <button class="btn-primary" onclick="addCalcToCart()">➕ افزودن به لیست خرید</button>
+      <button class="btn-primary" onclick="addCalcToCart()">افزودن به لیست خرید</button>
     </div>
   </div>
 </div>
@@ -2045,13 +2045,13 @@ nav a:hover::after { width: 100%; right: 0; }
 <div class="modal-overlay" id="articleModal">
   <div class="modal-content" style="max-width: 780px;">
     <div class="modal-header">
-      <h3 id="articleTitle">📖 مقاله</h3>
+      <h3 id="articleTitle">مقاله</h3>
       <button onclick="closeArticle()">✕</button>
     </div>
     <div class="modal-body blog-article" id="articleContent"></div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeArticle()">بستن</button>
-      <button class="btn-primary" onclick="callForArticle()">📞 مشاوره تلفنی</button>
+      <button class="btn-primary" onclick="callForArticle()">مشاوره تلفنی</button>
     </div>
   </div>
 </div>
@@ -2084,7 +2084,7 @@ function saveReviews() {
   try {
     localStorage.setItem('kargar_reviews', JSON.stringify(reviews));
   } catch (e) {
-    showToast('❌ خطا در ذخیره نظرات', 'error');
+    showToast('خطا در ذخیره نظرات', 'error');
   }
 }
 
@@ -2128,7 +2128,7 @@ function activateProduct(productName, btn) {
   const input = document.getElementById('input-' + productName);
   if (input) { const item = cart.find(i => i.name === productName); if (item) input.value = item.qty; }
   updateCart();
-  showToast('✅ به لیست خرید اضافه شد');
+  showToast('به لیست خرید اضافه شد');
 }
 
 function decreaseQty(productName) {
@@ -2206,7 +2206,7 @@ function clearCart() {
   });
   cart = [];
   updateCart();
-  showToast('🗑 لیست خرید پاک شد', 'info');
+  showToast('لیست خرید پاک شد', 'info');
 }
 
 function updateCart() {
@@ -2227,7 +2227,7 @@ function updateCart() {
   else { floatingCartBtn.classList.remove('show'); }
 
   if (cart.length === 0) {
-    cartItems.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div>لیست شما خالی است</div>';
+    cartItems.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"></div>لیست شما خالی است</div>';
   } else {
     cartItems.innerHTML = cart.map((item, idx) => `
       <div class="cart-item">
@@ -2256,25 +2256,25 @@ function toggleCart(event) {
 }
 
 function cartToText() {
-  return '🛒 لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' +
+  return 'لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' +
     cart.map((item, i) => `${i+1}. ${item.name} — تعداد: ${item.qty}`).join('\n') +
-    `\n\n📦 مجموع: ${cart.length} قلم کالا — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
+    `\n\nمجموع: ${cart.length} قلم کالا — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
 }
 
 function sendToEita(type) {
-  if (cart.length === 0) { showToast('⚠️ لیست شما خالی است', 'error'); return; }
+  if (cart.length === 0) { showToast('لیست شما خالی است', 'error'); return; }
   const text = cartToText();
   const phone = type === 'masaleh' ? '09133908230' : '09133908393';
   const label = type === 'masaleh' ? 'مصالح' : 'تاسیسات';
   copyToClipboard(text).then(() => {
-    showToast('✅ لیست کپی شد. ایتا باز می‌شود...');
+    showToast('لیست کپی شد. ایتا باز می‌شود...');
     setTimeout(() => { window.location.href = 'eitaa://'; }, 700);
   });
 }
 
 function copyCart() {
-  if (cart.length === 0) { showToast('⚠️ لیست شما خالی است', 'error'); return; }
-  copyToClipboard(cartToText()).then(() => showToast('✅ لیست کپی شد'));
+  if (cart.length === 0) { showToast('لیست شما خالی است', 'error'); return; }
+  copyToClipboard(cartToText()).then(() => showToast('لیست کپی شد'));
 }
 
 function copyToClipboard(text) {
@@ -2356,7 +2356,7 @@ function searchProducts() {
     resultInfo.innerHTML = '';
   } else {
     noResult.classList.remove('show');
-    resultInfo.innerHTML = '🔍 <strong>' + visibleCount + '</strong> محصول پیدا شد';
+    resultInfo.innerHTML = '<strong>' + visibleCount + '</strong> محصول پیدا شد';
   }
 }
 
@@ -2404,11 +2404,11 @@ function submitReview() {
   const name = document.getElementById('reviewName').value.trim();
   const text = document.getElementById('reviewText').value.trim();
 
-  if (!name) { showToast('⚠️ لطفاً نام خود را وارد کنید', 'error'); return; }
-  if (name.length < 2) { showToast('⚠️ نام باید حداقل ۲ حرف باشد', 'error'); return; }
-  if (currentRating === 0) { showToast('⚠️ لطفاً امتیاز خود را انتخاب کنید', 'error'); return; }
-  if (!text) { showToast('⚠️ لطفاً نظر خود را بنویسید', 'error'); return; }
-  if (text.length < 10) { showToast('⚠️ نظر باید حداقل ۱۰ حرف باشد', 'error'); return; }
+  if (!name) { showToast('لطفاً نام خود را وارد کنید', 'error'); return; }
+  if (name.length < 2) { showToast('نام باید حداقل ۲ حرف باشد', 'error'); return; }
+  if (currentRating === 0) { showToast('لطفاً امتیاز خود را انتخاب کنید', 'error'); return; }
+  if (!text) { showToast('لطفاً نظر خود را بنویسید', 'error'); return; }
+  if (text.length < 10) { showToast('نظر باید حداقل ۱۰ حرف باشد', 'error'); return; }
 
   const review = {
     id: Date.now(),
@@ -2423,7 +2423,7 @@ function submitReview() {
   saveReviews();
   renderReviewsList();
   updateAdminStats();
-  showToast('✅ نظر شما ثبت شد. پس از تأیید نمایش داده می‌شود.');
+  showToast('نظر شما ثبت شد. پس از تأیید نمایش داده می‌شود.');
   closeReviewForm();
 }
 
@@ -2432,7 +2432,7 @@ function renderReviewsList() {
   const approved = reviews.filter(r => r.status === 'approved');
 
   if (approved.length === 0) {
-    container.innerHTML = `<div class="no-reviews-yet"><div class="no-reviews-icon">💬</div>هنوز نظری ثبت نشده.<br>اولین نفری باشید که نظر می‌ده!</div>`;
+    container.innerHTML = `<div class="no-reviews-yet"><div class="no-reviews-icon"></div>هنوز نظری ثبت نشده.<br>اولین نفری باشید که نظر می‌ده!</div>`;
     return;
   }
 
@@ -2450,7 +2450,7 @@ function renderReviewsList() {
           <div class="review-stars">${stars}</div>
         </div>
         <p class="review-text">${escapeHtml(r.text)}</p>
-        <span class="review-date">📅 ${dateStr}</span>
+        <span class="review-date">${dateStr}</span>
       </div>
     `;
   }).join('');
@@ -2496,10 +2496,10 @@ function loginAdmin() {
   const pass = document.getElementById('adminPassword').value;
   if (pass === ADMIN_PASSWORD) {
     isAdminLoggedIn = true;
-    showToast('✅ ورود موفق');
+    showToast('ورود موفق');
     showAdminPanel();
   } else {
-    showToast('❌ رمز عبور اشتباه است', 'error');
+    showToast('رمز عبور اشتباه است', 'error');
     document.getElementById('adminPassword').value = '';
   }
 }
@@ -2536,29 +2536,29 @@ function renderAdminReviews() {
   filtered = filtered.slice().reverse();
 
   if (filtered.length === 0) {
-    container.innerHTML = `<div class="admin-empty">📭 هیچ نظری در این دسته وجود ندارد</div>`;
+    container.innerHTML = `<div class="admin-empty">هیچ نظری در این دسته وجود ندارد</div>`;
     return;
   }
 
   container.innerHTML = filtered.map(r => {
     const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
     const dateStr = new Date(r.date).toLocaleString('fa-IR');
-    const statusLabels = { pending: '⏳ در انتظار', approved: '✅ تأیید شده', rejected: '❌ رد شده' };
+    const statusLabels = { pending: 'در انتظار', approved: 'تأیید شده', rejected: 'رد شده' };
     return `
       <div class="admin-review-item ${r.status}">
         <div class="admin-review-head">
           <div class="admin-review-name">
-            <span>👤 ${escapeHtml(r.name)}</span>
+            <span>${escapeHtml(r.name)}</span>
             <span style="font-size: 11px; color: #94a3b8;">${statusLabels[r.status]}</span>
           </div>
           <div class="admin-review-stars">${stars}</div>
         </div>
         <p class="admin-review-text">${escapeHtml(r.text)}</p>
-        <div style="font-size: 11px; color: #94a3b8;">📅 ${dateStr}</div>
+        <div style="font-size: 11px; color: #94a3b8;">${dateStr}</div>
         <div class="admin-review-actions">
-          ${r.status !== 'approved' ? `<button class="btn-approve" onclick="approveReview(${r.id})">✅ تأیید</button>` : ''}
-          ${r.status !== 'rejected' ? `<button class="btn-reject" onclick="rejectReview(${r.id})">❌ رد</button>` : ''}
-          <button class="btn-delete" onclick="deleteReview(${r.id})">🗑 حذف</button>
+          ${r.status !== 'approved' ? `<button class="btn-approve" onclick="approveReview(${r.id})">تأیید</button>` : ''}
+          ${r.status !== 'rejected' ? `<button class="btn-reject" onclick="rejectReview(${r.id})">رد</button>` : ''}
+          <button class="btn-delete" onclick="deleteReview(${r.id})">حذف</button>
         </div>
       </div>
     `;
@@ -2573,7 +2573,7 @@ function approveReview(id) {
   updateAdminStats();
   renderAdminReviews();
   renderReviewsList();
-  showToast('✅ نظر تأیید شد');
+  showToast('نظر تأیید شد');
 }
 
 function rejectReview(id) {
@@ -2584,7 +2584,7 @@ function rejectReview(id) {
   updateAdminStats();
   renderAdminReviews();
   renderReviewsList();
-  showToast('❌ نظر رد شد', 'info');
+  showToast('نظر رد شد', 'info');
 }
 
 function deleteReview(id) {
@@ -2594,7 +2594,7 @@ function deleteReview(id) {
   updateAdminStats();
   renderAdminReviews();
   renderReviewsList();
-  showToast('🗑 نظر حذف شد', 'info');
+  showToast('نظر حذف شد', 'info');
 }
 
 function exportReviews() {
@@ -2606,7 +2606,7 @@ function exportReviews() {
   a.download = 'kargar-reviews-' + new Date().toISOString().slice(0,10) + '.json';
   a.click();
   URL.revokeObjectURL(url);
-  showToast('📥 فایل JSON دانلود شد');
+  showToast('فایل JSON دانلود شد');
 }
 
 function importReviews(event) {
@@ -2623,9 +2623,9 @@ function importReviews(event) {
       updateAdminStats();
       renderAdminReviews();
       renderReviewsList();
-      showToast('✅ نظرات با موفقیت بارگذاری شد');
+      showToast('نظرات با موفقیت بارگذاری شد');
     } catch (err) {
-      showToast('❌ فایل JSON نامعتبر است', 'error');
+      showToast('فایل JSON نامعتبر است', 'error');
     }
   };
   reader.readAsText(file);
@@ -2653,35 +2653,35 @@ function sendAssistantMsg() {
 }
 
 const knowledgeBase = {
-  'سیمان': '💡 سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات.\n📞 استعلام قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
-  'بلوک': '💡 بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\n📏 برای هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'کاشی': '💡 کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'سرامیک': '💡 سرامیک کف و دیوار با مقاومت بالا.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'گچ': '💡 گچ سفیدکاری و ساختمانی، کیسه‌های ۳۰ و ۴۰ کیلویی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'لوله': '💡 لوله پلیکا، پنج لایه، پنبه‌ای و فلزی در سایزهای مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'پکیج': '💡 پکیج دیواری و زمینی با گارانتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'رادیاتور': '💡 رادیاتور پنلی و آلومینیومی در ابعاد مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'شیرآلات': '💡 شیرآلات بهداشتی و ساختمانی از برندهای معتبر.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'سینک': '💡 سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'چینی': '💡 توالت ایرانی و فرنگی از برندهای معتبر.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'پمپ': '💡 پمپ آب خانگی، نیمه صنعتی و صنعتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'مخزن': '💡 مخازن آب افقی، عمودی، ایستاده و خوابیده.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'هود': '💡 هود آشپزخانه در مدل‌های مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'گاز': '💡 گاز صفحه‌ای در مدل‌ها و سایزهای مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'آینه': '💡 آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'فلاش': '💡 فلاش تانک توکار و روکار در مدل‌های مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'موزاییک': '💡 موزاییک پرسی و معمولی برای محوطه‌سازی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'آجر': '💡 آجر گره‌ای و سفال برای دیوارچینی و نماکاری.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'آهک': '💡 آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'پودر سنگ': '💡 پودر سنگ جوشقان و سایر معادن.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'اتصالات': '💡 انواع اتصالات لوله‌کشی آب و فاضلاب.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'دیوار': '💡 برای هر متر مربع دیوار تیغه‌ای: ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'سقف': '💡 برای هر متر مربع سقف تیرچه بلوک: ۲ عدد بلوک سقفی + تیرچه + میلگرد.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'قیمت': '💰 برای استعلام قیمت روز:\n📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
-  'تماس': '📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\n📞 مغازه: ۰۳۴-۳۴۳۴۱۳۰۳',
-  'آدرس': '📍 شهربابک، خیابان مطهری، نبش کوچه ۱۱\n⏰ شنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
-  'ارسال': '✅ ارسال سریع با ناوگان خودمون در شهربابک و حومه.',
-  'سلام': 'سلام و خوش آمدید! 😊 چطور می‌تونم کمکتون کنم؟'
+  'سیمان': 'سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات.\nاستعلام قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
+  'بلوک': 'بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\nبرای هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'کاشی': 'کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'سرامیک': 'سرامیک کف و دیوار با مقاومت بالا.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'گچ': 'گچ سفیدکاری و ساختمانی، کیسه‌های ۳۰ و ۴۰ کیلویی.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'لوله': 'لوله پلیکا، پنج لایه، پنبه‌ای و فلزی در سایزهای مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'پکیج': 'پکیج دیواری و زمینی با گارانتی.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'رادیاتور': 'رادیاتور پنلی و آلومینیومی در ابعاد مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'شیرآلات': 'شیرآلات بهداشتی و ساختمانی از برندهای معتبر.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'سینک': 'سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'چینی': 'توالت ایرانی و فرنگی از برندهای معتبر.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'پمپ': 'پمپ آب خانگی، نیمه صنعتی و صنعتی.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'مخزن': 'مخازن آب افقی، عمودی، ایستاده و خوابیده.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'هود': 'هود آشپزخانه در مدل‌های مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'گاز': 'گاز صفحه‌ای در مدل‌ها و سایزهای مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'آینه': 'آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'فلاش': 'فلاش تانک توکار و روکار در مدل‌های مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'موزاییک': 'موزاییک پرسی و معمولی برای محوطه‌سازی.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'آجر': 'آجر گره‌ای و سفال برای دیوارچینی و نماکاری.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'آهک': 'آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'پودر سنگ': 'پودر سنگ جوشقان و سایر معادن.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'اتصالات': 'انواع اتصالات لوله‌کشی آب و فاضلاب.\n۰۹۱۳۳۹۰۸۳۹۳',
+  'دیوار': 'برای هر متر مربع دیوار تیغه‌ای: ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'سقف': 'برای هر متر مربع سقف تیرچه بلوک: ۲ عدد بلوک سقفی + تیرچه + میلگرد.\n۰۹۱۳۳۹۰۸۲۳۰',
+  'قیمت': 'برای استعلام قیمت روز:\nمصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
+  'تماس': 'مصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\nمغازه: ۰۳۴-۳۴۳۴۱۳۰۳',
+  'آدرس': 'شهربابک، خیابان مطهری، نبش کوچه ۱۱\nشنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
+  'ارسال': 'ارسال سریع با ناوگان خودمون در شهربابک و حومه.',
+  'سلام': 'سلام و خوش آمدید! چطور می‌تونم کمکتون کنم؟'
 };
 
 function getAssistantReply(msg) {
@@ -2690,7 +2690,7 @@ function getAssistantReply(msg) {
   for (const key of sortedKeys) {
     if (lower.includes(normalize(key))) return knowledgeBase[key];
   }
-  return 'متأسفم، متوجه نشدم. 🤔\n\nمی‌تونید اینا رو بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n• پکیج دارید؟\n\nیا تماس بگیرید:\n📞 ۰۹۱۳۳۹۰۸۲۳۰';
+  return 'متأسفم، متوجه نشدم.\n\nمی‌تونید اینا رو بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n• پکیج دارید؟\n\nیا تماس بگیرید:\n۰۹۱۳۳۹۰۸۲۳۰';
 }
 
 function addMsg(text, type) {
@@ -2772,29 +2772,29 @@ function submitOrder() {
   const type = document.getElementById('orderType').value;
   const note = document.getElementById('orderNote').value.trim();
 
-  if (!name || name.length < 2) { showToast('⚠️ نام را درست وارد کنید', 'error'); return; }
-  if (!/^09\d{9}$/.test(phone)) { showToast('⚠️ شماره موبایل معتبر وارد کنید (مثل 09123456789)', 'error'); return; }
-  if (!address || address.length < 5) { showToast('⚠️ آدرس را کامل وارد کنید', 'error'); return; }
+  if (!name || name.length < 2) { showToast('نام را درست وارد کنید', 'error'); return; }
+  if (!/^09\d{9}$/.test(phone)) { showToast('شماره موبایل معتبر وارد کنید (مثل 09123456789)', 'error'); return; }
+  if (!address || address.length < 5) { showToast('آدرس را کامل وارد کنید', 'error'); return; }
 
-  let text = '🛒 سفارش آنلاین جدید از سایت کارگر:\n\n';
-  text += '👤 نام: ' + name + '\n';
-  text += '📞 تلفن: ' + phone + '\n';
-  text += '📍 آدرس: ' + address + '\n';
-  text += '📦 نوع: ' + (type === 'masaleh' ? 'مصالح ساختمانی' : type === 'tasisat' ? 'تاسیسات' : 'مصالح + تاسیسات') + '\n';
-  if (note) text += '📝 توضیحات: ' + note + '\n';
+  let text = 'سفارش آنلاین جدید از سایت کارگر:\n\n';
+  text += 'نام: ' + name + '\n';
+  text += 'تلفن: ' + phone + '\n';
+  text += 'آدرس: ' + address + '\n';
+  text += 'نوع: ' + (type === 'masaleh' ? 'مصالح ساختمانی' : type === 'tasisat' ? 'تاسیسات' : 'مصالح + تاسیسات') + '\n';
+  if (note) text += 'توضیحات: ' + note + '\n';
 
   if (cart.length > 0) {
     text += '\n--- لیست خرید ---\n';
     cart.forEach((item, i) => {
       text += `${i+1}. ${item.name} — تعداد: ${item.qty}\n`;
     });
-    text += `\n📦 مجموع: ${cart.length} قلم — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
+    text += `\nمجموع: ${cart.length} قلم — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
   } else {
     text += '\n(لیست خرید خالی)';
   }
 
   copyToClipboard(text).then(() => {
-    showToast('✅ سفارش کپی شد. در حال باز کردن ایتا...');
+    showToast('سفارش کپی شد. در حال باز کردن ایتا...');
     setTimeout(() => {
       if (cart.length > 0) {
         cart = [];
@@ -2839,7 +2839,7 @@ function calcWall() {
   const cement = Math.ceil(area * 0.5);
   const sand = (area * 0.02).toFixed(2);
   document.getElementById('wallResult').innerHTML = `
-    <h4>📊 نتیجه محاسبه</h4>
+    <h4>نتیجه محاسبه</h4>
     <div class="calc-result-item"><span>مساحت دیوار:</span><span>${area.toFixed(2)} متر مربع</span></div>
     <div class="calc-result-item"><span>تعداد بلوک:</span><span>${blocks} عدد</span></div>
     <div class="calc-result-item"><span>سیمان (تخمینی):</span><span>${cement} کیسه</span></div>
@@ -2855,7 +2855,7 @@ function calcCeiling() {
   const cement = Math.ceil(area * 0.8);
   const steel = Math.ceil(area * 4);
   document.getElementById('ceilingResult').innerHTML = `
-    <h4>📊 نتیجه محاسبه سقف تیرچه بلوک</h4>
+    <h4>نتیجه محاسبه سقف تیرچه بلوک</h4>
     <div class="calc-result-item"><span>مساحت سقف:</span><span>${area.toFixed(2)} متر مربع</span></div>
     <div class="calc-result-item"><span>بلوک سقفی:</span><span>${blocks} عدد</span></div>
     <div class="calc-result-item"><span>تیرچه:</span><span>${joists} عدد</span></div>
@@ -2874,7 +2874,7 @@ function calcConcrete() {
   const gravel = (vol * 0.85).toFixed(2);
   const water = Math.ceil(vol * 180);
   document.getElementById('concreteResult').innerHTML = `
-    <h4>📊 نتیجه محاسبه بتن</h4>
+    <h4>نتیجه محاسبه بتن</h4>
     <div class="calc-result-item"><span>حجم بتن:</span><span>${vol.toFixed(2)} متر مکعب</span></div>
     <div class="calc-result-item"><span>عیار سیمان:</span><span>${grade} kg/m³</span></div>
     <div class="calc-result-item"><span>سیمان:</span><span>${cement} کیسه ۵۰ کیلویی</span></div>
@@ -2894,7 +2894,7 @@ function calcTile() {
   const boxes = Math.ceil(totalTiles / 10);
   const cement = Math.ceil(area * 0.4);
   document.getElementById('tileResult').innerHTML = `
-    <h4>📊 نتیجه محاسبه کاشی‌کاری</h4>
+    <h4>نتیجه محاسبه کاشی‌کاری</h4>
     <div class="calc-result-item"><span>مساحت:</span><span>${area.toFixed(2)} متر مربع</span></div>
     <div class="calc-result-item"><span>ابعاد کاشی:</span><span>${size[0]}×${size[1]} سانتی</span></div>
     <div class="calc-result-item"><span>تعداد کاشی (با پرت ۱۰٪):</span><span>${totalTiles} عدد</span></div>
@@ -2917,7 +2917,7 @@ function addCalcToCart() {
   if (existing) existing.qty += qty;
   else cart.push({ name: productName, qty: qty });
   updateCart();
-  showToast(`✅ ${qty} عدد ${productName} به لیست اضافه شد`);
+  showToast(`${qty} عدد ${productName} به لیست اضافه شد`);
   closeCalculator();
 }
 
@@ -2942,7 +2942,7 @@ const blogPosts = [
       <h3>۴. سیمان سفید</h3>
       <p>برای نماکاری، بندکشی و کارهای تزئینی استفاده می‌شود.</p>
       <div class="highlight">
-        💡 <strong>نکته مهم:</strong> برای پروژه‌های خاص حتماً با کارشناس ما مشورت کنید. تماس: ۰۹۱۳۳۹۰۸۲۳۰
+        <strong>نکته مهم:</strong> برای پروژه‌های خاص حتماً با کارشناس ما مشورت کنید. تماس: ۰۹۱۳۳۹۰۸۲۳۰
       </div>
     `
   },
@@ -2966,7 +2966,7 @@ const blogPosts = [
       <h3>مثال عملی</h3>
       <p>دیواری به طول ۱۰ متر و ارتفاع ۳ متر: مساحت = ۳۰ متر مربع. اگر بلوک ۱۰ سانتی استفاده کنیم: ۳۰ × ۱۰ = ۳۰۰ عدد بلوک.</p>
       <div class="highlight">
-        ⚠️ <strong>نکات مهم:</strong>
+        <strong>نکات مهم:</strong>
         <br>• همیشه ۵٪ پرت اضافه کن
         <br>• درب و پنجره رو کم کن
         <br>• برای دیوار حمال از بلوک مناسب استفاده کن
@@ -2994,7 +2994,7 @@ const blogPosts = [
       <h3>۴. لوله فلزی (مسی و فولادی)</h3>
       <p>برای سیستم‌های خاص. مسی گران ولی بادوام است.</p>
       <div class="highlight">
-        💡 <strong>توصیه ما:</strong> برای آب گرم از پنج لایه، برای فاضلاب از پلیکا و برای آب سرد از پلیکا یا پنج لایه استفاده کنید.
+        <strong>توصیه ما:</strong> برای آب گرم از پنج لایه، برای فاضلاب از پلیکا و برای آب سرد از پلیکا یا پنج لایه استفاده کنید.
       </div>
     `
   },
@@ -3021,7 +3021,7 @@ const blogPosts = [
       <p><strong>۳. تکنولوژی:</strong> فن‌دار یا بدون فن.</p>
       <p><strong>۴. خدمات پس از فروش:</strong> حتماً نمایندگی رسمی باشد.</p>
       <div class="highlight">
-        ⚠️ <strong>توجه:</strong> نصب پکیج حتماً باید توسط نصاب مجاز انجام شود تا گارانتی معتبر باشد.
+        <strong>توجه:</strong> نصب پکیج حتماً باید توسط نصاب مجاز انجام شود تا گارانتی معتبر باشد.
       </div>
     `
   },
@@ -3052,7 +3052,7 @@ const blogPosts = [
         <li><strong>یک تکه:</strong> یکپارچه، شیک‌تر</li>
       </ul>
       <div class="highlight">
-        💡 <strong>توصیه:</strong> هنگام خرید، حتماً از نزدیک ببینید و از فروشنده معتبر بخرید.
+        <strong>توصیه:</strong> هنگام خرید، حتماً از نزدیک ببینید و از فروشنده معتبر بخرید.
       </div>
     `
   }
@@ -3069,7 +3069,7 @@ function renderBlog() {
         <p>${p.excerpt}</p>
         <div class="blog-card-meta">
           <span class="blog-card-tag">${p.tag}</span>
-          <span>📅 ${p.date}</span>
+          <span>${p.date}</span>
         </div>
       </div>
     </div>
@@ -3082,8 +3082,8 @@ function openArticle(id) {
   document.getElementById('articleTitle').innerHTML = post.icon + ' ' + post.title;
   document.getElementById('articleContent').innerHTML = `
     <div class="blog-meta">
-      <span>🏷 ${post.tag}</span>
-      <span>📅 ${post.date}</span>
+      <span>${post.tag}</span>
+      <span>${post.date}</span>
     </div>
     ${post.content}
   `;
