@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-10-20T10:02:44.676Z",
+  "lastUpdate": "2026-10-21T11:21:55.907Z",
   "products": [
     {
       "id": "cement-types",
@@ -17,7 +17,7 @@
       "image": "simans.png",
       "category": "",
       "keywords": "سیمان سفید پاکتی نما بندکشی",
-      "inStock": false
+      "inStock": true
     },
     {
       "id": "gach",
