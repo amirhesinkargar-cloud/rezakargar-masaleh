@@ -64,6 +64,12 @@ body {
   from { opacity: 0; transform: translateY(30px) scale(0.9); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.25); }
+}
 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -339,26 +345,26 @@ nav a:hover::after { width: 100%; right: 0; }
   position: absolute;
   top: 8px;
   left: 8px;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   z-index: 10;
   color: #475569;
 }
-.wishlist-btn:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.7); }
+.wishlist-btn:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.6); }
 .wishlist-btn.active {
   color: #ef4444;
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(239, 68, 68, 0.4);
   animation: heartbeat 0.6s;
 }
 
@@ -573,64 +579,80 @@ nav a:hover::after { width: 100%; right: 0; }
 .social-item a:hover { transform: translateY(-6px) scale(1.1); }
 .social-item span { display: block; margin-top: 10px; font-size: 13px; color: #cbd5e1; font-weight: 700; }
 
-/* ===================== FLOATING BUTTONS (چیدمان جدید) ===================== */
+/* ===================== FLOATING BUTTONS (چیدمان نهایی) ===================== */
 .float-btn {
   position: fixed; width: 50px; height: 50px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: white; text-decoration: none; border: none;
   cursor: pointer; z-index: 1000;
-  transition: all 0.4s; padding: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
 }
 .float-btn:hover { transform: scale(1.1) translateY(-3px); }
 
-/* ستون سمت راست (از پایین به بالا) */
-.floating-cart-btn { /* ۱. سبد خرید (پایین راست) */
+/* ===== ستون سمت راست ===== */
+/* ۱. سبد خرید (پایین راست) */
+.floating-cart-btn {
   bottom: 20px; right: 20px;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
-  display: none; /* فقط وقتی محصولی هست نشون داده میشه */
+  display: none; 
 }
 .floating-cart-btn.show { display: flex; animation: fadeInUp 0.4s; }
 
-.floating-wishlist-btn { /* ۲. فهرست لایک‌ها (وسط راست) */
+/* ۲. اینستاگرام (وسط راست - همون جای قبلی) */
+.floating-insta-btn {
   bottom: 82px; right: 20px;
+  background: linear-gradient(135deg, #e1306c, #c13584);
+  box-shadow: 0 8px 25px rgba(225, 48, 108, 0.4);
+}
+
+/* ۳. فهرست لایک‌ها (بالا راست - کنار اینستاگرام) */
+.floating-wishlist-btn {
+  bottom: 144px; right: 20px;
   background: linear-gradient(135deg, #ec4899, #be185d);
   box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
   font-size: 22px; display: none;
 }
 .floating-wishlist-btn.show { display: flex; animation: fadeInUp 0.4s; }
 
-.floating-insta-btn { /* ۳. اینستاگرام (بالا راست) */
-  bottom: 144px; right: 20px;
-  background: linear-gradient(135deg, #e1306c, #c13584);
-  box-shadow: 0 8px 25px rgba(225, 48, 108, 0.4);
-}
-
-/* ستون سمت چپ (از پایین به بالا) */
-.floating-call-btn { /* ۱. تماس (پایین چپ) */
+/* ===== ستون سمت چپ ===== */
+/* ۱. تماس (پایین چپ) */
+.floating-call-btn {
   bottom: 20px; left: 20px;
   background: linear-gradient(135deg, #25d366, #128c7e);
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
   font-size: 24px; animation: pulse 2.5s infinite;
 }
 
-.floating-assistant-btn { /* ۲. مشاور (وسط چپ) */
+/* ۲. مشاور (وسط چپ) */
+.floating-assistant-btn {
   bottom: 82px; left: 20px;
   background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
   box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
 }
 
-.floating-theme-btn { /* ۳. تم شب/روز (بالا چپ) */
+/* ۳. تم شب/روز (بالا چپ - مدرن و شیک) */
+.floating-theme-btn {
   bottom: 144px; left: 20px;
-  background: linear-gradient(135deg, #334155, #1e293b);
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
-  font-size: 20px;
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-size: 22px;
+}
+.floating-theme-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1) rotate(180deg);
 }
 body.dark-mode .floating-theme-btn {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  color: #0f172a;
-  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.2);
 }
 
 /* شمارنده‌ها */
@@ -1410,9 +1432,8 @@ body.dark-mode .history-item { background: #0f172a !important; }
   </div>
 </section>
 
-<!-- ================= FLOATING BUTTONS (چیدمان جدید) ================= -->
-
-<!-- ستون سمت راست (پایین به بالا) -->
+<!-- ================= FLOATING BUTTONS ================= -->
+<!-- ستون سمت راست -->
 <button class="float-btn floating-cart-btn" id="floatingCartBtn" onclick="toggleCart(event)" title="لیست خرید">
   <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -1420,16 +1441,16 @@ body.dark-mode .history-item { background: #0f172a !important; }
   <span class="cart-count" id="cartCount">0</span>
 </button>
 
+<button class="float-btn floating-insta-btn" onclick="toggleInstaMenu(event)" title="اینستاگرام">
+  <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</button>
+
 <button class="float-btn floating-wishlist-btn" id="floatingWishlistBtn" onclick="toggleWishlist(event)" title="علاقه‌مندی‌ها">
   ❤️
   <span class="wishlist-count" id="wishlistCount">0</span>
 </button>
 
-<button class="float-btn floating-insta-btn" onclick="toggleInstaMenu(event)" title="اینستاگرام">
-  <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-</button>
-
-<!-- ستون سمت چپ (پایین به بالا) -->
+<!-- ستون سمت چپ -->
 <a href="tel:+983434130386" class="float-btn floating-call-btn" title="تماس فوری">📞</a>
 
 <button class="float-btn floating-assistant-btn" onclick="toggleAssistant()" title="مشاور خرید">
@@ -1734,4 +1755,4 @@ body.dark-mode .history-item { background: #0f172a !important; }
 <script src="script.js"></script>
 
 </body>
-      </html>
+  </html>
