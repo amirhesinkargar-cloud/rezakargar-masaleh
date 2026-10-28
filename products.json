@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-10-27T20:46:25.599Z",
+  "lastUpdate": "2026-10-28T15:50:37.819Z",
   "products": [
     {
       "id": "cement-types",
@@ -68,8 +68,8 @@
       "id": "ajar",
       "name": "آجر گره‌ای",
       "desc": "آجر گره‌ای و سفال برای دیوارچینی و نماکاری.",
-      "image": "0987.jpg",
-      "category": "wall",
+      "image": "gereyi.jpn",
+      "category": "construction",
       "keywords": "آجر گره‌ای سفال دیوارچینی نماکاری",
       "inStock": true
     },
