@@ -1,8 +1,3 @@
-/* ============================================
-   مصالح ساختمانی و تاسیسات مرکزی کارگر
-   فایل جاوااسکریپت اصلی
-   ============================================ */
-
 /* ================== CONFIG ================== */
 const ADMIN_PASSWORD = 'admin1234';
 const STORAGE_KEYS = {
@@ -38,7 +33,7 @@ let logoClickTimer = null;
 let currentDiscount = 0;
 let allProducts = [];
 
-/* ================== PRODUCTS DATA ================== */
+/* ================== PRODUCTS DATA (عکس‌های جدید اینجا اعمال شدن) ================== */
 const PRODUCTS = [
   // مصالح ساختمانی
   { id: 'cement', name: 'انواع سیمان', desc: 'سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.', image: '67.png', category: 'construction', keywords: 'سیمان تیپ بتن' },
@@ -49,7 +44,7 @@ const PRODUCTS = [
   { id: 'mozaic', name: 'موزاییک', desc: 'موزاییک پرسی و معمولی برای محوطه‌سازی.', image: '76.png', category: 'construction', keywords: 'موزاییک محوطه' },
   { id: 'gach', name: 'گچ', desc: 'گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.', image: 'gallery2.jpg', category: 'construction', keywords: 'گچ سفیدکاری' },
   { id: 'poudr', name: 'پودر سنگ', desc: 'پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.', image: 'gallery2.jpg', category: 'construction', keywords: 'پودر سنگ' },
-  { id: 'ajar', name: 'آجر گره‌ای', desc: 'آجر گره‌ای و سفال برای دیوارچینی و نماکاری.', image: '0987.jpg', category: 'construction', keywords: 'آجر گره سفال' },
+  { id: 'ajar', name: 'آجر گره‌ای', desc: 'آجر گره‌ای و سفال برای دیوارچینی و نماکاری.', image: 'gereyi.jpg', category: 'construction', keywords: 'آجر گره سفال' },
   { id: 'cement-white', name: 'سیمان سفید', desc: 'سیمان سفید پاکتی برای کارهای نما و بندکشی.', image: 'simans.png', category: 'construction', keywords: 'سیمان سفید' },
   { id: 'ahak', name: 'آهک', desc: 'آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.', image: 'gallery5.jpg', category: 'construction', keywords: 'آهک' },
 
@@ -64,37 +59,25 @@ const PRODUCTS = [
   { id: 'flush', name: 'انواع فلاش تانک', desc: 'فلاش تانک توکار و روکار، در مدل‌های مختلف.', image: 'file_00000000614c81f48075e69377334388.png', category: 'facilities', keywords: 'فلاش تانک' },
   { id: 'jame', name: 'جامایع', desc: 'جامایع در طرح‌ها و رنگ‌های متنوع.', image: '0987.jpg', category: 'facilities', keywords: 'جامایع' },
   { id: 'jadastmal', name: 'جادستمال', desc: 'جادستمال در طرح‌ها و رنگ‌های مختلف.', image: 'file_00000000d1188246978a93e7572407c9.png', category: 'facilities', keywords: 'جادستمال' },
-  { id: 'ayneh', name: 'آینه', desc: 'آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.', image: '0987.jpg', category: 'facilities', keywords: 'آینه سرویس' },
+  { id: 'ayneh', name: 'آینه', desc: 'آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.', image: 'ayeneh1.jpg', category: 'facilities', keywords: 'آینه سرویس' },
   { id: 'package', name: 'پکیج', desc: 'پکیج دیواری و زمینی با گارانتی.', image: '0987.jpg', category: 'facilities', keywords: 'پکیج' },
   { id: 'radiator', name: 'رادیاتور', desc: 'رادیاتور پنلی و آلومینیومی در ابعاد مختلف.', image: 'file_000000000d54824689102bfa7c628d6b.png', category: 'facilities', keywords: 'رادیاتور' },
   { id: 'cooler', name: 'کولر سلولزی', desc: 'کولر آبی سلولزی با مصرف بهینه آب و برق.', image: '0987.jpg', category: 'facilities', keywords: 'کولر سلولزی' },
-  { id: 'tank', name: 'انواع مخازن آب', desc: 'مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.', image: '0987.jpg', category: 'facilities', keywords: 'مخزن آب' },
+  { id: 'tank', name: 'انواع مخازن آب', desc: 'مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.', image: 'tank.jpg', category: 'facilities', keywords: 'مخزن آب تانکر' },
   { id: 'pump', name: 'پمپ آب', desc: 'پمپ آب خانگی، نیمه صنعتی و صنعتی در توان‌های مختلف.', image: 'poump.png', category: 'facilities', keywords: 'پمپ آب' },
   { id: 'pump-control', name: 'ست کنترل پمپ آب', desc: 'ست کنترل اتوماتیک برای روشن و خاموش کردن هوشمند پمپ آب.', image: '0987.jpg', category: 'facilities', keywords: 'ست کنترل پمپ' },
   { id: 'gas', name: 'گاز صفحه‌ای', desc: 'گاز صفحه‌ای در مدل‌ها و سایزهای مختلف.', image: 'file_00000000f1e482108cf2476f4e3c0c0e.png', category: 'facilities', keywords: 'گاز صفحه' }
 ];
 
 /* ================== STORAGE HELPERS ================== */
-function saveToStorage(key, data) {
-  try {
-    localStorage.setItem(key, JSON.stringify(data));
-  } catch (e) {
-    console.error('خطا در ذخیره:', e);
-  }
-}
-
+function saveToStorage(key, data) { try { localStorage.setItem(key, JSON.stringify(data)); } catch (e) {} }
 function loadFromStorage(key, defaultValue) {
-  try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : defaultValue;
-  } catch (e) {
-    return defaultValue;
-  }
+  try { const data = localStorage.getItem(key); return data ? JSON.parse(data) : defaultValue; }
+  catch (e) { return defaultValue; }
 }
 
 /* ================== INIT ================== */
 function initApp() {
-  // بارگذاری از localStorage
   cart = loadFromStorage(STORAGE_KEYS.cart, []);
   wishlist = loadFromStorage(STORAGE_KEYS.wishlist, []);
   reviews = loadFromStorage(STORAGE_KEYS.reviews, []);
@@ -103,14 +86,12 @@ function initApp() {
   recentProducts = loadFromStorage(STORAGE_KEYS.recent, []);
   currentDiscount = loadFromStorage(STORAGE_KEYS.discount, 0);
 
-  // ثبت بازدید
   const visits = loadFromStorage(STORAGE_KEYS.visits, { count: 0, firstVisit: null, lastVisit: null });
   visits.count++;
   visits.lastVisit = new Date().toISOString();
   if (!visits.firstVisit) visits.firstVisit = visits.lastVisit;
   saveToStorage(STORAGE_KEYS.visits, visits);
 
-  // رندر
   allProducts = PRODUCTS;
   renderProducts();
   renderReviewsList();
@@ -123,24 +104,16 @@ function initApp() {
   renderBlog();
   applySavedTheme();
 
-  // FAQ اول باز
   const firstFaq = document.querySelector('.faq-item');
   if (firstFaq) firstFaq.classList.add('open');
-
-  // لاگ راهنما
-  console.log('%c🔧 پنل مدیریت آماده است', 'color: #0d9488; font-size: 14px; font-weight: bold;');
-  console.log('%cدسترسی: ۳ بار کلیک روی لوگو یا Ctrl+Shift+A', 'color: #64748b; font-size: 12px;');
-  console.log('%cرمز پیش‌فرض: admin1234', 'color: #64748b; font-size: 12px;');
 }
 
 /* ================== RENDER PRODUCTS ================== */
 function renderProducts() {
   const container = document.getElementById('productsContainer');
   if (!container) return;
-
   const fragment = document.createDocumentFragment();
 
-  // دسته مصالح
   const construction = allProducts.filter(p => p.category === 'construction');
   if (construction.length) {
     const title = document.createElement('div');
@@ -150,7 +123,6 @@ function renderProducts() {
     construction.forEach(p => fragment.appendChild(makeProductCard(p)));
   }
 
-  // دسته تاسیسات
   const facilities = allProducts.filter(p => p.category === 'facilities');
   if (facilities.length) {
     const title = document.createElement('div');
@@ -212,14 +184,10 @@ function activateProduct(productId, btn) {
   if (qtyControl) qtyControl.classList.add('show');
 
   const existingItem = cart.find(item => item.id === productId);
-  if (existingItem) {
-    if (existingItem.qty < 100000) existingItem.qty++;
-  } else {
+  if (existingItem) { if (existingItem.qty < 100000) existingItem.qty++; }
+  else {
     const product = PRODUCTS.find(p => p.id === productId);
-    if (product) {
-      cart.push({ id: productId, name: product.name, qty: 1 });
-      addToRecent(productId);
-    }
+    if (product) { cart.push({ id: productId, name: product.name, qty: 1 }); addToRecent(productId); }
   }
   const input = document.getElementById('input-' + productId);
   const item = cart.find(i => i.id === productId);
@@ -232,17 +200,13 @@ function activateProduct(productId, btn) {
 function decreaseQty(productId) {
   const item = cart.find(i => i.id === productId);
   if (!item) return;
-  if (item.qty > 1) {
-    item.qty--;
-  } else {
+  if (item.qty > 1) { item.qty--; }
+  else {
     cart = cart.filter(i => i.id !== productId);
     const qtyControl = document.getElementById('qty-' + productId);
     if (qtyControl) qtyControl.classList.remove('show');
     const section = document.getElementById('section-' + productId);
-    if (section) {
-      const addBtn = section.querySelector('.add-icon-btn');
-      if (addBtn) addBtn.style.display = 'flex';
-    }
+    if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
     const label = document.getElementById('label-' + productId);
     if (label) label.classList.remove('hidden');
   }
@@ -269,12 +233,8 @@ function setQty(productId, value) {
   if (qty < 1) qty = 1;
   if (qty > 100000) qty = 100000;
   const item = cart.find(i => i.id === productId);
-  if (item) {
-    item.qty = qty;
-  } else {
-    const product = PRODUCTS.find(p => p.id === productId);
-    if (product) cart.push({ id: productId, name: product.name, qty });
-  }
+  if (item) { item.qty = qty; }
+  else { const product = PRODUCTS.find(p => p.id === productId); if (product) cart.push({ id: productId, name: product.name, qty }); }
   const input = document.getElementById('input-' + productId);
   if (input) input.value = qty;
   saveToStorage(STORAGE_KEYS.cart, cart);
@@ -298,10 +258,7 @@ function removeFromCart(productId) {
   const qtyControl = document.getElementById('qty-' + productId);
   if (qtyControl) qtyControl.classList.remove('show');
   const section = document.getElementById('section-' + productId);
-  if (section) {
-    const addBtn = section.querySelector('.add-icon-btn');
-    if (addBtn) addBtn.style.display = 'flex';
-  }
+  if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
   const label = document.getElementById('label-' + productId);
   if (label) label.classList.remove('hidden');
   saveToStorage(STORAGE_KEYS.cart, cart);
@@ -311,20 +268,10 @@ function removeFromCart(productId) {
 function clearCart() {
   if (cart.length === 0) return;
   if (!confirm('آیا از پاک کردن کل لیست مطمئن هستید؟')) return;
-  cart.forEach(item => {
-    const qtyControl = document.getElementById('qty-' + item.id);
-    if (qtyControl) qtyControl.classList.remove('show');
-    const section = document.getElementById('section-' + item.id);
-    if (section) {
-      const addBtn = section.querySelector('.add-icon-btn');
-      if (addBtn) addBtn.style.display = 'flex';
-    }
-    const label = document.getElementById('label-' + item.id);
-    if (label) label.classList.remove('hidden');
-  });
   cart = [];
   saveToStorage(STORAGE_KEYS.cart, cart);
   updateCart();
+  renderProducts(); // رفرش دکمه‌های +
   showToast('لیست خرید پاک شد', 'info');
 }
 
@@ -358,9 +305,7 @@ function updateCart() {
           </div>
           <div class="cart-item-qty">
             <button onclick="event.stopPropagation(); decreaseQty('${item.id}')">−</button>
-            <input type="number" value="${item.qty}" min="1" max="100000"
-                   onchange="event.stopPropagation(); setCartQty('${item.id}', this.value)"
-                   onclick="event.stopPropagation();">
+            <input type="number" value="${item.qty}" min="1" max="100000" onchange="event.stopPropagation(); setCartQty('${item.id}', this.value)" onclick="event.stopPropagation();">
             <button onclick="event.stopPropagation(); increaseQty('${item.id}')">+</button>
           </div>
           <button class="cart-item-remove" onclick="event.stopPropagation(); removeFromCart('${item.id}')" title="حذف">✕</button>
@@ -386,8 +331,7 @@ function cartToText() {
 
 function sendToEita(type) {
   if (cart.length === 0) { showToast('لیست شما خالی است', 'error'); return; }
-  const text = cartToText();
-  copyToClipboard(text).then(() => {
+  copyToClipboard(cartToText()).then(() => {
     showToast('لیست کپی شد. ایتا باز می‌شود...');
     setTimeout(() => { window.location.href = 'eitaa://'; }, 700);
   });
@@ -399,19 +343,13 @@ function copyCart() {
 }
 
 function copyToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    return navigator.clipboard.writeText(text);
-  }
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
   return new Promise((resolve) => {
     const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
+    ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta); ta.select();
     try { document.execCommand('copy'); } catch {}
-    document.body.removeChild(ta);
-    resolve();
+    document.body.removeChild(ta); resolve();
   });
 }
 
@@ -419,14 +357,12 @@ function copyToClipboard(text) {
 function toggleWishlistItem(productId, event) {
   if (event) event.stopPropagation();
   const index = wishlist.indexOf(productId);
-  if (index > -1) {
-    wishlist.splice(index, 1);
-    showToast('از علاقه‌مندی‌ها حذف شد', 'info');
-  } else {
-    wishlist.push(productId);
-    showToast('به علاقه‌مندی‌ها اضافه شد ❤️');
-  }
+  if (index > -1) { wishlist.splice(index, 1); showToast('از علاقه‌مندی‌ها حذف شد', 'info'); }
+  else { wishlist.push(productId); showToast('به علاقه‌مندی‌ها اضافه شد ❤️'); }
+  
   saveToStorage(STORAGE_KEYS.wishlist, wishlist);
+  
+  // آپدیت ظاهر دکمه قلب در کارت
   const btn = document.getElementById('wish-' + productId);
   if (btn) {
     btn.classList.toggle('active');
@@ -490,11 +426,7 @@ function toggleWishlist(event) {
 
 /* ================== HISTORY ================== */
 function addToHistory(order) {
-  history.unshift({
-    id: Date.now(),
-    date: new Date().toISOString(),
-    ...order
-  });
+  history.unshift({ id: Date.now(), date: new Date().toISOString(), ...order });
   if (history.length > 20) history = history.slice(0, 20);
   saveToStorage(STORAGE_KEYS.history, history);
   renderHistory();
@@ -555,6 +487,11 @@ function toggleProfile(event) {
   loadProfile();
 }
 
+function openProfile() { 
+  closeAdmin(); // بستن پنل ادمین برای دیدن پروفایل
+  toggleProfile(); 
+}
+
 function prefillOrderForm() {
   if (profile.name) document.getElementById('orderName').value = profile.name;
   if (profile.phone) document.getElementById('orderPhone').value = profile.phone;
@@ -588,12 +525,7 @@ function applySavedTheme() {
 
 /* ================== SEARCH ================== */
 function normalize(str) {
-  return (str || '').toString().toLowerCase()
-    .replace(/[يى]/g, 'ی')
-    .replace(/ك/g, 'ک')
-    .replace(/[ۀهٔ]/g, 'ه')
-    .replace(/[\u064B-\u065F\u0670]/g, '')
-    .trim();
+  return (str || '').toString().toLowerCase().replace(/[يى]/g, 'ی').replace(/ك/g, 'ک').replace(/[ۀهٔ]/g, 'ه').replace(/[\u064B-\u065F\u0670]/g, '').trim();
 }
 
 function searchProducts() {
@@ -636,8 +568,7 @@ function searchProducts() {
     let hasVisible = false;
     while (next && !next.classList.contains('category-title')) {
       if (next.classList.contains('product-card') && next.style.display !== 'none') {
-        hasVisible = true;
-        break;
+        hasVisible = true; break;
       }
       next = next.nextElementSibling;
     }
@@ -681,10 +612,7 @@ function closeReviewForm() {
   updateStars(0);
 }
 
-function setRating(value) {
-  currentRating = value;
-  updateStars(value);
-}
+function setRating(value) { currentRating = value; updateStars(value); }
 
 function updateStars(value) {
   document.querySelectorAll('.star').forEach(star => {
@@ -703,15 +631,7 @@ function submitReview() {
   if (!text) { showToast('لطفاً نظر خود را بنویسید', 'error'); return; }
   if (text.length < 10) { showToast('نظر باید حداقل ۱۰ حرف باشد', 'error'); return; }
 
-  const review = {
-    id: Date.now(),
-    name,
-    text,
-    rating: currentRating,
-    status: 'pending',
-    date: new Date().toISOString()
-  };
-
+  const review = { id: Date.now(), name, text, rating: currentRating, status: 'pending', date: new Date().toISOString() };
   reviews.push(review);
   saveToStorage(STORAGE_KEYS.reviews, reviews);
   renderReviewsList();
@@ -736,10 +656,7 @@ function renderReviewsList() {
     return `
       <div class="review-card">
         <div class="review-head">
-          <div class="review-author">
-            <div class="review-avatar">${initials}</div>
-            <span>${escapeHtml(r.name)}</span>
-          </div>
+          <div class="review-author"><div class="review-avatar">${initials}</div><span>${escapeHtml(r.name)}</span></div>
           <div class="review-stars">${stars}</div>
         </div>
         <p class="review-text">${escapeHtml(r.text)}</p>
@@ -750,20 +667,14 @@ function renderReviewsList() {
 }
 
 function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
+  return String(str).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 }
 
 /* ================== ADMIN ================== */
 function tripleClickLogo() {
   logoClickCount++;
   clearTimeout(logoClickTimer);
-  if (logoClickCount >= 3) {
-    logoClickCount = 0;
-    openAdmin();
-    return;
-  }
+  if (logoClickCount >= 3) { logoClickCount = 0; openAdmin(); return; }
   logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 600);
 }
 
@@ -772,34 +683,21 @@ function openAdmin() {
   if (!overlay) return;
   overlay.classList.add('show');
   document.body.style.overflow = 'hidden';
-  if (isAdminLoggedIn) {
-    showAdminPanel();
-  } else {
+  if (isAdminLoggedIn) { showAdminPanel(); }
+  else {
     document.getElementById('adminLogin').style.display = 'block';
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('adminPassword').value = '';
-    setTimeout(() => {
-      const pass = document.getElementById('adminPassword');
-      if (pass) pass.focus();
-    }, 200);
+    setTimeout(() => { const pass = document.getElementById('adminPassword'); if (pass) pass.focus(); }, 200);
   }
 }
 
-function closeAdmin() {
-  document.getElementById('adminOverlay').classList.remove('show');
-  document.body.style.overflow = '';
-}
+function closeAdmin() { document.getElementById('adminOverlay').classList.remove('show'); document.body.style.overflow = ''; }
 
 function loginAdmin() {
   const pass = document.getElementById('adminPassword').value;
-  if (pass === ADMIN_PASSWORD) {
-    isAdminLoggedIn = true;
-    showToast('ورود موفق');
-    showAdminPanel();
-  } else {
-    showToast('رمز عبور اشتباه است', 'error');
-    document.getElementById('adminPassword').value = '';
-  }
+  if (pass === ADMIN_PASSWORD) { isAdminLoggedIn = true; showToast('ورود موفق'); showAdminPanel(); }
+  else { showToast('رمز عبور اشتباه است', 'error'); document.getElementById('adminPassword').value = ''; }
 }
 
 function showAdminPanel() {
@@ -814,14 +712,10 @@ function updateAdminStats() {
   const approved = reviews.filter(r => r.status === 'approved').length;
   const pending = reviews.filter(r => r.status === 'pending').length;
   const rejected = reviews.filter(r => r.status === 'rejected').length;
-  const elTotal = document.getElementById('statTotal');
-  const elApproved = document.getElementById('statApproved');
-  const elPending = document.getElementById('statPending');
-  const elRejected = document.getElementById('statRejected');
-  if (elTotal) elTotal.textContent = total;
-  if (elApproved) elApproved.textContent = approved;
-  if (elPending) elPending.textContent = pending;
-  if (elRejected) elRejected.textContent = rejected;
+  const elTotal = document.getElementById('statTotal'); const elApproved = document.getElementById('statApproved');
+  const elPending = document.getElementById('statPending'); const elRejected = document.getElementById('statRejected');
+  if (elTotal) elTotal.textContent = total; if (elApproved) elApproved.textContent = approved;
+  if (elPending) elPending.textContent = pending; if (elRejected) elRejected.textContent = rejected;
 }
 
 function filterReviews(status, btn) {
@@ -834,14 +728,10 @@ function filterReviews(status, btn) {
 function renderAdminReviews() {
   const container = document.getElementById('adminReviewsList');
   if (!container) return;
-  let filtered = reviews;
-  if (currentFilter !== 'all') filtered = reviews.filter(r => r.status === currentFilter);
+  let filtered = currentFilter !== 'all' ? reviews.filter(r => r.status === currentFilter) : reviews;
   filtered = filtered.slice().reverse();
 
-  if (filtered.length === 0) {
-    container.innerHTML = `<div class="admin-empty">هیچ نظری در این دسته وجود ندارد</div>`;
-    return;
-  }
+  if (filtered.length === 0) { container.innerHTML = `<div class="admin-empty">هیچ نظری در این دسته وجود ندارد</div>`; return; }
 
   container.innerHTML = filtered.map(r => {
     const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
@@ -850,10 +740,7 @@ function renderAdminReviews() {
     return `
       <div class="admin-review-item ${r.status}">
         <div class="admin-review-head">
-          <div class="admin-review-name">
-            <span>${escapeHtml(r.name)}</span>
-            <span style="font-size: 11px; color: #94a3b8;">${statusLabels[r.status]}</span>
-          </div>
+          <div class="admin-review-name"><span>${escapeHtml(r.name)}</span><span style="font-size: 11px; color: #94a3b8;">${statusLabels[r.status]}</span></div>
           <div class="admin-review-stars">${stars}</div>
         </div>
         <p class="admin-review-text">${escapeHtml(r.text)}</p>
@@ -869,70 +756,45 @@ function renderAdminReviews() {
 }
 
 function approveReview(id) {
-  const r = reviews.find(x => x.id === id);
-  if (!r) return;
-  r.status = 'approved';
-  saveToStorage(STORAGE_KEYS.reviews, reviews);
-  updateAdminStats();
-  renderAdminReviews();
-  renderReviewsList();
-  showToast('نظر تأیید شد');
+  const r = reviews.find(x => x.id === id); if (!r) return;
+  r.status = 'approved'; saveToStorage(STORAGE_KEYS.reviews, reviews);
+  updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظر تأیید شد');
 }
 
 function rejectReview(id) {
-  const r = reviews.find(x => x.id === id);
-  if (!r) return;
-  r.status = 'rejected';
-  saveToStorage(STORAGE_KEYS.reviews, reviews);
-  updateAdminStats();
-  renderAdminReviews();
-  renderReviewsList();
-  showToast('نظر رد شد', 'info');
+  const r = reviews.find(x => x.id === id); if (!r) return;
+  r.status = 'rejected'; saveToStorage(STORAGE_KEYS.reviews, reviews);
+  updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظر رد شد', 'info');
 }
 
 function deleteReview(id) {
   if (!confirm('آیا از حذف این نظر مطمئن هستید؟')) return;
-  reviews = reviews.filter(x => x.id !== id);
-  saveToStorage(STORAGE_KEYS.reviews, reviews);
-  updateAdminStats();
-  renderAdminReviews();
-  renderReviewsList();
-  showToast('نظر حذف شد', 'info');
+  reviews = reviews.filter(x => x.id !== id); saveToStorage(STORAGE_KEYS.reviews, reviews);
+  updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظر حذف شد', 'info');
 }
 
 function exportReviews() {
   const dataStr = JSON.stringify(reviews, null, 2);
   const blob = new Blob([dataStr], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
+  const a = document.createElement('a'); a.href = url;
   a.download = 'kargar-reviews-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  showToast('فایل JSON دانلود شد');
+  a.click(); URL.revokeObjectURL(url); showToast('فایل JSON دانلود شد');
 }
 
 function importReviews(event) {
-  const file = event.target.files[0];
-  if (!file) return;
+  const file = event.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = e => {
     try {
       const imported = JSON.parse(e.target.result);
       if (!Array.isArray(imported)) throw new Error('فرمت نامعتبر');
       if (!confirm(`آیا ${imported.length} نظر بارگذاری شود؟`)) return;
-      reviews = imported;
-      saveToStorage(STORAGE_KEYS.reviews, reviews);
-      updateAdminStats();
-      renderAdminReviews();
-      renderReviewsList();
-      showToast('نظرات بارگذاری شد');
-    } catch (err) {
-      showToast('فایل JSON نامعتبر است', 'error');
-    }
+      reviews = imported; saveToStorage(STORAGE_KEYS.reviews, reviews);
+      updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظرات بارگذاری شد');
+    } catch (err) { showToast('فایل JSON نامعتبر است', 'error'); }
   };
-  reader.readAsText(file);
-  event.target.value = '';
+  reader.readAsText(file); event.target.value = '';
 }
 
 /* ================== ASSISTANT ================== */
@@ -946,54 +808,24 @@ function toggleAssistant(event) {
 
 function sendAssistantMsg() {
   const input = document.getElementById('assistantInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  addMsg(msg, 'user');
-  input.value = '';
-  setTimeout(() => {
-    const reply = getAssistantReply(msg);
-    addMsg(reply, 'bot');
-  }, 400);
+  const msg = input.value.trim(); if (!msg) return;
+  addMsg(msg, 'user'); input.value = '';
+  setTimeout(() => { const reply = getAssistantReply(msg); addMsg(reply, 'bot'); }, 400);
 }
 
 const knowledgeBase = {
   'سیمان': 'سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات.\nاستعلام قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
   'بلوک': 'بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\nبرای هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'کاشی': 'کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'سرامیک': 'سرامیک کف و دیوار با مقاومت بالا.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'گچ': 'گچ سفیدکاری و ساختمانی، کیسه‌های ۳۰ و ۴۰ کیلویی.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'لوله': 'لوله پلیکا، پنج لایه، پنبه‌ای و فلزی در سایزهای مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'پکیج': 'پکیج دیواری و زمینی با گارانتی.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'رادیاتور': 'رادیاتور پنلی و آلومینیومی در ابعاد مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'شیرآلات': 'شیرآلات بهداشتی و ساختمانی از برندهای معتبر.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'سینک': 'سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'چینی': 'توالت ایرانی و فرنگی از برندهای معتبر.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'پمپ': 'پمپ آب خانگی، نیمه صنعتی و صنعتی.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'مخزن': 'مخازن آب افقی، عمودی، ایستاده و خوابیده.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'هود': 'هود آشپزخانه در مدل‌های مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'گاز': 'گاز صفحه‌ای در مدل‌ها و سایزهای مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'آینه': 'آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'فلاش': 'فلاش تانک توکار و روکار در مدل‌های مختلف.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'موزاییک': 'موزاییک پرسی و معمولی برای محوطه‌سازی.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'آجر': 'آجر گره‌ای و سفال برای دیوارچینی و نماکاری.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'آهک': 'آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'پودر سنگ': 'پودر سنگ جوشقان و سایر معادن.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'اتصالات': 'انواع اتصالات لوله‌کشی آب و فاضلاب.\n۰۹۱۳۳۹۰۸۳۹۳',
-  'دیوار': 'برای هر متر مربع دیوار تیغه‌ای: ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'سقف': 'برای هر متر مربع سقف تیرچه بلوک: ۲ عدد بلوک سقفی + تیرچه + میلگرد.\n۰۹۱۳۳۹۰۸۲۳۰',
   'قیمت': 'برای استعلام قیمت روز:\nمصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
   'تماس': 'مصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\nمغازه: ۰۳۴-۳۴۳۴۱۳۰۳۸۶',
   'آدرس': 'شهربابک، خیابان مطهری، نبش کوچه ۱۱\nشنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
-  'ارسال': 'ارسال سریع با ناوگان خودمون در شهربابک و حومه.',
   'سلام': 'سلام و خوش آمدید! چطور می‌تونم کمکتون کنم؟'
 };
 
 function getAssistantReply(msg) {
   const lower = normalize(msg);
   const sortedKeys = Object.keys(knowledgeBase).sort((a,b) => b.length - a.length);
-  for (const key of sortedKeys) {
-    if (lower.includes(normalize(key))) return knowledgeBase[key];
-  }
+  for (const key of sortedKeys) { if (lower.includes(normalize(key))) return knowledgeBase[key]; }
   return 'متأسفم، متوجه نشدم.\n\nمی‌تونید اینا رو بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n\nیا تماس بگیرید:\n۰۹۱۳۳۹۰۸۲۳۰';
 }
 
@@ -1002,8 +834,7 @@ function addMsg(text, type) {
   const div = document.createElement('div');
   div.className = 'assistant-msg ' + type;
   div.innerHTML = text.replace(/\n/g, '<br>');
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
+  container.appendChild(div); container.scrollTop = container.scrollHeight;
 }
 
 /* ================== INSTA MENU ================== */
@@ -1017,42 +848,26 @@ function toggleInstaMenu(event) {
 /* ================== GLOBAL CLICK ================== */
 function closeAllOtherWindows(exceptId) {
   ['cartWindow', 'wishlistWindow', 'historyWindow', 'profileWindow', 'assistantWindow'].forEach(id => {
-    if (id !== exceptId) {
-      const el = document.getElementById(id);
-      if (el) el.classList.remove('show');
-    }
+    if (id !== exceptId) { const el = document.getElementById(id); if (el) el.classList.remove('show'); }
   });
 }
 
 document.addEventListener('click', function(event) {
   const menu = document.getElementById('instaMenu');
   const instaBtn = document.querySelector('.floating-insta-btn');
-  if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) {
-    menu.classList.remove('show');
-  }
+  if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) menu.classList.remove('show');
+  
   if (event.target.classList && event.target.classList.contains('modal-overlay')) {
-    event.target.classList.remove('show');
-    document.body.style.overflow = '';
+    event.target.classList.remove('show'); document.body.style.overflow = '';
   }
 });
 
 /* ================== KEYBOARD ================== */
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
-    e.preventDefault();
-    openAdmin();
-  }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) { e.preventDefault(); openAdmin(); }
   if (e.key === 'Escape') {
-    document.getElementById('cartWindow').classList.remove('show');
-    document.getElementById('assistantWindow').classList.remove('show');
-    document.getElementById('wishlistWindow').classList.remove('show');
-    document.getElementById('historyWindow').classList.remove('show');
-    document.getElementById('profileWindow').classList.remove('show');
-    document.getElementById('instaMenu').classList.remove('show');
-    document.querySelectorAll('.modal-overlay.show').forEach(m => {
-      m.classList.remove('show');
-      document.body.style.overflow = '';
-    });
+    ['cartWindow', 'assistantWindow', 'wishlistWindow', 'historyWindow', 'profileWindow', 'instaMenu'].forEach(id => document.getElementById(id).classList.remove('show'));
+    document.querySelectorAll('.modal-overlay.show').forEach(m => { m.classList.remove('show'); document.body.style.overflow = ''; });
   }
 });
 
@@ -1062,7 +877,6 @@ function openOrderForm() {
   document.body.style.overflow = 'hidden';
   prefillOrderForm();
 }
-
 function closeOrderForm() {
   document.getElementById('orderModal').classList.remove('show');
   document.body.style.overflow = '';
@@ -1078,56 +892,34 @@ function submitOrder() {
   const discountCode = discountInput ? discountInput.value.trim().toUpperCase() : '';
 
   if (!name || name.length < 2) { showToast('نام را درست وارد کنید', 'error'); return; }
-  if (!/^09\d{9}$/.test(phone)) { showToast('شماره موبایل معتبر وارد کنید (مثل 09123456789)', 'error'); return; }
+  if (!/^09\d{9}$/.test(phone)) { showToast('شماره موبایل معتبر وارد کنید', 'error'); return; }
   if (!address || address.length < 5) { showToast('آدرس را کامل وارد کنید', 'error'); return; }
 
   let discountPercent = 0;
   if (discountCode) {
-    if (DISCOUNT_CODES[discountCode]) {
-      discountPercent = DISCOUNT_CODES[discountCode];
-    } else {
-      showToast('کد تخفیف نامعتبر است', 'error');
-      return;
-    }
+    if (DISCOUNT_CODES[discountCode]) discountPercent = DISCOUNT_CODES[discountCode];
+    else { showToast('کد تخفیف نامعتبر است', 'error'); return; }
   }
 
   let text = '🛒 سفارش آنلاین جدید:\n\n';
-  text += '👤 نام: ' + name + '\n';
-  text += '📞 تلفن: ' + phone + '\n';
-  text += '📍 آدرس: ' + address + '\n';
+  text += '👤 نام: ' + name + '\n📞 تلفن: ' + phone + '\n📍 آدرس: ' + address + '\n';
   text += '📦 نوع: ' + (type === 'masaleh' ? 'مصالح' : type === 'tasisat' ? 'تاسیسات' : 'هر دو') + '\n';
   if (discountCode) text += '🎁 کد تخفیف: ' + discountCode + ' (' + discountPercent + '%)\n';
   if (note) text += '📝 توضیحات: ' + note + '\n';
 
   if (cart.length > 0) {
     text += '\n--- لیست خرید ---\n';
-    cart.forEach((item, i) => {
-      text += `${i+1}. ${item.name} — تعداد: ${item.qty}\n`;
-    });
+    cart.forEach((item, i) => { text += `${i+1}. ${item.name} — تعداد: ${item.qty}\n`; });
     text += `\n📦 مجموع: ${cart.length} قلم — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
   }
 
-  // ذخیره در تاریخچه
-  addToHistory({
-    name, phone, address, type, note,
-    items: cart.map(i => ({ name: i.name, qty: i.qty })),
-    discount: discountCode,
-    discountPercent
-  });
-
-  // ذخیره در پروفایل
+  addToHistory({ name, phone, address, type, note, items: cart.map(i => ({ name: i.name, qty: i.qty })), discount: discountCode, discountPercent });
   profile = { name, phone, address };
   saveToStorage(STORAGE_KEYS.profile, profile);
 
   copyToClipboard(text).then(() => {
     showToast('سفارش ثبت شد. در حال باز کردن ایتا...');
-    setTimeout(() => {
-      cart = [];
-      saveToStorage(STORAGE_KEYS.cart, cart);
-      updateCart();
-      renderProducts();
-      closeOrderForm();
-    }, 1500);
+    setTimeout(() => { cart = []; saveToStorage(STORAGE_KEYS.cart, cart); updateCart(); renderProducts(); closeOrderForm(); }, 1500);
   });
 }
 
@@ -1135,22 +927,16 @@ function submitOrder() {
 function openCalculator() {
   document.getElementById('calcModal').classList.add('show');
   document.body.style.overflow = 'hidden';
-  calcWall();
-  calcCeiling();
-  calcConcrete();
-  calcTile();
+  calcWall(); calcCeiling(); calcConcrete(); calcTile();
 }
-
 function closeCalculator() {
   document.getElementById('calcModal').classList.remove('show');
   document.body.style.overflow = '';
 }
-
 function switchCalc(name, btn) {
   document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('calc-' + name).classList.add('active');
+  btn.classList.add('active'); document.getElementById('calc-' + name).classList.add('active');
 }
 
 function calcWall() {
@@ -1249,102 +1035,50 @@ function addCalcToCart() {
 
 /* ================== BLOG ================== */
 const blogPosts = [
-  {
-    id: 'cement-guide', tag: 'مصالح', icon: '🏗',
-    title: 'راهنمای کامل انتخاب سیمان مناسب برای پروژه',
-    excerpt: 'سیمان تیپ ۱، ۲، ۵ یا سفید؟ کدوم برای پروژه شما مناسبه؟ تفاوت‌ها و کاربردها رو بررسی می‌کنیم.',
-    date: '۱۴۰۳/۰۸/۱۵',
-    content: `<h2>مقدمه</h2><p>انتخاب سیمان مناسب، یکی از مهم‌ترین تصمیمات در هر پروژه ساختمانی است.</p><h3>۱. سیمان تیپ ۱</h3><p>پرمصرف‌ترین نوع سیمان برای کارهای عمومی.</p><h3>۲. سیمان تیپ ۲</h3><p>سیمان اصلاح‌شده با حرارت هیدراتاسیون کمتر.</p><h3>۳. سیمان تیپ ۵</h3><p>سیمان ضد سولفات برای محیط‌های خورنده.</p><h3>۴. سیمان سفید</h3><p>برای نماکاری و بندکشی.</p><div class="highlight"><strong>مشاوره:</strong> ۰۹۱۳۳۹۰۸۲۳۰</div>`
-  },
-  {
-    id: 'wall-blocks', tag: 'مصالح', icon: '🧱',
-    title: 'چگونه تعداد بلوک مورد نیاز دیوار را محاسبه کنیم؟',
-    excerpt: 'فرمول ساده محاسبه بلوک تیغه و سقفی + نکات مهم در خرید.',
-    date: '۱۴۰۳/۰۸/۱۰',
-    content: `<h2>مقدمه</h2><p>محاسبه دقیق بلوک باعث می‌شود نه اضافه بخری و نه وسط کار بمانی!</p><h3>فرمول</h3><p><strong>تعداد بلوک = مساحت دیوار × تعداد بلوک در متر مربع</strong></p><ul><li>بلوک ۱۰ سانتی: ۱۰ عدد در متر مربع</li><li>بلوک ۱۵ سانتی: ۷ عدد در متر مربع</li><li>بلوک ۲۰ سانتی: ۵ عدد در متر مربع</li></ul><div class="highlight">همیشه ۵٪ پرت اضافه کن</div>`
-  },
-  {
-    id: 'pipes-guide', tag: 'تاسیسات', icon: '🔧',
-    title: 'انواع لوله ساختمانی و کاربرد هرکدام',
-    excerpt: 'پلیکا، پنج لایه، پنبه‌ای یا فلزی؟ کدام برای آب سرد و گرم مناسب است؟',
-    date: '۱۴۰۳/۰۸/۰۵',
-    content: `<h2>مقدمه</h2><p>انتخاب لوله مناسب نقش کلیدی در دوام تاسیسات دارد.</p><h3>۱. پلیکا</h3><p>برای فاضلاب و آب سرد.</p><h3>۲. پنج لایه</h3><p>برای آب گرم و سرد.</p><h3>۳. پنبه‌ای</h3><p>برای آب سرد و گرم، ولی زنگ می‌زند.</p><div class="highlight">توصیه: آب گرم از پنج لایه، فاضلاب از پلیکا</div>`
-  },
-  {
-    id: 'package-guide', tag: 'تاسیسات', icon: '🔥',
-    title: 'راهنمای خرید پکیج دیواری؛ ظرفیت مناسب',
-    excerpt: 'پکیج ۲۴ یا ۲۸؟ برای خانه ۱۰۰ متری چی بگیریم؟',
-    date: '۱۴۰۳/۰۷/۲۸',
-    content: `<h2>مقدمه</h2><p>انتخاب اشتباه ظرفیت پکیج باعث هدررفت انرژی می‌شود.</p><ul><li>تا ۸۰ متر → پکیج ۲۴</li><li>۸۰ تا ۱۲۰ متر → ۲۴ یا ۲۸</li><li>۱۲۰ تا ۱۸۰ متر → ۳۲</li><li>بالای ۱۸۰ متر → ۳۵ به بالا</li></ul>`
-  },
-  {
-    id: 'sanitary-guide', tag: 'تاسیسات', icon: '🚽',
-    title: 'چگونه چینی بهداشتی باکیفیت بخریم؟',
-    excerpt: 'ملاک‌های تشخیص کیفیت چینی بهداشتی چیست؟',
-    date: '۱۴۰۳/۰۷/۲۰',
-    content: `<h2>مقدمه</h2><p>چینی بهداشتی سال‌ها در خانه می‌ماند، پس کیفیت مهم است.</p><h3>ملاک‌ها</h3><ul><li>لعاب صاف و براق</li><li>ضخامت و وزن مناسب</li><li>نشان استاندارد</li></ul>`
-  }
+  { id: 'cement-guide', tag: 'مصالح', icon: '🏗', title: 'راهنمای کامل انتخاب سیمان مناسب', excerpt: 'سیمان تیپ ۱، ۲، ۵ یا سفید؟', date: '۱۴۰۳/۰۸/۱۵', content: `<h2>مقدمه</h2><p>انتخاب سیمان مناسب، یکی از مهم‌ترین تصمیمات در هر پروژه ساختمانی است.</p>` },
+  { id: 'wall-blocks', tag: 'مصالح', icon: '🧱', title: 'چگونه تعداد بلوک مورد نیاز را محاسبه کنیم؟', excerpt: 'فرمول ساده محاسبه بلوک', date: '۱۴۰۳/۰۸/۱۰', content: `<h2>مقدمه</h2><p>محاسبه دقیق بلوک باعث می‌شود نه اضافه بخری و نه وسط کار بمانی!</p>` },
+  { id: 'pipes-guide', tag: 'تاسیسات', icon: '🔧', title: 'انواع لوله ساختمانی و کاربرد آن‌ها', excerpt: 'پلیکا، پنج لایه، یا فلزی؟', date: '۱۴۰۳/۰۸/۰۵', content: `<h2>مقدمه</h2><p>انتخاب لوله مناسب نقش کلیدی در دوام تاسیسات دارد.</p>` },
+  { id: 'package-guide', tag: 'تاسیسات', icon: '🔥', title: 'راهنمای خرید پکیج دیواری', excerpt: 'پکیج مناسب خانه شما کدام است؟', date: '۱۴۰۳/۰۷/۲۸', content: `<h2>مقدمه</h2><p>انتخاب اشتباه ظرفیت پکیج باعث هدررفت انرژی می‌شود.</p>` }
 ];
 
 function renderBlog() {
-  const grid = document.getElementById('blogGrid');
-  if (!grid) return;
+  const grid = document.getElementById('blogGrid'); if (!grid) return;
   grid.innerHTML = blogPosts.map(p => `
     <div class="blog-card" onclick="openArticle('${p.id}')">
       <div class="blog-card-img">${p.icon}</div>
       <div class="blog-card-body">
-        <h3>${p.title}</h3>
-        <p>${p.excerpt}</p>
-        <div class="blog-card-meta">
-          <span class="blog-card-tag">${p.tag}</span>
-          <span>📅 ${p.date}</span>
-        </div>
+        <h3>${p.title}</h3><p>${p.excerpt}</p>
+        <div class="blog-card-meta"><span class="blog-card-tag">${p.tag}</span><span>📅 ${p.date}</span></div>
       </div>
     </div>
   `).join('');
 }
 
 function openArticle(id) {
-  const post = blogPosts.find(p => p.id === id);
-  if (!post) return;
+  const post = blogPosts.find(p => p.id === id); if (!post) return;
   document.getElementById('articleTitle').innerHTML = post.icon + ' ' + post.title;
   document.getElementById('articleContent').innerHTML = `<div class="blog-meta"><span>🏷 ${post.tag}</span><span>📅 ${post.date}</span></div>${post.content}`;
   document.getElementById('articleModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
 
-function closeArticle() {
-  document.getElementById('articleModal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-function callForArticle() {
-  window.location.href = 'tel:09133908230';
-}
+function closeArticle() { document.getElementById('articleModal').classList.remove('show'); document.body.style.overflow = ''; }
+function callForArticle() { window.location.href = 'tel:09133908230'; }
 
 /* ================== TOAST ================== */
 function showToast(msg, type = 'success') {
-  const container = document.getElementById('toastContainer');
-  if (!container) return;
+  const container = document.getElementById('toastContainer'); if (!container) return;
   const toast = document.createElement('div');
-  toast.className = 'toast ' + type;
-  toast.textContent = msg;
+  toast.className = 'toast ' + type; toast.textContent = msg;
   container.appendChild(toast);
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateY(20px)';
-    setTimeout(() => toast.remove(), 300);
-  }, 3200);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)'; setTimeout(() => toast.remove(), 300); }, 3200);
 }
 
 /* ================== REVEAL ================== */
 function initReveal() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
