@@ -1,1087 +1,1740 @@
-/* ================== CONFIG ================== */
-const ADMIN_PASSWORD = 'admin1234';
-const STORAGE_KEYS = {
-  reviews: 'kargar_reviews',
-  cart: 'kargar_cart',
-  wishlist: 'kargar_wishlist',
-  profile: 'kargar_profile',
-  history: 'kargar_history',
-  theme: 'kargar_theme',
-  visits: 'kargar_visits',
-  recent: 'kargar_recent',
-  discount: 'kargar_discount'
-};
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مصالح ساختمانی و تاسیسات مرکزی کارگر | شهربابک</title>
+<meta name="description" content="فروشگاه مصالح ساختمانی و تاسیسات مرکزی کارگر در شهربابک. عرضه سیمان، بلوک، کاشی، سرامیک، لوله، شیرآلات، پکیج، رادیاتور، پمپ آب و...">
+<meta name="theme-color" content="#1e293b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-const DISCOUNT_CODES = {
-  'KARGAR10': 10,
-  'KARGAR20': 20,
-  'WELCOME': 5
-};
-
-/* ================== STATE ================== */
-let cart = [];
-let wishlist = [];
-let reviews = [];
-let history = [];
-let profile = { name: '', phone: '', address: '' };
-let recentProducts = [];
-let currentRating = 0;
-let currentFilter = 'all';
-let isAdminLoggedIn = false;
-let logoClickCount = 0;
-let logoClickTimer = null;
-let currentDiscount = 0;
-let allProducts = [];
-
-/* ================== PRODUCTS DATA ================== */
-const PRODUCTS = [
-  { id: 'cement', name: 'انواع سیمان', desc: 'سیمان تیپ ۱، تیپ ۲، تیپ ۵، سیمان سفید و پاکتی.', image: '67.png', category: 'construction', keywords: 'سیمان تیپ بتن' },
-  { id: 'block-tip', name: 'بلوک تیغه', desc: 'بلوک سبک تیغه‌ای برای دیوارچینی داخلی.', image: 'gallery4.jpg', category: 'construction', keywords: 'بلوک تیغه دیوار' },
-  { id: 'block-saqf', name: 'بلوک سقفی', desc: 'بلوک سقفی سبک و مقاوم برای تیرچه بلوک.', image: 'gallery3.jpg', category: 'construction', keywords: 'بلوک سقفی تیرچه' },
-  { id: 'tile', name: 'کاشی', desc: 'کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.', image: 'gallery1.jpg', category: 'construction', keywords: 'کاشی دیوار کف' },
-  { id: 'ceramic', name: 'سرامیک', desc: 'سرامیک کف و دیوار با مقاومت بالا.', image: 'as.png', category: 'construction', keywords: 'سرامیک کف دیوار' },
-  { id: 'mozaic', name: 'موزاییک', desc: 'موزاییک پرسی و معمولی برای محوطه‌سازی.', image: '76.png', category: 'construction', keywords: 'موزاییک محوطه' },
-  { id: 'gach', name: 'گچ', desc: 'گچ ساختمانی و گچ سفیدکاری، کیسه‌های ۳۰ و ۴۰ کیلوگرمی.', image: 'gallery2.jpg', category: 'construction', keywords: 'گچ سفیدکاری' },
-  { id: 'poudr', name: 'پودر سنگ', desc: 'پودر سنگ جوشقان و سایر معادن، مناسب برای بتن و ملات.', image: 'gallery2.jpg', category: 'construction', keywords: 'پودر سنگ' },
-  { id: 'ajar', name: 'آجر گره‌ای', desc: 'آجر گره‌ای و سفال برای دیوارچینی و نماکاری.', image: 'gereyi.jpg', category: 'construction', keywords: 'آجر گره سفال' },
-  { id: 'cement-white', name: 'سیمان سفید', desc: 'سیمان سفید پاکتی برای کارهای نما و بندکشی.', image: 'simans.png', category: 'construction', keywords: 'سیمان سفید' },
-  { id: 'ahak', name: 'آهک', desc: 'آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.', image: 'gallery5.jpg', category: 'construction', keywords: 'آهک' },
-
-  { id: 'pipe', name: 'انواع لوله', desc: 'لوله‌های پلیکا، پنبه‌ای، پنج لایه و فلزی در سایزهای مختلف.', image: '0987.jpg', category: 'facilities', keywords: 'لوله پلیکا پنج' },
-  { id: 'fittings', name: 'اتصالات', desc: 'انواع اتصالات لوله‌کشی آب و فاضلاب.', image: '10.png', category: 'facilities', keywords: 'اتصالات' },
-  { id: 'shiralat', name: 'شیرآلات', desc: 'شیرآلات بهداشتی و ساختمانی از برندهای معتبر.', image: 'shiralat.png', category: 'facilities', keywords: 'شیرآلات' },
-  { id: 'hood', name: 'هود', desc: 'هود آشپزخانه در مدل‌های مختلف.', image: 'file_00000000635481f4a6020687c0453495.png', category: 'facilities', keywords: 'هود آشپزخانه' },
-  { id: 'sink', name: 'سینک', desc: 'سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.', image: 'cv.png', category: 'facilities', keywords: 'سینک ظرفشویی' },
-  { id: 'roshoii', name: 'روشویی', desc: 'روشویی و دستشویی در طرح‌های مختلف.', image: 'roshoii.png', category: 'facilities', keywords: 'روشویی دستشویی' },
-  { id: 'chini', name: 'چینی بهداشتی', desc: 'توالت ایرانی و فرنگی از برندهای معتبر.', image: 'file_0000000073e881f48aff32b3a446cd5f.png', category: 'facilities', keywords: 'چینی توالت' },
-  { id: 'flush', name: 'انواع فلاش تانک', desc: 'فلاش تانک توکار و روکار، در مدل‌های مختلف.', image: 'file_00000000614c81f48075e69377334388.png', category: 'facilities', keywords: 'فلاش تانک' },
-  { id: 'jame', name: 'جامایع', desc: 'جامایع در طرح‌ها و رنگ‌های متنوع.', image: '0987.jpg', category: 'facilities', keywords: 'جامایع' },
-  { id: 'jadastmal', name: 'جادستمال', desc: 'جادستمال در طرح‌ها و رنگ‌های مختلف.', image: 'file_00000000d1188246978a93e7572407c9.png', category: 'facilities', keywords: 'جادستمال' },
-  { id: 'ayneh', name: 'آینه', desc: 'آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.', image: 'ayeneh1.jpg', category: 'facilities', keywords: 'آینه سرویس' },
-  { id: 'package', name: 'پکیج', desc: 'پکیج دیواری و زمینی با گارانتی.', image: '0987.jpg', category: 'facilities', keywords: 'پکیج' },
-  { id: 'radiator', name: 'رادیاتور', desc: 'رادیاتور پنلی و آلومینیومی در ابعاد مختلف.', image: 'file_000000000d54824689102bfa7c628d6b.png', category: 'facilities', keywords: 'رادیاتور' },
-  { id: 'cooler', name: 'کولر سلولزی', desc: 'کولر آبی سلولزی با مصرف بهینه آب و برق.', image: '0987.jpg', category: 'facilities', keywords: 'کولر سلولزی' },
-  { id: 'tank', name: 'انواع مخازن آب', desc: 'مخازن افقی، عمودی، ایستاده و خوابیده در ظرفیت‌های مختلف.', image: 'tank.jpg', category: 'facilities', keywords: 'مخزن آب تانکر' },
-  { id: 'pump', name: 'پمپ آب', desc: 'پمپ آب خانگی، نیمه صنعتی و صنعتی در توان‌های مختلف.', image: 'poump.png', category: 'facilities', keywords: 'پمپ آب' },
-  { id: 'pump-control', name: 'ست کنترل پمپ آب', desc: 'ست کنترل اتوماتیک برای روشن و خاموش کردن هوشمند پمپ آب.', image: '0987.jpg', category: 'facilities', keywords: 'ست کنترل پمپ' },
-  { id: 'gas', name: 'گاز صفحه‌ای', desc: 'گاز صفحه‌ای در مدل‌ها و سایزهای مختلف.', image: 'file_00000000f1e482108cf2476f4e3c0c0e.png', category: 'facilities', keywords: 'گاز صفحه' }
-];
-
-/* ================== STORAGE HELPERS ================== */
-function saveToStorage(key, data) { try { localStorage.setItem(key, JSON.stringify(data)); } catch (e) {} }
-function loadFromStorage(key, defaultValue) {
-  try { const data = localStorage.getItem(key); return data ? JSON.parse(data) : defaultValue; }
-  catch (e) { return defaultValue; }
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #1e293b;
+  padding-bottom: 100px;
+  line-height: 1.7;
+  overflow-x: hidden;
 }
 
-/* ================== INIT ================== */
-function initApp() {
-  cart = loadFromStorage(STORAGE_KEYS.cart, []);
-  wishlist = loadFromStorage(STORAGE_KEYS.wishlist, []);
-  reviews = loadFromStorage(STORAGE_KEYS.reviews, []);
-  history = loadFromStorage(STORAGE_KEYS.history, []);
-  profile = loadFromStorage(STORAGE_KEYS.profile, { name: '', phone: '', address: '' });
-  recentProducts = loadFromStorage(STORAGE_KEYS.recent, []);
-  currentDiscount = loadFromStorage(STORAGE_KEYS.discount, 0);
-
-  const visits = loadFromStorage(STORAGE_KEYS.visits, { count: 0, firstVisit: null, lastVisit: null });
-  visits.count++;
-  visits.lastVisit = new Date().toISOString();
-  if (!visits.firstVisit) visits.firstVisit = visits.lastVisit;
-  saveToStorage(STORAGE_KEYS.visits, visits);
-
-  allProducts = PRODUCTS;
-  renderProducts();
-  renderReviewsList();
-  renderWishlist();
-  renderHistory();
-  loadProfile();
-  updateCart();
-  updateWishlistCount();
-  initReveal();
-  renderBlog();
-  applySavedTheme();
-
-  const firstFaq = document.querySelector('.faq-item');
-  if (firstFaq) firstFaq.classList.add('open');
+/* ===================== CSS VARIABLES ===================== */
+:root {
+  /* هدر: تیره لوکس */
+  --header-start: #0f172a;
+  --header-mid: #1e293b;
+  --header-end: #334155;
+  
+  /* بقیه سایت: سبز فیروزه‌ای شاد */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #14b8a6;
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --accent-dark: #d97706;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --border: #e2e8f0;
+  --success: #059669;
+  --danger: #dc2626;
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.15);
 }
 
-/* ================== RENDER PRODUCTS ================== */
-function renderProducts() {
-  const container = document.getElementById('productsContainer');
-  if (!container) return;
-  const fragment = document.createDocumentFragment();
-
-  const construction = allProducts.filter(p => p.category === 'construction');
-  if (construction.length) {
-    const title = document.createElement('div');
-    title.className = 'category-title construction';
-    title.textContent = '🏗 مصالح ساختمانی';
-    fragment.appendChild(title);
-    construction.forEach(p => fragment.appendChild(makeProductCard(p)));
-  }
-
-  const facilities = allProducts.filter(p => p.category === 'facilities');
-  if (facilities.length) {
-    const title = document.createElement('div');
-    title.className = 'category-title facilities';
-    title.textContent = '🔧 تجهیزات تاسیساتی';
-    fragment.appendChild(title);
-    facilities.forEach(p => fragment.appendChild(makeProductCard(p)));
-  }
-
-  container.innerHTML = '';
-  container.appendChild(fragment);
-  if (typeof initReveal === 'function') initReveal();
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+  50% { transform: scale(1.08); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7); }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.25); }
 }
 
-function makeProductCard(p) {
-  const div = document.createElement('div');
-  div.className = 'product-card reveal';
-  div.id = 'card-' + p.id;
-  div.setAttribute('data-id', p.id);
-  div.setAttribute('data-name', (p.keywords || '') + ' ' + p.name + ' ' + p.desc);
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-  const isInWishlist = wishlist.includes(p.id);
-  const cartItem = cart.find(item => item.id === p.id);
-  const isInCart = !!cartItem;
+/* ===================== HEADER ===================== */
+header {
+  background: linear-gradient(-45deg, var(--header-start), var(--header-mid), var(--header-end), var(--header-mid));
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  color: white;
+  padding: 45px 25px 35px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.4);
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+.header-logo {
+  max-width: 260px; width: 100%; height: auto;
+  display: block; margin: 0 auto 12px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  border-radius: 18px; position: relative; z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.header-logo:hover { transform: scale(1.06) rotate(-1deg); }
+.header-title {
+  font-size: 22px; font-weight: 800;
+  position: relative; z-index: 1; margin: 10px 0 5px;
+  background: linear-gradient(90deg, #fff, #cbd5e1);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.header-subtitle { font-size: 13px; color: #94a3b8; position: relative; z-index: 1; letter-spacing: 2px; }
 
-  div.innerHTML = `
-    <div class="product-top">
-      <div class="product-image">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
-        <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" id="wish-${p.id}" onclick="toggleWishlistItem('${p.id}', event)" title="افزودن به علاقه‌مندی">
-          ${isInWishlist ? '❤️' : '🤍'}
-        </button>
+/* ===================== NAV ===================== */
+nav {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: 12px; text-align: center;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(13, 148, 136, 0.2);
+}
+nav a {
+  color: #cbd5e1; text-decoration: none;
+  margin: 6px 10px; font-weight: 600; font-size: 13.5px;
+  position: relative; padding: 6px 4px;
+  transition: color 0.3s; display: inline-block;
+}
+nav a::after {
+  content: ''; position: absolute; bottom: 0; right: 50%;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: all 0.3s ease; border-radius: 2px;
+}
+nav a:hover { color: #5eead4; }
+nav a:hover::after { width: 100%; right: 0; }
+
+/* ===================== HERO ===================== */
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  padding: 70px 20px 60px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero h1 {
+  font-size: clamp(24px, 5vw, 42px);
+  margin: 0 0 15px; font-weight: 900;
+  color: #0f172a; position: relative; z-index: 1; line-height: 1.3;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradientShift 4s linear infinite;
+}
+.hero p {
+  color: #475569; margin: 0 auto 30px;
+  font-size: clamp(14px, 2.5vw, 17px);
+  max-width: 600px; position: relative; z-index: 1;
+}
+.inquiry-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; padding: 16px 42px; text-decoration: none;
+  border-radius: 50px; font-weight: 800; font-size: 17px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 30px rgba(13, 148, 136, 0.35);
+  position: relative; z-index: 1; overflow: hidden;
+  border: none; cursor: pointer; font-family: inherit;
+}
+.inquiry-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 16px 40px rgba(13, 148, 136, 0.5); }
+
+/* ===================== SECTION TITLES ===================== */
+.section-title {
+  text-align: center; color: #0f172a;
+  margin: 0 0 30px; font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 800; position: relative; padding-bottom: 15px;
+}
+.section-title::after {
+  content: ''; position: absolute; bottom: 0;
+  right: 50%; transform: translateX(50%);
+  width: 70px; height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 4px;
+}
+
+/* ===================== TWO COLUMN ===================== */
+.two-column-layout {
+  display: flex; flex-wrap: wrap; gap: 22px;
+  max-width: 1150px; margin: 40px auto; padding: 0 25px;
+}
+.two-column-layout > section { flex: 1; min-width: 300px; margin: 0; }
+.about-us, .why-us {
+  background: white; padding: 30px; border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+  line-height: 2; position: relative; overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.about-us:hover, .why-us:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.about-us { border-right: 5px solid var(--primary); }
+.about-us h2, .why-us h2 {
+  color: #0f172a; margin-top: 0; font-size: 22px;
+  font-weight: 800; display: flex; align-items: center; gap: 10px;
+}
+.why-us { border-right: 5px solid var(--accent); }
+.why-us h2 { text-align: right; margin-bottom: 20px; }
+.features-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.feature-item {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  padding: 14px 16px; border-radius: 12px;
+  border-right: 4px solid var(--accent);
+  display: flex; align-items: flex-start; gap: 12px;
+  transition: all 0.3s;
+}
+.feature-item:hover {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  transform: translateX(-5px);
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+}
+.feature-item .icon {
+  width: 26px; height: 26px; background: var(--accent);
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 14px; font-weight: bold;
+}
+.feature-item strong { color: #0f172a; display: block; margin-bottom: 3px; font-size: 14.5px; font-weight: 700; }
+.feature-item p { margin: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* ===================== SEARCH ===================== */
+.search-container { max-width: 900px; margin: 0 auto 25px; padding: 0 25px; }
+.search-box { position: relative; width: 100%; }
+.search-input {
+  width: 100%; padding: 16px 54px 16px 48px;
+  border: 2px solid var(--border); border-radius: 16px;
+  font-family: inherit; font-size: 15px;
+  background: white; outline: none;
+  transition: all 0.3s; color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+}
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 8px 25px rgba(13, 148, 136, 0.15);
+  transform: translateY(-2px);
+}
+.search-icon {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  color: var(--text-light); width: 22px; height: 22px; pointer-events: none;
+}
+.search-clear {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  background: var(--danger); color: white; border: none; border-radius: 50%;
+  width: 28px; height: 28px; cursor: pointer; font-size: 14px;
+  display: none; align-items: center; justify-content: center;
+  font-weight: bold; padding: 0;
+}
+.search-clear.show { display: flex; }
+.search-result-info {
+  text-align: center; margin-top: 12px;
+  font-size: 14px; color: var(--text-muted); min-height: 20px; font-weight: 500;
+}
+.search-result-info strong { color: var(--primary); font-weight: 800; }
+
+/* ===================== PRODUCTS ===================== */
+.products { padding: 30px 25px; max-width: 950px; margin: auto; }
+.category-title {
+  color: white; padding: 16px 24px; border-radius: 14px;
+  margin: 30px 0 20px; font-size: 19px; text-align: center;
+  font-weight: 800; box-shadow: var(--shadow-md);
+}
+.category-title.construction { background: linear-gradient(135deg, #475569, #334155); }
+.category-title.facilities { background: linear-gradient(135deg, #0d9488, #0f766e); }
+.product-card {
+  background: white; border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 18px; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid #f1f5f9; position: relative;
+}
+.product-card:hover {
+  box-shadow: 0 20px 50px rgba(13, 148, 136, 0.15);
+  transform: translateY(-5px); border-color: #5eead4;
+}
+.product-top { display: flex; align-items: center; padding: 6px; }
+.product-image {
+  width: 130px; min-width: 130px; height: 130px;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px; overflow: hidden; margin: 10px;
+  transition: transform 0.4s;
+}
+.product-card:hover .product-image { transform: scale(1.05) rotate(-2deg); }
+.product-image img { width: 100%; height: 100%; object-fit: cover; }
+.product-info { padding: 15px 18px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+.product-info h3 { margin: 0 0 8px; color: #0f172a; font-size: 17px; font-weight: 800; }
+.product-info p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+.add-section {
+  display: flex; flex-direction: column; align-items: center;
+  margin-left: 14px; gap: 6px; flex-shrink: 0; padding-left: 10px;
+}
+.add-icon-btn {
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  color: var(--primary); border: 2px solid var(--primary); border-radius: 50%;
+  width: 44px; height: 44px; font-size: 24px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-weight: bold; padding: 0;
+}
+.add-icon-btn:hover {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white; transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.4);
+}
+.add-label { font-size: 10px; color: var(--primary); font-weight: 700; text-align: center; max-width: 72px; line-height: 1.3; }
+.add-label.hidden { display: none; }
+.stock-status {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 20px 14px; font-size: 12.5px;
+  color: var(--success); font-weight: 700;
+}
+.stock-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+.qty-control {
+  display: none; align-items: center; gap: 3px;
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  border: 2px solid var(--primary); border-radius: 12px; padding: 4px;
+}
+.qty-control.show { display: flex; animation: fadeInUp 0.3s; }
+.qty-control button {
+  background: white; border: none; color: var(--primary);
+  width: 30px; height: 30px; font-size: 18px; cursor: pointer;
+  font-weight: bold; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; transition: all 0.2s;
+}
+.qty-control button:hover { background: var(--primary); color: white; transform: scale(1.1); }
+.qty-control input {
+  width: 55px; height: 30px; border: none; background: transparent;
+  text-align: center; font-size: 14px;
+  font-weight: 800; color: var(--primary-dark); outline: none;
+}
+
+/* ===================== WISHLIST (قلب) ===================== */
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+  z-index: 5;
+  color: #94a3b8;
+}
+.wishlist-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.3);
+}
+.wishlist-btn.active {
+  color: #ef4444;
+  background: #fee2e2;
+  animation: heartbeat 0.6s;
+}
+
+/* ===================== NO RESULT ===================== */
+.no-result {
+  text-align: center; padding: 50px 20px; color: var(--text-light);
+  font-size: 15px; display: none;
+  background: white; border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.no-result.show { display: block; animation: fadeInUp 0.4s; }
+.no-result-icon { font-size: 60px; margin-bottom: 15px; opacity: 0.5; }
+
+/* ===================== FAQ ===================== */
+.faq-section { max-width: 900px; margin: 50px auto; padding: 0 25px; }
+.faq-item {
+  background: white; border-radius: 14px;
+  margin-bottom: 12px; overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s; border-right: 4px solid var(--primary);
+}
+.faq-item:hover { box-shadow: 0 8px 25px rgba(13, 148, 136, 0.12); }
+.faq-question {
+  padding: 18px 22px; cursor: pointer;
+  font-weight: 700; color: #0f172a; font-size: 15px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 0.3s;
+}
+.faq-question:hover { background: #f0fdfa; }
+.faq-question::after {
+  content: '+'; font-size: 24px; color: var(--primary);
+  font-weight: 300; transition: transform 0.3s; line-height: 1;
+}
+.faq-item.open .faq-question::after { transform: rotate(45deg); }
+.faq-item.open { border-right-color: var(--accent); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0 22px; color: #475569; font-size: 14px; line-height: 1.9;
+}
+.faq-item.open .faq-answer { max-height: 300px; padding: 0 22px 18px; }
+
+/* ===================== WORKING HOURS ===================== */
+.working-hours {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white; padding: 20px; text-align: center;
+  font-weight: 700; margin-top: 30px; border-radius: 14px;
+  font-size: 15px; box-shadow: var(--shadow-md);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+/* ===================== REVIEWS ===================== */
+.reviews { padding: 30px 25px; max-width: 900px; margin: auto; }
+.review-submit-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; border: none; padding: 15px 32px;
+  border-radius: 14px; font-family: inherit;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.35);
+  transition: all 0.3s;
+}
+.review-submit-btn:hover { transform: translateY(-3px) scale(1.03); }
+.review-form-window {
+  display: none; background: white; border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 25px; overflow: hidden;
+}
+.review-form-window.show { display: block; animation: fadeInUp 0.4s; }
+.review-form-header {
+  background: linear-gradient(135deg, var(--header-start), var(--header-mid));
+  color: white; padding: 16px 22px; font-weight: 800;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.review-form-header button {
+  background: rgba(255,255,255,0.15); border: none; color: white;
+  font-size: 18px; cursor: pointer; width: 34px; height: 34px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.review-form-body { padding: 22px; }
+.review-form-body label { display: block; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; font-size: 14px; margin-top: 16px; }
+.review-form-body label:first-child { margin-top: 0; }
+.review-form-body input, .review-form-body textarea {
+  width: 100%; padding: 13px 16px; border: 2px solid var(--border);
+  border-radius: 12px; font-family: inherit; font-size: 14px;
+  outline: none; transition: all 0.3s; box-sizing: border-box;
+  resize: vertical; background: var(--bg-light);
+}
+.review-form-body input:focus, .review-form-body textarea:focus {
+  border-color: var(--primary); background: white;
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+.star-rating { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 6px; margin-bottom: 10px; }
+.star { font-size: 34px; color: #cbd5e1; cursor: pointer; transition: all 0.2s; user-select: none; }
+.star:hover, .star:hover ~ .star, .star.active, .star.active ~ .star {
+  color: var(--accent); transform: scale(1.15);
+  text-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+}
+.review-send-btn {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: white; border: none; padding: 15px; border-radius: 12px;
+  font-family: inherit; font-size: 15px; font-weight: 800;
+  cursor: pointer; width: 100%; margin-top: 20px;
+  transition: all 0.3s; box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+}
+.review-send-btn:hover { transform: translateY(-2px); }
+.reviews-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.review-card {
+  background: white; padding: 20px; border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  border-right: 4px solid var(--accent);
+  animation: fadeInUp 0.5s;
+}
+.review-head {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 10px;
+  flex-wrap: wrap; gap: 8px;
+}
+.review-author {
+  font-weight: 800; color: #0f172a;
+  display: flex; align-items: center; gap: 10px;
+}
+.review-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white; display: flex; align-items: center;
+  justify-content: center; font-weight: 800; font-size: 16px;
+}
+.review-stars { color: var(--accent); font-size: 16px; letter-spacing: 2px; }
+.review-text { color: #475569; font-size: 14px; line-height: 1.9; margin: 0; }
+.review-date { font-size: 11px; color: var(--text-light); margin-top: 8px; display: block; }
+.no-reviews-yet {
+  text-align: center; padding: 55px 20px; color: var(--text-light);
+  font-size: 15px; background: white; border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.no-reviews-icon { font-size: 60px; margin-bottom: 15px; opacity: 0.5; }
+
+/* ===================== GALLERY ===================== */
+.gallery { padding: 30px 25px; max-width: 950px; margin: auto; }
+.gallery-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.gallery-column { display: flex; flex-direction: column; gap: 18px; }
+.gallery-item {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-md);
+  height: 210px; background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s;
+}
+.gallery-item:hover img { transform: scale(1.12); }
+
+/* ===================== MAP ===================== */
+.map-container { max-width: 950px; margin: 40px auto; padding: 0 25px; }
+.map-container iframe {
+  width: 100%; height: 340px; border-radius: 18px;
+  border: 0; box-shadow: var(--shadow-lg);
+}
+
+/* ===================== CONTACT ===================== */
+.contact {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: white; padding: 50px 25px; text-align: center;
+}
+.contact-logo {
+  max-width: 110px; width: 100%; height: auto;
+  margin-bottom: 20px; border-radius: 16px;
+  background: white; padding: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.contact h2 { font-size: 26px; font-weight: 900; margin: 0 0 25px; }
+.contact p {
+  margin: 14px 0; font-size: 16px; line-height: 1.8;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap;
+}
+.contact h3 { color: #cbd5e1; margin-top: 30px; font-weight: 700; }
+.call-btn {
+  display: inline-block; background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white; padding: 15px 32px; text-decoration: none;
+  border-radius: 50px; font-weight: 800; font-size: 16px;
+  margin-top: 20px; transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+}
+.call-btn:hover { transform: translateY(-4px) scale(1.03); }
+.personal-call-btn {
+  display: inline-block; background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px); color: white;
+  padding: 14px 26px; text-decoration: none;
+  border-radius: 12px; font-weight: 700; font-size: 15px;
+  margin: 8px; transition: all 0.3s;
+  border: 2px solid rgba(37, 211, 102, 0.4);
+}
+.personal-call-btn:hover {
+  background: rgba(37, 211, 102, 0.2);
+  border-color: #25d366; transform: translateY(-3px);
+}
+
+/* ===================== SOCIAL ===================== */
+.social-links { margin-top: 30px; display: flex; justify-content: center; gap: 30px; }
+.social-item { text-align: center; }
+.social-item a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px;
+  background: linear-gradient(135deg, #e1306c, #c13584);
+  color: white; border-radius: 50%; text-decoration: none;
+  transition: all 0.4s;
+  box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4);
+}
+.social-item a:hover { transform: translateY(-6px) scale(1.1); }
+.social-item span { display: block; margin-top: 10px; font-size: 13px; color: #cbd5e1; font-weight: 700; }
+
+/* ===================== FLOATING BUTTONS ===================== */
+.float-btn {
+  position: fixed; width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; text-decoration: none; border: none;
+  cursor: pointer; z-index: 1000;
+  transition: all 0.4s; padding: 0;
+}
+.float-btn:hover { transform: scale(1.12) translateY(-3px); }
+.float-btn-label {
+  position: fixed; z-index: 999;
+  background: rgba(15, 23, 42, 0.92);
+  color: white; padding: 5px 10px;
+  border-radius: 8px; font-size: 11px; font-weight: 700;
+  pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  white-space: nowrap;
+}
+.float-wrap:hover .float-btn-label { opacity: 1; }
+.floating-call-btn {
+  bottom: 22px; left: 22px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+  font-size: 26px; animation: pulse 2.5s infinite;
+}
+.floating-insta-btn {
+  bottom: 22px; right: 22px;
+  background: linear-gradient(135deg, #e1306c, #c13584);
+  box-shadow: 0 8px 25px rgba(225, 48, 108, 0.5);
+}
+.floating-assistant-btn {
+  bottom: 90px; left: 22px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+  box-shadow: 0 8px 25px rgba(13, 148, 136, 0.5);
+}
+.floating-cart-btn {
+  bottom: 90px; right: 22px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 8px 25px rgba(13, 148, 136, 0.5);
+  display: none;
+}
+.floating-cart-btn.show { display: flex; animation: fadeInUp 0.4s; }
+.floating-theme-btn {
+  bottom: 158px; left: 22px;
+  background: linear-gradient(135deg, #334155, #1e293b);
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.5);
+  font-size: 26px;
+}
+body.dark-mode .floating-theme-btn {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #0f172a;
+}
+.floating-wishlist-btn {
+  bottom: 158px; right: 22px;
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
+  font-size: 24px;
+  display: none;
+}
+.floating-wishlist-btn.show { display: flex; animation: fadeInUp 0.4s; }
+.wishlist-count, .cart-count {
+  position: absolute; top: -5px; right: -5px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white; border-radius: 50%;
+  width: 24px; height: 24px; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; border: 2px solid white;
+  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.5);
+}
+.cart-svg-icon { width: 26px; height: 26px; fill: white; }
+.insta-icon { width: 28px; height: 28px; fill: white; }
+
+/* ===================== ROBOT ICON ===================== */
+.robot-icon { width: 30px; height: 30px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.robot-icon::before { content: ""; position: absolute; top: 2px; width: 2px; height: 7px; background: white; border-radius: 1px; }
+.robot-icon::after { content: ""; position: absolute; top: 0; width: 5px; height: 5px; background: white; border-radius: 50%; }
+.robot-head {
+  width: 28px; height: 20px; background: white; border-radius: 6px;
+  position: relative; display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 9px;
+}
+.robot-eye { width: 4px; height: 4px; background: var(--primary-dark); border-radius: 50%; }
+.robot-ear { position: absolute; top: 50%; transform: translateY(-50%); width: 3px; height: 8px; background: white; border-radius: 2px; }
+.robot-ear.left { left: -5px; }
+.robot-ear.right { right: -5px; }
+
+/* ===================== WINDOWS ===================== */
+.cart-window, .assistant-window, .wishlist-window, .history-window, .profile-window {
+  display: none; position: fixed;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 440px; max-width: calc(100% - 30px);
+  max-height: 88vh; background: white; border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  z-index: 1002; overflow: hidden; flex-direction: column;
+}
+.cart-window.show, .assistant-window.show, .wishlist-window.show, .history-window.show, .profile-window.show {
+  display: flex; animation: fadeInUp 0.4s;
+}
+.assistant-window {
+  top: auto; bottom: 160px; left: 20px;
+  transform: none; width: 360px; max-height: 520px;
+}
+.cart-header, .assistant-header, .wishlist-header, .history-header, .profile-header {
+  background: linear-gradient(135deg, var(--header-start), var(--header-mid));
+  color: white; padding: 18px 22px;
+  font-weight: 800; display: flex;
+  justify-content: space-between; align-items: center;
+}
+.wishlist-header { background: linear-gradient(135deg, #be185d, #9d174d); }
+.history-header { background: linear-gradient(135deg, #1e40af, #1e3a8a); }
+.profile-header { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+.assistant-header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+.cart-header span, .assistant-header span, .wishlist-header span, .history-header span, .profile-header span {
+  font-size: 16px; display: flex; align-items: center; gap: 8px;
+}
+.cart-header button, .assistant-header button, .wishlist-header button, .history-header button, .profile-header button {
+  background: rgba(255,255,255,0.15); border: none; color: white;
+  font-size: 18px; cursor: pointer; font-weight: bold;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-summary {
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  padding: 15px 22px; display: flex; justify-content: space-around;
+  border-bottom: 1px solid var(--border);
+}
+.summary-item { text-align: center; flex: 1; }
+.summary-item .num { font-size: 24px; font-weight: 900; color: var(--primary); display: block; }
+.summary-item .lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
+.summary-divider { width: 1px; background: #cbd5e1; }
+.cart-items, .wishlist-items, .history-items {
+  max-height: 340px; overflow-y: auto; padding: 10px 16px;
+}
+.cart-item {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9; font-size: 14px; gap: 10px;
+}
+.cart-item-info { flex-grow: 1; }
+.cart-item-name { color: #0f172a; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.cart-item-index { color: var(--text-light); font-size: 11px; }
+.cart-item-qty {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--bg-light); border: 1px solid var(--border);
+  border-radius: 10px; padding: 3px;
+}
+.cart-item-qty button {
+  background: white; color: var(--primary); border: none;
+  border-radius: 6px; width: 26px; height: 26px;
+  cursor: pointer; font-weight: bold; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-item-qty input {
+  width: 42px; height: 26px; border: none;
+  text-align: center; font-size: 13px; font-weight: 800;
+  color: var(--primary-dark); background: transparent; outline: none;
+}
+.cart-item-remove {
+  background: #fee2e2; color: var(--danger); border: none;
+  border-radius: 50%; width: 28px; height: 28px;
+  cursor: pointer; font-weight: bold; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-item-remove:hover { background: var(--danger); color: white; }
+.cart-empty, .wishlist-empty, .history-empty {
+  text-align: center; color: var(--text-light); padding: 55px 20px; font-size: 14px;
+}
+.cart-empty-icon, .wishlist-empty-icon, .history-empty-icon {
+  font-size: 55px; margin-bottom: 15px; opacity: 0.5;
+}
+.cart-footer {
+  padding: 16px 22px; background: var(--bg-light);
+  border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.cart-footer-label { font-size: 13px; color: var(--text-muted); text-align: center; font-weight: 700; }
+.cart-footer-row { display: flex; gap: 8px; }
+.cart-footer button {
+  flex: 1; padding: 13px; border: none;
+  border-radius: 12px; font-weight: 800;
+  font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-eita-masaleh { background: linear-gradient(135deg, #475569, #334155); color: white; }
+.btn-eita-tasisat { background: linear-gradient(135deg, #3b82f6, #1e40af); color: white; }
+.btn-copy { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; }
+.btn-clear { background: #fee2e2; color: var(--danger); flex: 0 0 auto; padding: 13px 18px; }
+
+/* ===================== ASSISTANT ===================== */
+.assistant-messages { flex: 1; overflow-y: auto; padding: 16px; max-height: 350px; background: var(--bg-light); }
+.assistant-msg {
+  padding: 11px 14px; border-radius: 12px;
+  margin-bottom: 10px; font-size: 13.5px;
+  line-height: 1.8; max-width: 88%;
+}
+.assistant-msg.bot {
+  background: white; color: var(--text-main);
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+}
+.assistant-msg.user {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white; margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+.assistant-input {
+  display: flex; padding: 12px;
+  border-top: 1px solid var(--border); gap: 6px; background: white;
+}
+.assistant-input input {
+  flex: 1; padding: 11px 14px;
+  border: 2px solid var(--border); border-radius: 10px;
+  font-family: inherit; font-size: 14px; outline: none;
+}
+.assistant-input button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white; border: none; padding: 0 18px;
+  border-radius: 10px; cursor: pointer; font-size: 18px;
+}
+
+/* ===================== PROFILE ===================== */
+.profile-body { padding: 20px 22px; }
+.profile-body label {
+  display: block; font-weight: 700; color: var(--primary-dark);
+  margin-bottom: 6px; font-size: 13px; margin-top: 12px;
+}
+.profile-body label:first-child { margin-top: 0; }
+.profile-body input, .profile-body textarea {
+  width: 100%; padding: 11px 14px;
+  border: 2px solid var(--border); border-radius: 10px;
+  font-family: inherit; font-size: 14px;
+  outline: none; transition: all 0.3s;
+  box-sizing: border-box; background: var(--bg-light);
+}
+.profile-body input:focus, .profile-body textarea:focus {
+  border-color: var(--primary); background: white;
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+.profile-save-btn {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: white; border: none; padding: 14px;
+  border-radius: 12px; font-family: inherit; font-size: 15px;
+  font-weight: 800; cursor: pointer; width: 100%;
+  margin-top: 18px; transition: all 0.3s;
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.35);
+}
+
+/* ===================== HISTORY ===================== */
+.history-item {
+  background: var(--bg-light);
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border-right: 4px solid #3b82f6;
+}
+.history-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.history-item-date { font-size: 12px; color: var(--text-muted); }
+.history-item-status {
+  background: #dbeafe; color: #1e40af;
+  padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 700;
+}
+.history-item-products {
+  font-size: 12.5px; color: var(--text-muted);
+  line-height: 1.8; margin: 0;
+}
+
+/* ===================== INSTA MENU ===================== */
+.insta-menu {
+  display: none; position: fixed;
+  bottom: 92px; right: 22px;
+  background: white; border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  padding: 12px; z-index: 1001;
+  min-width: 210px; text-align: center;
+}
+.insta-menu.show { display: block; animation: fadeInUp 0.3s; }
+.insta-menu p {
+  margin: 4px 0 10px; font-weight: 800;
+  color: #0f172a; font-size: 13px;
+  border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;
+}
+.insta-menu a {
+  display: block; padding: 11px;
+  text-decoration: none; color: #0f172a;
+  border-radius: 10px; margin: 5px 0;
+  font-size: 14px; font-weight: 700;
+}
+.insta-menu a:hover { background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; }
+
+/* ===================== TOAST ===================== */
+.toast-container {
+  position: fixed; bottom: 100px; left: 50%;
+  transform: translateX(-50%); z-index: 10000;
+  display: flex; flex-direction: column; gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  background: linear-gradient(135deg, var(--header-start), var(--header-mid));
+  color: white; padding: 14px 24px;
+  border-radius: 12px; font-weight: 700;
+  font-size: 14px; min-width: 260px;
+  text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  animation: toastIn 0.4s;
+  border-right: 4px solid var(--success);
+  pointer-events: all;
+}
+.toast.error { border-right-color: var(--danger); }
+.toast.info { border-right-color: #3b82f6; }
+
+/* ===================== MODALS ===================== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px); z-index: 9998;
+  align-items: center; justify-content: center;
+  padding: 20px; overflow-y: auto;
+}
+.modal-overlay.show { display: flex; animation: fadeIn 0.3s; }
+.modal-content {
+  background: white; border-radius: 20px;
+  max-width: 620px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  animation: fadeInUp 0.4s;
+}
+.modal-header {
+  background: linear-gradient(135deg, var(--header-start), var(--header-mid));
+  color: white; padding: 18px 24px;
+  display: flex; justify-content: space-between;
+  align-items: center; border-radius: 20px 20px 0 0;
+  position: sticky; top: 0; z-index: 10;
+}
+.modal-header h3 { margin: 0; font-size: 17px; font-weight: 800; }
+.modal-header button {
+  background: rgba(255,255,255,0.15); border: none;
+  color: white; font-size: 18px; cursor: pointer;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-body { padding: 24px; }
+.modal-body label {
+  display: block; font-weight: 700; color: var(--primary-dark);
+  margin-bottom: 8px; font-size: 14px; margin-top: 14px;
+}
+.modal-body label:first-child { margin-top: 0; }
+.modal-body input, .modal-body textarea, .modal-body select {
+  width: 100%; padding: 12px 16px;
+  border: 2px solid var(--border); border-radius: 12px;
+  font-family: inherit; font-size: 14px;
+  outline: none; transition: all 0.3s;
+  box-sizing: border-box; background: var(--bg-light); color: var(--text-main);
+}
+.modal-body input:focus, .modal-body textarea:focus, .modal-body select:focus {
+  border-color: var(--primary); background: white;
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+.modal-body textarea { resize: vertical; min-height: 80px; }
+.modal-footer {
+  padding: 16px 24px; background: var(--bg-light);
+  border-top: 1px solid var(--border);
+  display: flex; gap: 10px; border-radius: 0 0 20px 20px;
+}
+.modal-footer button {
+  flex: 1; padding: 14px; border: none;
+  border-radius: 12px; font-family: inherit;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white; box-shadow: 0 8px 22px rgba(13, 148, 136, 0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-secondary { background: var(--border); color: var(--primary-dark); }
+.btn-secondary:hover { background: #cbd5e1; }
+.modal-notice {
+  background: #fef3c7; border-right: 4px solid var(--accent);
+  padding: 12px 16px; border-radius: 10px;
+  font-size: 13px; color: #92400e;
+  margin-top: 14px; line-height: 1.7;
+}
+
+/* ===================== CALCULATOR ===================== */
+.calc-tabs {
+  display: flex; gap: 6px; margin-bottom: 20px;
+  flex-wrap: wrap; border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+.calc-tab {
+  background: transparent; border: none;
+  padding: 10px 16px; border-radius: 10px;
+  font-family: inherit; font-weight: 800;
+  font-size: 13px; color: var(--text-muted); cursor: pointer;
+}
+.calc-tab.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+.calc-panel { display: none; }
+.calc-panel.active { display: block; animation: fadeInUp 0.3s; }
+.calc-result {
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  border-radius: 14px; padding: 18px;
+  margin-top: 18px; border-right: 4px solid var(--primary);
+}
+.calc-result h4 { margin: 0 0 12px; color: var(--primary-dark); font-size: 16px; font-weight: 800; }
+.calc-result-item {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 8px 0;
+  border-bottom: 1px dashed #99f6e4; font-size: 14px;
+}
+.calc-result-item:last-child { border-bottom: none; font-weight: 800; color: var(--primary-dark); }
+.calc-result-item span:first-child { color: #475569; font-weight: 600; }
+.calc-result-item span:last-child { color: var(--primary); font-weight: 800; }
+
+/* ===================== BLOG ===================== */
+.blog-section { padding: 40px 25px; max-width: 950px; margin: auto; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.blog-card {
+  background: white; border-radius: 16px;
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  cursor: pointer; transition: all 0.4s;
+  border: 1px solid #f1f5f9;
+}
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(13, 148, 136, 0.15);
+  border-color: #5eead4;
+}
+.blog-card-img {
+  height: 140px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; color: white;
+}
+.blog-card-body { padding: 18px; }
+.blog-card-body h3 { margin: 0 0 8px; color: #0f172a; font-size: 16px; font-weight: 800; line-height: 1.5; }
+.blog-card-body p { margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+.blog-card-meta {
+  margin-top: 12px; font-size: 11px; color: var(--text-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.blog-card-tag {
+  background: #f0fdfa; color: var(--primary);
+  padding: 3px 10px; border-radius: 20px;
+  font-weight: 700; font-size: 10.5px;
+}
+.blog-article { line-height: 2; color: #334155; }
+.blog-article h2 { color: #0f172a; font-size: 20px; margin: 22px 0 12px; font-weight: 800; }
+.blog-article h3 { color: var(--primary-dark); font-size: 17px; margin: 18px 0 10px; font-weight: 800; }
+.blog-article p { margin: 0 0 14px; font-size: 14.5px; }
+.blog-article ul, .blog-article ol { padding-right: 22px; margin: 0 0 14px; }
+.blog-article li { margin-bottom: 6px; font-size: 14.5px; }
+.blog-article strong { color: #0f172a; }
+.blog-article .highlight {
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  border-right: 4px solid var(--primary);
+  padding: 14px 18px; border-radius: 10px;
+  margin: 14px 0; font-size: 14px;
+}
+.blog-meta {
+  display: flex; gap: 15px;
+  font-size: 12px; color: var(--text-light);
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9; flex-wrap: wrap;
+}
+
+/* ===================== ADMIN PANEL ===================== */
+.admin-stats {
+  display: flex; gap: 10px; margin-bottom: 15px;
+}
+.admin-stat {
+  flex: 1; text-align: center; padding: 15px 10px;
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  border-radius: 12px; border-right: 4px solid var(--primary);
+}
+.admin-stat.approved { border-right-color: var(--success); }
+.admin-stat.pending { border-right-color: var(--accent); }
+.admin-stat.rejected { border-right-color: var(--danger); }
+.admin-stat .num {
+  display: block; font-size: 26px; font-weight: 900; color: #0f172a;
+}
+.admin-stat .lbl {
+  display: block; font-size: 12px; color: var(--text-muted);
+  margin-top: 4px; font-weight: 700;
+}
+.admin-tabs {
+  display: flex; gap: 6px; margin-bottom: 15px;
+  flex-wrap: wrap; border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+.admin-tab {
+  background: #f1f5f9; border: none; padding: 8px 14px;
+  border-radius: 8px; font-family: inherit; font-weight: 700;
+  font-size: 12.5px; color: var(--text-muted); cursor: pointer;
+  transition: all 0.2s;
+}
+.admin-tab.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+.admin-review-item {
+  background: var(--bg-light); padding: 14px 16px;
+  border-radius: 12px; margin-bottom: 10px;
+  border-right: 4px solid #cbd5e1;
+}
+.admin-review-item.pending { border-right-color: var(--accent); background: #fffbeb; }
+.admin-review-item.approved { border-right-color: var(--success); background: #f0fdf4; }
+.admin-review-item.rejected { border-right-color: var(--danger); background: #fef2f2; }
+.admin-review-head {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 6px;
+  flex-wrap: wrap; gap: 8px;
+}
+.admin-review-name {
+  display: flex; gap: 10px; align-items: center;
+  font-weight: 800; color: #0f172a;
+}
+.admin-review-stars { color: var(--accent); font-size: 15px; }
+.admin-review-text {
+  margin: 8px 0; font-size: 13.5px; color: #475569;
+  line-height: 1.7;
+}
+.admin-review-actions {
+  display: flex; gap: 6px; margin-top: 10px;
+}
+.admin-review-actions button {
+  padding: 6px 14px; border: none; border-radius: 8px;
+  font-family: inherit; font-weight: 700;
+  font-size: 12px; cursor: pointer; transition: all 0.2s;
+}
+.btn-approve { background: var(--success); color: white; }
+.btn-approve:hover { background: #047857; }
+.btn-reject { background: var(--accent); color: white; }
+.btn-reject:hover { background: var(--accent-dark); }
+.btn-delete { background: #fee2e2; color: var(--danger); }
+.btn-delete:hover { background: var(--danger); color: white; }
+.admin-empty {
+  text-align: center; padding: 40px 20px;
+  color: var(--text-light); font-size: 14px;
+}
+
+/* ===================== DARK MODE ===================== */
+body.dark-mode {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
+}
+body.dark-mode header {
+  background: linear-gradient(-45deg, #000000, #0f172a, #1e293b, #0f172a) !important;
+  background-size: 400% 400% !important;
+}
+body.dark-mode nav { background: rgba(0, 0, 0, 0.95) !important; }
+body.dark-mode .hero { background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important; }
+body.dark-mode .hero h1, body.dark-mode .hero p { color: #e2e8f0 !important; }
+body.dark-mode .about-us,
+body.dark-mode .why-us,
+body.dark-mode .product-card,
+body.dark-mode .review-card,
+body.dark-mode .faq-item,
+body.dark-mode .blog-card,
+body.dark-mode .no-result,
+body.dark-mode .no-reviews-yet,
+body.dark-mode .modal-content,
+body.dark-mode .cart-window,
+body.dark-mode .assistant-window,
+body.dark-mode .wishlist-window,
+body.dark-mode .history-window,
+body.dark-mode .profile-window,
+body.dark-mode .insta-menu {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+body.dark-mode .product-info h3,
+body.dark-mode .about-us h2,
+body.dark-mode .why-us h2,
+body.dark-mode .section-title,
+body.dark-mode .faq-question,
+body.dark-mode .review-author,
+body.dark-mode .blog-card-body h3,
+body.dark-mode .blog-article h2 { color: #f1f5f9 !important; }
+body.dark-mode .product-info p,
+body.dark-mode .feature-item p,
+body.dark-mode .faq-answer,
+body.dark-mode .review-text,
+body.dark-mode .blog-card-body p,
+body.dark-mode .blog-article,
+body.dark-mode .about-us p { color: #cbd5e1 !important; }
+body.dark-mode .feature-item { background: linear-gradient(135deg, #334155, #1e293b) !important; }
+body.dark-mode .search-input,
+body.dark-mode .modal-body input,
+body.dark-mode .modal-body textarea,
+body.dark-mode .modal-body select,
+body.dark-mode .review-form-body input,
+body.dark-mode .review-form-body textarea,
+body.dark-mode .profile-body input,
+body.dark-mode .profile-body textarea {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+body.dark-mode .modal-footer, body.dark-mode .cart-footer, body.dark-mode .cart-summary {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+body.dark-mode .cart-item { border-color: #334155 !important; }
+body.dark-mode .cart-item-name { color: #f1f5f9 !important; }
+body.dark-mode .history-item { background: #0f172a !important; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .two-column-layout { flex-direction: column; padding: 0 16px; }
+  nav a { font-size: 12.5px; margin: 4px 6px; }
+  .header-logo { max-width: 200px; }
+  .cart-window, .wishlist-window, .history-window, .profile-window { width: calc(100% - 24px); }
+  .assistant-window { width: calc(100% - 40px); left: 20px; right: 20px; }
+  .gallery-columns { gap: 12px; }
+  .gallery-item { height: 150px; }
+  .product-image { width: 105px; min-width: 105px; height: 105px; }
+  .product-info h3 { font-size: 15.5px; }
+  .product-info p { font-size: 12px; }
+  .add-label { font-size: 9px; max-width: 60px; }
+  .float-btn { width: 52px; height: 52px; }
+  .hero { padding: 55px 20px 45px; }
+  .products, .reviews, .gallery, .blog-section { padding: 25px 16px; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .modal-body { padding: 18px; }
+  .admin-stats { flex-wrap: wrap; }
+  .admin-stat { min-width: 100px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <img src="iu.jpg" alt="لوگو مصالح ساختمانی و تاسیسات مرکزی کارگر" class="header-logo" id="headerLogo" onclick="tripleClickLogo()" title="فروشگاه کارگر">
+  <div class="header-title">مصالح ساختمانی و تاسیسات مرکزی کارگر</div>
+  <div class="header-subtitle">کیفیت برتر، همراه همیشگی سازندگان</div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav>
+  <a href="#">خانه</a>
+  <a href="#about">درباره ما</a>
+  <a href="#products">محصولات</a>
+  <a href="#blog">مقالات</a>
+  <a href="#faq">سوالات</a>
+  <a href="#reviews">نظرات</a>
+  <a href="#gallery">گالری</a>
+  <a href="#contact">تماس</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <h1>مصالح ساختمانی و تاسیسات <span>با کیفیت تضمینی</span></h1>
+  <p>عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی با قیمت مناسب و ارسال سریع در شهربابک و حومه</p>
+  <a href="#contact" class="inquiry-btn">استعلام قیمت روز</a>
+  <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
+    <button onclick="openOrderForm()" class="inquiry-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); font-size: 15px; padding: 14px 30px;">
+      ثبت سفارش آنلاین
+    </button>
+    <button onclick="openCalculator()" class="inquiry-btn" style="background: linear-gradient(135deg, #475569, #334155); font-size: 15px; padding: 14px 30px;">
+      محاسبه‌گر مصالح
+    </button>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<div class="two-column-layout">
+  <section class="about-us reveal" id="about">
+    <h2>درباره ما</h2>
+    <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.</p>
+    <p>ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم. <strong>رضایت شما، بزرگترین سرمایه ماست.</strong></p>
+  </section>
+  <section class="why-us reveal">
+    <h2>چرا ما را انتخاب کنید؟</h2>
+    <div class="features-grid">
+      <div class="feature-item"><span class="icon">✓</span><div><strong>کیفیت تضمینی</strong><p>تمام محصولات از برندهای معتبر و با ضمانت کیفیت عرضه می‌شوند.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>قیمت مناسب</strong><p>خرید مستقیم از تولیدکننده و ارائه قیمت رقابتی به شما.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>تنوع کامل</strong><p>از مصالح ساختمانی تا تجهیزات تاسیساتی، همه چیز یکجا.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>ارسال سریع</strong><p>با ناوگان حمل و نقل خودمان، سفارش در کمترین زمان ارسال می‌شود.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>مشاوره رایگان</strong><p>کارشناسان ما آماده راهنمایی شما در انتخاب بهترین محصول هستند.</p></div></div>
+      <div class="feature-item"><span class="icon">✓</span><div><strong>سابقه درخشان</strong><p>سال‌هاست در خدمت هم‌شهری‌های عزیز در شهربابک و حومه هستیم.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="products" id="products">
+  <h2 class="section-title">محصولات ما</h2>
+  <div class="search-container" style="padding: 0; margin-bottom: 25px;">
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="جستجوی محصول (مثلاً: سیمان، کاشی، پکیج...)" oninput="searchProducts()">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" title="پاک کردن">✕</button>
+    </div>
+    <div class="search-result-info" id="searchResultInfo"></div>
+  </div>
+  <div class="no-result" id="noResult">
+    <div class="no-result-icon">🔍</div>
+    محصولی با این نام پیدا نشد.<br>
+    لطفاً کلمه دیگه‌ای رو امتحان کن یا با ما تماس بگیر.
+  </div>
+  <div id="productsContainer"></div>
+  <div class="working-hours">⏰ ساعات کاری: شنبه تا پنجشنبه، ۸ صبح تا ۸ شب</div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section class="blog-section" id="blog">
+  <h2 class="section-title">مقالات آموزشی</h2>
+  <div class="blog-grid" id="blogGrid"></div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq-section" id="faq">
+  <h2 class="section-title">سوالات متداول</h2>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">ساعات کاری فروشگاه چه زمانی است؟</div>
+    <div class="faq-answer">ما شنبه تا پنجشنبه از ساعت ۸ صبح تا ۸ شب در خدمت شما هستیم. جمعه‌ها تعطیل می‌باشیم.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">چطور می‌توانم استعلام قیمت بگیرم؟</div>
+    <div class="faq-answer">می‌توانید با شماره‌های ۰۹۱۳۳۹۰۸۲۳۰ (مصالح) و ۰۹۱۳۳۹۰۸۳۹۳ (تاسیسات) تماس بگیرید، یا از طریق لیست خرید سایت، لیست خود را در ایتا برای ما ارسال کنید.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">آیا ارسال به شهرهای اطراف دارید؟</div>
+    <div class="faq-answer">بله، با ناوگان حمل و نقل خودمان ارسال سریع به شهربابک و حومه انجام می‌شود. برای سفارش‌های بزرگ هماهنگی لازم است.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">برای ساخت یک واحد مسکونی ۱۰۰ متری چقدر سیمان لازم است؟</div>
+    <div class="faq-answer">به‌طور تقریبی بین ۱۵۰ تا ۲۲۰ کیسه سیمان (بسته به نوع سازه و مرحله کار). برای محاسبه دقیق با کارشناسان ما تماس بگیرید یا از محاسبه‌گر آنلاین سایت استفاده کنید.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">آیا امکان تخفیف برای خرید عمده وجود دارد؟</div>
+    <div class="faq-answer">بله، برای خریدهای عمده و پروژه‌های ساختمانی، تخفیف ویژه در نظر گرفته می‌شود. لطفاً با شماره تماس تماس بگیرید.</div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews" id="reviews">
+  <h2 class="section-title">نظرات مشتریان</h2>
+  <div style="text-align: center; margin-bottom: 25px;">
+    <button onclick="openReviewForm()" class="review-submit-btn">ثبت نظر جدید</button>
+  </div>
+  <div class="review-form-window" id="reviewFormWindow">
+    <div class="review-form-header">
+      <span>ثبت نظر شما</span>
+      <button onclick="closeReviewForm()">✕</button>
+    </div>
+    <div class="review-form-body">
+      <label>نام شما:</label>
+      <input type="text" id="reviewName" placeholder="مثلاً: علی محمدی">
+      <label>امتیاز شما:</label>
+      <div class="star-rating" id="starRating">
+        <span class="star" data-value="1" onclick="setRating(1)">★</span>
+        <span class="star" data-value="2" onclick="setRating(2)">★</span>
+        <span class="star" data-value="3" onclick="setRating(3)">★</span>
+        <span class="star" data-value="4" onclick="setRating(4)">★</span>
+        <span class="star" data-value="5" onclick="setRating(5)">★</span>
       </div>
-      <div class="product-info">
-        <h3>${p.name}</h3>
-        <p>${p.desc}</p>
+      <label>نظر شما:</label>
+      <textarea id="reviewText" rows="4" placeholder="تجربه‌تون رو با ما بنویسید..."></textarea>
+      <button onclick="submitReview()" class="review-send-btn">ارسال نظر</button>
+    </div>
+  </div>
+  <div class="reviews-list" id="reviewsList">
+    <div class="no-reviews-yet">
+      <div class="no-reviews-icon">💬</div>
+      هنوز نظری ثبت نشده.<br>
+      اولین نفری باشید که نظر می‌ده!
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery" id="gallery">
+  <h2 class="section-title">گالری تصاویر فروشگاه</h2>
+  <div class="gallery-columns">
+    <div class="gallery-column">
+      <div class="gallery-item reveal"><img src="67.png" alt="سیمان" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="76.png" alt="موزاییک" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="simans.png" alt="سیمان سفید" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gallery3.jpg" alt="بلوک سقفی" loading="lazy"></div>
+    </div>
+    <div class="gallery-column">
+      <div class="gallery-item reveal"><img src="shiralat.png" alt="شیرآلات" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="roshoii.png" alt="روشویی" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="10.png" alt="اتصالات" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gallery5.jpg" alt="آهک" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<div class="map-container" id="map">
+  <h2 class="section-title">موقعیت روی نقشه</h2>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.123456789!2d55.110361!3d30.128111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzQxLjIiTiA1NcKwMDYnMzcuMyJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen loading="lazy"></iframe>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <img src="0987.jpg" alt="لوگو" class="contact-logo">
+  <h2>تماس با ما</h2>
+  <p>شماره تماس: <span dir="ltr">۰۳۴-۳۴۳۴۱۳۰۳۸۶</span></p>
+  <p>آدرس: شهربابک، خیابان مطهری، نبش کوچه ۱۱</p>
+  <h3>برای استعلام قیمت با ما تماس بگیرید:</h3>
+  <a href="tel:09133908230" class="personal-call-btn">مصالح: ۰۹۱۳۳۹۰۸۲۳۰</a>
+  <a href="tel:09133908393" class="personal-call-btn">تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳</a>
+  <br>
+  <a href="tel:+983434130386" class="call-btn">تماس با مغازه</a>
+  <div class="social-links">
+    <div class="social-item">
+      <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener" title="پیج مصالح">
+        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <span>مصالح</span>
+    </div>
+    <div class="social-item">
+      <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener" title="پیج تاسیسات">
+        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <span>تاسیسات</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLOATING BUTTONS ================= -->
+<a href="tel:+983434130386" class="float-btn floating-call-btn" title="تماس فوری">📞</a>
+
+<button class="float-btn floating-assistant-btn" onclick="toggleAssistant()" title="مشاور خرید">
+  <div class="robot-icon">
+    <div class="robot-head">
+      <span class="robot-eye"></span>
+      <span class="robot-eye"></span>
+      <span class="robot-ear left"></span>
+      <span class="robot-ear right"></span>
+    </div>
+  </div>
+</button>
+
+<button class="float-btn floating-theme-btn" id="themeBtn" onclick="toggleTheme()" title="تم تیره/روشن">🌙</button>
+
+<button class="float-btn floating-insta-btn" onclick="toggleInstaMenu(event)" title="اینستاگرام">
+  <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</button>
+
+<button class="float-btn floating-cart-btn" id="floatingCartBtn" onclick="toggleCart(event)" title="لیست خرید">
+  <svg class="cart-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+  </svg>
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<button class="float-btn floating-wishlist-btn" id="floatingWishlistBtn" onclick="toggleWishlist(event)" title="علاقه‌مندی‌ها">
+  ❤️
+  <span class="wishlist-count" id="wishlistCount">0</span>
+</button>
+
+<!-- ================= INSTA MENU ================= -->
+<div class="insta-menu" id="instaMenu">
+  <p>صفحه اینستاگرام ما:</p>
+  <a href="https://instagram.com/rezakargar_masaleh" target="_blank" rel="noopener">پیج مصالح</a>
+  <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" rel="noopener">پیج تاسیسات</a>
+</div>
+
+<!-- ================= ASSISTANT ================= -->
+<div class="assistant-window" id="assistantWindow">
+  <div class="assistant-header">
+    <span>مشاور خرید هوشمند</span>
+    <button onclick="toggleAssistant()">✕</button>
+  </div>
+  <div class="assistant-messages" id="assistantMessages">
+    <div class="assistant-msg bot">
+      سلام! من مشاور خرید شما هستم. چطور می‌تونم کمکتون کنم؟
+      <br><br>
+      <b>می‌تونید بپرسید:</b><br>
+      • برای دیوارچینی چی لازم دارم؟<br>
+      • قیمت سیمان تیپ ۲ چنده؟<br>
+      • برای سقف ۱۰۰ متری چقدر بلوک لازمه؟
+    </div>
+  </div>
+  <div class="assistant-input">
+    <input type="text" id="assistantInput" placeholder="سوال خود را بنویسید..." onkeypress="if(event.key==='Enter') sendAssistantMsg()">
+    <button onclick="sendAssistantMsg()">➤</button>
+  </div>
+</div>
+
+<!-- ================= CART ================= -->
+<div class="cart-window" id="cartWindow">
+  <div class="cart-header">
+    <span>لیست خرید شما</span>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-summary">
+    <div class="summary-item">
+      <span class="num" id="summaryTypes">0</span>
+      <span class="lbl">قلم کالا</span>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-item">
+      <span class="num" id="summaryTotal">0</span>
+      <span class="lbl">مجموع تعداد</span>
+    </div>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      لیست شما خالی است
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-footer-label">ارسال لیست به:</div>
+    <div class="cart-footer-row">
+      <button class="btn-eita-masaleh" onclick="sendToEita('masaleh')">ایتا مصالح</button>
+      <button class="btn-eita-tasisat" onclick="sendToEita('tasisat')">ایتا تاسیسات</button>
+    </div>
+    <div class="cart-footer-row">
+      <button class="btn-copy" onclick="copyCart()">کپی لیست</button>
+      <button class="btn-clear" onclick="clearCart()" title="پاک کردن">🗑</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= WISHLIST ================= -->
+<div class="wishlist-window" id="wishlistWindow">
+  <div class="wishlist-header">
+    <span>❤️ علاقه‌مندی‌های شما</span>
+    <button onclick="toggleWishlist()">✕</button>
+  </div>
+  <div class="wishlist-items" id="wishlistItems">
+    <div class="wishlist-empty">
+      <div class="wishlist-empty-icon">❤️</div>
+      هنوز محصولی به علاقه‌مندی‌ها اضافه نکردی.<br>
+      روی قلب کنار محصولات بزن!
+    </div>
+  </div>
+</div>
+
+<!-- ================= HISTORY ================= -->
+<div class="history-window" id="historyWindow">
+  <div class="history-header">
+    <span>📜 تاریخچه سفارش‌ها</span>
+    <button onclick="toggleHistory()">✕</button>
+  </div>
+  <div class="history-items" id="historyItems">
+    <div class="history-empty">
+      <div class="history-empty-icon">📜</div>
+      هنوز سفارشی ثبت نکردی.
+    </div>
+  </div>
+</div>
+
+<!-- ================= PROFILE ================= -->
+<div class="profile-window" id="profileWindow">
+  <div class="profile-header">
+    <span>👤 پروفایل شما</span>
+    <button onclick="toggleProfile()">✕</button>
+  </div>
+  <div class="profile-body">
+    <label>نام و نام خانوادگی:</label>
+    <input type="text" id="profileName" placeholder="مثلاً: علی محمدی">
+    <label>شماره تماس:</label>
+    <input type="tel" id="profilePhone" placeholder="مثلاً: 09123456789" dir="ltr">
+    <label>آدرس:</label>
+    <textarea id="profileAddress" rows="3" placeholder="شهربابک، خیابان..."></textarea>
+    <button class="profile-save-btn" onclick="saveProfile()">💾 ذخیره پروفایل</button>
+  </div>
+</div>
+
+<!-- ================= ORDER MODAL ================= -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>ثبت سفارش آنلاین</h3>
+      <button onclick="closeOrderForm()">✕</button>
+    </div>
+    <div class="modal-body">
+      <label>نام و نام خانوادگی: *</label>
+      <input type="text" id="orderName" placeholder="مثلاً: علی محمدی">
+      <label>شماره تماس: *</label>
+      <input type="tel" id="orderPhone" placeholder="مثلاً: 09123456789" dir="ltr">
+      <label>آدرس تحویل: *</label>
+      <textarea id="orderAddress" rows="2" placeholder="شهربابک، خیابان..."></textarea>
+      <label>نوع سفارش:</label>
+      <select id="orderType">
+        <option value="masaleh">مصالح ساختمانی (۰۹۱۳۳۹۰۸۲۳۰)</option>
+        <option value="tasisat">تجهیزات تاسیساتی (۰۹۱۳۳۹۰۸۳۹۳)</option>
+        <option value="both">هر دو</option>
+      </select>
+      <label>کد تخفیف (اختیاری):</label>
+      <input type="text" id="orderDiscount" placeholder="مثلاً: KARGAR10" dir="ltr">
+      <label>توضیحات (اختیاری):</label>
+      <textarea id="orderNote" rows="2" placeholder="مثلاً: برای پروژه ۱۵۰ متری..."></textarea>
+      <div class="modal-notice">
+        <strong>توجه:</strong> لیست خرید فعلی شما به همراه این فرم ارسال می‌شود.
+        <br><strong>قیمت نهایی پس از تأیید موجودی اعلام می‌شود.</strong>
       </div>
-      <div class="add-section" id="section-${p.id}">
-        <button class="add-icon-btn" onclick="activateProduct('${p.id}', this)" style="${isInCart ? 'display:none' : ''}">+</button>
-        <span class="add-label ${isInCart ? 'hidden' : ''}" id="label-${p.id}">افزودن به لیست</span>
-        <div class="qty-control ${isInCart ? 'show' : ''}" id="qty-${p.id}">
-          <button onclick="decreaseQty('${p.id}')">−</button>
-          <input type="number" value="${cartItem ? cartItem.qty : 1}" min="1" max="100000" onchange="setQty('${p.id}', this.value)" id="input-${p.id}">
-          <button onclick="increaseQty('${p.id}')">+</button>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeOrderForm()">انصراف</button>
+      <button class="btn-primary" onclick="submitOrder()">ارسال سفارش</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CALCULATOR MODAL ================= -->
+<div class="modal-overlay" id="calcModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>محاسبه‌گر آنلاین مصالح</h3>
+      <button onclick="closeCalculator()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="calc-tabs">
+        <button class="calc-tab active" onclick="switchCalc('wall', this)">دیوارچینی</button>
+        <button class="calc-tab" onclick="switchCalc('ceiling', this)">سقف</button>
+        <button class="calc-tab" onclick="switchCalc('concrete', this)">بتن</button>
+        <button class="calc-tab" onclick="switchCalc('tile', this)">کاشی‌کاری</button>
+      </div>
+      <div class="calc-panel active" id="calc-wall">
+        <label>طول دیوار (متر):</label>
+        <input type="number" id="wallLength" value="10" min="0" step="0.1" oninput="calcWall()">
+        <label>ارتفاع دیوار (متر):</label>
+        <input type="number" id="wallHeight" value="3" min="0" step="0.1" oninput="calcWall()">
+        <label>نوع بلوک:</label>
+        <select id="wallType" onchange="calcWall()">
+          <option value="10">بلوک تیغه ۱۰ سانتی</option>
+          <option value="15">بلوک تیغه ۱۵ سانتی</option>
+          <option value="20">بلوک تیغه ۲۰ سانتی</option>
+        </select>
+        <div class="calc-result" id="wallResult"></div>
+      </div>
+      <div class="calc-panel" id="calc-ceiling">
+        <label>مساحت سقف (متر مربع):</label>
+        <input type="number" id="ceilingArea" value="100" min="0" step="0.1" oninput="calcCeiling()">
+        <div class="calc-result" id="ceilingResult"></div>
+      </div>
+      <div class="calc-panel" id="calc-concrete">
+        <label>حجم بتن (متر مکعب):</label>
+        <input type="number" id="concreteVol" value="10" min="0" step="0.1" oninput="calcConcrete()">
+        <label>عیار سیمان:</label>
+        <select id="concreteGrade" onchange="calcConcrete()">
+          <option value="150">۱۵۰</option>
+          <option value="250" selected>۲۵۰</option>
+          <option value="350">۳۵۰</option>
+          <option value="400">۴۰۰</option>
+        </select>
+        <div class="calc-result" id="concreteResult"></div>
+      </div>
+      <div class="calc-panel" id="calc-tile">
+        <label>مساحت کاشی‌کاری (متر مربع):</label>
+        <input type="number" id="tileArea" value="50" min="0" step="0.1" oninput="calcTile()">
+        <label>ابعاد کاشی:</label>
+        <select id="tileSize" onchange="calcTile()">
+          <option value="30x30">۳۰×۳۰</option>
+          <option value="40x40" selected>۴۰×۴۰</option>
+          <option value="60x60">۶۰×۶۰</option>
+          <option value="80x80">۸۰×۸۰</option>
+        </select>
+        <div class="calc-result" id="tileResult"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeCalculator()">بستن</button>
+      <button class="btn-primary" onclick="addCalcToCart()">افزودن به لیست</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ARTICLE MODAL ================= -->
+<div class="modal-overlay" id="articleModal">
+  <div class="modal-content" style="max-width: 780px;">
+    <div class="modal-header">
+      <h3 id="articleTitle">مقاله</h3>
+      <button onclick="closeArticle()">✕</button>
+    </div>
+    <div class="modal-body blog-article" id="articleContent"></div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeArticle()">بستن</button>
+      <button class="btn-primary" onclick="callForArticle()">مشاوره تلفنی</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ADMIN PANEL ================= -->
+<div class="modal-overlay" id="adminOverlay" style="z-index: 9999;">
+  <div class="modal-content" style="max-width: 720px;">
+    <div id="adminLogin">
+      <div class="modal-header">
+        <h3>ورود به پنل مدیریت</h3>
+        <button onclick="closeAdmin()">✕</button>
+      </div>
+      <div class="modal-body">
+        <label>رمز عبور:</label>
+        <input type="password" id="adminPassword" placeholder="رمز را وارد کنید" onkeypress="if(event.key==='Enter') loginAdmin()">
+        <div class="modal-notice" style="margin-top: 15px;">
+          <strong>راه دسترسی سریع:</strong> ۳ بار کلیک روی لوگو یا Ctrl+Shift+A
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeAdmin()">انصراف</button>
+        <button class="btn-primary" onclick="loginAdmin()">ورود</button>
+      </div>
+    </div>
+    <div id="adminPanel" style="display: none;">
+      <div class="modal-header">
+        <h3>پنل مدیریت</h3>
+        <button onclick="closeAdmin()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="num" id="statTotal">0</span><span class="lbl">کل نظرات</span></div>
+          <div class="admin-stat approved"><span class="num" id="statApproved">0</span><span class="lbl">تأیید شده</span></div>
+          <div class="admin-stat pending"><span class="num" id="statPending">0</span><span class="lbl">در انتظار</span></div>
+          <div class="admin-stat rejected"><span class="num" id="statRejected">0</span><span class="lbl">رد شده</span></div>
+        </div>
+        <div style="display:flex; gap:8px; margin:15px 0; flex-wrap: wrap;">
+          <button class="btn-secondary" style="flex:1; padding:10px; min-width: 100px;" onclick="openProfile()">👤 پروفایل</button>
+          <button class="btn-secondary" style="flex:1; padding:10px; min-width: 100px;" onclick="toggleHistory()">📜 تاریخچه</button>
+          <button class="btn-secondary" style="flex:1; padding:10px; min-width: 100px;" onclick="toggleWishlist()">❤️ علاقه‌مندی</button>
+        </div>
+        <div class="admin-tabs">
+          <button class="admin-tab active" onclick="filterReviews('all', this)">همه</button>
+          <button class="admin-tab" onclick="filterReviews('pending', this)">در انتظار</button>
+          <button class="admin-tab" onclick="filterReviews('approved', this)">تأیید شده</button>
+          <button class="admin-tab" onclick="filterReviews('rejected', this)">رد شده</button>
+        </div>
+        <div id="adminReviewsList"></div>
+        <div style="display:flex; gap:8px; margin-top:15px;">
+          <button class="btn-secondary" style="flex:1; padding:10px;" onclick="exportReviews()">دانلود JSON</button>
+          <label class="btn-secondary" style="flex:1; padding:10px; text-align:center; cursor:pointer;">
+            بارگذاری JSON
+            <input type="file" accept=".json" onchange="importReviews(event)" style="display:none;">
+          </label>
         </div>
       </div>
     </div>
-    <div class="stock-status">
-      <span class="stock-dot"></span> موجود در انبار
-    </div>
-  `;
-  return div;
-}
+  </div>
+</div>
 
-/* ================== CART ================== */
-function activateProduct(productId, btn) {
-  btn.style.display = 'none';
-  const label = document.getElementById('label-' + productId);
-  if (label) label.classList.add('hidden');
-  const qtyControl = document.getElementById('qty-' + productId);
-  if (qtyControl) qtyControl.classList.add('show');
+<!-- ================= TOAST ================= -->
+<div class="toast-container" id="toastContainer"></div>
 
-  const existingItem = cart.find(item => item.id === productId);
-  if (existingItem) { if (existingItem.qty < 100000) existingItem.qty++; }
-  else {
-    const product = PRODUCTS.find(p => p.id === productId);
-    if (product) { cart.push({ id: productId, name: product.name, qty: 1 }); addToRecent(productId); }
-  }
-  const input = document.getElementById('input-' + productId);
-  const item = cart.find(i => i.id === productId);
-  if (input && item) input.value = item.qty;
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-  showToast('به لیست خرید اضافه شد');
-}
+<!-- ================= SCRIPT ================= -->
+<script src="script.js"></script>
 
-function decreaseQty(productId) {
-  const item = cart.find(i => i.id === productId);
-  if (!item) return;
-  if (item.qty > 1) { item.qty--; }
-  else {
-    cart = cart.filter(i => i.id !== productId);
-    const qtyControl = document.getElementById('qty-' + productId);
-    if (qtyControl) qtyControl.classList.remove('show');
-    const section = document.getElementById('section-' + productId);
-    if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
-    const label = document.getElementById('label-' + productId);
-    if (label) label.classList.remove('hidden');
-  }
-  const input = document.getElementById('input-' + productId);
-  const currentItem = cart.find(i => i.id === productId);
-  if (input && currentItem) input.value = currentItem.qty;
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-}
-
-function increaseQty(productId) {
-  const item = cart.find(i => i.id === productId);
-  if (item && item.qty < 100000) {
-    item.qty++;
-    const input = document.getElementById('input-' + productId);
-    if (input) input.value = item.qty;
-    saveToStorage(STORAGE_KEYS.cart, cart);
-    updateCart();
-  }
-}
-
-function setQty(productId, value) {
-  let qty = parseInt(value) || 1;
-  if (qty < 1) qty = 1;
-  if (qty > 100000) qty = 100000;
-  const item = cart.find(i => i.id === productId);
-  if (item) { item.qty = qty; }
-  else { const product = PRODUCTS.find(p => p.id === productId); if (product) cart.push({ id: productId, name: product.name, qty }); }
-  const input = document.getElementById('input-' + productId);
-  if (input) input.value = qty;
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-}
-
-function setCartQty(productId, value) {
-  let qty = parseInt(value) || 1;
-  if (qty < 1) qty = 1;
-  if (qty > 100000) qty = 100000;
-  const item = cart.find(i => i.id === productId);
-  if (item) item.qty = qty;
-  const productInput = document.getElementById('input-' + productId);
-  if (productInput) productInput.value = qty;
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-}
-
-function removeFromCart(productId) {
-  cart = cart.filter(item => item.id !== productId);
-  const qtyControl = document.getElementById('qty-' + productId);
-  if (qtyControl) qtyControl.classList.remove('show');
-  const section = document.getElementById('section-' + productId);
-  if (section) { const addBtn = section.querySelector('.add-icon-btn'); if (addBtn) addBtn.style.display = 'flex'; }
-  const label = document.getElementById('label-' + productId);
-  if (label) label.classList.remove('hidden');
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-}
-
-function clearCart() {
-  if (cart.length === 0) return;
-  if (!confirm('آیا از پاک کردن کل لیست مطمئن هستید؟')) return;
-  cart = [];
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-  renderProducts();
-  showToast('لیست خرید پاک شد', 'info');
-}
-
-function updateCart() {
-  const cartItems = document.getElementById('cartItems');
-  const cartCount = document.getElementById('cartCount');
-  const floatingCartBtn = document.getElementById('floatingCartBtn');
-  const summaryTypes = document.getElementById('summaryTypes');
-  const summaryTotal = document.getElementById('summaryTotal');
-
-  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-
-  if (cartCount) cartCount.textContent = totalItems;
-  if (summaryTypes) summaryTypes.textContent = cart.length;
-  if (summaryTotal) summaryTotal.textContent = totalItems;
-
-  if (floatingCartBtn) {
-    if (cart.length > 0) floatingCartBtn.classList.add('show');
-    else floatingCartBtn.classList.remove('show');
-  }
-
-  if (cartItems) {
-    if (cart.length === 0) {
-      cartItems.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div>لیست شما خالی است</div>';
-    } else {
-      cartItems.innerHTML = cart.map((item, idx) => `
-        <div class="cart-item">
-          <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-index">آیتم ${idx + 1}</div>
-          </div>
-          <div class="cart-item-qty">
-            <button onclick="event.stopPropagation(); decreaseQty('${item.id}')">−</button>
-            <input type="number" value="${item.qty}" min="1" max="100000" onchange="event.stopPropagation(); setCartQty('${item.id}', this.value)" onclick="event.stopPropagation();">
-            <button onclick="event.stopPropagation(); increaseQty('${item.id}')">+</button>
-          </div>
-          <button class="cart-item-remove" onclick="event.stopPropagation(); removeFromCart('${item.id}')" title="حذف">✕</button>
-        </div>
-      `).join('');
-    }
-  }
-}
-
-function toggleCart(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('cartWindow').classList.toggle('show');
-  document.getElementById('instaMenu').classList.remove('show');
-  document.getElementById('assistantWindow').classList.remove('show');
-  closeAllOtherWindows('cartWindow');
-}
-
-function cartToText() {
-  return 'لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' +
-    cart.map((item, i) => `${i+1}. ${item.name} — تعداد: ${item.qty}`).join('\n') +
-    `\n\nمجموع: ${cart.length} قلم کالا — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
-}
-
-function sendToEita(type) {
-  if (cart.length === 0) { showToast('لیست شما خالی است', 'error'); return; }
-  copyToClipboard(cartToText()).then(() => {
-    showToast('لیست کپی شد. ایتا باز می‌شود...');
-    setTimeout(() => { window.location.href = 'eitaa://'; }, 700);
-  });
-}
-
-function copyCart() {
-  if (cart.length === 0) { showToast('لیست شما خالی است', 'error'); return; }
-  copyToClipboard(cartToText()).then(() => showToast('لیست کپی شد'));
-}
-
-function copyToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-  return new Promise((resolve) => {
-    const ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); } catch {}
-    document.body.removeChild(ta); resolve();
-  });
-}
-
-/* ================== WISHLIST ================== */
-function toggleWishlistItem(productId, event) {
-  if (event) event.stopPropagation();
-  const index = wishlist.indexOf(productId);
-  if (index > -1) { wishlist.splice(index, 1); showToast('از علاقه‌مندی‌ها حذف شد', 'info'); }
-  else { wishlist.push(productId); showToast('به علاقه‌مندی‌ها اضافه شد ❤️'); }
-  
-  saveToStorage(STORAGE_KEYS.wishlist, wishlist);
-  
-  const btn = document.getElementById('wish-' + productId);
-  if (btn) {
-    btn.classList.toggle('active');
-    btn.innerHTML = btn.classList.contains('active') ? '❤️' : '🤍';
-  }
-  updateWishlistCount();
-  renderWishlist();
-}
-
-function updateWishlistCount() {
-  const count = document.getElementById('wishlistCount');
-  const btn = document.getElementById('floatingWishlistBtn');
-  if (count) count.textContent = wishlist.length;
-  if (btn) {
-    if (wishlist.length > 0) btn.classList.add('show');
-    else btn.classList.remove('show');
-  }
-}
-
-function renderWishlist() {
-  const container = document.getElementById('wishlistItems');
-  if (!container) return;
-  if (wishlist.length === 0) {
-    container.innerHTML = '<div class="wishlist-empty"><div class="wishlist-empty-icon">❤️</div>هنوز محصولی به علاقه‌مندی‌ها اضافه نکردی.<br>روی قلب کنار محصولات بزن!</div>';
-    return;
-  }
-  container.innerHTML = wishlist.map(id => {
-    const p = PRODUCTS.find(x => x.id === id);
-    if (!p) return '';
-    return `
-      <div class="cart-item">
-        <div class="cart-item-info">
-          <div class="cart-item-name">${p.name}</div>
-          <div class="cart-item-index">${p.desc.substring(0, 40)}...</div>
-        </div>
-        <div class="wishlist-item-actions" style="display:flex; gap:6px;">
-          <button onclick="addWishlistToCart('${id}')" style="background:#0d9488;color:white;border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit;">افزودن</button>
-          <button onclick="toggleWishlistItem('${id}', event)" style="background:#fee2e2;color:#ef4444;border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;">✕</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function addWishlistToCart(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
-  const existing = cart.find(i => i.id === id);
-  if (existing) existing.qty++;
-  else cart.push({ id, name: p.name, qty: 1 });
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-  showToast('به لیست خرید اضافه شد');
-}
-
-function toggleWishlist(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('wishlistWindow').classList.toggle('show');
-  closeAllOtherWindows('wishlistWindow');
-}
-
-/* ================== HISTORY ================== */
-function addToHistory(order) {
-  history.unshift({ id: Date.now(), date: new Date().toISOString(), ...order });
-  if (history.length > 20) history = history.slice(0, 20);
-  saveToStorage(STORAGE_KEYS.history, history);
-  renderHistory();
-}
-
-function renderHistory() {
-  const container = document.getElementById('historyItems');
-  if (!container) return;
-  if (history.length === 0) {
-    container.innerHTML = '<div class="history-empty"><div class="history-empty-icon">📜</div>هنوز سفارشی ثبت نکردی.</div>';
-    return;
-  }
-  container.innerHTML = history.map(h => {
-    const date = new Date(h.date).toLocaleDateString('fa-IR');
-    const itemsText = h.items ? h.items.map(i => `${i.name} (${i.qty})`).join('، ') : 'لیست خالی';
-    return `
-      <div class="history-item">
-        <div class="history-item-head">
-          <span class="history-item-date">📅 ${date}</span>
-          <span class="history-item-status">ثبت شده</span>
-        </div>
-        <p class="history-item-products">${itemsText}</p>
-      </div>
-    `;
-  }).join('');
-}
-
-function toggleHistory(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('historyWindow').classList.toggle('show');
-  closeAllOtherWindows('historyWindow');
-}
-
-/* ================== PROFILE ================== */
-function loadProfile() {
-  const nameEl = document.getElementById('profileName');
-  const phoneEl = document.getElementById('profilePhone');
-  const addressEl = document.getElementById('profileAddress');
-  if (nameEl) nameEl.value = profile.name || '';
-  if (phoneEl) phoneEl.value = profile.phone || '';
-  if (addressEl) addressEl.value = profile.address || '';
-}
-
-function saveProfile() {
-  const name = document.getElementById('profileName').value.trim();
-  const phone = document.getElementById('profilePhone').value.trim();
-  const address = document.getElementById('profileAddress').value.trim();
-  profile = { name, phone, address };
-  saveToStorage(STORAGE_KEYS.profile, profile);
-  showToast('پروفایل ذخیره شد');
-  toggleProfile();
-}
-
-function toggleProfile(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('profileWindow').classList.toggle('show');
-  closeAllOtherWindows('profileWindow');
-  loadProfile();
-}
-
-function openProfile() { 
-  closeAdmin();
-  toggleProfile(); 
-}
-
-function prefillOrderForm() {
-  if (profile.name) document.getElementById('orderName').value = profile.name;
-  if (profile.phone) document.getElementById('orderPhone').value = profile.phone;
-  if (profile.address) document.getElementById('orderAddress').value = profile.address;
-}
-
-/* ================== RECENT ================== */
-function addToRecent(productId) {
-  recentProducts = recentProducts.filter(id => id !== productId);
-  recentProducts.unshift(productId);
-  if (recentProducts.length > 10) recentProducts = recentProducts.slice(0, 10);
-  saveToStorage(STORAGE_KEYS.recent, recentProducts);
-}
-
-/* ================== THEME ================== */
-function toggleTheme() {
-  document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
-  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
-  saveToStorage(STORAGE_KEYS.theme, isDark ? 'dark' : 'light');
-}
-
-function applySavedTheme() {
-  const theme = loadFromStorage(STORAGE_KEYS.theme, 'light');
-  if (theme === 'dark') {
-    document.body.classList.add('dark-mode');
-    const btn = document.getElementById('themeBtn');
-    if (btn) btn.textContent = '☀️';
-  }
-}
-
-/* ================== SEARCH ================== */
-function normalize(str) {
-  return (str || '').toString().toLowerCase().replace(/[يى]/g, 'ی').replace(/ك/g, 'ک').replace(/[ۀهٔ]/g, 'ه').replace(/[\u064B-\u065F\u0670]/g, '').trim();
-}
-
-function searchProducts() {
-  const query = normalize(document.getElementById('searchInput').value);
-  const cards = document.querySelectorAll('.product-card');
-  const categoryTitles = document.querySelectorAll('.category-title');
-  const clearBtn = document.getElementById('searchClear');
-  const resultInfo = document.getElementById('searchResultInfo');
-  const noResult = document.getElementById('noResult');
-
-  if (query === '') {
-    cards.forEach(card => card.style.display = '');
-    categoryTitles.forEach(title => title.style.display = '');
-    clearBtn.classList.remove('show');
-    resultInfo.innerHTML = '';
-    noResult.classList.remove('show');
-    return;
-  }
-
-  clearBtn.classList.add('show');
-  let visibleCount = 0;
-
-  cards.forEach(card => {
-    const name = normalize(card.getAttribute('data-name'));
-    const h3 = card.querySelector('h3');
-    const p = card.querySelector('p');
-    const title = normalize(h3 ? h3.textContent : '');
-    const desc = normalize(p ? p.textContent : '');
-
-    if (name.includes(query) || title.includes(query) || desc.includes(query)) {
-      card.style.display = '';
-      visibleCount++;
-    } else {
-      card.style.display = 'none';
-    }
-  });
-
-  categoryTitles.forEach(title => {
-    let next = title.nextElementSibling;
-    let hasVisible = false;
-    while (next && !next.classList.contains('category-title')) {
-      if (next.classList.contains('product-card') && next.style.display !== 'none') {
-        hasVisible = true; break;
-      }
-      next = next.nextElementSibling;
-    }
-    title.style.display = hasVisible ? '' : 'none';
-  });
-
-  if (visibleCount === 0) {
-    noResult.classList.add('show');
-    resultInfo.innerHTML = '';
-  } else {
-    noResult.classList.remove('show');
-    resultInfo.innerHTML = '<strong>' + visibleCount + '</strong> محصول پیدا شد';
-  }
-}
-
-function clearSearch() {
-  document.getElementById('searchInput').value = '';
-  searchProducts();
-  document.getElementById('searchInput').focus();
-}
-
-/* ================== FAQ ================== */
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
-}
-
-/* ================== REVIEWS ================== */
-function openReviewForm() {
-  document.getElementById('reviewFormWindow').classList.add('show');
-  document.getElementById('reviewFormWindow').scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-function closeReviewForm() {
-  document.getElementById('reviewFormWindow').classList.remove('show');
-  document.getElementById('reviewName').value = '';
-  document.getElementById('reviewText').value = '';
-  currentRating = 0;
-  updateStars(0);
-}
-
-function setRating(value) { currentRating = value; updateStars(value); }
-
-function updateStars(value) {
-  document.querySelectorAll('.star').forEach(star => {
-    const v = parseInt(star.getAttribute('data-value'));
-    star.classList.toggle('active', v <= value);
-  });
-}
-
-function submitReview() {
-  const name = document.getElementById('reviewName').value.trim();
-  const text = document.getElementById('reviewText').value.trim();
-
-  if (!name) { showToast('لطفاً نام خود را وارد کنید', 'error'); return; }
-  if (name.length < 2) { showToast('نام باید حداقل ۲ حرف باشد', 'error'); return; }
-  if (currentRating === 0) { showToast('لطفاً امتیاز خود را انتخاب کنید', 'error'); return; }
-  if (!text) { showToast('لطفاً نظر خود را بنویسید', 'error'); return; }
-  if (text.length < 10) { showToast('نظر باید حداقل ۱۰ حرف باشد', 'error'); return; }
-
-  const review = { id: Date.now(), name, text, rating: currentRating, status: 'pending', date: new Date().toISOString() };
-  reviews.push(review);
-  saveToStorage(STORAGE_KEYS.reviews, reviews);
-  renderReviewsList();
-  if (isAdminLoggedIn) updateAdminStats();
-  showToast('نظر شما ثبت شد. پس از تأیید نمایش داده می‌شود.');
-  closeReviewForm();
-}
-
-function renderReviewsList() {
-  const container = document.getElementById('reviewsList');
-  const approved = reviews.filter(r => r.status === 'approved');
-
-  if (approved.length === 0) {
-    container.innerHTML = `<div class="no-reviews-yet"><div class="no-reviews-icon">💬</div>هنوز نظری ثبت نشده.<br>اولین نفری باشید که نظر می‌ده!</div>`;
-    return;
-  }
-
-  container.innerHTML = approved.slice().reverse().map(r => {
-    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
-    const initials = r.name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('');
-    const dateStr = new Date(r.date).toLocaleDateString('fa-IR');
-    return `
-      <div class="review-card">
-        <div class="review-head">
-          <div class="review-author"><div class="review-avatar">${initials}</div><span>${escapeHtml(r.name)}</span></div>
-          <div class="review-stars">${stars}</div>
-        </div>
-        <p class="review-text">${escapeHtml(r.text)}</p>
-        <span class="review-date">📅 ${dateStr}</span>
-      </div>
-    `;
-  }).join('');
-}
-
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-}
-
-/* ================== ADMIN ================== */
-function tripleClickLogo() {
-  logoClickCount++;
-  clearTimeout(logoClickTimer);
-  if (logoClickCount >= 3) { logoClickCount = 0; openAdmin(); return; }
-  logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 600);
-}
-
-function openAdmin() {
-  const overlay = document.getElementById('adminOverlay');
-  if (!overlay) return;
-  overlay.classList.add('show');
-  document.body.style.overflow = 'hidden';
-  if (isAdminLoggedIn) { showAdminPanel(); }
-  else {
-    document.getElementById('adminLogin').style.display = 'block';
-    document.getElementById('adminPanel').style.display = 'none';
-    document.getElementById('adminPassword').value = '';
-    setTimeout(() => { const pass = document.getElementById('adminPassword'); if (pass) pass.focus(); }, 200);
-  }
-}
-
-function closeAdmin() { document.getElementById('adminOverlay').classList.remove('show'); document.body.style.overflow = ''; }
-
-function loginAdmin() {
-  const pass = document.getElementById('adminPassword').value;
-  if (pass === ADMIN_PASSWORD) { isAdminLoggedIn = true; showToast('ورود موفق'); showAdminPanel(); }
-  else { showToast('رمز عبور اشتباه است', 'error'); document.getElementById('adminPassword').value = ''; }
-}
-
-function showAdminPanel() {
-  document.getElementById('adminLogin').style.display = 'none';
-  document.getElementById('adminPanel').style.display = 'block';
-  updateAdminStats();
-  renderAdminReviews();
-}
-
-function updateAdminStats() {
-  const total = reviews.length;
-  const approved = reviews.filter(r => r.status === 'approved').length;
-  const pending = reviews.filter(r => r.status === 'pending').length;
-  const rejected = reviews.filter(r => r.status === 'rejected').length;
-  const elTotal = document.getElementById('statTotal'); const elApproved = document.getElementById('statApproved');
-  const elPending = document.getElementById('statPending'); const elRejected = document.getElementById('statRejected');
-  if (elTotal) elTotal.textContent = total; if (elApproved) elApproved.textContent = approved;
-  if (elPending) elPending.textContent = pending; if (elRejected) elRejected.textContent = rejected;
-}
-
-function filterReviews(status, btn) {
-  currentFilter = status;
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  renderAdminReviews();
-}
-
-function renderAdminReviews() {
-  const container = document.getElementById('adminReviewsList');
-  if (!container) return;
-  let filtered = currentFilter !== 'all' ? reviews.filter(r => r.status === currentFilter) : reviews;
-  filtered = filtered.slice().reverse();
-
-  if (filtered.length === 0) { container.innerHTML = `<div class="admin-empty">هیچ نظری در این دسته وجود ندارد</div>`; return; }
-
-  container.innerHTML = filtered.map(r => {
-    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
-    const dateStr = new Date(r.date).toLocaleString('fa-IR');
-    const statusLabels = { pending: 'در انتظار', approved: 'تأیید شده', rejected: 'رد شده' };
-    return `
-      <div class="admin-review-item ${r.status}">
-        <div class="admin-review-head">
-          <div class="admin-review-name"><span>${escapeHtml(r.name)}</span><span style="font-size: 11px; color: #94a3b8;">${statusLabels[r.status]}</span></div>
-          <div class="admin-review-stars">${stars}</div>
-        </div>
-        <p class="admin-review-text">${escapeHtml(r.text)}</p>
-        <div style="font-size: 11px; color: #94a3b8;">${dateStr}</div>
-        <div class="admin-review-actions">
-          ${r.status !== 'approved' ? `<button class="btn-approve" onclick="approveReview(${r.id})">تأیید</button>` : ''}
-          ${r.status !== 'rejected' ? `<button class="btn-reject" onclick="rejectReview(${r.id})">رد</button>` : ''}
-          <button class="btn-delete" onclick="deleteReview(${r.id})">حذف</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function approveReview(id) {
-  const r = reviews.find(x => x.id === id); if (!r) return;
-  r.status = 'approved'; saveToStorage(STORAGE_KEYS.reviews, reviews);
-  updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظر تأیید شد');
-}
-
-function rejectReview(id) {
-  const r = reviews.find(x => x.id === id); if (!r) return;
-  r.status = 'rejected'; saveToStorage(STORAGE_KEYS.reviews, reviews);
-  updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظر رد شد', 'info');
-}
-
-function deleteReview(id) {
-  if (!confirm('آیا از حذف این نظر مطمئن هستید؟')) return;
-  reviews = reviews.filter(x => x.id !== id); saveToStorage(STORAGE_KEYS.reviews, reviews);
-  updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظر حذف شد', 'info');
-}
-
-function exportReviews() {
-  const dataStr = JSON.stringify(reviews, null, 2);
-  const blob = new Blob([dataStr], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url;
-  a.download = 'kargar-reviews-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click(); URL.revokeObjectURL(url); showToast('فایل JSON دانلود شد');
-}
-
-function importReviews(event) {
-  const file = event.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const imported = JSON.parse(e.target.result);
-      if (!Array.isArray(imported)) throw new Error('فرمت نامعتبر');
-      if (!confirm(`آیا ${imported.length} نظر بارگذاری شود؟`)) return;
-      reviews = imported; saveToStorage(STORAGE_KEYS.reviews, reviews);
-      updateAdminStats(); renderAdminReviews(); renderReviewsList(); showToast('نظرات بارگذاری شد');
-    } catch (err) { showToast('فایل JSON نامعتبر است', 'error'); }
-  };
-  reader.readAsText(file); event.target.value = '';
-}
-
-/* ================== ASSISTANT ================== */
-function toggleAssistant(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('assistantWindow').classList.toggle('show');
-  document.getElementById('instaMenu').classList.remove('show');
-  document.getElementById('cartWindow').classList.remove('show');
-  closeAllOtherWindows('assistantWindow');
-}
-
-function sendAssistantMsg() {
-  const input = document.getElementById('assistantInput');
-  const msg = input.value.trim(); if (!msg) return;
-  addMsg(msg, 'user'); input.value = '';
-  setTimeout(() => { const reply = getAssistantReply(msg); addMsg(reply, 'bot'); }, 400);
-}
-
-const knowledgeBase = {
-  'سیمان': 'سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات.\nاستعلام قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
-  'بلوک': 'بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\nبرای هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n۰۹۱۳۳۹۰۸۲۳۰',
-  'قیمت': 'برای استعلام قیمت روز:\nمصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
-  'تماس': 'مصالح: ۰۹۱۳۳۹۰۸۲۳۰\nتاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\nمغازه: ۰۳۴-۳۴۳۴۱۳۰۳۸۶',
-  'آدرس': 'شهربابک، خیابان مطهری، نبش کوچه ۱۱\nشنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
-  'سلام': 'سلام و خوش آمدید! چطور می‌تونم کمکتون کنم؟'
-};
-
-function getAssistantReply(msg) {
-  const lower = normalize(msg);
-  const sortedKeys = Object.keys(knowledgeBase).sort((a,b) => b.length - a.length);
-  for (const key of sortedKeys) { if (lower.includes(normalize(key))) return knowledgeBase[key]; }
-  return 'متأسفم، متوجه نشدم.\n\nمی‌تونید اینا رو بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n\nیا تماس بگیرید:\n۰۹۱۳۳۹۰۸۲۳۰';
-}
-
-function addMsg(text, type) {
-  const container = document.getElementById('assistantMessages');
-  const div = document.createElement('div');
-  div.className = 'assistant-msg ' + type;
-  div.innerHTML = text.replace(/\n/g, '<br>');
-  container.appendChild(div); container.scrollTop = container.scrollHeight;
-}
-
-/* ================== INSTA MENU ================== */
-function toggleInstaMenu(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('instaMenu').classList.toggle('show');
-  document.getElementById('cartWindow').classList.remove('show');
-  document.getElementById('assistantWindow').classList.remove('show');
-}
-
-/* ================== GLOBAL CLICK ================== */
-function closeAllOtherWindows(exceptId) {
-  ['cartWindow', 'wishlistWindow', 'historyWindow', 'profileWindow', 'assistantWindow'].forEach(id => {
-    if (id !== exceptId) { const el = document.getElementById(id); if (el) el.classList.remove('show'); }
-  });
-}
-
-document.addEventListener('click', function(event) {
-  const menu = document.getElementById('instaMenu');
-  const instaBtn = document.querySelector('.floating-insta-btn');
-  if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) menu.classList.remove('show');
-  
-  if (event.target.classList && event.target.classList.contains('modal-overlay')) {
-    event.target.classList.remove('show'); document.body.style.overflow = '';
-  }
-});
-
-/* ================== KEYBOARD ================== */
-document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) { e.preventDefault(); openAdmin(); }
-  if (e.key === 'Escape') {
-    ['cartWindow', 'assistantWindow', 'wishlistWindow', 'historyWindow', 'profileWindow', 'instaMenu'].forEach(id => document.getElementById(id).classList.remove('show'));
-    document.querySelectorAll('.modal-overlay.show').forEach(m => { m.classList.remove('show'); document.body.style.overflow = ''; });
-  }
-});
-
-/* ================== ORDER ================== */
-function openOrderForm() {
-  document.getElementById('orderModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-  prefillOrderForm();
-}
-function closeOrderForm() {
-  document.getElementById('orderModal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-function submitOrder() {
-  const name = document.getElementById('orderName').value.trim();
-  const phone = document.getElementById('orderPhone').value.trim();
-  const address = document.getElementById('orderAddress').value.trim();
-  const type = document.getElementById('orderType').value;
-  const note = document.getElementById('orderNote').value.trim();
-  const discountInput = document.getElementById('orderDiscount');
-  const discountCode = discountInput ? discountInput.value.trim().toUpperCase() : '';
-
-  if (!name || name.length < 2) { showToast('نام را درست وارد کنید', 'error'); return; }
-  if (!/^09\d{9}$/.test(phone)) { showToast('شماره موبایل معتبر وارد کنید', 'error'); return; }
-  if (!address || address.length < 5) { showToast('آدرس را کامل وارد کنید', 'error'); return; }
-
-  let discountPercent = 0;
-  if (discountCode) {
-    if (DISCOUNT_CODES[discountCode]) discountPercent = DISCOUNT_CODES[discountCode];
-    else { showToast('کد تخفیف نامعتبر است', 'error'); return; }
-  }
-
-  let text = '🛒 سفارش آنلاین جدید:\n\n';
-  text += '👤 نام: ' + name + '\n📞 تلفن: ' + phone + '\n📍 آدرس: ' + address + '\n';
-  text += '📦 نوع: ' + (type === 'masaleh' ? 'مصالح' : type === 'tasisat' ? 'تاسیسات' : 'هر دو') + '\n';
-  if (discountCode) text += '🎁 کد تخفیف: ' + discountCode + ' (' + discountPercent + '%)\n';
-  if (note) text += '📝 توضیحات: ' + note + '\n';
-
-  if (cart.length > 0) {
-    text += '\n--- لیست خرید ---\n';
-    cart.forEach((item, i) => { text += `${i+1}. ${item.name} — تعداد: ${item.qty}\n`; });
-    text += `\n📦 مجموع: ${cart.length} قلم — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
-  }
-
-  addToHistory({ name, phone, address, type, note, items: cart.map(i => ({ name: i.name, qty: i.qty })), discount: discountCode, discountPercent });
-  profile = { name, phone, address };
-  saveToStorage(STORAGE_KEYS.profile, profile);
-
-  copyToClipboard(text).then(() => {
-    showToast('سفارش ثبت شد. در حال باز کردن ایتا...');
-    setTimeout(() => { cart = []; saveToStorage(STORAGE_KEYS.cart, cart); updateCart(); renderProducts(); closeOrderForm(); }, 1500);
-  });
-}
-
-/* ================== CALCULATOR ================== */
-function openCalculator() {
-  document.getElementById('calcModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-  calcWall(); calcCeiling(); calcConcrete(); calcTile();
-}
-function closeCalculator() {
-  document.getElementById('calcModal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-function switchCalc(name, btn) {
-  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active'); document.getElementById('calc-' + name).classList.add('active');
-}
-
-function calcWall() {
-  const L = parseFloat(document.getElementById('wallLength').value) || 0;
-  const H = parseFloat(document.getElementById('wallHeight').value) || 0;
-  const perSqm = parseFloat(document.getElementById('wallType').value);
-  const area = L * H;
-  const blocks = Math.ceil(area * perSqm);
-  const cement = Math.ceil(area * 0.5);
-  const sand = (area * 0.02).toFixed(2);
-  document.getElementById('wallResult').innerHTML = `
-    <h4>نتیجه محاسبه</h4>
-    <div class="calc-result-item"><span>مساحت دیوار:</span><span>${area.toFixed(2)} متر مربع</span></div>
-    <div class="calc-result-item"><span>تعداد بلوک:</span><span>${blocks} عدد</span></div>
-    <div class="calc-result-item"><span>سیمان:</span><span>${cement} کیسه</span></div>
-    <div class="calc-result-item"><span>ماسه:</span><span>${sand} متر مکعب</span></div>
-  `;
-  window._lastCalc = { blocks, cement, sand, area };
-}
-
-function calcCeiling() {
-  const area = parseFloat(document.getElementById('ceilingArea').value) || 0;
-  const blocks = Math.ceil(area * 2);
-  const joists = Math.ceil(area * 0.55);
-  const cement = Math.ceil(area * 0.8);
-  const steel = Math.ceil(area * 4);
-  document.getElementById('ceilingResult').innerHTML = `
-    <h4>نتیجه محاسبه سقف</h4>
-    <div class="calc-result-item"><span>مساحت:</span><span>${area.toFixed(2)} متر مربع</span></div>
-    <div class="calc-result-item"><span>بلوک سقفی:</span><span>${blocks} عدد</span></div>
-    <div class="calc-result-item"><span>تیرچه:</span><span>${joists} عدد</span></div>
-    <div class="calc-result-item"><span>سیمان:</span><span>${cement} کیسه</span></div>
-    <div class="calc-result-item"><span>میلگرد:</span><span>${steel} کیلو</span></div>
-  `;
-  window._lastCalc = { blocks, joists, cement, steel, area };
-}
-
-function calcConcrete() {
-  const vol = parseFloat(document.getElementById('concreteVol').value) || 0;
-  const grade = parseFloat(document.getElementById('concreteGrade').value);
-  const cement = Math.ceil(vol * grade / 50);
-  const sand = (vol * 0.5).toFixed(2);
-  const gravel = (vol * 0.85).toFixed(2);
-  const water = Math.ceil(vol * 180);
-  document.getElementById('concreteResult').innerHTML = `
-    <h4>نتیجه محاسبه بتن</h4>
-    <div class="calc-result-item"><span>حجم:</span><span>${vol.toFixed(2)} متر مکعب</span></div>
-    <div class="calc-result-item"><span>عیار:</span><span>${grade} kg/m³</span></div>
-    <div class="calc-result-item"><span>سیمان:</span><span>${cement} کیسه</span></div>
-    <div class="calc-result-item"><span>ماسه:</span><span>${sand} متر مکعب</span></div>
-    <div class="calc-result-item"><span>شن:</span><span>${gravel} متر مکعب</span></div>
-    <div class="calc-result-item"><span>آب:</span><span>${water} لیتر</span></div>
-  `;
-  window._lastCalc = { cement, sand, gravel, vol };
-}
-
-function calcTile() {
-  const area = parseFloat(document.getElementById('tileArea').value) || 0;
-  const size = document.getElementById('tileSize').value.split('x');
-  const tileArea = (parseFloat(size[0]) * parseFloat(size[1])) / 10000;
-  const totalTiles = Math.ceil(area * (1 / tileArea) * 1.1);
-  const boxes = Math.ceil(totalTiles / 10);
-  const cement = Math.ceil(area * 0.4);
-  document.getElementById('tileResult').innerHTML = `
-    <h4>نتیجه محاسبه کاشی‌کاری</h4>
-    <div class="calc-result-item"><span>مساحت:</span><span>${area.toFixed(2)} متر مربع</span></div>
-    <div class="calc-result-item"><span>ابعاد:</span><span>${size[0]}×${size[1]}</span></div>
-    <div class="calc-result-item"><span>تعداد (با پرت):</span><span>${totalTiles} عدد</span></div>
-    <div class="calc-result-item"><span>کارتن:</span><span>${boxes} عدد</span></div>
-    <div class="calc-result-item"><span>سیمان:</span><span>${cement} کیسه</span></div>
-  `;
-  window._lastCalc = { totalTiles, boxes, cement, area };
-}
-
-function addCalcToCart() {
-  const activePanel = document.querySelector('.calc-panel.active').id;
-  const nameMap = { 'calc-wall': 'بلوک تیغه', 'calc-ceiling': 'بلوک سقفی', 'calc-concrete': 'سیمان', 'calc-tile': 'کاشی' };
-  const idMap = { 'calc-wall': 'block-tip', 'calc-ceiling': 'block-saqf', 'calc-concrete': 'cement', 'calc-tile': 'tile' };
-  const productName = nameMap[activePanel];
-  const productId = idMap[activePanel];
-  let qty = 1;
-  if (activePanel === 'calc-wall' && window._lastCalc) qty = window._lastCalc.blocks;
-  if (activePanel === 'calc-ceiling' && window._lastCalc) qty = window._lastCalc.blocks;
-  if (activePanel === 'calc-concrete' && window._lastCalc) qty = window._lastCalc.cement;
-  if (activePanel === 'calc-tile' && window._lastCalc) qty = window._lastCalc.totalTiles;
-
-  const existing = cart.find(i => i.id === productId);
-  if (existing) existing.qty += qty;
-  else cart.push({ id: productId, name: productName, qty });
-  saveToStorage(STORAGE_KEYS.cart, cart);
-  updateCart();
-  renderProducts();
-  showToast(`${qty} عدد ${productName} به لیست اضافه شد`);
-  closeCalculator();
-}
-
-/* ================== BLOG ================== */
-const blogPosts = [
-  { id: 'cement-guide', tag: 'مصالح', icon: '🏗', title: 'راهنمای کامل انتخاب سیمان مناسب', excerpt: 'سیمان تیپ ۱، ۲، ۵ یا سفید؟', date: '۱۴۰۳/۰۸/۱۵', content: `<h2>مقدمه</h2><p>انتخاب سیمان مناسب، یکی از مهم‌ترین تصمیمات در هر پروژه ساختمانی است.</p>` },
-  { id: 'wall-blocks', tag: 'مصالح', icon: '🧱', title: 'چگونه تعداد بلوک مورد نیاز را محاسبه کنیم؟', excerpt: 'فرمول ساده محاسبه بلوک', date: '۱۴۰۳/۰۸/۱۰', content: `<h2>مقدمه</h2><p>محاسبه دقیق بلوک باعث می‌شود نه اضافه بخری و نه وسط کار بمانی!</p>` },
-  { id: 'pipes-guide', tag: 'تاسیسات', icon: '🔧', title: 'انواع لوله ساختمانی و کاربرد آن‌ها', excerpt: 'پلیکا، پنج لایه، یا فلزی؟', date: '۱۴۰۳/۰۸/۰۵', content: `<h2>مقدمه</h2><p>انتخاب لوله مناسب نقش کلیدی در دوام تاسیسات دارد.</p>` },
-  { id: 'package-guide', tag: 'تاسیسات', icon: '🔥', title: 'راهنمای خرید پکیج دیواری', excerpt: 'پکیج مناسب خانه شما کدام است؟', date: '۱۴۰۳/۰۷/۲۸', content: `<h2>مقدمه</h2><p>انتخاب اشتباه ظرفیت پکیج باعث هدررفت انرژی می‌شود.</p>` }
-];
-
-function renderBlog() {
-  const grid = document.getElementById('blogGrid'); if (!grid) return;
-  grid.innerHTML = blogPosts.map(p => `
-    <div class="blog-card" onclick="openArticle('${p.id}')">
-      <div class="blog-card-img">${p.icon}</div>
-      <div class="blog-card-body">
-        <h3>${p.title}</h3><p>${p.excerpt}</p>
-        <div class="blog-card-meta"><span class="blog-card-tag">${p.tag}</span><span>📅 ${p.date}</span></div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function openArticle(id) {
-  const post = blogPosts.find(p => p.id === id); if (!post) return;
-  document.getElementById('articleTitle').innerHTML = post.icon + ' ' + post.title;
-  document.getElementById('articleContent').innerHTML = `<div class="blog-meta"><span>🏷 ${post.tag}</span><span>📅 ${post.date}</span></div>${post.content}`;
-  document.getElementById('articleModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeArticle() { document.getElementById('articleModal').classList.remove('show'); document.body.style.overflow = ''; }
-function callForArticle() { window.location.href = 'tel:09133908230'; }
-
-/* ================== TOAST ================== */
-function showToast(msg, type = 'success') {
-  const container = document.getElementById('toastContainer'); if (!container) return;
-  const toast = document.createElement('div');
-  toast.className = 'toast ' + type; toast.textContent = msg;
-  container.appendChild(toast);
-  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)'; setTimeout(() => toast.remove(), 300); }, 3200);
-}
-
-/* ================== REVEAL ================== */
-function initReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
-/* ================== INIT ================== */
-document.addEventListener('DOMContentLoaded', initApp);
+</body>
+</html>
