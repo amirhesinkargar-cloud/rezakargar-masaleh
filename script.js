@@ -8,6 +8,7 @@ const ADMIN_PASSWORD = 'admin1234';
 
 /* ================== STATE ================== */
 let cart = [];
+let wishlist = [];
 let currentRating = 0;
 let reviews = [];
 let currentFilter = 'all';
@@ -22,13 +23,17 @@ function loadReviews() {
     reviews = saved ? JSON.parse(saved) : [];
   } catch { reviews = []; }
 }
-
 function saveReviews() {
+  try { localStorage.setItem('kargar_reviews', JSON.stringify(reviews)); } catch (e) {}
+}
+function loadWishlist() {
   try {
-    localStorage.setItem('kargar_reviews', JSON.stringify(reviews));
-  } catch (e) {
-    showToast('❌ خطا در ذخیره نظرات', 'error');
-  }
+    const saved = localStorage.getItem('kargar_wishlist');
+    wishlist = saved ? JSON.parse(saved) : [];
+  } catch { wishlist = []; }
+}
+function saveWishlist() {
+  try { localStorage.setItem('kargar_wishlist', JSON.stringify(wishlist)); } catch (e) {}
 }
 
 /* ================== TOAST ================== */
@@ -48,6 +53,11 @@ function showToast(msg, type = 'success') {
 
 /* ================== REVEAL ================== */
 function initReveal() {
+  const elements = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('visible'));
+    return;
+  }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -55,8 +65,102 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.05 });
+  elements.forEach(el => observer.observe(el));
+  setTimeout(() => {
+    elements.forEach(el => el.classList.add('visible'));
+  }, 800);
+}
+
+/* ================== THEME (روز/شب) ================== */
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  const btn = document.getElementById('themeBtn');
+  if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+  try { localStorage.setItem('kargar_theme', isDark ? 'dark' : 'light'); } catch(e) {}
+}
+function applySavedTheme() {
+  let theme = 'light';
+  try { theme = localStorage.getItem('kargar_theme') || 'light'; } catch(e) {}
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+    const btn = document.getElementById('themeBtn');
+    if (btn) btn.textContent = '☀️';
+  }
+}
+
+/* ================== WISHLIST (لایک‌ها) ================== */
+function toggleWishlistItem(productName, event) {
+  if (event) event.stopPropagation();
+  const idx = wishlist.indexOf(productName);
+  if (idx > -1) {
+    wishlist.splice(idx, 1);
+    showToast('از علاقه‌مندی‌ها حذف شد', 'info');
+  } else {
+    wishlist.push(productName);
+    showToast('به علاقه‌مندی‌ها اضافه شد ❤️');
+  }
+  saveWishlist();
+  updateWishlistButtons();
+  updateWishlistCount();
+}
+function updateWishlistButtons() {
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    const name = btn.getAttribute('data-product');
+    if (wishlist.includes(name)) {
+      btn.classList.add('active');
+      btn.textContent = '❤️';
+    } else {
+      btn.classList.remove('active');
+      btn.textContent = '🤍';
+    }
+  });
+}
+function updateWishlistCount() {
+  const count = document.getElementById('wishlistCount');
+  const btn = document.getElementById('floatingWishlistBtn');
+  if (count) count.textContent = wishlist.length;
+  if (btn) {
+    if (wishlist.length > 0) btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+}
+function toggleWishlist(event) {
+  if (event) event.stopPropagation();
+  const win = document.getElementById('wishlistWindow');
+  if (!win) return;
+  win.classList.toggle('show');
+  renderWishlist();
+  document.getElementById('cartWindow').classList.remove('show');
+  document.getElementById('assistantWindow').classList.remove('show');
+  document.getElementById('instaMenu').classList.remove('show');
+}
+function renderWishlist() {
+  const container = document.getElementById('wishlistItems');
+  if (!container) return;
+  if (wishlist.length === 0) {
+    container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">❤️</div>هنوز محصولی به علاقه‌مندی‌ها اضافه نکردی.<br>روی قلب کنار محصولات بزن!</div>';
+    return;
+  }
+  container.innerHTML = wishlist.map(name => `
+    <div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${name}</div>
+      </div>
+      <div style="display:flex; gap:6px;">
+        <button onclick="addWishlistToCart('${name}')" style="background:#0d9488;color:white;border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit;">افزودن</button>
+        <button onclick="toggleWishlistItem('${name}', event)" style="background:#fee2e2;color:#ef4444;border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+function addWishlistToCart(name) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) existing.qty++;
+  else cart.push({ name, qty: 1 });
+  updateCart();
+  showToast('✅ به لیست خرید اضافه شد');
 }
 
 /* ================== CART ================== */
@@ -74,7 +178,6 @@ function activateProduct(productName, btn) {
   updateCart();
   showToast('✅ به لیست خرید اضافه شد');
 }
-
 function decreaseQty(productName) {
   const item = cart.find(i => i.name === productName);
   if (!item) return;
@@ -93,7 +196,6 @@ function decreaseQty(productName) {
   if (input && currentItem) input.value = currentItem.qty;
   updateCart();
 }
-
 function increaseQty(productName) {
   const item = cart.find(i => i.name === productName);
   if (item && item.qty < 100000) {
@@ -103,7 +205,6 @@ function increaseQty(productName) {
     updateCart();
   }
 }
-
 function setQty(productName, value) {
   let qty = parseInt(value) || 1;
   if (qty < 1) qty = 1;
@@ -114,7 +215,6 @@ function setQty(productName, value) {
   if (input) input.value = qty;
   updateCart();
 }
-
 function setCartQty(productName, value) {
   let qty = parseInt(value) || 1;
   if (qty < 1) qty = 1;
@@ -125,7 +225,6 @@ function setCartQty(productName, value) {
   if (productInput) productInput.value = qty;
   updateCart();
 }
-
 function removeFromCart(productName) {
   cart = cart.filter(item => item.name !== productName);
   const qtyControl = document.getElementById('qty-' + productName);
@@ -136,7 +235,6 @@ function removeFromCart(productName) {
   if (label) label.classList.remove('hidden');
   updateCart();
 }
-
 function clearCart() {
   if (cart.length === 0) return;
   if (!confirm('آیا از پاک کردن کل لیست مطمئن هستید؟')) return;
@@ -152,26 +250,20 @@ function clearCart() {
   updateCart();
   showToast('🗑 لیست خرید پاک شد', 'info');
 }
-
 function updateCart() {
   const cartItems = document.getElementById('cartItems');
   const cartCount = document.getElementById('cartCount');
   const floatingCartBtn = document.getElementById('floatingCartBtn');
   const summaryTypes = document.getElementById('summaryTypes');
   const summaryTotal = document.getElementById('summaryTotal');
-
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  const totalTypes = cart.length;
-
   if (cartCount) cartCount.textContent = totalItems;
-  if (summaryTypes) summaryTypes.textContent = totalTypes;
+  if (summaryTypes) summaryTypes.textContent = cart.length;
   if (summaryTotal) summaryTotal.textContent = totalItems;
-
   if (floatingCartBtn) {
     if (cart.length > 0) floatingCartBtn.classList.add('show');
     else floatingCartBtn.classList.remove('show');
   }
-
   if (cartItems) {
     if (cart.length === 0) {
       cartItems.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div>لیست شما خالی است</div>';
@@ -195,34 +287,29 @@ function updateCart() {
     }
   }
 }
-
 function toggleCart(event) {
   if (event) event.stopPropagation();
   document.getElementById('cartWindow').classList.toggle('show');
   document.getElementById('instaMenu').classList.remove('show');
   document.getElementById('assistantWindow').classList.remove('show');
+  document.getElementById('wishlistWindow').classList.remove('show');
 }
-
 function cartToText() {
   return '🛒 لیست خرید من از مصالح ساختمانی و تاسیسات مرکزی کارگر:\n\n' +
     cart.map((item, i) => `${i+1}. ${item.name} — تعداد: ${item.qty}`).join('\n') +
     `\n\n📦 مجموع: ${cart.length} قلم کالا — ${cart.reduce((s, i) => s + i.qty, 0)} عدد`;
 }
-
 function sendToEita(type) {
   if (cart.length === 0) { showToast('⚠️ لیست شما خالی است', 'error'); return; }
-  const text = cartToText();
-  copyToClipboard(text).then(() => {
+  copyToClipboard(cartToText()).then(() => {
     showToast('✅ لیست کپی شد. ایتا باز می‌شود...');
     setTimeout(() => { window.location.href = 'eitaa://'; }, 700);
   });
 }
-
 function copyCart() {
   if (cart.length === 0) { showToast('⚠️ لیست شما خالی است', 'error'); return; }
   copyToClipboard(cartToText()).then(() => showToast('✅ لیست کپی شد'));
 }
-
 function copyToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
     return navigator.clipboard.writeText(text);
@@ -249,34 +336,31 @@ function normalize(str) {
     .replace(/[\u064B-\u065F\u0670]/g, '')
     .trim();
 }
-
 function searchProducts() {
-  const query = normalize(document.getElementById('searchInput').value);
+  const input = document.getElementById('searchInput');
+  if (!input) return;
+  const query = normalize(input.value);
   const cards = document.querySelectorAll('.product-card');
   const categoryTitles = document.querySelectorAll('.category-title');
   const clearBtn = document.getElementById('searchClear');
   const resultInfo = document.getElementById('searchResultInfo');
   const noResult = document.getElementById('noResult');
-
   if (query === '') {
     cards.forEach(card => card.style.display = '');
     categoryTitles.forEach(title => title.style.display = '');
-    clearBtn.classList.remove('show');
-    resultInfo.innerHTML = '';
-    noResult.classList.remove('show');
+    if (clearBtn) clearBtn.classList.remove('show');
+    if (resultInfo) resultInfo.innerHTML = '';
+    if (noResult) noResult.classList.remove('show');
     return;
   }
-
-  clearBtn.classList.add('show');
+  if (clearBtn) clearBtn.classList.add('show');
   let visibleCount = 0;
-
   cards.forEach(card => {
     const name = normalize(card.getAttribute('data-name'));
     const h3 = card.querySelector('h3');
     const p = card.querySelector('p');
     const title = normalize(h3 ? h3.textContent : '');
     const desc = normalize(p ? p.textContent : '');
-
     if (name.includes(query) || title.includes(query) || desc.includes(query)) {
       card.style.display = '';
       visibleCount++;
@@ -284,7 +368,6 @@ function searchProducts() {
       card.style.display = 'none';
     }
   });
-
   categoryTitles.forEach(title => {
     let next = title.nextElementSibling;
     let hasVisible = false;
@@ -296,20 +379,19 @@ function searchProducts() {
     }
     title.style.display = hasVisible ? '' : 'none';
   });
-
   if (visibleCount === 0) {
-    noResult.classList.add('show');
-    resultInfo.innerHTML = '';
+    if (noResult) noResult.classList.add('show');
+    if (resultInfo) resultInfo.innerHTML = '';
   } else {
-    noResult.classList.remove('show');
-    resultInfo.innerHTML = '🔍 <strong>' + visibleCount + '</strong> محصول پیدا شد';
+    if (noResult) noResult.classList.remove('show');
+    if (resultInfo) resultInfo.innerHTML = '🔍 <strong>' + visibleCount + '</strong> محصول پیدا شد';
   }
 }
-
 function clearSearch() {
-  document.getElementById('searchInput').value = '';
+  const input = document.getElementById('searchInput');
+  if (input) input.value = '';
   searchProducts();
-  document.getElementById('searchInput').focus();
+  if (input) input.focus();
 }
 
 /* ================== FAQ ================== */
@@ -322,49 +404,36 @@ function toggleFaq(el) {
 
 /* ================== REVIEWS ================== */
 function openReviewForm() {
-  document.getElementById('reviewFormWindow').classList.add('show');
-  document.getElementById('reviewFormWindow').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const w = document.getElementById('reviewFormWindow');
+  if (!w) return;
+  w.classList.add('show');
+  w.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
-
 function closeReviewForm() {
-  document.getElementById('reviewFormWindow').classList.remove('show');
+  const w = document.getElementById('reviewFormWindow');
+  if (!w) return;
+  w.classList.remove('show');
   document.getElementById('reviewName').value = '';
   document.getElementById('reviewText').value = '';
   currentRating = 0;
   updateStars(0);
 }
-
-function setRating(value) {
-  currentRating = value;
-  updateStars(value);
-}
-
+function setRating(value) { currentRating = value; updateStars(value); }
 function updateStars(value) {
   document.querySelectorAll('.star').forEach(star => {
     const v = parseInt(star.getAttribute('data-value'));
     star.classList.toggle('active', v <= value);
   });
 }
-
 function submitReview() {
   const name = document.getElementById('reviewName').value.trim();
   const text = document.getElementById('reviewText').value.trim();
-
   if (!name) { showToast('⚠️ لطفاً نام خود را وارد کنید', 'error'); return; }
   if (name.length < 2) { showToast('⚠️ نام باید حداقل ۲ حرف باشد', 'error'); return; }
   if (currentRating === 0) { showToast('⚠️ لطفاً امتیاز خود را انتخاب کنید', 'error'); return; }
   if (!text) { showToast('⚠️ لطفاً نظر خود را بنویسید', 'error'); return; }
   if (text.length < 10) { showToast('⚠️ نظر باید حداقل ۱۰ حرف باشد', 'error'); return; }
-
-  const review = {
-    id: Date.now(),
-    name,
-    text,
-    rating: currentRating,
-    status: 'pending',
-    date: new Date().toISOString()
-  };
-
+  const review = { id: Date.now(), name, text, rating: currentRating, status: 'pending', date: new Date().toISOString() };
   reviews.push(review);
   saveReviews();
   renderReviewsList();
@@ -372,17 +441,14 @@ function submitReview() {
   showToast('✅ نظر شما ثبت شد. پس از تأیید نمایش داده می‌شود.');
   closeReviewForm();
 }
-
 function renderReviewsList() {
   const container = document.getElementById('reviewsList');
   if (!container) return;
   const approved = reviews.filter(r => r.status === 'approved');
-
   if (approved.length === 0) {
     container.innerHTML = `<div class="no-reviews-yet"><div class="no-reviews-icon">💬</div>هنوز نظری ثبت نشده.<br>اولین نفری باشید که نظر می‌ده!</div>`;
     return;
   }
-
   container.innerHTML = approved.slice().reverse().map(r => {
     const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
     const initials = r.name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('');
@@ -402,7 +468,6 @@ function renderReviewsList() {
     `;
   }).join('');
 }
-
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, c => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -413,35 +478,27 @@ function escapeHtml(str) {
 function tripleClickLogo() {
   logoClickCount++;
   clearTimeout(logoClickTimer);
-  if (logoClickCount >= 3) {
-    logoClickCount = 0;
-    openAdmin();
-    return;
-  }
+  if (logoClickCount >= 3) { logoClickCount = 0; openAdmin(); return; }
   logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 600);
 }
-
 function openAdmin() {
   const overlay = document.getElementById('adminOverlay');
   if (!overlay) { showToast('❌ پنل ادمین در HTML موجود نیست', 'error'); return; }
   overlay.classList.add('show');
   document.body.style.overflow = 'hidden';
-  if (isAdminLoggedIn) {
-    showAdminPanel();
-  } else {
+  if (isAdminLoggedIn) { showAdminPanel(); }
+  else {
     document.getElementById('adminLogin').style.display = 'block';
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('adminPassword').value = '';
     setTimeout(() => { const p = document.getElementById('adminPassword'); if (p) p.focus(); }, 200);
   }
 }
-
 function closeAdmin() {
   const overlay = document.getElementById('adminOverlay');
   if (overlay) overlay.classList.remove('show');
   document.body.style.overflow = '';
 }
-
 function loginAdmin() {
   const pass = document.getElementById('adminPassword').value;
   if (pass === ADMIN_PASSWORD) {
@@ -453,47 +510,36 @@ function loginAdmin() {
     document.getElementById('adminPassword').value = '';
   }
 }
-
 function showAdminPanel() {
   document.getElementById('adminLogin').style.display = 'none';
   document.getElementById('adminPanel').style.display = 'block';
   updateAdminStats();
   renderAdminReviews();
 }
-
 function updateAdminStats() {
-  const total = reviews.length;
-  const approved = reviews.filter(r => r.status === 'approved').length;
-  const pending = reviews.filter(r => r.status === 'pending').length;
   const elT = document.getElementById('statTotal');
   const elA = document.getElementById('statApproved');
   const elP = document.getElementById('statPending');
-  if (elT) elT.textContent = total;
-  if (elA) elA.textContent = approved;
-  if (elP) elP.textContent = pending;
+  if (elT) elT.textContent = reviews.length;
+  if (elA) elA.textContent = reviews.filter(r => r.status === 'approved').length;
+  if (elP) elP.textContent = reviews.filter(r => r.status === 'pending').length;
 }
-
 function filterReviews(status, btn) {
   currentFilter = status;
   document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   renderAdminReviews();
 }
-
 function renderAdminReviews() {
   const container = document.getElementById('adminReviewsList');
   if (!container) return;
   let filtered = reviews;
-  if (currentFilter !== 'all') {
-    filtered = reviews.filter(r => r.status === currentFilter);
-  }
+  if (currentFilter !== 'all') filtered = reviews.filter(r => r.status === currentFilter);
   filtered = filtered.slice().reverse();
-
   if (filtered.length === 0) {
     container.innerHTML = `<div class="admin-empty">📭 هیچ نظری در این دسته وجود ندارد</div>`;
     return;
   }
-
   container.innerHTML = filtered.map(r => {
     const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
     const dateStr = new Date(r.date).toLocaleString('fa-IR');
@@ -518,39 +564,24 @@ function renderAdminReviews() {
     `;
   }).join('');
 }
-
 function approveReview(id) {
-  const r = reviews.find(x => x.id === id);
-  if (!r) return;
-  r.status = 'approved';
-  saveReviews();
-  updateAdminStats();
-  renderAdminReviews();
-  renderReviewsList();
+  const r = reviews.find(x => x.id === id); if (!r) return;
+  r.status = 'approved'; saveReviews();
+  updateAdminStats(); renderAdminReviews(); renderReviewsList();
   showToast('✅ نظر تأیید شد');
 }
-
 function rejectReview(id) {
-  const r = reviews.find(x => x.id === id);
-  if (!r) return;
-  r.status = 'rejected';
-  saveReviews();
-  updateAdminStats();
-  renderAdminReviews();
-  renderReviewsList();
+  const r = reviews.find(x => x.id === id); if (!r) return;
+  r.status = 'rejected'; saveReviews();
+  updateAdminStats(); renderAdminReviews(); renderReviewsList();
   showToast('❌ نظر رد شد', 'info');
 }
-
 function deleteReview(id) {
   if (!confirm('آیا از حذف این نظر مطمئن هستید؟')) return;
   reviews = reviews.filter(x => x.id !== id);
-  saveReviews();
-  updateAdminStats();
-  renderAdminReviews();
-  renderReviewsList();
+  saveReviews(); updateAdminStats(); renderAdminReviews(); renderReviewsList();
   showToast('🗑 نظر حذف شد', 'info');
 }
-
 function exportReviews() {
   const dataStr = JSON.stringify(reviews, null, 2);
   const blob = new Blob([dataStr], { type: 'application/json' });
@@ -558,29 +589,21 @@ function exportReviews() {
   const a = document.createElement('a');
   a.href = url;
   a.download = 'kargar-reviews-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
+  a.click(); URL.revokeObjectURL(url);
   showToast('📥 فایل JSON دانلود شد');
 }
-
 function importReviews(event) {
-  const file = event.target.files[0];
-  if (!file) return;
+  const file = event.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = e => {
     try {
       const imported = JSON.parse(e.target.result);
       if (!Array.isArray(imported)) throw new Error('فرمت نامعتبر');
-      if (!confirm(`آیا ${imported.length} نظر بارگذاری شود؟ (نظرات فعلی جایگزین می‌شوند)`)) return;
+      if (!confirm(`آیا ${imported.length} نظر بارگذاری شود؟`)) return;
       reviews = imported;
-      saveReviews();
-      updateAdminStats();
-      renderAdminReviews();
-      renderReviewsList();
-      showToast('✅ نظرات با موفقیت بارگذاری شد');
-    } catch (err) {
-      showToast('❌ فایل JSON نامعتبر است', 'error');
-    }
+      saveReviews(); updateAdminStats(); renderAdminReviews(); renderReviewsList();
+      showToast('✅ نظرات بارگذاری شد');
+    } catch (err) { showToast('❌ فایل JSON نامعتبر است', 'error'); }
   };
   reader.readAsText(file);
   event.target.value = '';
@@ -592,62 +615,56 @@ function toggleAssistant(event) {
   document.getElementById('assistantWindow').classList.toggle('show');
   document.getElementById('instaMenu').classList.remove('show');
   document.getElementById('cartWindow').classList.remove('show');
+  document.getElementById('wishlistWindow').classList.remove('show');
 }
-
 function sendAssistantMsg() {
   const input = document.getElementById('assistantInput');
   const msg = input.value.trim();
   if (!msg) return;
   addMsg(msg, 'user');
   input.value = '';
-  setTimeout(() => {
-    const reply = getAssistantReply(msg);
-    addMsg(reply, 'bot');
-  }, 400);
+  setTimeout(() => { addMsg(getAssistantReply(msg), 'bot'); }, 400);
 }
-
 const knowledgeBase = {
-  'سیمان': '💡 سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات.\n📞 استعلام قیمت: ۰۹۱۳۳۹۰۸۲۳۰',
-  'بلوک': '💡 بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\n📏 برای هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'سیمان': '💡 سیمان تیپ ۱ برای کارهای عمومی، تیپ ۲ برای بتن‌ریزی معمولی، تیپ ۵ برای بتن‌های حساس به سولفات.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'بلوک': '💡 بلوک تیغه برای دیوارچینی داخلی، بلوک سقفی برای تیرچه بلوک.\n📏 هر متر مربع دیوار حدود ۱۰ عدد بلوک.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'کاشی': '💡 کاشی دیواری و کف در طرح‌ها و رنگ‌های متنوع.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'سرامیک': '💡 سرامیک کف و دیوار با مقاومت بالا.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'گچ': '💡 گچ سفیدکاری و ساختمانی، کیسه‌های ۳۰ و ۴۰ کیلویی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'لوله': '💡 لوله پلیکا، پنج لایه، پنبه‌ای و فلزی در سایزهای مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'پکیج': '💡 پکیج دیواری و زمینی با گارانتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'رادیاتور': '💡 رادیاتور پنلی و آلومینیومی در ابعاد مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
+  'رادیاتور': '💡 رادیاتور پنلی و آلومینیومی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'شیرآلات': '💡 شیرآلات بهداشتی و ساختمانی از برندهای معتبر.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'سینک': '💡 سینک ظرفشویی استیل و گرانیتی در ابعاد مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
+  'سینک': '💡 سینک ظرفشویی استیل و گرانیتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'چینی': '💡 توالت ایرانی و فرنگی از برندهای معتبر.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'پمپ': '💡 پمپ آب خانگی، نیمه صنعتی و صنعتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'مخزن': '💡 مخازن آب افقی، عمودی، ایستاده و خوابیده.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'هود': '💡 هود آشپزخانه در مدل‌های مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'گاز': '💡 گاز صفحه‌ای در مدل‌ها و سایزهای مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'آینه': '💡 آینه‌های سرویس بهداشتی در ابعاد و طرح‌های متنوع.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'فلاش': '💡 فلاش تانک توکار و روکار در مدل‌های مختلف.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
+  'آینه': '💡 آینه‌های سرویس بهداشتی.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
+  'فلاش': '💡 فلاش تانک توکار و روکار.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
   'موزاییک': '💡 موزاییک پرسی و معمولی برای محوطه‌سازی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'آجر': '💡 آجر گره‌ای و سفال برای دیوارچینی و نماکاری.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'آهک': '💡 آهک کیسه‌ای و ساختمانی برای ملات و شفته‌ریزی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'آهک': '💡 آهک کیسه‌ای و ساختمانی.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'پودر سنگ': '💡 پودر سنگ جوشقان و سایر معادن.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
   'اتصالات': '💡 انواع اتصالات لوله‌کشی آب و فاضلاب.\n📞 ۰۹۱۳۳۹۰۸۳۹۳',
-  'دیوار': '💡 برای هر متر مربع دیوار تیغه‌ای: ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'سقف': '💡 برای هر متر مربع سقف تیرچه بلوک: ۲ عدد بلوک سقفی + تیرچه + میلگرد.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
-  'قیمت': '💰 برای استعلام قیمت روز:\n📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
+  'دیوار': '💡 هر متر مربع دیوار تیغه‌ای: ۱۰ عدد بلوک + ۵ کیلو گچ + ۳ کیلو سیمان.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'سقف': '💡 هر متر مربع سقف تیرچه بلوک: ۲ عدد بلوک سقفی + تیرچه + میلگرد.\n📞 ۰۹۱۳۳۹۰۸۲۳۰',
+  'قیمت': '💰 استعلام قیمت:\n📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳',
   'تماس': '📞 مصالح: ۰۹۱۳۳۹۰۸۲۳۰\n📞 تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳\n📞 مغازه: ۰۳۴-۳۴۳۴۱۳۰۳',
   'آدرس': '📍 شهربابک، خیابان مطهری، نبش کوچه ۱۱\n⏰ شنبه تا پنجشنبه، ۸ صبح تا ۸ شب',
   'ارسال': '✅ ارسال سریع با ناوگان خودمون در شهربابک و حومه.',
   'سلام': 'سلام و خوش آمدید! 😊 چطور می‌تونم کمکتون کنم؟'
 };
-
 function getAssistantReply(msg) {
   const lower = normalize(msg);
   const sortedKeys = Object.keys(knowledgeBase).sort((a,b) => b.length - a.length);
   for (const key of sortedKeys) {
     if (lower.includes(normalize(key))) return knowledgeBase[key];
   }
-  return 'متأسفم، متوجه نشدم. 🤔\n\nمی‌تونید اینا رو بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n• پکیج دارید؟\n\nیا تماس بگیرید:\n📞 ۰۹۱۳۳۹۰۸۲۳۰';
+  return 'متأسفم، متوجه نشدم. 🤔\n\nمی‌تونید بپرسید:\n• قیمت سیمان چنده؟\n• برای دیوارچینی چی لازم دارم؟\n• آدرس فروشگاه کجاست؟\n\nیا تماس: 📞 ۰۹۱۳۳۹۰۸۲۳۰';
 }
-
-function addMsg(text, type) {
+function addMsg(text, type)function addMsg(text, type) {
   const container = document.getElementById('assistantMessages');
   if (!container) return;
   const div = document.createElement('div');
@@ -663,6 +680,7 @@ function toggleInstaMenu(event) {
   document.getElementById('instaMenu').classList.toggle('show');
   document.getElementById('cartWindow').classList.remove('show');
   document.getElementById('assistantWindow').classList.remove('show');
+  document.getElementById('wishlistWindow').classList.remove('show');
 }
 
 /* ================== GLOBAL CLICK ================== */
@@ -673,6 +691,8 @@ document.addEventListener('click', function(event) {
   const cartBtn = document.getElementById('floatingCartBtn');
   const assistantWindow = document.getElementById('assistantWindow');
   const assistantBtn = document.querySelector('.floating-assistant-btn');
+  const wishlistWindow = document.getElementById('wishlistWindow');
+  const wishlistBtn = document.getElementById('floatingWishlistBtn');
 
   if (instaBtn && !instaBtn.contains(event.target) && menu && !menu.contains(event.target)) {
     menu.classList.remove('show');
@@ -682,6 +702,9 @@ document.addEventListener('click', function(event) {
   }
   if (assistantBtn && !assistantBtn.contains(event.target) && assistantWindow && !assistantWindow.contains(event.target)) {
     assistantWindow.classList.remove('show');
+  }
+  if (wishlistBtn && !wishlistBtn.contains(event.target) && wishlistWindow && !wishlistWindow.contains(event.target)) {
+    wishlistWindow.classList.remove('show');
   }
   if (event.target.classList && event.target.classList.contains('modal-overlay')) {
     event.target.classList.remove('show');
@@ -699,6 +722,8 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('cartWindow').classList.remove('show');
     document.getElementById('assistantWindow').classList.remove('show');
     document.getElementById('instaMenu').classList.remove('show');
+    const ww = document.getElementById('wishlistWindow');
+    if (ww) ww.classList.remove('show');
     document.querySelectorAll('.modal-overlay.show').forEach(m => {
       m.classList.remove('show');
       document.body.style.overflow = '';
@@ -715,14 +740,12 @@ function openOrderForm() {
   modal.classList.add('show');
   document.body.style.overflow = 'hidden';
 }
-
 function closeOrderForm() {
   const modal = document.getElementById('orderModal');
   if (!modal) return;
   modal.classList.remove('show');
   document.body.style.overflow = '';
 }
-
 function submitOrder() {
   const name = document.getElementById('orderName').value.trim();
   const phone = document.getElementById('orderPhone').value.trim();
@@ -731,7 +754,7 @@ function submitOrder() {
   const note = document.getElementById('orderNote').value.trim();
 
   if (!name || name.length < 2) { showToast('⚠️ نام را درست وارد کنید', 'error'); return; }
-  if (!/^09\d{9}$/.test(phone)) { showToast('⚠️ شماره موبایل معتبر وارد کنید (مثل 09xxxxxxxxx)', 'error'); return; }
+  if (!/^09\d{9}$/.test(phone)) { showToast('⚠️ شماره موبایل معتبر وارد کنید (مثل 09123456789)', 'error'); return; }
   if (!address || address.length < 5) { showToast('⚠️ آدرس را کامل وارد کنید', 'error'); return; }
 
   let text = '🛒 سفارش آنلاین جدید از سایت کارگر:\n\n';
@@ -772,19 +795,14 @@ function openCalculator() {
   if (!modal) return;
   modal.classList.add('show');
   document.body.style.overflow = 'hidden';
-  calcWall();
-  calcCeiling();
-  calcConcrete();
-  calcTile();
+  calcWall(); calcCeiling(); calcConcrete(); calcTile();
 }
-
 function closeCalculator() {
   const modal = document.getElementById('calcModal');
   if (!modal) return;
   modal.classList.remove('show');
   document.body.style.overflow = '';
 }
-
 function switchCalc(name, btn) {
   document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
@@ -792,8 +810,9 @@ function switchCalc(name, btn) {
   const panel = document.getElementById('calc-' + name);
   if (panel) panel.classList.add('active');
 }
-
 function calcWall() {
+  const el = document.getElementById('wallResult');
+  if (!el) return;
   const L = parseFloat(document.getElementById('wallLength').value) || 0;
   const H = parseFloat(document.getElementById('wallHeight').value) || 0;
   const perSqm = parseFloat(document.getElementById('wallType').value);
@@ -801,7 +820,7 @@ function calcWall() {
   const blocks = Math.ceil(area * perSqm);
   const cement = Math.ceil(area * 0.5);
   const sand = (area * 0.02).toFixed(2);
-  document.getElementById('wallResult').innerHTML = `
+  el.innerHTML = `
     <h4>📊 نتیجه محاسبه</h4>
     <div class="calc-result-item"><span>مساحت دیوار:</span><span>${area.toFixed(2)} متر مربع</span></div>
     <div class="calc-result-item"><span>تعداد بلوک:</span><span>${blocks} عدد</span></div>
@@ -810,14 +829,15 @@ function calcWall() {
   `;
   window._lastCalc = { blocks, cement, sand, area };
 }
-
 function calcCeiling() {
+  const el = document.getElementById('ceilingResult');
+  if (!el) return;
   const area = parseFloat(document.getElementById('ceilingArea').value) || 0;
   const blocks = Math.ceil(area * 2);
   const joists = Math.ceil(area * 0.55);
   const cement = Math.ceil(area * 0.8);
   const steel = Math.ceil(area * 4);
-  document.getElementById('ceilingResult').innerHTML = `
+  el.innerHTML = `
     <h4>📊 نتیجه محاسبه سقف تیرچه بلوک</h4>
     <div class="calc-result-item"><span>مساحت سقف:</span><span>${area.toFixed(2)} متر مربع</span></div>
     <div class="calc-result-item"><span>بلوک سقفی:</span><span>${blocks} عدد</span></div>
@@ -827,15 +847,16 @@ function calcCeiling() {
   `;
   window._lastCalc = { blocks, joists, cement, steel, area };
 }
-
 function calcConcrete() {
+  const el = document.getElementById('concreteResult');
+  if (!el) return;
   const vol = parseFloat(document.getElementById('concreteVol').value) || 0;
   const grade = parseFloat(document.getElementById('concreteGrade').value);
   const cement = Math.ceil(vol * grade / 50);
   const sand = (vol * 0.5).toFixed(2);
   const gravel = (vol * 0.85).toFixed(2);
   const water = Math.ceil(vol * 180);
-  document.getElementById('concreteResult').innerHTML = `
+  el.innerHTML = `
     <h4>📊 نتیجه محاسبه بتن</h4>
     <div class="calc-result-item"><span>حجم بتن:</span><span>${vol.toFixed(2)} متر مکعب</span></div>
     <div class="calc-result-item"><span>عیار سیمان:</span><span>${grade} kg/m³</span></div>
@@ -846,8 +867,9 @@ function calcConcrete() {
   `;
   window._lastCalc = { cement, sand, gravel, vol };
 }
-
 function calcTile() {
+  const el = document.getElementById('tileResult');
+  if (!el) return;
   const area = parseFloat(document.getElementById('tileArea').value) || 0;
   const size = document.getElementById('tileSize').value.split('x');
   const tileArea = (parseFloat(size[0]) * parseFloat(size[1])) / 10000;
@@ -855,7 +877,7 @@ function calcTile() {
   const totalTiles = Math.ceil(area * tilesPerSqm * 1.1);
   const boxes = Math.ceil(totalTiles / 10);
   const cement = Math.ceil(area * 0.4);
-  document.getElementById('tileResult').innerHTML = `
+  el.innerHTML = `
     <h4>📊 نتیجه محاسبه کاشی‌کاری</h4>
     <div class="calc-result-item"><span>مساحت:</span><span>${area.toFixed(2)} متر مربع</span></div>
     <div class="calc-result-item"><span>ابعاد کاشی:</span><span>${size[0]}×${size[1]} سانتی</span></div>
@@ -865,7 +887,6 @@ function calcTile() {
   `;
   window._lastCalc = { totalTiles, boxes, cement, area };
 }
-
 function addCalcToCart() {
   const activePanel = document.querySelector('.calc-panel.active');
   if (!activePanel) return;
@@ -896,11 +917,11 @@ const blogPosts = [
       <h2>مقدمه</h2>
       <p>انتخاب سیمان مناسب، یکی از مهم‌ترین تصمیمات در هر پروژه ساختمانی است. سیمان‌های مختلف خواص متفاوتی دارند و استفاده نادرست از آنها می‌تواند منجر به ترک، ریزش و کاهش عمر سازه شود.</p>
       <h3>۱. سیمان تیپ ۱ (سیمان معمولی)</h3>
-      <p>پرمصرف‌ترین نوع سیمان که برای کارهای عمومی ساختمانی مثل بتن‌ریزی، ملات، بندکشی و نماکاری استفاده می‌شود. <strong>کاربرد:</strong> پروژه‌های معمولی، سازه‌های بتنی غیر حساس.</p>
+      <p>پرمصرف‌ترین نوع سیمان که برای کارهای عمومی ساختمانی مثل بتن‌ریزی، ملات، بندکشی و نماکاری استفاده می‌شود.</p>
       <h3>۲. سیمان تیپ ۲</h3>
       <p>سیمان اصلاح‌شده که حرارت هیدراتاسیون کمتری دارد. برای بتن‌ریزی در حجم زیاد و هوای گرم مناسب است.</p>
       <h3>۳. سیمان تیپ ۵</h3>
-      <p>سیمان ضد سولفات که در برابر حمله سولفات‌ها مقاوم است. <strong>کاربرد:</strong> سازه‌های در تماس با آب دریا، فاضلاب، خاک‌های سولفاته.</p>
+      <p>سیمان ضد سولفات که در برابر حمله سولفات‌ها مقاوم است. مناسب سازه‌های در تماس با آب دریا، فاضلاب، خاک‌های سولفاته.</p>
       <h3>۴. سیمان سفید</h3>
       <p>برای نماکاری، بندکشی و کارهای تزئینی استفاده می‌شود.</p>
       <div class="highlight">💡 <strong>نکته مهم:</strong> برای پروژه‌های خاص حتماً با کارشناس ما مشورت کنید. تماس: ۰۹۱۳۳۹۰۸۲۳۰</div>
@@ -1016,27 +1037,29 @@ function renderBlog() {
     </div>
   `).join('');
 }
-
 function openArticle(id) {
   const post = blogPosts.find(p => p.id === id);
   if (!post) return;
-  document.getElementById('articleTitle').innerHTML = post.icon + ' ' + post.title;
-  document.getElementById('articleContent').innerHTML = `
+  const titleEl = document.getElementById('articleTitle');
+  const contentEl = document.getElementById('articleContent');
+  const modal = document.getElementById('articleModal');
+  if (!titleEl || !contentEl || !modal) return;
+  titleEl.innerHTML = post.icon + ' ' + post.title;
+  contentEl.innerHTML = `
     <div class="blog-meta">
       <span>🏷 ${post.tag}</span>
       <span>📅 ${post.date}</span>
     </div>
     ${post.content}
   `;
-  document.getElementById('articleModal').classList.add('show');
+  modal.classList.add('show');
   document.body.style.overflow = 'hidden';
 }
-
 function closeArticle() {
-  document.getElementById('articleModal').classList.remove('show');
+  const modal = document.getElementById('articleModal');
+  if (modal) modal.classList.remove('show');
   document.body.style.overflow = '';
 }
-
 function callForArticle() {
   window.location.href = 'tel:09133908230';
 }
@@ -1044,10 +1067,17 @@ function callForArticle() {
 /* ================== INIT ================== */
 document.addEventListener('DOMContentLoaded', () => {
   loadReviews();
+  loadWishlist();
+  applySavedTheme();
   renderReviewsList();
   updateCart();
+  updateWishlistButtons();
+  updateWishlistCount();
   initReveal();
   renderBlog();
   const firstFaq = document.querySelector('.faq-item');
   if (firstFaq) firstFaq.classList.add('open');
+  setTimeout(() => {
+    document.querySelectorAll('.product-card').forEach(c => c.classList.add('visible'));
+  }, 1000);
 });
