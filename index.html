@@ -2,80 +2,476 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خرید مصالح ساختمانی | کارگر</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- لینک به فونت (مثلا وزیرمتن) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>کارگر | مصالح ساختمانی و تاسیسات</title>
+    <!-- فونت وزیرمتن -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <style>
+        /* ================= تنظیمات پایه (شبیه بارتان) ================= */
+        :root {
+            --bg-dark: #14161a;
+            --bg-card: #1c1f26;
+            --bg-darker: #0f1115;
+            --text-main: #ffffff;
+            --text-muted: #a0a5b1;
+            --primary-red: #e74c3c;
+            --primary-red-hover: #c0392b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding-bottom: 90px; /* برای منوی پایین */
+            overflow-x: hidden;
+        }
+
+        /* ================= هدر ================= */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--bg-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu-btn, .cart-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cart-btn {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        .cart-btn:active { transform: scale(0.95); }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            /* اگه لوگو نداری فعلا این متن رو نگه دار */
+            display: none; 
+        }
+
+        .logo-text {
+            color: var(--primary-red);
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        .logo-sub {
+            font-size: 9px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ================= اسلایدر/هیرو ================= */
+        .hero {
+            padding: 10px 15px;
+            position: relative;
+        }
+
+        .hero-img-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #222;
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            /* عکس کامیون/انبار رو اینجا بذار */
+        }
+
+        /* دکمه‌های چپ و راست */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .arrow.right { right: 15px; }
+        .arrow.left { left: 15px; }
+
+        /* باکس شیشه‌ای روی عکس */
+        .glass-box {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: rgba(25, 28, 35, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .glass-box h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .glass-box p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* متن‌های زیر عکس */
+        .sub-hero-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .badge-red {
+            background: rgba(231, 76, 60, 0.15);
+            color: var(--primary-red);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .sub-hero-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1.5;
+            margin-top: 25px;
+            padding: 0 20px;
+        }
+
+        .main-title span {
+            color: var(--primary-red);
+        }
+
+        /* ================= بخش محصولات ================= */
+        .section-title {
+            padding: 25px 20px 15px;
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 5px;
+        }
+
+        .products-grid {
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 12px;
+            border: 1px solid #2a2e38;
+            transition: 0.3s;
+        }
+
+        .product-card:active { transform: scale(0.98); }
+
+        .product-img {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #2a2e38;
+            margin-bottom: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .product-card p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            line-height: 1.5;
+            height: 32px;
+            overflow: hidden;
+        }
+
+        .add-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--primary-red);
+            color: var(--primary-red);
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-btn:active {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        /* ================= منوی پایین (Bottom Nav) ================= */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-darker);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0 15px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            z-index: 1000;
+            border-top: 1px solid #2a2e38;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 10px;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        .nav-item.active { color: var(--primary-red); }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* دکمه وسطی سبد خرید */
+        .cart-nav-wrapper {
+            position: relative;
+            top: -25px;
+        }
+
+        .cart-circle {
+            background-color: var(--primary-red);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid var(--bg-dark);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            position: relative;
+        }
+
+        .cart-circle svg {
+            stroke: white;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: white;
+            color: var(--primary-red);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-nav-text {
+            color: var(--primary-red);
+            margin-top: 8px;
+            font-weight: 700;
+        }
+
+    </style>
 </head>
 <body>
 
-    <!-- هدر بالای صفحه -->
-    <header class="main-header">
-        <button class="icon-btn"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button>
-        <div class="logo">
-            <!-- اینجا لوگوی خودت رو بذار -->
-            <img src="images/logo.png" alt="لوگو کارگر" style="height: 40px;">
+    <!-- هدر -->
+    <header class="header">
+        <button class="menu-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        
+        <div class="logo-container">
+            <!-- اینجا لوگوی خودت (iu.jpg) رو بذار -->
+            <img src="iu.jpg" alt="کارگر" style="display:block;">
+            <div class="logo-text" style="display:none;">کارگر</div>
+            <div class="logo-sub">مصالح ساختمانی و تاسیسات مرکزی</div>
         </div>
-        <button class="cart-btn">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+
+        <button class="cart-btn" onclick="alert('لیست خرید شما خالی است!')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </button>
     </header>
 
-    <!-- بخش اصلی (هیرو سکشن) -->
-    <main class="hero-section">
-        <div class="hero-image-container">
-            <!-- عکس کامیون یا انبار -->
-            <img src="images/truck.jpg" alt="انبار مصالح" class="hero-img">
+    <!-- بخش اصلی / اسلایدر -->
+    <main class="hero">
+        <div class="hero-img-container">
+            <!-- عکس کامیون یا انبار مصالح خودت رو اینجا بذار -->
+            <img src="gallery3.jpg" alt="انبار مصالح کارگر">
             
-            <!-- دکمه‌های چپ و راست اسلایدر (ظاهری) -->
-            <button class="slider-arrow right">&#10095;</button>
-            <button class="slider-arrow left">&#10094;</button>
+            <button class="arrow right">&#10095;</button>
+            <button class="arrow left">&#10094;</button>
 
-            <!-- باکس متن روی عکس -->
-            <div class="hero-overlay">
+            <!-- متن روی عکس -->
+            <div class="glass-box">
                 <h2>خرید پروژه‌ای بدون آشفتگی</h2>
-                <p>آدرس پروژه، نوع پرداخت و ظرفیت حمل را یکجا مدیریت کنید.</p>
+                <p>آدرس پروژه، نوع پرداخت و ظرفیت حمل را یکجا مدیریت کنید. ارسال سریع در شهربابک و حومه.</p>
             </div>
         </div>
 
-        <!-- متن‌های زیر عکس -->
-        <div class="sub-hero">
-            <span class="badge">تأمین مستقیم مصالح</span>
+        <div class="sub-hero-text">
+            <span class="badge-red">تأمین مستقیم مصالح</span>
             <p>برای خرید روزمره و پروژه‌های ساختمانی</p>
         </div>
 
         <h1 class="main-title">
-            مصالح ساختمانی <span class="highlight">قابل اعتماد</span><br>
+            مصالح ساختمانی <span>قابل اعتماد</span><br>
             با قیمت شفاف و ارسال سریع
         </h1>
     </main>
 
-    <!-- منوی پایین (فقط در موبایل دیده میشه) -->
+    <!-- بخش محصولات -->
+    <section>
+        <h2 class="section-title">محصولات پرفروش</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- محصولات با جاوا اسکریپت اینجا لود میشن -->
+        </div>
+    </section>
+
+    <!-- منوی پایین موبایل -->
     <nav class="bottom-nav">
         <a href="#" class="nav-item active">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             <span>صفحه اصلی</span>
         </a>
         <a href="#" class="nav-item">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <span>جستجو</span>
         </a>
-        <a href="#" class="nav-item cart-nav">
-            <div class="cart-circle">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <div class="cart-nav-wrapper">
+            <div class="cart-circle" onclick="alert('سبد خرید شما خالی است!')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <div class="cart-badge">0</div>
             </div>
-            <span class="cart-text">سبد خرید</span>
-        </a>
+            <span class="nav-item cart-nav-text">سبد خرید</span>
+        </div>
         <a href="#" class="nav-item">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             <span>دسته‌بندی</span>
         </a>
         <a href="#" class="nav-item">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             <span>پروفایل</span>
         </a>
     </nav>
 
+    <script>
+        // دیتابیس محصولات خودت (کارگر)
+        const myProducts = [
+            { name: 'سیمان تیپ ۲', desc: 'مناسب بتن‌ریزی عمومی', img: '67.png' },
+            { name: 'بلوک تیغه ۱۰', desc: 'دیوارچینی داخلی', img: 'gallery4.jpg' },
+            { name: 'کاشی ۶۰×۱۲۰', desc: 'براق و فوق براق', img: 'gallery1.jpg' },
+            { name: 'لوله پنج لایه', desc: 'مقاوم به حرارت', img: '0987.jpg' },
+            { name: 'پکیج دیواری', desc: 'با گارانتی معتبر', img: 'gallery5.jpg' },
+            { name: 'شیرآلات بهداشتی', desc: 'برندهای معتبر', img: 'shiralat.png' }
+        ];
+
+        // تابع برای نمایش محصولات در صفحه
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = myProducts.map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name}" class="product-img" onerror="this.src='https://via.placeholder.com/150/2a2e38/ffffff?text=No+Image'">
+                    <h3>${p.name}</h3>
+                    <p>${p.desc}</p>
+                    <button class="add-btn" onclick="alert('${p.name} به سبد خرید اضافه شد!')">+ افزودن به سبد</button>
+                </div>
+            `).join('');
+        }
+
+        // اجرای تابع هنگام لود شدن صفحه
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
 </body>
 </html>
