@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>کارگر | مصالح ساختمانی و تاسیسات</title>
-    <!-- فونت وزیرمتن -->
+    <title>کارگر | مصالح ساختمانی و تاسیسات مرکزی</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     
     <style>
-        /* ================= تنظیمات پایه (شبیه بارتان) ================= */
+        /* ================= تنظیمات پایه (تم تاریک بارتان) ================= */
         :root {
             --bg-dark: #14161a;
             --bg-card: #1c1f26;
@@ -17,6 +16,7 @@
             --text-muted: #a0a5b1;
             --primary-red: #e74c3c;
             --primary-red-hover: #c0392b;
+            --border-color: #2a2e38;
         }
 
         * {
@@ -30,9 +30,14 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            padding-bottom: 90px; /* برای منوی پایین */
+            padding-bottom: 100px;
             overflow-x: hidden;
         }
+
+        /* اسکرول‌بار سفارشی */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-red); border-radius: 10px; }
 
         /* ================= هدر ================= */
         .header {
@@ -44,11 +49,12 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .menu-btn, .cart-btn {
+        .icon-btn {
             background: transparent;
-            border: 1px solid #333;
+            border: 1px solid var(--border-color);
             color: white;
             width: 45px;
             height: 45px;
@@ -60,12 +66,10 @@
             transition: 0.3s;
         }
 
-        .cart-btn {
+        .icon-btn.cart-btn {
             background-color: var(--primary-red);
             border-color: var(--primary-red);
         }
-
-        .cart-btn:active { transform: scale(0.95); }
 
         .logo-container {
             display: flex;
@@ -74,32 +78,19 @@
         }
 
         .logo-container img {
-            height: 45px;
+            height: 60px; /* لوگو بزرگتر شد */
             width: auto;
             object-fit: contain;
-            /* اگه لوگو نداری فعلا این متن رو نگه دار */
-            display: none; 
         }
 
-        .logo-text {
-            color: var(--primary-red);
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            line-height: 1;
-        }
         .logo-sub {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         /* ================= اسلایدر/هیرو ================= */
-        .hero {
-            padding: 10px 15px;
-            position: relative;
-        }
-
+        .hero { padding: 15px; }
         .hero-img-container {
             position: relative;
             width: 100%;
@@ -114,10 +105,8 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.7;
-            /* عکس کامیون/انبار رو اینجا بذار */
         }
 
-        /* دکمه‌های چپ و راست */
         .arrow {
             position: absolute;
             top: 50%;
@@ -138,7 +127,6 @@
         .arrow.right { right: 15px; }
         .arrow.left { left: 15px; }
 
-        /* باکس شیشه‌ای روی عکس */
         .glass-box {
             position: absolute;
             bottom: 15px;
@@ -151,235 +139,158 @@
             padding: 20px;
             text-align: center;
         }
+        .glass-box h2 { font-size: 18px; margin-bottom: 8px; }
+        .glass-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
-        .glass-box h2 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .glass-box p {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* متن‌های زیر عکس */
         .sub-hero-text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px;
         }
-
         .badge-red {
-            background: rgba(231, 76, 60, 0.15);
-            color: var(--primary-red);
-            border: 1px solid rgba(231, 76, 60, 0.3);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
+            background: rgba(231, 76, 60, 0.15); color: var(--primary-red);
+            border: 1px solid rgba(231, 76, 60, 0.3); padding: 6px 12px;
+            border-radius: 20px; font-size: 11px; font-weight: 700;
         }
-
-        .sub-hero-text p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
+        .sub-hero-text p { font-size: 12px; color: var(--text-muted); }
         .main-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 900;
-            line-height: 1.5;
-            margin-top: 25px;
-            padding: 0 20px;
+            text-align: center; font-size: 24px; font-weight: 900;
+            line-height: 1.5; margin-top: 25px; padding: 0 20px;
         }
+        .main-title span { color: var(--primary-red); }
 
-        .main-title span {
-            color: var(--primary-red);
-        }
-
-        /* ================= بخش محصولات ================= */
+        /* ================= عناوین بخش‌ها ================= */
         .section-title {
-            padding: 25px 20px 15px;
-            font-size: 18px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            padding: 30px 20px 15px; font-size: 18px; font-weight: 800;
+            display: flex; align-items: center; gap: 10px;
         }
-
         .section-title::before {
-            content: '';
-            display: block;
-            width: 5px;
-            height: 20px;
-            background: var(--primary-red);
-            border-radius: 5px;
+            content: ''; display: block; width: 5px; height: 20px;
+            background: var(--primary-red); border-radius: 5px;
         }
 
-        .products-grid {
-            padding: 0 15px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
+        /* ================= محصولات ================= */
+        .products-grid { padding: 0 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .product-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 12px;
-            border: 1px solid #2a2e38;
-            transition: 0.3s;
+            background: var(--bg-card); border-radius: 16px; padding: 12px;
+            border: 1px solid var(--border-color); transition: 0.3s;
         }
-
-        .product-card:active { transform: scale(0.98); }
-
         .product-img {
-            width: 100%;
-            height: 120px;
-            border-radius: 12px;
-            object-fit: cover;
-            background: #2a2e38;
-            margin-bottom: 10px;
+            width: 100%; height: 120px; border-radius: 12px; object-fit: cover;
+            background: var(--border-color); margin-bottom: 10px;
         }
-
-        .product-card h3 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .product-card p {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            line-height: 1.5;
-            height: 32px;
-            overflow: hidden;
-        }
-
+        .product-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+        .product-card p { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; height: 32px; overflow: hidden; }
         .add-btn {
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--primary-red);
-            color: var(--primary-red);
-            padding: 8px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
+            width: 100%; background: transparent; border: 1px solid var(--primary-red);
+            color: var(--primary-red); padding: 8px; border-radius: 10px;
+            font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
         }
+        .add-btn:active { background: var(--primary-red); color: white; }
 
-        .add-btn:active {
-            background: var(--primary-red);
-            color: white;
+        /* ================= دکمه‌های شناور سفارشی ================= */
+        .floating-btns { position: fixed; bottom: 100px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 90; }
+        .float-btn {
+            width: 50px; height: 50px; border-radius: 50%; border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 20px;
         }
+        .btn-calc { background: #6366f1; color: white; }
+        .btn-order { background: #f59e0b; color: white; }
 
-        /* ================= منوی پایین (Bottom Nav) ================= */
+        /* ================= منوی پایین ================= */
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--bg-darker);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px 0 15px;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-            z-index: 1000;
-            border-top: 1px solid #2a2e38;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background-color: var(--bg-darker); display: flex;
+            justify-content: space-around; align-items: center;
+            padding: 10px 0 15px; border-top-left-radius: 25px;
+            border-top-right-radius: 25px; box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            z-index: 1000; border-top: 1px solid var(--border-color);
         }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 10px;
-            gap: 5px;
-            transition: 0.3s;
-        }
-
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 10px; gap: 5px; }
         .nav-item.active { color: var(--primary-red); }
-
-        .nav-icon {
-            width: 24px;
-            height: 24px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        /* دکمه وسطی سبد خرید */
-        .cart-nav-wrapper {
-            position: relative;
-            top: -25px;
-        }
-
+        .nav-icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .cart-nav-wrapper { position: relative; top: -25px; }
         .cart-circle {
-            background-color: var(--primary-red);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 5px solid var(--bg-dark);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
-            position: relative;
+            background-color: var(--primary-red); width: 60px; height: 60px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            border: 5px solid var(--bg-dark); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            position: relative; cursor: pointer;
         }
-
-        .cart-circle svg {
-            stroke: white;
-        }
-
+        .cart-circle svg { stroke: white; }
         .cart-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background: white;
-            color: var(--primary-red);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            font-size: 11px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: -2px; right: -2px; background: white; color: var(--primary-red);
+            width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 900;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cart-nav-text { color: var(--primary-red); margin-top: 8px; font-weight: 700; }
+
+        /* ================= مودال‌ها (پنجره‌های بازشو) ================= */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px); z-index: 2000;
+            display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-overlay.show { display: flex; animation: fadeIn 0.3s; }
+        .modal-content {
+            background: var(--bg-card); width: 100%; max-width: 450px;
+            border-radius: 20px; border: 1px solid var(--border-color);
+            overflow: hidden; max-height: 85vh; display: flex; flex-direction: column;
+        }
+        .modal-header {
+            padding: 15px 20px; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-darker);
+        }
+        .modal-header h3 { font-size: 16px; }
+        .close-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+        .modal-body { padding: 20px; overflow-y: auto; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .form-control {
+            width: 100%; background: var(--bg-darker); border: 1px solid var(--border-color);
+            color: white; padding: 12px; border-radius: 10px; font-family: inherit; font-size: 14px;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary-red); }
+        .submit-btn {
+            width: 100%; background: var(--primary-red); color: white; border: none;
+            padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer;
+            font-family: inherit; font-size: 14px; margin-top: 10px;
+        }
+        .submit-btn:active { background: var(--primary-red-hover); }
+
+        /* محاسبه‌گر */
+        .calc-tabs { display: flex; gap: 5px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .calc-tab {
+            padding: 8px 12px; background: var(--bg-darker); border: 1px solid var(--border-color);
+            border-radius: 8px; color: var(--text-muted); font-size: 12px; cursor: pointer; white-space: nowrap;
+        }
+        .calc-tab.active { background: var(--primary-red); color: white; border-color: var(--primary-red); }
+        .calc-result {
+            background: var(--bg-darker); padding: 15px; border-radius: 10px;
+            border: 1px solid var(--border-color); margin-top: 15px; font-size: 13px; line-height: 2;
         }
 
-        .cart-nav-text {
-            color: var(--primary-red);
-            margin-top: 8px;
-            font-weight: 700;
-        }
+        /* استایل برای نظرات */
+        .review-card { background: var(--bg-darker); padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border-color); }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; color: var(--primary-red); }
+        .review-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <!-- هدر -->
     <header class="header">
-        <button class="menu-btn">
+        <button class="icon-btn" onclick="toggleMenu()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
         
         <div class="logo-container">
-            <!-- اینجا لوگوی خودت (iu.jpg) رو بذار -->
-            <img src="iu.jpg" alt="کارگر" style="display:block;">
-            <div class="logo-text" style="display:none;">کارگر</div>
-            <div class="logo-sub">مصالح ساختمانی و تاسیسات مرکزی</div>
+            <img src="iu.jpg" alt="کارگر" onerror="this.src='https://via.placeholder.com/150x60/14161a/e74c3c?text=KARGAR'">
+            <div class="logo-sub">مصالح و تاسیسات مرکزی</div>
         </div>
 
-        <button class="cart-btn" onclick="alert('لیست خرید شما خالی است!')">
+        <button class="icon-btn cart-btn" onclick="openModal('cartModal')">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </button>
     </header>
@@ -387,37 +298,48 @@
     <!-- بخش اصلی / اسلایدر -->
     <main class="hero">
         <div class="hero-img-container">
-            <!-- عکس کامیون یا انبار مصالح خودت رو اینجا بذار -->
-            <img src="gallery3.jpg" alt="انبار مصالح کارگر">
-            
+            <img src="gallery3.jpg" alt="انبار مصالح" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=Warehouse'">
             <button class="arrow right">&#10095;</button>
             <button class="arrow left">&#10094;</button>
-
-            <!-- متن روی عکس -->
             <div class="glass-box">
                 <h2>خرید پروژه‌ای بدون آشفتگی</h2>
                 <p>آدرس پروژه، نوع پرداخت و ظرفیت حمل را یکجا مدیریت کنید. ارسال سریع در شهربابک و حومه.</p>
             </div>
         </div>
-
         <div class="sub-hero-text">
             <span class="badge-red">تأمین مستقیم مصالح</span>
             <p>برای خرید روزمره و پروژه‌های ساختمانی</p>
         </div>
-
-        <h1 class="main-title">
-            مصالح ساختمانی <span>قابل اعتماد</span><br>
-            با قیمت شفاف و ارسال سریع
-        </h1>
+        <h1 class="main-title">مصالح ساختمانی <span>قابل اعتماد</span><br>با قیمت شفاف و ارسال سریع</h1>
     </main>
 
     <!-- بخش محصولات -->
     <section>
-        <h2 class="section-title">محصولات پرفروش</h2>
+        <h2 class="section-title">محصولات فروشگاه</h2>
         <div class="products-grid" id="productsGrid">
-            <!-- محصولات با جاوا اسکریپت اینجا لود میشن -->
+            <!-- محصولات با JS لود میشن -->
         </div>
     </section>
+
+    <!-- بخش نظرات (ساده شده برای این قالب) -->
+    <section style="padding-bottom: 20px;">
+        <h2 class="section-title">نظرات مشتریان</h2>
+        <div style="padding: 0 15px;">
+            <button class="submit-btn" onclick="openModal('reviewModal')" style="margin-bottom: 15px; background: transparent; border: 1px solid var(--primary-red); color: var(--primary-red);">✍️ ثبت نظر جدید</button>
+            <div id="reviewsList">
+                <div class="review-card">
+                    <div class="review-header"><span>علی محمدی</span><span>★★★★★</span></div>
+                    <div class="review-text">کیفیت مصالح عالی بود و ارسالشون خیلی سریع انجام شد. ممنون از آقای کارگر.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- دکمه‌های شناور (محاسبه‌گر و سفارش) -->
+    <div class="floating-btns">
+        <button class="float-btn btn-calc" onclick="openModal('calcModal')" title="محاسبه‌گر">🧮</button>
+        <button class="float-btn btn-order" onclick="openModal('orderModal')" title="ثبت سفارش">📝</button>
+    </div>
 
     <!-- منوی پایین موبایل -->
     <nav class="bottom-nav">
@@ -425,53 +347,208 @@
             <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             <span>صفحه اصلی</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" onclick="alert('بخش جستجو در حال توسعه است')">
             <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <span>جستجو</span>
         </a>
         <div class="cart-nav-wrapper">
-            <div class="cart-circle" onclick="alert('سبد خرید شما خالی است!')">
+            <div class="cart-circle" onclick="openModal('cartModal')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                <div class="cart-badge">0</div>
+                <div class="cart-badge" id="cartCount">0</div>
             </div>
             <span class="nav-item cart-nav-text">سبد خرید</span>
         </div>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" onclick="alert('بخش دسته‌بندی در حال توسعه است')">
             <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             <span>دسته‌بندی</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" onclick="alert('پروفایل کاربری در حال توسعه است')">
             <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             <span>پروفایل</span>
         </a>
     </nav>
 
+    <!-- ================= مودال‌ها (پنجره‌های بازشو) ================= -->
+    
+    <!-- 1. مودال سبد خرید -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🛒 لیست خرید شما</h3><button class="close-btn" onclick="closeModal('cartModal')">✕</button></div>
+            <div class="modal-body" id="cartItemsContainer">
+                <p style="text-align: center; color: var(--text-muted);">سبد خرید شما خالی است.</p>
+            </div>
+            <div style="padding: 15px; border-top: 1px solid var(--border-color);">
+                <button class="submit-btn" onclick="sendOrder()">ارسال سفارش</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. مودال ثبت سفارش -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>📝 ثبت سفارش آنلاین</h3><button class="close-btn" onclick="closeModal('orderModal')">✕</button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>نام و نام خانوادگی</label><input type="text" class="form-control" placeholder="مثلاً: علی محمدی"></div>
+                <div class="form-group"><label>شماره تماس</label><input type="tel" class="form-control" placeholder="۰۹۱۲۳۴۵۶۷۸۹" dir="ltr"></div>
+                <div class="form-group"><label>آدرس تحویل</label><textarea class="form-control" rows="2" placeholder="شهربابک، خیابان..."></textarea></div>
+                <div class="form-group"><label>توضیحات</label><textarea class="form-control" rows="2" placeholder="مثلاً: برای پروژه ۱۵۰ متری..."></textarea></div>
+                <button class="submit-btn" onclick="alert('سفارش شما ثبت شد! به زودی با شما تماس می‌گیریم.'); closeModal('orderModal')">ارسال سفارش</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. مودال محاسبه‌گر -->
+    <div class="modal-overlay" id="calcModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🧮 محاسبه‌گر مصالح</h3><button class="close-btn" onclick="closeModal('calcModal')">✕</button></div>
+            <div class="modal-body">
+                <div class="calc-tabs">
+                    <button class="calc-tab active" onclick="switchCalc('wall')">دیوارچینی</button>
+                    <button class="calc-tab" onclick="switchCalc('ceiling')">سقف</button>
+                </div>
+                <div id="calc-wall">
+                    <div class="form-group"><label>طول دیوار (متر)</label><input type="number" class="form-control" id="wallL" value="10" oninput="calcWall()"></div>
+                    <div class="form-group"><label>ارتفاع دیوار (متر)</label><input type="number" class="form-control" id="wallH" value="3" oninput="calcWall()"></div>
+                    <div class="calc-result" id="wallResult">تعداد بلوک: ۰ عدد</div>
+                </div>
+                <div id="calc-ceiling" style="display: none;">
+                    <div class="form-group"><label>مساحت سقف (متر مربع)</label><input type="number" class="form-control" id="ceilArea" value="100" oninput="calcCeiling()"></div>
+                    <div class="calc-result" id="ceilResult">تعداد بلوک سقفی: ۰ عدد</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. مودال ثبت نظر -->
+    <div class="modal-overlay" id="reviewModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>✍️ ثبت نظر</h3><button class="close-btn" onclick="closeModal('reviewModal')">✕</button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>نام شما</label><input type="text" class="form-control" id="revName"></div>
+                <div class="form-group"><label>نظر شما</label><textarea class="form-control" rows="3" id="revText"></textarea></div>
+                <button class="submit-btn" onclick="addReview()">ارسال نظر</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- اسکریپت‌ها -->
     <script>
-        // دیتابیس محصولات خودت (کارگر)
+        // ================== دیتابیس محصولات ==================
         const myProducts = [
-            { name: 'سیمان تیپ ۲', desc: 'مناسب بتن‌ریزی عمومی', img: '67.png' },
-            { name: 'بلوک تیغه ۱۰', desc: 'دیوارچینی داخلی', img: 'gallery4.jpg' },
-            { name: 'کاشی ۶۰×۱۲۰', desc: 'براق و فوق براق', img: 'gallery1.jpg' },
-            { name: 'لوله پنج لایه', desc: 'مقاوم به حرارت', img: '0987.jpg' },
-            { name: 'پکیج دیواری', desc: 'با گارانتی معتبر', img: 'gallery5.jpg' },
-            { name: 'شیرآلات بهداشتی', desc: 'برندهای معتبر', img: 'shiralat.png' }
+            { id: 'c1', name: 'سیمان تیپ ۲', desc: 'مناسب بتن‌ریزی عمومی', img: '67.png' },
+            { id: 'b1', name: 'بلوک تیغه ۱۰', desc: 'دیوارچینی داخلی', img: 'gallery4.jpg' },
+            { id: 't1', name: 'کاشی ۶۰×۱۲۰', desc: 'براق و فوق براق', img: 'gallery1.jpg' },
+            { id: 'p1', name: 'لوله پنج لایه', desc: 'مقاوم به حرارت', img: '0987.jpg' },
+            { id: 'pk1', name: 'پکیج دیواری', desc: 'با گارانتی معتبر', img: 'gallery5.jpg' },
+            { id: 's1', name: 'شیرآلات بهداشتی', desc: 'برندهای معتبر', img: 'shiralat.png' }
         ];
 
-        // تابع برای نمایش محصولات در صفحه
+        let cart = [];
+
+        // ================== توابع نمایش ==================
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = myProducts.map(p => `
                 <div class="product-card">
-                    <img src="${p.img}" alt="${p.name}" class="product-img" onerror="this.src='https://via.placeholder.com/150/2a2e38/ffffff?text=No+Image'">
+                    <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150/2a2e38/ffffff?text=No+Image'">
                     <h3>${p.name}</h3>
                     <p>${p.desc}</p>
-                    <button class="add-btn" onclick="alert('${p.name} به سبد خرید اضافه شد!')">+ افزودن به سبد</button>
+                    <button class="add-btn" onclick="addToCart('${p.id}', '${p.name}')">+ افزودن</button>
                 </div>
             `).join('');
         }
 
-        // اجرای تابع هنگام لود شدن صفحه
-        document.addEventListener('DOMContentLoaded', renderProducts);
+        function addToCart(id, name) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) { existing.qty++; } 
+            else { cart.push({ id, name, qty: 1 }); }
+            updateCartUI();
+            alert(`✅ ${name} به سبد خرید اضافه شد.`);
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').innerText = totalItems;
+
+            const container = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">سبد خرید شما خالی است.</p>';
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 10px 0;">
+                        <span>${item.name}</span>
+                        <span style="color: var(--primary-red);">${item.qty} عدد</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function sendOrder() {
+            if (cart.length === 0) { alert('سبد خرید شما خالی است!'); return; }
+            alert('لیست خرید شما به واحد فروش ارسال شد. به زودی تماس می‌گیریم.');
+            cart = [];
+            updateCartUI();
+            closeModal('cartModal');
+        }
+
+        // ================== مودال‌ها ==================
+        function openModal(id) { document.getElementById(id).classList.add('show'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+        
+        // بستن مودال با کلیک بیرون
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) closeModal(this.id);
+            });
+        });
+
+        // ================== محاسبه‌گر ==================
+        function switchCalc(type) {
+            document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('calc-wall').style.display = type === 'wall' ? 'block' : 'none';
+            document.getElementById('calc-ceiling').style.display = type === 'ceiling' ? 'block' : 'none';
+        }
+
+        function calcWall() {
+            const L = parseFloat(document.getElementById('wallL').value) || 0;
+            const H = parseFloat(document.getElementById('wallH').value) || 0;
+            const blocks = Math.ceil(L * H * 10);
+            document.getElementById('wallResult').innerHTML = `تعداد بلوک: <span style="color:var(--primary-red)">${blocks}</span> عدد`;
+        }
+
+        function calcCeiling() {
+            const area = parseFloat(document.getElementById('ceilArea').value) || 0;
+            const blocks = Math.ceil(area * 2);
+            document.getElementById('ceilResult').innerHTML = `تعداد بلوک سقفی: <span style="color:var(--primary-red)">${blocks}</span> عدد`;
+        }
+
+        // ================== نظرات ==================
+        function addReview() {
+            const name = document.getElementById('revName').value;
+            const text = document.getElementById('revText').value;
+            if (!name || !text) { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
+            
+            const list = document.getElementById('reviewsList');
+            list.innerHTML += `
+                <div class="review-card">
+                    <div class="review-header"><span>${name}</span><span>★★★★★</span></div>
+                    <div class="review-text">${text}</div>
+                </div>
+            `;
+            closeModal('reviewModal');
+            document.getElementById('revName').value = '';
+            document.getElementById('revText').value = '';
+            alert('✅ نظر شما ثبت شد.');
+        }
+
+        // ================== شروع ==================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+            calcWall();
+            calcCeiling();
+        });
     </script>
 </body>
-</html>
+    </html>
