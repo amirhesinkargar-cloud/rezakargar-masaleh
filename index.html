@@ -28,26 +28,37 @@
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* ================= Splash Screen (لودینگ دیجی‌کالا) ================= */
+        /* ================= Splash Screen (سریع - ۲ ثانیه) ================= */
         #splash-screen {
             position: fixed; inset: 0; background: #0b0d10; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
         #splash-screen.hidden { opacity: 0; visibility: hidden; }
+        
         .splash-logo {
-            width: 150px; height: 150px; border-radius: 30px; background: #1c1f24;
+            width: 200px; height: 200px;
             display: flex; align-items: center; justify-content: center;
-            border: 2px solid var(--primary); margin-bottom: 20px;
-            animation: pulse 1.5s infinite;
+            margin-bottom: 25px;
+            animation: pulseLogo 2s infinite ease-in-out;
         }
-        .splash-logo img { width: 80%; height: 80%; object-fit: contain; }
-        .splash-text { font-size: 18px; font-weight: 800; color: white; }
-        .splash-sub { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
-        .loader-bar { width: 150px; height: 4px; background: #333; border-radius: 10px; margin-top: 20px; overflow: hidden; }
-        .loader-bar::after { content: ''; display: block; width: 50%; height: 100%; background: var(--primary); border-radius: 10px; animation: loadingBar 1s infinite ease-in-out; }
-        @keyframes loadingBar { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .splash-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 30px; }
+        
+        .splash-title { font-size: 20px; font-weight: 900; color: white; margin-bottom: 30px; text-align: center; }
+
+        /* سه نقطه متحرک */
+        .dots-loader { display: flex; gap: 12px; }
+        .dots-loader span {
+            width: 14px; height: 14px; background: var(--primary);
+            border-radius: 50%; display: inline-block;
+            animation: bounceDots 1.4s infinite ease-in-out both;
+        }
+        .dots-loader span:nth-child(1) { animation-delay: -0.32s; }
+        .dots-loader span:nth-child(2) { animation-delay: -0.16s; }
+        .dots-loader span:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes bounceDots { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.6; } 40% { transform: scale(1.2); opacity: 1; } }
+        @keyframes pulseLogo { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
         /* ================= هدر ================= */
         .header {
@@ -135,16 +146,6 @@
         .map-container { padding: 0 20px 20px; }
         .map-container iframe { width: 100%; height: 250px; border-radius: var(--radius); border: 1px solid var(--border); }
 
-        /* ================= FAQ و مقالات ================= */
-        .accordion-item { margin: 0 20px 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-        .accordion-header { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; }
-        .accordion-content { padding: 0 20px 15px; font-size: 13px; color: var(--text-muted); display: none; }
-        .accordion-item.open .accordion-content { display: block; }
-        
-        .blog-card { margin: 0 20px 10px; background: var(--bg-card); border-radius: 12px; padding: 15px; border: 1px solid var(--border); cursor: pointer; }
-        .blog-card h3 { font-size: 14px; color: var(--primary); margin-bottom: 5px; }
-        .blog-card p { font-size: 12px; color: var(--text-muted); }
-
         /* ================= تماس ================= */
         .contact-section { padding: 30px 20px; text-align: center; }
         .contact-card {
@@ -162,7 +163,7 @@
         .contact-link svg { width: 20px; height: 20px; fill: currentColor; }
         .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: white; }
 
-        /* ================= دکمه شناور اینستاگرام ================= */
+        /* ================= دکمه شناور اینستاگرام و منوی بازشو ================= */
         .floating-insta {
             position: fixed; bottom: 95px; right: 15px; width: 52px; height: 52px;
             border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
@@ -171,17 +172,38 @@
         }
         .floating-insta svg { width: 26px; height: 26px; fill: white; }
 
-        /* ================= منوی پایین ================= */
+        /* منوی بازشوی اینستاگرام */
+        .insta-popup {
+            position: fixed; bottom: 160px; right: 15px; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 12px; padding: 10px;
+            display: none; flex-direction: column; gap: 8px; z-index: 95;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 180px;
+        }
+        .insta-popup.show { display: flex; animation: fadeIn 0.2s ease; }
+        .insta-popup a {
+            display: block; padding: 10px; text-align: center; border-radius: 8px;
+            text-decoration: none; color: white; font-size: 13px; font-weight: 700;
+        }
+        .insta-popup a.masaleh { background: #3b82f6; }
+        .insta-popup a.tasisat { background: #10b981; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ================= منوی پایین (اصلاح شده) ================= */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-darker);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 5px 18px; border-top-left-radius: 25px; border-top-right-radius: 25px;
+            display: flex; justify-content: space-around; align-items: center; /* تغییر به space-around */
+            padding: 10px 0 18px; border-top-left-radius: 25px; border-top-right-radius: 25px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.5); z-index: 1000; border-top: 1px solid var(--border);
         }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: #6b7280; font-size: 9px; gap: 4px; text-decoration: none; flex: 1; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #6b7280; font-size: 9px; gap: 4px; text-decoration: none; width: 60px; }
         .nav-item.active { color: var(--primary); }
         .nav-icon { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
-        .cart-nav-wrapper { position: relative; top: -22px; display: flex; flex-direction: column; align-items: center; flex: 1; }
+        
+        /* سبد خرید وسط */
+        .cart-nav-wrapper { 
+            position: relative; top: -22px; display: flex; flex-direction: column; align-items: center;
+            width: 70px; /* عرض ثابت برای وسط موندن */
+        }
         .cart-circle {
             background: var(--primary); width: 55px; height: 55px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
@@ -264,14 +286,17 @@
 </head>
 <body>
 
-    <!-- اسپلش اسکرین (لودینگ دیجی‌کالا) -->
+    <!-- اسپلش اسکرین -->
     <div id="splash-screen">
         <div class="splash-logo">
-            <img src="iu.jpg" alt="کارگر" onerror="this.src='https://via.placeholder.com/150/1c1f24/e74c3c?text=K'">
+            <img src="iu.jpg" alt="کارگر" onerror="this.src='https://via.placeholder.com/200/1c1f24/e74c3c?text=K'">
         </div>
-        <div class="splash-text">مصالح و تاسیسات مرکزی کارگر</div>
-        <div class="splash-sub">در حال بارگذاری...</div>
-        <div class="loader-bar"></div>
+        <div class="splash-title">مصالح و تاسیسات مرکزی کارگر</div>
+        <div class="dots-loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
     <!-- هدر -->
@@ -288,7 +313,7 @@
         </button>
     </header>
 
-    <!-- اسلایدر با عکس‌های بیشتر -->
+    <!-- اسلایدر -->
     <main class="hero">
         <div class="hero-slider" id="heroSlider">
             <div class="slide active"><img src="gallery3.jpg" alt="انبار 1" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=1'"></div>
@@ -321,11 +346,11 @@
         <div id="productsContainer"></div>
     </section>
 
-    <!-- درباره ما (قبل از نقشه و تماس) -->
+    <!-- درباره ما -->
     <section>
         <div class="about-us">
             <h2>🏢 درباره ما</h2>
-            <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است. ما با تکیه بر کیفیت کالا، قیمت مناسب و برخورد صادقانه، تلاش می‌کنیم تا بهترین محصولات را با سریع‌ترین ارسال به دست شما برسانیم.</p>
+            <p>فروشگاه <strong>مصالح ساختمانی و تاسیسات مرکزی کارگر</strong> با سال‌ها تجربه در زمینه عرضه انواع مصالح ساختمانی و تجهیزات تاسیساتی، آماده خدمت‌رسانی به شما هم‌شهری‌های عزیز در شهربابک و حومه است.</p>
         </div>
         <div class="why-us">
             <h2>⭐ چرا ما را انتخاب کنید؟</h2>
@@ -334,13 +359,11 @@
                 <div class="feature-item"><span class="icon">✓</span> قیمت مناسب و رقابتی</div>
                 <div class="feature-item"><span class="icon">✓</span> تنوع کامل مصالح و تاسیسات</div>
                 <div class="feature-item"><span class="icon">✓</span> ارسال سریع در شهربابک و حومه</div>
-                <div class="feature-item"><span class="icon">✓</span> مشاوره رایگان کارشناسان</div>
-                <div class="feature-item"><span class="icon">✓</span> سابقه درخشان در خدمت به هم‌شهریان</div>
             </div>
         </div>
     </section>
 
-    <!-- نقشه (قبل از تماس) -->
+    <!-- نقشه -->
     <section>
         <h2 class="section-header">📍 موقعیت روی نقشه</h2>
         <div class="map-container">
@@ -348,7 +371,7 @@
         </div>
     </section>
 
-    <!-- تماس و اینستاگرام -->
+    <!-- تماس -->
     <section class="contact-section">
         <div class="contact-card">
             <h3>📞 تماس با ما</h3>
@@ -365,25 +388,19 @@
                 مغازه: ۰۳۴-۳۴۳۴۱۳۰۳
             </a>
         </div>
-        <div class="contact-card">
-            <h3>📸 اینستاگرام</h3>
-            <a href="https://instagram.com/rezakargar_masaleh" target="_blank" class="contact-link instagram-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                پیج مصالح کارگر
-            </a>
-            <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" class="contact-link instagram-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                پیج تاسیسات کارگر
-            </a>
-        </div>
     </section>
 
-    <!-- دکمه شناور اینستاگرام -->
-    <a href="https://instagram.com/rezakargar_masaleh" target="_blank" class="floating-insta">
+    <!-- دکمه شناور اینستاگرام و منوی بازشو -->
+    <div class="floating-insta" onclick="toggleInstaMenu(event)">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    </a>
+    </div>
+    
+    <div class="insta-popup" id="instaPopup">
+        <a href="https://instagram.com/rezakargar_masaleh" target="_blank" class="masaleh">🏗 پیج مصالح</a>
+        <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" class="tasisat">🔧 پیج تاسیسات</a>
+    </div>
 
-    <!-- منوی پایین -->
+    <!-- منوی پایین (اصلاح شده) -->
     <nav class="bottom-nav">
         <a href="#" class="nav-item active" onclick="scrollToTop()">
             <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -523,11 +540,11 @@
     </div>
 
     <script>
-        // ================== اسپلش اسکرین ==================
+        // ================== اسپلش اسکرین (فقط ۲ ثانیه) ==================
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('splash-screen').classList.add('hidden');
-            }, 2000); // ۲ ثانیه لودینگ
+            }, 2000); // ۲ ثانیه (کمترش کن اگه میخوای سریعتر شه)
         });
 
         // ================== دیتابیس محصولات ==================
@@ -565,6 +582,19 @@
         function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
         function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
         setInterval(nextSlide, 4000);
+
+        // ================== اینستاگرام منو ==================
+        function toggleInstaMenu(event) {
+            event.stopPropagation();
+            document.getElementById('instaPopup').classList.toggle('show');
+        }
+        // بستن منو با کلیک بیرون
+        document.addEventListener('click', function(e) {
+            const popup = document.getElementById('instaPopup');
+            if (popup.classList.contains('show') && !e.target.closest('.floating-insta')) {
+                popup.classList.remove('show');
+            }
+        });
 
         // ================== نمایش محصولات ==================
         function renderProducts() {
@@ -654,17 +684,12 @@
             navigator.clipboard.writeText(text).then(() => alert('✅ لیست خرید کپی شد.'));
         }
 
-        // ================== پرداخت واقعی (زرین‌پال Sandbox) ==================
+        // ================== پرداخت ==================
         function payOrder() {
             if (cart.length === 0) { alert('سبد خرید خالی است!'); return; }
             if (!currentUser) { alert('لطفاً ابتدا وارد حساب کاربری خود شوید.'); openModal('profileModal'); return; }
-            
             const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-            // اینجا به درگاه زرین‌پال وصل میشویم (حالت تست)
-            // در حالت واقعی باید یه سرور داشته باشی که این درخواست رو بفرسته
-            alert(`💳 در حال انتقال به درگاه پرداخت زرین‌پال...\nمبلغ: ${totalPrice.toLocaleString()} تومان\n\n(این یک شبیه‌سازی از درگاه واقعی است. برای اتصال واقعی نیاز به سرور و Merchant ID داری.)`);
-            
-            // شبیه‌سازی موفقیت پرداخت
+            alert(`💳 در حال انتقال به درگاه پرداخت...\nمبلغ: ${totalPrice.toLocaleString()} تومان`);
             setTimeout(() => {
                 alert('✅ پرداخت با موفقیت انجام شد! سفارش شما ثبت گردید.');
                 cart = [];
@@ -673,7 +698,7 @@
             }, 2000);
         }
 
-        // ================== پروفایل (دیتابیس لوکال) ==================
+        // ================== پروفایل ==================
         function renderProfile() {
             const container = document.getElementById('profileContent');
             if (currentUser) {
@@ -731,7 +756,7 @@
             alert('از حساب خود خارج شدید.');
         }
 
-        // ================== ثبت سفارش و محدودیت شهری ==================
+        // ================== ثبت سفارش ==================
         function checkCity() {
             const city = document.getElementById('orderCity').value;
             const btn = document.getElementById('orderSubmitBtn');
