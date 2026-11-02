@@ -5,20 +5,245 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>کارگر | مصالح ساختمانی و تاسیسات مرکزی</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* ================= تنظیمات پایه ================= */
+        :root {
+            --bg-dark: #121417;
+            --bg-card: #1c1f24;
+            --bg-darker: #0b0d10;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --primary: #e74c3c;
+            --primary-hover: #c0392b;
+            --border: #2d3139;
+            --radius: 16px;
+            --success: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-dark); color: var(--text-main); padding-bottom: 90px; overflow-x: hidden; line-height: 1.7; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* ================= هدر ================= */
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; background: var(--bg-dark);
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border);
+        }
+        .icon-btn {
+            background: transparent; border: 1px solid var(--border);
+            color: white; width: 45px; height: 45px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+        .logo-container { display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { height: 55px; width: auto; object-fit: contain; }
+        .logo-sub { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
+
+        /* ================= اسلایدر ================= */
+        .hero { padding: 15px; }
+        .hero-slider { position: relative; width: 100%; height: 380px; border-radius: var(--radius); overflow: hidden; background: #222; }
+        .hero-slider .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s; }
+        .hero-slider .slide.active { opacity: 1; }
+        .hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.6); color: white; border: none;
+            width: 40px; height: 40px; border-radius: 50%; font-size: 20px; cursor: pointer; backdrop-filter: blur(5px); z-index: 10;
+        }
+        .arrow.right { right: 15px; } .arrow.left { left: 15px; }
+        .glass-box {
+            position: absolute; bottom: 15px; left: 15px; right: 15px;
+            background: rgba(18, 20, 23, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius);
+            padding: 20px; text-align: center; z-index: 5;
+        }
+        .glass-box h2 { font-size: 18px; margin-bottom: 8px; }
+        .glass-box p { font-size: 12px; color: var(--text-muted); }
+        .badges { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .badge {
+            background: rgba(231, 76, 60, 0.15); color: var(--primary);
+            border: 1px solid rgba(231, 76, 60, 0.3); padding: 6px 15px;
+            border-radius: 20px; font-size: 11px; font-weight: 700;
+        }
+        .main-title { text-align: center; font-size: 24px; font-weight: 900; margin: 25px 20px; line-height: 1.4; }
+        .main-title span { color: var(--primary); }
+
+        /* ================= بخش‌ها ================= */
+        .section-header { padding: 30px 20px 15px; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .section-header::before { content: ''; width: 5px; height: 22px; background: var(--primary); border-radius: 5px; }
+        
+        .search-box { padding: 0 20px 20px; }
+        .search-input {
+            width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+            color: white; padding: 14px 20px; border-radius: 12px; font-family: inherit; font-size: 14px;
+        }
+        .search-input:focus { outline: none; border-color: var(--primary); }
+
+        .category-title { margin: 20px 20px 10px; font-size: 14px; color: var(--text-muted); font-weight: 700; }
+        .products-grid { padding: 0 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .product-card {
+            background: var(--bg-card); border-radius: var(--radius); padding: 12px;
+            border: 1px solid var(--border); position: relative;
+        }
+        .product-img { width: 100%; height: 120px; border-radius: 10px; object-fit: cover; background: var(--border); margin-bottom: 10px; }
+        .product-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .product-card p { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; height: 32px; overflow: hidden; }
+        .add-btn {
+            width: 100%; background: transparent; border: 1px solid var(--primary);
+            color: var(--primary); padding: 8px; border-radius: 8px;
+            font-size: 12px; font-weight: 700; cursor: pointer;
+        }
+        .add-btn:active { background: var(--primary); color: white; }
+
+        /* ================= درباره ما و چرا ما ================= */
+        .about-us, .why-us {
+            margin: 0 20px 15px; background: var(--bg-card); border-radius: var(--radius);
+            padding: 20px; border: 1px solid var(--border);
+        }
+        .about-us h2, .why-us h2 { font-size: 16px; color: var(--primary); margin-bottom: 15px; }
+        .about-us p { font-size: 13px; color: var(--text-muted); line-height: 2; }
+        .feature-list { display: grid; gap: 10px; }
+        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+        .feature-item .icon { color: var(--success); font-weight: bold; }
+
+        /* ================= نقشه ================= */
+        .map-container { padding: 0 20px 20px; }
+        .map-container iframe { width: 100%; height: 250px; border-radius: var(--radius); border: 1px solid var(--border); }
+
+        /* ================= تماس ================= */
+        .contact-section { padding: 30px 20px; text-align: center; }
+        .contact-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px; margin-bottom: 15px;
+        }
+        .contact-card h3 { font-size: 16px; margin-bottom: 15px; color: var(--primary); }
+        .contact-link {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--bg-darker); color: white; text-decoration: none;
+            padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; font-weight: 700;
+            border: 1px solid var(--border); transition: 0.3s;
+        }
+        .contact-link:active { border-color: var(--primary); }
+        .contact-link svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* ================= دکمه شناور اینستاگرام و منوی بازشو ================= */
+        .floating-insta {
+            position: fixed; bottom: 95px; right: 15px; width: 52px; height: 52px;
+            border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            z-index: 90; box-shadow: 0 4px 15px rgba(0,0,0,0.4); text-decoration: none; color: white;
+        }
+        .floating-insta svg { width: 26px; height: 26px; fill: white; }
+
+        .insta-popup {
+            position: fixed; bottom: 160px; right: 15px; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 12px; padding: 10px;
+            display: none; flex-direction: column; gap: 8px; z-index: 95;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 180px;
+        }
+        .insta-popup.show { display: flex; animation: fadeIn 0.2s ease; }
+        .insta-popup a {
+            display: block; padding: 10px; text-align: center; border-radius: 8px;
+            text-decoration: none; color: white; font-size: 13px; font-weight: 700;
+        }
+        .insta-popup a.masaleh { background: #3b82f6; }
+        .insta-popup a.tasisat { background: #10b981; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ================= منوی پایین (سبد خرید دقیقا وسط) ================= */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-darker);
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 10px 0 18px; border-top-left-radius: 25px; border-top-right-radius: 25px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5); z-index: 1000; border-top: 1px solid var(--border);
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #6b7280; font-size: 9px; gap: 4px; text-decoration: none; width: 60px; }
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+        
+        .cart-nav-wrapper { 
+            position: relative; top: -22px; display: flex; flex-direction: column; align-items: center;
+            width: 70px;
+        }
+        .cart-circle {
+            background: var(--primary); width: 55px; height: 55px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            border: 5px solid var(--bg-dark); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); position: relative; cursor: pointer;
+        }
+        .cart-circle svg { stroke: white; width: 22px; height: 22px; }
+        .cart-badge {
+            position: absolute; top: -2px; right: -2px; background: white; color: var(--primary);
+            width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 900;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cart-nav-text { color: var(--primary); margin-top: 6px; font-weight: 700; font-size: 9px; }
+
+        /* ================= مودال‌ها ================= */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 2000; display: none; align-items: flex-end; justify-content: center; }
+        .modal.show { display: flex; animation: slideUp 0.3s ease; }
+        .modal-content {
+            background: var(--bg-card); width: 100%; max-width: 500px;
+            border-top-left-radius: 25px; border-top-right-radius: 25px;
+            border: 1px solid var(--border); max-height: 90vh; display: flex; flex-direction: column;
+        }
+        .modal-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h3 { font-size: 16px; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; }
+        .modal-body { padding: 20px; overflow-y: auto; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .form-control { width: 100%; background: var(--bg-darker); border: 1px solid var(--border); color: white; padding: 14px; border-radius: 12px; font-family: inherit; font-size: 14px; }
+        .form-control:focus { outline: none; border-color: var(--primary); }
+        .submit-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer; margin-top: 10px; }
+        .submit-btn:disabled { background: #555; cursor: not-allowed; }
+
+        /* سبد خرید */
+        .cart-summary { display: flex; justify-content: space-around; padding: 15px 0; border-bottom: 1px solid var(--border); margin-bottom: 15px; text-align: center; }
+        .cart-summary div { flex: 1; }
+        .cart-summary .num { display: block; font-size: 20px; font-weight: 900; color: var(--primary); }
+        .cart-summary .lbl { font-size: 11px; color: var(--text-muted); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-name { font-size: 14px; font-weight: 700; }
+        .cart-item-price { font-size: 12px; color: var(--primary); margin-top: 4px; }
+        .cart-item-qty { display: flex; align-items: center; gap: 10px; }
+        .qty-btn { background: var(--bg-darker); border: 1px solid var(--border); color: white; width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .qty-btn:active { background: var(--primary); border-color: var(--primary); }
+        .remove-btn { background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 18px; margin-right: 10px; }
+        .cart-total { display: flex; justify-content: space-between; padding: 15px 0; font-weight: 800; font-size: 16px; border-top: 1px solid var(--border); margin-top: 10px; }
+        .cart-total span:last-child { color: var(--primary); }
+        .cart-actions { display: flex; gap: 10px; margin-top: 10px; }
+        .btn-copy { flex: 1; background: var(--bg-darker); border: 1px solid var(--border); color: white; padding: 14px; border-radius: 12px; cursor: pointer; font-weight: 700; }
+        .btn-pay { flex: 2; background: var(--success); border: none; color: white; padding: 14px; border-radius: 12px; cursor: pointer; font-weight: 800; }
+        .btn-pay:disabled { background: #555; cursor: not-allowed; }
+
+        /* محاسبه‌گر */
+        .calc-tabs { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .calc-tab { padding: 10px 15px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: 10px; color: var(--text-muted); font-size: 13px; cursor: pointer; white-space: nowrap; }
+        .calc-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .calc-result { background: var(--bg-darker); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-top: 15px; font-size: 14px; }
+        .calc-result div { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .calc-result span:last-child { color: var(--primary); font-weight: 800; }
+
+        /* پروفایل */
+        .profile-header { display: flex; flex-direction: column; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); }
+        .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--bg-darker); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 10px; position: relative; cursor: pointer; overflow: hidden; }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-name { font-size: 18px; font-weight: 800; }
+        .profile-phone { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+        .profile-menu { padding: 10px 20px; }
+        .profile-menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border); cursor: pointer; font-size: 14px; }
+        .profile-menu-item:last-child { border-bottom: none; }
+        .profile-menu-item .icon { color: var(--primary); margin-left: 10px; }
+
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    </style>
 </head>
 <body>
-
-    <!-- اسپلش اسکرین -->
-    <div id="splash-screen">
-        <div class="splash-logo">
-            <img src="iu.jpg" alt="کارگر" onerror="this.src='https://via.placeholder.com/200/1c1f24/e74c3c?text=K'">
-        </div>
-        <div class="splash-title">مصالح و تاسیسات مرکزی کارگر</div>
-        <div class="dots-loader">
-            <span></span><span></span><span></span>
-        </div>
-    </div>
 
     <!-- هدر -->
     <header class="header">
@@ -37,13 +262,15 @@
     <!-- اسلایدر -->
     <main class="hero">
         <div class="hero-slider" id="heroSlider">
-            <div class="slide active"><img src="gallery3.jpg" alt="انبار 1" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=1'"></div>
-            <div class="slide"><img src="gallery1.jpg" alt="انبار 2" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=2'"></div>
-            <div class="slide"><img src="gallery4.jpg" alt="انبار 3" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=3'"></div>
-            <div class="slide"><img src="gallery5.jpg" alt="انبار 4" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=4'"></div>
-            <div class="slide"><img src="67.png" alt="انبار 5" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=5'"></div>
+            <div class="slide active"><img src="gallery3.jpg" alt="انبار 1" loading="lazy" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=1'"></div>
+            <div class="slide"><img src="gallery1.jpg" alt="انبار 2" loading="lazy" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=2'"></div>
+            <div class="slide"><img src="gallery4.jpg" alt="انبار 3" loading="lazy" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=3'"></div>
+            <div class="slide"><img src="gallery5.jpg" alt="انبار 4" loading="lazy" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=4'"></div>
+            <div class="slide"><img src="67.png" alt="انبار 5" loading="lazy" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=5'"></div>
+            
             <button class="arrow right" onclick="nextSlide()">&#10095;</button>
             <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+            
             <div class="glass-box">
                 <h2>خرید پروژه‌ای بدون آشفتگی</h2>
                 <p>آدرس پروژه، نوع پرداخت و ظرفیت حمل را یکجا مدیریت کنید.</p>
@@ -109,10 +336,11 @@
         </div>
     </section>
 
-    <!-- دکمه اینستاگرام و منو -->
+    <!-- دکمه شناور اینستاگرام و منوی بازشو -->
     <div class="floating-insta" onclick="toggleInstaMenu(event)">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </div>
+    
     <div class="insta-popup" id="instaPopup">
         <a href="https://instagram.com/rezakargar_masaleh" target="_blank" class="masaleh">🏗 پیج مصالح</a>
         <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" class="tasisat">🔧 پیج تاسیسات</a>
@@ -145,7 +373,9 @@
         </a>
     </nav>
 
-    <!-- مودال‌ها -->
+    <!-- ================= مودال‌ها ================= -->
+    
+    <!-- سبد خرید -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <div class="modal-header"><h3>🛒 لیست خرید</h3><button class="close-btn" onclick="closeModal('cartModal')">✕</button></div>
@@ -165,6 +395,7 @@
         </div>
     </div>
 
+    <!-- پروفایل -->
     <div class="modal" id="profileModal">
         <div class="modal-content">
             <div class="modal-header"><h3>👤 پروفایل من</h3><button class="close-btn" onclick="closeModal('profileModal')">✕</button></div>
@@ -172,6 +403,7 @@
         </div>
     </div>
 
+    <!-- ثبت سفارش -->
     <div class="modal" id="orderModal">
         <div class="modal-content">
             <div class="modal-header"><h3>📝 ثبت سفارش آنلاین</h3><button class="close-btn" onclick="closeModal('orderModal')">✕</button></div>
@@ -195,6 +427,7 @@
         </div>
     </div>
 
+    <!-- محاسبه‌گر -->
     <div class="modal" id="calcModal">
         <div class="modal-content">
             <div class="modal-header"><h3>🧮 محاسبه‌گر مصالح</h3><button class="close-btn" onclick="closeModal('calcModal')">✕</button></div>
@@ -226,6 +459,7 @@
         </div>
     </div>
 
+    <!-- ثبت نظر -->
     <div class="modal" id="reviewModal">
         <div class="modal-content">
             <div class="modal-header"><h3>✍️ ثبت نظر</h3><button class="close-btn" onclick="closeModal('reviewModal')">✕</button></div>
@@ -237,6 +471,7 @@
         </div>
     </div>
 
+    <!-- منوی همبرگری -->
     <div class="modal" id="menuModal">
         <div class="modal-content">
             <div class="modal-header"><h3>منو</h3><button class="close-btn" onclick="closeModal('menuModal')">✕</button></div>
@@ -250,6 +485,300 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // ================== دیتابیس محصولات ==================
+        const productsData = [
+            { id: 'c1', name: 'سیمان تیپ ۲', desc: 'مناسب بتن‌ریزی عمومی', img: '67.png', cat: 'سیمان', price: 95000 },
+            { id: 'c2', name: 'سیمان تیپ ۵', desc: 'مقاوم در برابر سولفات', img: '67.png', cat: 'سیمان', price: 105000 },
+            { id: 'c3', name: 'سیمان سفید', desc: 'برای نما و بندکشی', img: 'simans.png', cat: 'سیمان', price: 120000 },
+            { id: 'b1', name: 'آجر گره‌ای', desc: 'مناسب دیوارچینی', img: '0987.jpg', cat: 'آجر و بلوک', price: 8000 },
+            { id: 'b2', name: 'بلوک تیغه ۱۰', desc: 'دیوارچینی داخلی', img: 'gallery4.jpg', cat: 'آجر و بلوک', price: 15000 },
+            { id: 'b3', name: 'بلوک سقفی', desc: 'برای تیرچه بلوک', img: 'gallery3.jpg', cat: 'آجر و بلوک', price: 20000 },
+            { id: 'g1', name: 'گچ خورشید', desc: 'کیفیت عالی', img: 'gallery2.jpg', cat: 'گچ', price: 45000 },
+            { id: 'g2', name: 'گچ شادیان', desc: 'سفیدکاری', img: 'gallery2.jpg', cat: 'گچ', price: 50000 },
+            { id: 't1', name: 'کاشی ۶۰×۱۲۰', desc: 'براق و فوق براق', img: 'gallery1.jpg', cat: 'کاشی و سرامیک', price: 250000 },
+            { id: 't2', name: 'سرامیک ۴۰×۱۲۰', desc: 'نما و حیاط', img: 'as.png', cat: 'کاشی و سرامیک', price: 180000 },
+            { id: 't3', name: 'کاشی ۸۰×۸۰', desc: 'کف', img: 'gallery1.jpg', cat: 'کاشی و سرامیک', price: 220000 },
+            { id: 'p1', name: 'لوله پلیکا', desc: 'فاضلاب', img: '0987.jpg', cat: 'لوله و اتصالات', price: 60000 },
+            { id: 'p2', name: 'لوله پنج لایه', desc: 'آب گرم و سرد', img: '0987.jpg', cat: 'لوله و اتصالات', price: 150000 },
+            { id: 'p3', name: 'اتصالات', desc: 'لوله‌کشی آب', img: '10.png', cat: 'لوله و اتصالات', price: 30000 },
+            { id: 's1', name: 'شیرآلات بهداشتی', desc: 'برندهای معتبر', img: 'shiralat.png', cat: 'تاسیسات', price: 850000 },
+            { id: 's2', name: 'پکیج دیواری', desc: 'با گارانتی', img: 'gallery5.jpg', cat: 'تاسیسات', price: 12000000 },
+            { id: 's3', name: 'رادیاتور', desc: 'پنلی و آلومینیومی', img: '0987.jpg', cat: 'تاسیسات', price: 2500000 },
+            { id: 's4', name: 'پمپ آب', desc: 'خانگی و صنعتی', img: 'poump.png', cat: 'تاسیسات', price: 3500000 },
+            { id: 's5', name: 'مخزن آب', desc: 'افقی و عمودی', img: '0987.jpg', cat: 'تاسیسات', price: 1800000 }
+        ];
+
+        let cart = [];
+        let currentUser = JSON.parse(localStorage.getItem('kargar_user')) || null;
+
+        // ================== اسلایدر ==================
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(index) { slides.forEach((s, i) => s.classList.toggle('active', i === index)); }
+        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
+        setInterval(nextSlide, 4000);
+
+        // ================== اینستاگرام ==================
+        function toggleInstaMenu(event) {
+            event.stopPropagation();
+            document.getElementById('instaPopup').classList.toggle('show');
+        }
+        document.addEventListener('click', function(e) {
+            const popup = document.getElementById('instaPopup');
+            if (popup.classList.contains('show') && !e.target.closest('.floating-insta')) { popup.classList.remove('show'); }
+        });
+
+        // ================== محصولات ==================
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            let html = '';
+            const categories = [...new Set(productsData.map(p => p.cat))];
+            categories.forEach(cat => {
+                html += `<div class="category-title">${cat}</div><div class="products-grid">`;
+                productsData.filter(p => p.cat === cat).forEach(p => {
+                    html += `
+                        <div class="product-card" data-name="${p.name} ${p.desc}">
+                            <img src="${p.img}" class="product-img" loading="lazy" onerror="this.src='https://via.placeholder.com/150/2d3139/9ca3af?text=No+Image'">
+                            <h3>${p.name}</h3>
+                            <p>${p.desc}</p>
+                            <button class="add-btn" onclick="addToCart('${p.id}')">+ افزودن</button>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.trim();
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = card.getAttribute('data-name').includes(query) ? '' : 'none';
+            });
+        }
+
+        // ================== سبد خرید ==================
+        function addToCart(id) {
+            const product = productsData.find(p => p.id === id);
+            if (!product) return;
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.qty++;
+            else cart.push({ id, name: product.name, price: product.price, qty: 1 });
+            updateCartUI();
+            alert(`✅ ${product.name} به سبد خرید اضافه شد.`);
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+            const totalTypes = cart.length;
+            const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            document.getElementById('cartCount').innerText = totalItems;
+            document.getElementById('cartTotalItems').innerText = totalItems;
+            document.getElementById('cartTotalTypes').innerText = totalTypes;
+            document.getElementById('cartTotalPrice').innerText = totalPrice.toLocaleString();
+            document.getElementById('cartFinalPrice').innerText = totalPrice.toLocaleString() + ' تومان';
+
+            const container = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">سبد خرید شما خالی است.</p>';
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${(item.price * item.qty).toLocaleString()} تومان</div>
+                        </div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            <button class="remove-btn" onclick="removeFromCart('${item.id}')">🗑</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function changeQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += change;
+            if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCartUI(); }
+
+        function copyCart() {
+            if (cart.length === 0) { alert('سبد خرید خالی است!'); return; }
+            const text = 'لیست خرید از مصالح کارگر:\n\n' + cart.map(i => `${i.name} - ${i.qty} عدد - ${(i.price*i.qty).toLocaleString()} تومان`).join('\n') + `\n\nجمع کل: ${cart.reduce((s,i)=>s+(i.price*i.qty),0).toLocaleString()} تومان`;
+            navigator.clipboard.writeText(text).then(() => alert('✅ لیست خرید کپی شد.'));
+        }
+
+        function payOrder() {
+            if (cart.length === 0) { alert('سبد خرید خالی است!'); return; }
+            if (!currentUser) { alert('لطفاً ابتدا وارد حساب کاربری خود شوید.'); openModal('profileModal'); return; }
+            const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            alert(`💳 در حال انتقال به درگاه پرداخت...\nمبلغ: ${totalPrice.toLocaleString()} تومان`);
+            setTimeout(() => {
+                alert('✅ پرداخت با موفقیت انجام شد! سفارش شما ثبت گردید.');
+                cart = [];
+                updateCartUI();
+                closeModal('cartModal');
+            }, 2000);
+        }
+
+        // ================== پروفایل ==================
+        function renderProfile() {
+            const container = document.getElementById('profileContent');
+            if (currentUser) {
+                container.innerHTML = `
+                    <div class="profile-header">
+                        <div class="profile-avatar" onclick="alert('آپلود عکس (شبیه‌سازی)')">
+                            ${currentUser.avatar ? `<img src="${currentUser.avatar}">` : '👤'}
+                        </div>
+                        <div class="profile-name">${currentUser.name || 'کاربر کارگر'}</div>
+                        <div class="profile-phone">${currentUser.phone}</div>
+                    </div>
+                    <div class="profile-menu">
+                        <div class="profile-menu-item" onclick="alert('تاریخچه سفارشات خالی است.')"><span>📦 تاریخچه سفارشات</span><span>›</span></div>
+                        <div class="profile-menu-item" onclick="openModal('orderModal')"><span>📝 ثبت سفارش سریع</span><span>›</span></div>
+                        <div class="profile-menu-item" onclick="alert('در حال توسعه...')"><span>✏️ ویرایش اطلاعات</span><span>›</span></div>
+                        <div class="profile-menu-item" onclick="logout()" style="color:var(--primary);"><span>🚪 خروج از حساب</span><span>›</span></div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div style="padding: 20px 0; text-align: center;">
+                        <h3 style="margin-bottom: 20px;">ورود / ثبت‌نام</h3>
+                        <div class="form-group"><label>شماره موبایل</label><input type="tel" class="form-control" id="loginPhone" placeholder="09123456789" dir="ltr"></div>
+                        <button class="submit-btn" onclick="sendCode()">دریافت کد پیامکی</button>
+                        <div id="codeSection" style="display: none; margin-top: 15px;">
+                            <div class="form-group"><label>کد پیامکی</label><input type="text" class="form-control" id="loginCode" placeholder="1234" dir="ltr"></div>
+                            <button class="submit-btn" onclick="verifyCode()">ورود</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function sendCode() {
+            const phone = document.getElementById('loginPhone').value;
+            if (!phone || phone.length < 11) { alert('شماره موبایل معتبر وارد کنید.'); return; }
+            document.getElementById('codeSection').style.display = 'block';
+            alert('📩 کد پیامکی: 1234 (برای تست)');
+        }
+
+        function verifyCode() {
+            const code = document.getElementById('loginCode').value;
+            if (code !== '1234') { alert('کد وارد شده اشتباه است.'); return; }
+            const phone = document.getElementById('loginPhone').value;
+            currentUser = { phone: phone, name: 'کاربر کارگر', avatar: '' };
+            localStorage.setItem('kargar_user', JSON.stringify(currentUser));
+            renderProfile();
+            alert('✅ با موفقیت وارد شدید.');
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('kargar_user');
+            renderProfile();
+            alert('از حساب خود خارج شدید.');
+        }
+
+        // ================== ثبت سفارش ==================
+        function checkCity() {
+            const city = document.getElementById('orderCity').value;
+            const btn = document.getElementById('orderSubmitBtn');
+            const warning = document.getElementById('cityWarning');
+            if (city === 'shahrbabak' || city === 'baghin' || city === 'sirjan') {
+                btn.disabled = false;
+                warning.style.display = 'none';
+            } else {
+                btn.disabled = true;
+                warning.style.display = 'block';
+            }
+        }
+
+        function submitOrderForm() {
+            const name = document.getElementById('orderName').value;
+            const phone = document.getElementById('orderPhone').value;
+            const city = document.getElementById('orderCity').value;
+            if (!name || !phone || !city) { alert('لطفاً همه فیلدها را پر کنید.'); return; }
+            if (city !== 'shahrbabak' && city !== 'baghin' && city !== 'sirjan') { alert('ارسال به این شهر امکان‌پذیر نیست.'); return; }
+            alert(`✅ سفارش شما ثبت شد، ${name} عزیز. به زودی با شما تماس می‌گیریم.`);
+            closeModal('orderModal');
+        }
+
+        // ================== محاسبه‌گر ==================
+        function switchCalc(type, event) {
+            document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('calc-wall').style.display = type === 'wall' ? 'block' : 'none';
+            document.getElementById('calc-ceiling').style.display = type === 'ceiling' ? 'block' : 'none';
+            document.getElementById('calc-concrete').style.display = type === 'concrete' ? 'block' : 'none';
+            document.getElementById('calc-tile').style.display = type === 'tile' ? 'block' : 'none';
+        }
+
+        function calcWall() {
+            const L = parseFloat(document.getElementById('wallL').value) || 0;
+            const H = parseFloat(document.getElementById('wallH').value) || 0;
+            const blocks = Math.ceil(L * H * 10);
+            const cement = Math.ceil(L * H * 0.5);
+            document.getElementById('wallResult').innerHTML = `<div><span>تعداد بلوک:</span> <span>${blocks} عدد</span></div><div><span>سیمان (تخمینی):</span> <span>${cement} کیسه</span></div>`;
+        }
+
+        function calcCeiling() {
+            const area = parseFloat(document.getElementById('ceilArea').value) || 0;
+            const blocks = Math.ceil(area * 2);
+            document.getElementById('ceilResult').innerHTML = `<div><span>بلوک سقفی:</span> <span>${blocks} عدد</span></div>`;
+        }
+
+        function calcConcrete() {
+            const vol = parseFloat(document.getElementById('conVol').value) || 0;
+            const cement = Math.ceil(vol * 5);
+            document.getElementById('conResult').innerHTML = `<div><span>سیمان:</span> <span>${cement} کیسه ۵۰ کیلویی</span></div>`;
+        }
+
+        function calcTile() {
+            const area = parseFloat(document.getElementById('tileArea').value) || 0;
+            const tiles = Math.ceil(area * 6.25);
+            document.getElementById('tileResult').innerHTML = `<div><span>تعداد کاشی (با پرت ۱۰٪):</span> <span>${tiles} عدد</span></div>`;
+        }
+
+        // ================== نظرات ==================
+        function addReview() {
+            const name = document.getElementById('revName').value;
+            const text = document.getElementById('revText').value;
+            if (!name || !text) { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
+            document.getElementById('reviewsList').innerHTML += `
+                <div class="review-card">
+                    <div class="review-header"><span>${name}</span><span>★★★★★</span></div>
+                    <div class="review-text">${text}</div>
+                </div>
+            `;
+            closeModal('reviewModal');
+            alert('✅ نظر شما ثبت شد.');
+        }
+
+        // ================== ابزارها ==================
+        function openModal(id) { document.getElementById(id).classList.add('show'); if(id === 'profileModal') renderProfile(); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+        function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+        function scrollToProducts() { document.getElementById('products').scrollIntoView({behavior:'smooth'}); }
+
+        document.querySelectorAll('.modal').forEach(m => {
+            m.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
+        });
+
+        // ================== شروع ==================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+            calcWall(); calcCeiling(); calcConcrete(); calcTile();
+        });
+    </script>
 </body>
-</html>
+                                                               </html>
