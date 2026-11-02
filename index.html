@@ -7,480 +7,580 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     
     <style>
-        /* ================= تنظیمات پایه (تم تاریک بارتان) ================= */
+        /* ================= تنظیمات پایه (دارک مدرن) ================= */
         :root {
-            --bg-dark: #14161a;
-            --bg-card: #1c1f26;
-            --bg-darker: #0f1115;
+            --bg-dark: #121417;
+            --bg-card: #1c1f24;
+            --bg-darker: #0b0d10;
             --text-main: #ffffff;
-            --text-muted: #a0a5b1;
-            --primary-red: #e74c3c;
-            --primary-red-hover: #c0392b;
-            --border-color: #2a2e38;
+            --text-muted: #9ca3af;
+            --primary: #e74c3c;
+            --primary-hover: #c0392b;
+            --border: #2d3139;
+            --radius: 16px;
+            --success: #10b981;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            padding-bottom: 100px;
-            overflow-x: hidden;
-        }
-
-        /* اسکرول‌بار سفارشی */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-dark); color: var(--text-main); padding-bottom: 90px; overflow-x: hidden; line-height: 1.7; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-red); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
         /* ================= هدر ================= */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background-color: var(--bg-dark);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; background: var(--bg-dark);
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border);
         }
-
         .icon-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.3s;
+            background: transparent; border: 1px solid var(--border);
+            color: white; width: 45px; height: 45px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
+        .cart-btn { background: var(--primary); border-color: var(--primary); }
+        .logo-container { display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { height: 55px; width: auto; object-fit: contain; }
+        .logo-sub { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
 
-        .icon-btn.cart-btn {
-            background-color: var(--primary-red);
-            border-color: var(--primary-red);
-        }
-
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .logo-container img {
-            height: 60px; /* لوگو بزرگتر شد */
-            width: auto;
-            object-fit: contain;
-        }
-
-        .logo-sub {
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* ================= اسلایدر/هیرو ================= */
+        /* ================= اسلایدر ================= */
         .hero { padding: 15px; }
-        .hero-img-container {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #222;
-        }
-
-        .hero-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-        }
-
+        .hero-img { position: relative; width: 100%; height: 380px; border-radius: var(--radius); overflow: hidden; background: #222; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
         .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.6); color: white; border: none;
+            width: 40px; height: 40px; border-radius: 50%; font-size: 20px; cursor: pointer; backdrop-filter: blur(5px);
         }
-        .arrow.right { right: 15px; }
-        .arrow.left { left: 15px; }
-
+        .arrow.right { right: 15px; } .arrow.left { left: 15px; }
         .glass-box {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            right: 15px;
-            background: rgba(25, 28, 35, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
+            position: absolute; bottom: 15px; left: 15px; right: 15px;
+            background: rgba(18, 20, 23, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius);
+            padding: 20px; text-align: center;
         }
         .glass-box h2 { font-size: 18px; margin-bottom: 8px; }
-        .glass-box p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-
-        .sub-hero-text {
-            display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px;
-        }
-        .badge-red {
-            background: rgba(231, 76, 60, 0.15); color: var(--primary-red);
-            border: 1px solid rgba(231, 76, 60, 0.3); padding: 6px 12px;
+        .glass-box p { font-size: 12px; color: var(--text-muted); }
+        .badges { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .badge {
+            background: rgba(231, 76, 60, 0.15); color: var(--primary);
+            border: 1px solid rgba(231, 76, 60, 0.3); padding: 6px 15px;
             border-radius: 20px; font-size: 11px; font-weight: 700;
         }
-        .sub-hero-text p { font-size: 12px; color: var(--text-muted); }
-        .main-title {
-            text-align: center; font-size: 24px; font-weight: 900;
-            line-height: 1.5; margin-top: 25px; padding: 0 20px;
-        }
-        .main-title span { color: var(--primary-red); }
+        .main-title { text-align: center; font-size: 24px; font-weight: 900; margin: 25px 20px; line-height: 1.4; }
+        .main-title span { color: var(--primary); }
 
-        /* ================= عناوین بخش‌ها ================= */
-        .section-title {
-            padding: 30px 20px 15px; font-size: 18px; font-weight: 800;
-            display: flex; align-items: center; gap: 10px;
+        /* ================= بخش‌ها ================= */
+        .section-header { padding: 30px 20px 15px; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .section-header::before { content: ''; width: 5px; height: 22px; background: var(--primary); border-radius: 5px; }
+        
+        .search-box { padding: 0 20px 20px; }
+        .search-input {
+            width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+            color: white; padding: 14px 20px; border-radius: 12px; font-family: inherit; font-size: 14px;
         }
-        .section-title::before {
-            content: ''; display: block; width: 5px; height: 20px;
-            background: var(--primary-red); border-radius: 5px;
-        }
+        .search-input:focus { outline: none; border-color: var(--primary); }
 
-        /* ================= محصولات ================= */
+        .category-title { margin: 20px 20px 10px; font-size: 14px; color: var(--text-muted); font-weight: 700; }
+
         .products-grid { padding: 0 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .product-card {
-            background: var(--bg-card); border-radius: 16px; padding: 12px;
-            border: 1px solid var(--border-color); transition: 0.3s;
+            background: var(--bg-card); border-radius: var(--radius); padding: 12px;
+            border: 1px solid var(--border); position: relative;
         }
-        .product-img {
-            width: 100%; height: 120px; border-radius: 12px; object-fit: cover;
-            background: var(--border-color); margin-bottom: 10px;
-        }
-        .product-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
-        .product-card p { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; height: 32px; overflow: hidden; }
+        .product-img { width: 100%; height: 120px; border-radius: 10px; object-fit: cover; background: var(--border); margin-bottom: 10px; }
+        .product-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .product-card p { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; height: 32px; overflow: hidden; }
         .add-btn {
-            width: 100%; background: transparent; border: 1px solid var(--primary-red);
-            color: var(--primary-red); padding: 8px; border-radius: 10px;
-            font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
+            width: 100%; background: transparent; border: 1px solid var(--primary);
+            color: var(--primary); padding: 8px; border-radius: 8px;
+            font-size: 12px; font-weight: 700; cursor: pointer;
         }
-        .add-btn:active { background: var(--primary-red); color: white; }
+        .add-btn:active { background: var(--primary); color: white; }
 
-        /* ================= دکمه‌های شناور سفارشی ================= */
-        .floating-btns { position: fixed; bottom: 100px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 90; }
+        /* ================= FAQ و مقالات ================= */
+        .accordion-item { margin: 0 20px 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .accordion-header { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; }
+        .accordion-content { padding: 0 20px 15px; font-size: 13px; color: var(--text-muted); display: none; }
+        .accordion-item.open .accordion-content { display: block; }
+        
+        .blog-card { margin: 0 20px 10px; background: var(--bg-card); border-radius: 12px; padding: 15px; border: 1px solid var(--border); cursor: pointer; }
+        .blog-card h3 { font-size: 14px; color: var(--primary); margin-bottom: 5px; }
+        .blog-card p { font-size: 12px; color: var(--text-muted); }
+
+        /* ================= تماس ================= */
+        .contact-section { padding: 30px 20px; text-align: center; }
+        .contact-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px; margin-bottom: 15px;
+        }
+        .contact-card h3 { font-size: 16px; margin-bottom: 15px; color: var(--primary); }
+        .contact-link {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--bg-darker); color: white; text-decoration: none;
+            padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; font-weight: 700;
+            border: 1px solid var(--border); transition: 0.3s;
+        }
+        .contact-link:active { border-color: var(--primary); }
+        .contact-link svg { width: 20px; height: 20px; fill: currentColor; }
+        .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: white; }
+
+        /* ================= دکمه‌های شناور ================= */
+        .floating-btns { position: fixed; bottom: 100px; left: 15px; display: flex; flex-direction: column; gap: 12px; z-index: 90; }
         .float-btn {
-            width: 50px; height: 50px; border-radius: 50%; border: none;
+            width: 52px; height: 52px; border-radius: 50%; border: none;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 20px;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); font-size: 22px;
         }
         .btn-calc { background: #6366f1; color: white; }
         .btn-order { background: #f59e0b; color: white; }
+        .btn-bot { background: #1e3a5f; color: white; }
 
         /* ================= منوی پایین ================= */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background-color: var(--bg-darker); display: flex;
-            justify-content: space-around; align-items: center;
-            padding: 10px 0 15px; border-top-left-radius: 25px;
-            border-top-right-radius: 25px; box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-            z-index: 1000; border-top: 1px solid var(--border-color);
+            position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-darker);
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 12px 0 18px; border-top-left-radius: 25px; border-top-right-radius: 25px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5); z-index: 1000; border-top: 1px solid var(--border);
         }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 10px; gap: 5px; }
-        .nav-item.active { color: var(--primary-red); }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #6b7280; font-size: 10px; gap: 5px; text-decoration: none; }
+        .nav-item.active { color: var(--primary); }
         .nav-icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
         .cart-nav-wrapper { position: relative; top: -25px; }
         .cart-circle {
-            background-color: var(--primary-red); width: 60px; height: 60px;
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            border: 5px solid var(--bg-dark); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
-            position: relative; cursor: pointer;
+            background: var(--primary); width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            border: 5px solid var(--bg-dark); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); position: relative; cursor: pointer;
         }
-        .cart-circle svg { stroke: white; }
         .cart-badge {
-            position: absolute; top: -2px; right: -2px; background: white; color: var(--primary-red);
+            position: absolute; top: -2px; right: -2px; background: white; color: var(--primary);
             width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 900;
             display: flex; align-items: center; justify-content: center;
         }
-        .cart-nav-text { color: var(--primary-red); margin-top: 8px; font-weight: 700; }
+        .cart-nav-text { color: var(--primary); margin-top: 8px; font-weight: 700; }
 
-        /* ================= مودال‌ها (پنجره‌های بازشو) ================= */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px); z-index: 2000;
-            display: none; align-items: center; justify-content: center; padding: 20px;
-        }
-        .modal-overlay.show { display: flex; animation: fadeIn 0.3s; }
+        /* ================= مودال‌ها ================= */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 2000; display: none; align-items: flex-end; justify-content: center; }
+        .modal.show { display: flex; animation: slideUp 0.3s ease; }
         .modal-content {
-            background: var(--bg-card); width: 100%; max-width: 450px;
-            border-radius: 20px; border: 1px solid var(--border-color);
-            overflow: hidden; max-height: 85vh; display: flex; flex-direction: column;
+            background: var(--bg-card); width: 100%; max-width: 500px;
+            border-top-left-radius: 25px; border-top-right-radius: 25px;
+            border: 1px solid var(--border); max-height: 90vh; display: flex; flex-direction: column;
         }
-        .modal-header {
-            padding: 15px 20px; border-bottom: 1px solid var(--border-color);
-            display: flex; justify-content: space-between; align-items: center;
-            background: var(--bg-darker);
-        }
+        .modal-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .modal-header h3 { font-size: 16px; }
-        .close-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; }
         .modal-body { padding: 20px; overflow-y: auto; }
+        
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
-        .form-control {
-            width: 100%; background: var(--bg-darker); border: 1px solid var(--border-color);
-            color: white; padding: 12px; border-radius: 10px; font-family: inherit; font-size: 14px;
-        }
-        .form-control:focus { outline: none; border-color: var(--primary-red); }
-        .submit-btn {
-            width: 100%; background: var(--primary-red); color: white; border: none;
-            padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer;
-            font-family: inherit; font-size: 14px; margin-top: 10px;
-        }
-        .submit-btn:active { background: var(--primary-red-hover); }
+        .form-control { width: 100%; background: var(--bg-darker); border: 1px solid var(--border); color: white; padding: 14px; border-radius: 12px; font-family: inherit; font-size: 14px; }
+        .form-control:focus { outline: none; border-color: var(--primary); }
+        .submit-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer; margin-top: 10px; }
+
+        /* سبد خرید */
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-name { font-size: 14px; font-weight: 700; }
+        .cart-item-qty { display: flex; align-items: center; gap: 10px; }
+        .qty-btn { background: var(--bg-darker); border: 1px solid var(--border); color: white; width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .qty-btn:active { background: var(--primary); border-color: var(--primary); }
+        .remove-btn { background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 18px; margin-right: 10px; }
 
         /* محاسبه‌گر */
-        .calc-tabs { display: flex; gap: 5px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
-        .calc-tab {
-            padding: 8px 12px; background: var(--bg-darker); border: 1px solid var(--border-color);
-            border-radius: 8px; color: var(--text-muted); font-size: 12px; cursor: pointer; white-space: nowrap;
-        }
-        .calc-tab.active { background: var(--primary-red); color: white; border-color: var(--primary-red); }
-        .calc-result {
-            background: var(--bg-darker); padding: 15px; border-radius: 10px;
-            border: 1px solid var(--border-color); margin-top: 15px; font-size: 13px; line-height: 2;
-        }
+        .calc-tabs { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .calc-tab { padding: 10px 15px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: 10px; color: var(--text-muted); font-size: 13px; cursor: pointer; white-space: nowrap; }
+        .calc-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .calc-result { background: var(--bg-darker); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-top: 15px; font-size: 14px; }
+        .calc-result div { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .calc-result span:last-child { color: var(--primary); font-weight: 800; }
 
-        /* استایل برای نظرات */
-        .review-card { background: var(--bg-darker); padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border-color); }
-        .review-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; color: var(--primary-red); }
-        .review-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+        /* نظرات و ربات */
+        .review-card { background: var(--bg-darker); padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--primary); font-weight: 700; }
+        .review-text { font-size: 12px; color: var(--text-muted); }
+        
+        .chat-box { height: 300px; overflow-y: auto; background: var(--bg-darker); border-radius: 12px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border); }
+        .chat-msg { padding: 10px 15px; border-radius: 15px; font-size: 13px; max-width: 85%; line-height: 1.6; }
+        .chat-msg.bot { background: var(--bg-card); border-bottom-right-radius: 4px; align-self: flex-start; border: 1px solid var(--border); }
+        .chat-msg.user { background: var(--primary); border-bottom-left-radius: 4px; align-self: flex-end; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <!-- هدر -->
     <header class="header">
-        <button class="icon-btn" onclick="toggleMenu()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <button class="icon-btn" onclick="openModal('menuModal')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
-        
         <div class="logo-container">
-            <img src="iu.jpg" alt="کارگر" onerror="this.src='https://via.placeholder.com/150x60/14161a/e74c3c?text=KARGAR'">
+            <img src="iu.jpg" alt="کارگر" onerror="this.src='https://via.placeholder.com/150x55/1c1f24/e74c3c?text=KARGAR'">
             <div class="logo-sub">مصالح و تاسیسات مرکزی</div>
         </div>
-
         <button class="icon-btn cart-btn" onclick="openModal('cartModal')">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         </button>
     </header>
 
-    <!-- بخش اصلی / اسلایدر -->
+    <!-- اسلایدر -->
     <main class="hero">
-        <div class="hero-img-container">
-            <img src="gallery3.jpg" alt="انبار مصالح" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=Warehouse'">
+        <div class="hero-img">
+            <img src="gallery3.jpg" alt="انبار" onerror="this.src='https://via.placeholder.com/400x380/222/fff?text=Warehouse'">
             <button class="arrow right">&#10095;</button>
             <button class="arrow left">&#10094;</button>
             <div class="glass-box">
                 <h2>خرید پروژه‌ای بدون آشفتگی</h2>
-                <p>آدرس پروژه، نوع پرداخت و ظرفیت حمل را یکجا مدیریت کنید. ارسال سریع در شهربابک و حومه.</p>
+                <p>آدرس پروژه، نوع پرداخت و ظرفیت حمل را یکجا مدیریت کنید.</p>
             </div>
         </div>
-        <div class="sub-hero-text">
-            <span class="badge-red">تأمین مستقیم مصالح</span>
-            <p>برای خرید روزمره و پروژه‌های ساختمانی</p>
+        <div class="badges">
+            <span class="badge">تأمین مستقیم مصالح</span>
+            <span class="badge">ارسال سریع</span>
         </div>
-        <h1 class="main-title">مصالح ساختمانی <span>قابل اعتماد</span><br>با قیمت شفاف و ارسال سریع</h1>
+        <h1 class="main-title">مصالح ساختمانی <span>قابل اعتماد</span><br>با قیمت شفاف</h1>
     </main>
 
-    <!-- بخش محصولات -->
-    <section>
-        <h2 class="section-title">محصولات فروشگاه</h2>
-        <div class="products-grid" id="productsGrid">
-            <!-- محصولات با JS لود میشن -->
+    <!-- محصولات -->
+    <section id="products">
+        <h2 class="section-header">محصولات فروشگاه</h2>
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 جستجوی محصول..." oninput="searchProducts()">
         </div>
+        <div id="productsContainer"></div>
     </section>
 
-    <!-- بخش نظرات (ساده شده برای این قالب) -->
-    <section style="padding-bottom: 20px;">
-        <h2 class="section-title">نظرات مشتریان</h2>
-        <div style="padding: 0 15px;">
-            <button class="submit-btn" onclick="openModal('reviewModal')" style="margin-bottom: 15px; background: transparent; border: 1px solid var(--primary-red); color: var(--primary-red);">✍️ ثبت نظر جدید</button>
+    <!-- مقالات -->
+    <section>
+        <h2 class="section-header">مقالات آموزشی</h2>
+        <div id="blogContainer"></div>
+    </section>
+
+    <!-- سوالات متداول -->
+    <section>
+        <h2 class="section-header">سوالات متداول</h2>
+        <div id="faqContainer"></div>
+    </section>
+
+    <!-- نظرات -->
+    <section>
+        <h2 class="section-header">نظرات مشتریان</h2>
+        <div style="padding: 0 20px;">
+            <button class="submit-btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); margin-bottom: 15px;" onclick="openModal('reviewModal')">✍️ ثبت نظر جدید</button>
             <div id="reviewsList">
                 <div class="review-card">
-                    <div class="review-header"><span>علی محمدی</span><span>★★★★★</span></div>
-                    <div class="review-text">کیفیت مصالح عالی بود و ارسالشون خیلی سریع انجام شد. ممنون از آقای کارگر.</div>
+                    <div class="review-header"><span>رضا محمدی</span><span>★★★★★</span></div>
+                    <div class="review-text">کیفیت سیمان عالی بود. ارسال سریع انجام شد.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- دکمه‌های شناور (محاسبه‌گر و سفارش) -->
+    <!-- تماس و اینستاگرام -->
+    <section class="contact-section">
+        <div class="contact-card">
+            <h3>📞 تماس با ما</h3>
+            <a href="tel:09133908230" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                مصالح: ۰۹۱۳۳۹۰۸۲۳۰
+            </a>
+            <a href="tel:09133908393" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                تاسیسات: ۰۹۱۳۳۹۰۸۳۹۳
+            </a>
+            <a href="tel:03434341303" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                مغازه: ۰۳۴-۳۴۳۴۱۳۰۳
+            </a>
+        </div>
+        <div class="contact-card">
+            <h3>📸 اینستاگرام</h3>
+            <a href="https://instagram.com/rezakargar_masaleh" target="_blank" class="contact-link instagram-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                پیج مصالح کارگر
+            </a>
+            <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank" class="contact-link instagram-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                پیج تاسیسات کارگر
+            </a>
+        </div>
+    </section>
+
+    <!-- دکمه‌های شناور -->
     <div class="floating-btns">
-        <button class="float-btn btn-calc" onclick="openModal('calcModal')" title="محاسبه‌گر">🧮</button>
-        <button class="float-btn btn-order" onclick="openModal('orderModal')" title="ثبت سفارش">📝</button>
+        <button class="float-btn btn-bot" onclick="openModal('botModal')">🤖</button>
+        <button class="float-btn btn-calc" onclick="openModal('calcModal')">🧮</button>
+        <button class="float-btn btn-order" onclick="openModal('orderModal')">📝</button>
     </div>
 
-    <!-- منوی پایین موبایل -->
+    <!-- منوی پایین -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active">
-            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            <span>صفحه اصلی</span>
+        <a href="#" class="nav-item active" onclick="scrollToTop()">
+            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>خانه</span>
         </a>
-        <a href="#" class="nav-item" onclick="alert('بخش جستجو در حال توسعه است')">
-            <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <span>جستجو</span>
+        <a href="#products" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>محصولات</span>
         </a>
         <div class="cart-nav-wrapper">
             <div class="cart-circle" onclick="openModal('cartModal')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                 <div class="cart-badge" id="cartCount">0</div>
             </div>
             <span class="nav-item cart-nav-text">سبد خرید</span>
         </div>
-        <a href="#" class="nav-item" onclick="alert('بخش دسته‌بندی در حال توسعه است')">
-            <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            <span>دسته‌بندی</span>
+        <a href="#products" class="nav-item" onclick="openModal('calcModal')">
+            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8v2H8zM8 12h8v2H8zM8 16h8v2H8z"/></svg>
+            <span>محاسبه‌گر</span>
         </a>
-        <a href="#" class="nav-item" onclick="alert('پروفایل کاربری در حال توسعه است')">
-            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>پروفایل</span>
+        <a href="tel:09133908230" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>تماس</span>
         </a>
     </nav>
 
-    <!-- ================= مودال‌ها (پنجره‌های بازشو) ================= -->
+    <!-- ================= مودال‌ها ================= -->
     
-    <!-- 1. مودال سبد خرید -->
-    <div class="modal-overlay" id="cartModal">
+    <!-- سبد خرید -->
+    <div class="modal" id="cartModal">
         <div class="modal-content">
-            <div class="modal-header"><h3>🛒 لیست خرید شما</h3><button class="close-btn" onclick="closeModal('cartModal')">✕</button></div>
-            <div class="modal-body" id="cartItemsContainer">
-                <p style="text-align: center; color: var(--text-muted);">سبد خرید شما خالی است.</p>
-            </div>
-            <div style="padding: 15px; border-top: 1px solid var(--border-color);">
+            <div class="modal-header"><h3>🛒 لیست خرید</h3><button class="close-btn" onclick="closeModal('cartModal')">✕</button></div>
+            <div class="modal-body" id="cartItemsContainer"></div>
+            <div style="padding: 20px; border-top: 1px solid var(--border);">
                 <button class="submit-btn" onclick="sendOrder()">ارسال سفارش</button>
             </div>
         </div>
     </div>
 
-    <!-- 2. مودال ثبت سفارش -->
-    <div class="modal-overlay" id="orderModal">
+    <!-- ثبت سفارش -->
+    <div class="modal" id="orderModal">
         <div class="modal-content">
             <div class="modal-header"><h3>📝 ثبت سفارش آنلاین</h3><button class="close-btn" onclick="closeModal('orderModal')">✕</button></div>
             <div class="modal-body">
-                <div class="form-group"><label>نام و نام خانوادگی</label><input type="text" class="form-control" placeholder="مثلاً: علی محمدی"></div>
-                <div class="form-group"><label>شماره تماس</label><input type="tel" class="form-control" placeholder="۰۹۱۲۳۴۵۶۷۸۹" dir="ltr"></div>
-                <div class="form-group"><label>آدرس تحویل</label><textarea class="form-control" rows="2" placeholder="شهربابک، خیابان..."></textarea></div>
-                <div class="form-group"><label>توضیحات</label><textarea class="form-control" rows="2" placeholder="مثلاً: برای پروژه ۱۵۰ متری..."></textarea></div>
-                <button class="submit-btn" onclick="alert('سفارش شما ثبت شد! به زودی با شما تماس می‌گیریم.'); closeModal('orderModal')">ارسال سفارش</button>
+                <div class="form-group"><label>نام و نام خانوادگی</label><input type="text" class="form-control" id="orderName"></div>
+                <div class="form-group"><label>شماره تماس</label><input type="tel" class="form-control" id="orderPhone" dir="ltr"></div>
+                <div class="form-group"><label>آدرس تحویل</label><textarea class="form-control" id="orderAddress" rows="2"></textarea></div>
+                <div class="form-group"><label>توضیحات</label><textarea class="form-control" id="orderNote" rows="2"></textarea></div>
+                <button class="submit-btn" onclick="submitOrderForm()">ارسال سفارش</button>
             </div>
         </div>
     </div>
 
-    <!-- 3. مودال محاسبه‌گر -->
-    <div class="modal-overlay" id="calcModal">
+    <!-- محاسبه‌گر -->
+    <div class="modal" id="calcModal">
         <div class="modal-content">
             <div class="modal-header"><h3>🧮 محاسبه‌گر مصالح</h3><button class="close-btn" onclick="closeModal('calcModal')">✕</button></div>
             <div class="modal-body">
                 <div class="calc-tabs">
-                    <button class="calc-tab active" onclick="switchCalc('wall')">دیوارچینی</button>
-                    <button class="calc-tab" onclick="switchCalc('ceiling')">سقف</button>
+                    <button class="calc-tab active" onclick="switchCalc('wall', event)">دیوارچینی</button>
+                    <button class="calc-tab" onclick="switchCalc('ceiling', event)">سقف</button>
+                    <button class="calc-tab" onclick="switchCalc('concrete', event)">بتن</button>
+                    <button class="calc-tab" onclick="switchCalc('tile', event)">کاشی</button>
                 </div>
                 <div id="calc-wall">
                     <div class="form-group"><label>طول دیوار (متر)</label><input type="number" class="form-control" id="wallL" value="10" oninput="calcWall()"></div>
-                    <div class="form-group"><label>ارتفاع دیوار (متر)</label><input type="number" class="form-control" id="wallH" value="3" oninput="calcWall()"></div>
-                    <div class="calc-result" id="wallResult">تعداد بلوک: ۰ عدد</div>
+                <div class="form-group"><label>ارتفاع دیوار (متر)</label><input type="number" class="form-control" id="wallH" value="3" oninput="calcWall()"></div>
+                    <div class="calc-result" id="wallResult"></div>
                 </div>
-                <div id="calc-ceiling" style="display: none;">
+                <div id="calc-ceiling" style="display:none;">
                     <div class="form-group"><label>مساحت سقف (متر مربع)</label><input type="number" class="form-control" id="ceilArea" value="100" oninput="calcCeiling()"></div>
-                    <div class="calc-result" id="ceilResult">تعداد بلوک سقفی: ۰ عدد</div>
+                    <div class="calc-result" id="ceilResult"></div>
+                </div>
+                <div id="calc-concrete" style="display:none;">
+                    <div class="form-group"><label>حجم بتن (متر مکعب)</label><input type="number" class="form-control" id="conVol" value="10" oninput="calcConcrete()"></div>
+                    <div class="calc-result" id="conResult"></div>
+                </div>
+                <div id="calc-tile" style="display:none;">
+                    <div class="form-group"><label>مساحت کاشی‌کاری (متر مربع)</label><input type="number" class="form-control" id="tileArea" value="50" oninput="calcTile()"></div>
+                    <div class="calc-result" id="tileResult"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 4. مودال ثبت نظر -->
-    <div class="modal-overlay" id="reviewModal">
+    <!-- ثبت نظر -->
+    <div class="modal" id="reviewModal">
         <div class="modal-content">
             <div class="modal-header"><h3>✍️ ثبت نظر</h3><button class="close-btn" onclick="closeModal('reviewModal')">✕</button></div>
             <div class="modal-body">
                 <div class="form-group"><label>نام شما</label><input type="text" class="form-control" id="revName"></div>
-                <div class="form-group"><label>نظر شما</label><textarea class="form-control" rows="3" id="revText"></textarea></div>
+                <div class="form-group"><label>نظر شما</label><textarea class="form-control" id="revText" rows="3"></textarea></div>
                 <button class="submit-btn" onclick="addReview()">ارسال نظر</button>
             </div>
         </div>
     </div>
 
-    <!-- اسکریپت‌ها -->
+    <!-- ربات مشاور -->
+    <div class="modal" id="botModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🤖 مشاور خرید هوشمند</h3><button class="close-btn" onclick="closeModal('botModal')">✕</button></div>
+            <div class="modal-body">
+                <div class="chat-box" id="chatBox">
+                    <div class="chat-msg bot">سلام! 👋 من مشاور خرید شما هستم. چطور می‌تونم کمکتون کنم؟<br><br><b>می‌تونید بپرسید:</b><br>• قیمت سیمان چنده؟<br>• آدرس فروشگاه کجاست؟<br>• برای دیوارچینی چی لازم دارم؟</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" class="form-control" id="botInput" placeholder="سوالت رو بنویس..." onkeypress="if(event.key==='Enter') sendBotMsg()">
+                    <button class="submit-btn" style="width: 60px; margin: 0;" onclick="sendBotMsg()">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- منوی همبرگری -->
+    <div class="modal" id="menuModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>منو</h3><button class="close-btn" onclick="closeModal('menuModal')">✕</button></div>
+            <div class="modal-body" style="display:flex; flex-direction:column; gap:10px;">
+                <a href="#" onclick="closeModal('menuModal')" style="color:white; text-decoration:none; padding:10px; background:var(--bg-darker); border-radius:8px;">صفحه اصلی</a>
+                <a href="#products" onclick="closeModal('menuModal')" style="color:white; text-decoration:none; padding:10px; background:var(--bg-darker); border-radius:8px;">محصولات</a>
+                <a href="#blog" onclick="closeModal('menuModal')" style="color:white; text-decoration:none; padding:10px; background:var(--bg-darker); border-radius:8px;">مقالات</a>
+                <a href="tel:09133908230" style="color:white; text-decoration:none; padding:10px; background:var(--bg-darker); border-radius:8px;">تماس با ما</a>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ================== دیتابیس محصولات ==================
-        const myProducts = [
-            { id: 'c1', name: 'سیمان تیپ ۲', desc: 'مناسب بتن‌ریزی عمومی', img: '67.png' },
-            { id: 'b1', name: 'بلوک تیغه ۱۰', desc: 'دیوارچینی داخلی', img: 'gallery4.jpg' },
-            { id: 't1', name: 'کاشی ۶۰×۱۲۰', desc: 'براق و فوق براق', img: 'gallery1.jpg' },
-            { id: 'p1', name: 'لوله پنج لایه', desc: 'مقاوم به حرارت', img: '0987.jpg' },
-            { id: 'pk1', name: 'پکیج دیواری', desc: 'با گارانتی معتبر', img: 'gallery5.jpg' },
-            { id: 's1', name: 'شیرآلات بهداشتی', desc: 'برندهای معتبر', img: 'shiralat.png' }
+        // ================== دیتابیس کامل محصولات ==================
+        const productsData = [
+            { id: 'c1', name: 'سیمان تیپ ۲', desc: 'مناسب بتن‌ریزی عمومی', img: '67.png', cat: 'سیمان' },
+            { id: 'c2', name: 'سیمان تیپ ۵', desc: 'مقاوم در برابر سولفات', img: '67.png', cat: 'سیمان' },
+            { id: 'c3', name: 'سیمان سفید', desc: 'برای نما و بندکشی', img: 'simans.png', cat: 'سیمان' },
+            { id: 'b1', name: 'آجر گره‌ای', desc: 'مناسب دیوارچینی', img: '0987.jpg', cat: 'آجر و بلوک' },
+            { id: 'b2', name: 'بلوک تیغه ۱۰', desc: 'دیوارچینی داخلی', img: 'gallery4.jpg', cat: 'آجر و بلوک' },
+            { id: 'b3', name: 'بلوک سقفی', desc: 'برای تیرچه بلوک', img: 'gallery3.jpg', cat: 'آجر و بلوک' },
+            { id: 'g1', name: 'گچ خورشید', desc: 'کیفیت عالی', img: 'gallery2.jpg', cat: 'گچ' },
+            { id: 'g2', name: 'گچ شادیان', desc: 'سفیدکاری', img: 'gallery2.jpg', cat: 'گچ' },
+            { id: 't1', name: 'کاشی ۶۰×۱۲۰', desc: 'براق و فوق براق', img: 'gallery1.jpg', cat: 'کاشی و سرامیک' },
+            { id: 't2', name: 'سرامیک ۴۰×۱۲۰', desc: 'نما و حیاط', img: 'as.png', cat: 'کاشی و سرامیک' },
+            { id: 't3', name: 'کاشی ۸۰×۸۰', desc: 'کف', img: 'gallery1.jpg', cat: 'کاشی و سرامیک' },
+            { id: 'p1', name: 'لوله پلیکا', desc: 'فاضلاب', img: '0987.jpg', cat: 'لوله و اتصالات' },
+            { id: 'p2', name: 'لوله پنج لایه', desc: 'آب گرم و سرد', img: '0987.jpg', cat: 'لوله و اتصالات' },
+            { id: 'p3', name: 'اتصالات', desc: 'لوله‌کشی آب', img: '10.png', cat: 'لوله و اتصالات' },
+            { id: 's1', name: 'شیرآلات بهداشتی', desc: 'برندهای معتبر', img: 'shiralat.png', cat: 'تاسیسات' },
+            { id: 's2', name: 'پکیج دیواری', desc: 'با گارانتی', img: 'gallery5.jpg', cat: 'تاسیسات' },
+            { id: 's3', name: 'رادیاتور', desc: 'پنلی و آلومینیومی', img: '0987.jpg', cat: 'تاسیسات' },
+            { id: 's4', name: 'پمپ آب', desc: 'خانگی و صنعتی', img: 'poump.png', cat: 'تاسیسات' },
+            { id: 's5', name: 'مخزن آب', desc: 'افقی و عمودی', img: '0987.jpg', cat: 'تاسیسات' }
+        ];
+
+        const blogData = [
+            { title: 'راهنمای انتخاب سیمان مناسب', desc: 'سیمان تیپ ۱، ۲، ۵ یا سفید؟ کدوم برای پروژه شما مناسبه؟' },
+            { title: 'محاسبه تعداد بلوک دیوار', desc: 'فرمول ساده محاسبه بلوک تیغه و سقفی + نکات مهم در خرید.' }
+        ];
+
+        const faqData = [
+            { q: 'ساعات کاری فروشگاه چه زمانی است؟', a: 'ما شنبه تا پنجشنبه از ساعت ۸ صبح تا ۸ شب در خدمت شما هستیم.' },
+            { q: 'چطور می‌توانم استعلام قیمت بگیرم؟', a: 'با شماره‌های ۰۹۱۳۳۹۰۸۲۳۰ (مصالح) و ۰۹۱۳۳۹۰۸۳۹۳ (تاسیسات) تماس بگیرید.' },
+            { q: 'آیا ارسال به شهرهای اطراف دارید؟', a: 'بله، با ناوگان حمل و نقل خودمان ارسال سریع انجام می‌شود.' }
         ];
 
         let cart = [];
 
-        // ================== توابع نمایش ==================
+        // ================== نمایش محصولات ==================
         function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = myProducts.map(p => `
-                <div class="product-card">
-                    <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150/2a2e38/ffffff?text=No+Image'">
-                    <h3>${p.name}</h3>
-                    <p>${p.desc}</p>
-                    <button class="add-btn" onclick="addToCart('${p.id}', '${p.name}')">+ افزودن</button>
+            const container = document.getElementById('productsContainer');
+            let html = '';
+            const categories = [...new Set(productsData.map(p => p.cat))];
+            
+            categories.forEach(cat => {
+                html += `<div class="category-title">${cat}</div>`;
+                html += `<div class="products-grid">`;
+                const catProducts = productsData.filter(p => p.cat === cat);
+                catProducts.forEach(p => {
+                    html += `
+                        <div class="product-card" data-name="${p.name} ${p.desc}">
+                            <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150/2d3139/9ca3af?text=No+Image'">
+                            <h3>${p.name}</h3>
+                            <p>${p.desc}</p>
+                            <button class="add-btn" onclick="addToCart('${p.id}', '${p.name}')">+ افزودن</button>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        // ================== نمایش مقالات و سوالات ==================
+        function renderBlogAndFaq() {
+            const blogContainer = document.getElementById('blogContainer');
+            blogContainer.innerHTML = blogData.map(b => `
+                <div class="blog-card">
+                    <h3>${b.title}</h3>
+                    <p>${b.desc}</p>
+                </div>
+            `).join('');
+
+            const faqContainer = document.getElementById('faqContainer');
+            faqContainer.innerHTML = faqData.map((f, i) => `
+                <div class="accordion-item" id="faq-${i}">
+                    <div class="accordion-header" onclick="toggleFaq(${i})">
+                        <span>${f.q}</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">${f.a}</div>
                 </div>
             `).join('');
         }
 
+        function toggleFaq(index) {
+            const item = document.getElementById(`faq-${index}`);
+            item.classList.toggle('open');
+        }
+
+        // ================== جستجو ==================
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.trim();
+            document.querySelectorAll('.product-card').forEach(card => {
+                const name = card.getAttribute('data-name');
+                card.style.display = name.includes(query) ? '' : 'none';
+            });
+        }
+
+        // ================== سبد خرید ==================
         function addToCart(id, name) {
-            const existing = cart.find(item => item.id === id);
-            if (existing) { existing.qty++; } 
-            else { cart.push({ id, name, qty: 1 }); }
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.qty++;
+            else cart.push({ id, name, qty: 1 });
             updateCartUI();
             alert(`✅ ${name} به سبد خرید اضافه شد.`);
         }
 
         function updateCartUI() {
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            document.getElementById('cartCount').innerText = totalItems;
-
+            const total = cart.reduce((s, i) => s + i.qty, 0);
+            document.getElementById('cartCount').innerText = total;
+            
             const container = document.getElementById('cartItemsContainer');
             if (cart.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">سبد خرید شما خالی است.</p>';
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">سبد خرید شما خالی است.</p>';
             } else {
                 container.innerHTML = cart.map(item => `
-                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 10px 0;">
-                        <span>${item.name}</span>
-                        <span style="color: var(--primary-red);">${item.qty} عدد</span>
+                    <div class="cart-item">
+                        <div class="cart-item-info"><div class="cart-item-name">${item.name}</div></div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            <button class="remove-btn" onclick="removeFromCart('${item.id}')">🗑</button>
+                        </div>
                     </div>
                 `).join('');
             }
+        }
+
+        function changeQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += change;
+            if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
         }
 
         function sendOrder() {
@@ -491,36 +591,62 @@
             closeModal('cartModal');
         }
 
-        // ================== مودال‌ها ==================
-        function openModal(id) { document.getElementById(id).classList.add('show'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
-        
-        // بستن مودال با کلیک بیرون
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                if (e.target === this) closeModal(this.id);
-            });
-        });
+        // ================== ثبت فرم سفارش ==================
+        function submitOrderForm() {
+            const name = document.getElementById('orderName').value;
+            const phone = document.getElementById('orderPhone').value;
+            if (!name || !phone) { alert('لطفاً نام و شماره تماس را وارد کنید.'); return; }
+            alert(`✅ سفارش شما ثبت شد، ${name} عزیز. به زودی با شما تماس می‌گیریم.`);
+            closeModal('orderModal');
+        }
 
-        // ================== محاسبه‌گر ==================
-        function switchCalc(type) {
+        // ================== محاسبه‌گر کامل ==================
+        function switchCalc(type, event) {
             document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
             document.getElementById('calc-wall').style.display = type === 'wall' ? 'block' : 'none';
             document.getElementById('calc-ceiling').style.display = type === 'ceiling' ? 'block' : 'none';
+            document.getElementById('calc-concrete').style.display = type === 'concrete' ? 'block' : 'none';
+            document.getElementById('calc-tile').style.display = type === 'tile' ? 'block' : 'none';
         }
 
         function calcWall() {
             const L = parseFloat(document.getElementById('wallL').value) || 0;
             const H = parseFloat(document.getElementById('wallH').value) || 0;
             const blocks = Math.ceil(L * H * 10);
-            document.getElementById('wallResult').innerHTML = `تعداد بلوک: <span style="color:var(--primary-red)">${blocks}</span> عدد`;
+            const cement = Math.ceil(L * H * 0.5);
+            document.getElementById('wallResult').innerHTML = `
+                <div><span>تعداد بلوک:</span> <span>${blocks} عدد</span></div>
+                <div><span>سیمان (تخمینی):</span> <span>${cement} کیسه</span></div>
+            `;
         }
 
         function calcCeiling() {
             const area = parseFloat(document.getElementById('ceilArea').value) || 0;
             const blocks = Math.ceil(area * 2);
-            document.getElementById('ceilResult').innerHTML = `تعداد بلوک سقفی: <span style="color:var(--primary-red)">${blocks}</span> عدد`;
+            const cement = Math.ceil(area * 0.8);
+            document.getElementById('ceilResult').innerHTML = `
+                <div><span>بلوک سقفی:</span> <span>${blocks} عدد</span></div>
+                <div><span>سیمان (تخمینی):</span> <span>${cement} کیسه</span></div>
+            `;
+        }
+
+        function calcConcrete() {
+            const vol = parseFloat(document.getElementById('conVol').value) || 0;
+            const cement = Math.ceil(vol * 5);
+            document.getElementById('conResult').innerHTML = `
+                <div><span>حجم بتن:</span> <span>${vol} متر مکعب</span></div>
+                <div><span>سیمان:</span> <span>${cement} کیسه ۵۰ کیلویی</span></div>
+            `;
+        }
+
+        function calcTile() {
+            const area = parseFloat(document.getElementById('tileArea').value) || 0;
+            const tiles = Math.ceil(area * 6.25);
+            document.getElementById('tileResult').innerHTML = `
+                <div><span>مساحت:</span> <span>${area} متر مربع</span></div>
+                <div><span>تعداد کاشی (با پرت ۱۰٪):</span> <span>${tiles} عدد</span></div>
+            `;
         }
 
         // ================== نظرات ==================
@@ -528,9 +654,7 @@
             const name = document.getElementById('revName').value;
             const text = document.getElementById('revText').value;
             if (!name || !text) { alert('لطفاً نام و متن نظر را وارد کنید.'); return; }
-            
-            const list = document.getElementById('reviewsList');
-            list.innerHTML += `
+            document.getElementById('reviewsList').innerHTML += `
                 <div class="review-card">
                     <div class="review-header"><span>${name}</span><span>★★★★★</span></div>
                     <div class="review-text">${text}</div>
@@ -542,13 +666,43 @@
             alert('✅ نظر شما ثبت شد.');
         }
 
+        // ================== ربات مشاور ==================
+        function sendBotMsg() {
+            const input = document.getElementById('botInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const chatBox = document.getElementById('chatBox');
+            chatBox.innerHTML += `<div class="chat-msg user">${msg}</div>`;
+            input.value = '';
+
+            setTimeout(() => {
+                let reply = 'متأسفم، متوجه نشدم. برای استعلام قیمت تماس بگیرید: ۰۹۱۳۳۹۰۸۲۳۰';
+                if (msg.includes('سیمان')) reply = '💡 سیمان تیپ ۲ برای بتن‌ریزی عمومی مناسب است. قیمت روز: ۰۹۱۳۳۹۰۸۲۳۰';
+                if (msg.includes('آدرس') || msg.includes('کجاست')) reply = '📍 شهربابک، خیابان مطهری، نبش کوچه ۱۱';
+                if (msg.includes('دیوار')) reply = '🧱 برای هر متر مربع دیوار حدود ۱۰ عدد بلوک نیاز است.';
+                
+                chatBox.innerHTML += `<div class="chat-msg bot">${reply}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+        }
+
+        // ================== ابزارهای عمومی ==================
+        function openModal(id) { document.getElementById(id).classList.add('show'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+        function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+
+        document.querySelectorAll('.modal').forEach(m => {
+            m.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
+        });
+
         // ================== شروع ==================
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
+            renderBlogAndFaq();
             updateCartUI();
-            calcWall();
-            calcCeiling();
+            calcWall(); calcCeiling(); calcConcrete(); calcTile();
         });
     </script>
 </body>
-    </html>
+</html>
