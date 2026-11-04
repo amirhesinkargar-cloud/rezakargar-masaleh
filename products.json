@@ -8,7 +8,16 @@
       "category": "facilities",
       "keywords": "گاز",
       "inStock": true
+    },
+    {
+      "id": "jxbfbhhhd",
+      "name": "سیمان",
+      "desc": "کروزوورورکب",
+      "image": "hdbb.po",
+      "category": "construction",
+      "keywords": "خوب",
+      "inStock": true
     }
   ],
-  "lastUpdate": "2026-11-04T17:22:52.563Z"
+  "lastUpdate": "2026-11-04T17:54:40.560Z"
 }
