@@ -1,3 +1,14 @@
 {
-  "products": []
+  "products": [
+    {
+      "id": "ghazesafhei",
+      "name": "گاز صفحه ای",
+      "desc": "گاز صفحه ای",
+      "image": "67.pnj",
+      "category": "facilities",
+      "keywords": "گاز",
+      "inStock": true
+    }
+  ],
+  "lastUpdate": "2026-11-04T17:22:52.563Z"
 }
