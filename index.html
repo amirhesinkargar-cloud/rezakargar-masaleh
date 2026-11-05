@@ -41,11 +41,158 @@
 .btn-approve{background:#00a049;color:#fff}
 .btn-reject{background:#ef4056;color:#fff}
 .btn-delete{background:#555;color:#fff}
+.profile-tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:8px;overflow-x:auto;white-space:nowrap}
+.profile-tabs button{flex-shrink:0}
 @keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes fadeInUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
 @media(max-width:900px){.products{grid-template-columns:repeat(4,minmax(0,1fr))}.headrow{gap:12px}.brand{min-width:120px}.brand img{max-height:75px}}
 @media(max-width:650px){body{padding-bottom:70px}.headrow{padding:12px 12px;flex-wrap:wrap;gap:9px}.brand{min-width:0;flex:1}.brand img{max-height:60px}.search{order:3;flex-basis:100%}.headactions{gap:5px}.headbtn{padding:8px;font-size:11px}.catrow{padding:0 12px;gap:18px}.wrap{padding:0 12px;margin-top:12px}.hero{grid-template-columns:1fr}.slider-container{height:200px}.slide-content{max-width:100%}.hero-side{grid-template-columns:1fr 1fr}.promo{min-height:90px;padding:13px}.promo strong{font-size:13px}.servicebar{grid-template-columns:repeat(2,1fr);padding:12px}.service{justify-content:flex-start}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.photo{height:125px}.card{padding:9px}.card h3{font-size:12px}.aboutgrid{grid-template-columns:1fr}.contactgrid{grid-template-columns:1fr}.sectionhead h2{font-size:16px}.bottom{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:60;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -3px 15px #0000000a}.bottom button{border:0;background:none;font-size:10px;color:#666;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative}.bottom b{font-size:19px;color:var(--red)}.productdetail{grid-template-columns:1fr}.productdetail .photo{height:180px}.bottom .badge{position:absolute;top:-5px;right:5px;background:var(--red);color:#fff;font-size:9px;padding:2px 5px;border-radius:10px;font-weight:bold}}
 </style>
+
+<style id="marketplace-redesign">
+:root{
+ --red:#e5324b;--red2:#c91f3a;--ink:#252a45;--muted:#777f8c;--line:#e8eaf0;
+ --bg:#f3f5f8;--white:#fff;--green:#0a9b62;--shadow:0 8px 28px rgba(28,39,70,.07);
+}
+body{background:var(--bg);color:var(--ink);font-size:14px}
+.topline{background:#f7f8fa;border-bottom:1px solid #eceef2;color:#667085;font-size:11px;padding:8px}
+.header{box-shadow:0 4px 18px #202b4510}
+.headrow{max-width:1320px;padding:14px 22px;gap:24px;min-height:92px}
+.brand{min-width:125px}
+.brand img{max-height:68px;max-width:150px;object-fit:contain;border-radius:8px}
+.search{max-width:650px}
+.search input{height:48px;border-radius:12px;background:#f1f2f5;padding:12px 48px 12px 16px;font-size:13px;border:1px solid transparent;transition:.2s}
+.search input:focus{background:#fff;border-color:#b7c0d1;box-shadow:0 0 0 4px #e9edf5}
+.search:before{content:"⌕";top:1px;right:16px;font-size:30px}
+.headactions{margin-right:auto;flex-wrap:nowrap}
+.headbtn{border-radius:11px;padding:11px 14px;font-size:12px;min-height:43px}
+.account-head-btn{background:#fff;border-color:#dfe2e8}
+.cart-head-btn{background:#fff8f8;border-color:#f5cbd1;color:var(--red)}
+.cart-head-btn b{background:var(--red);color:white;border-radius:20px;min-width:21px;height:21px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px}
+.categories{border-top:1px solid #f0f1f4}
+.catrow{max-width:1320px;padding:0 22px;gap:27px}
+.catrow button{font-size:12px;padding:13px 1px 12px;color:#555d6d;transition:.2s}
+.catrow button.active{font-weight:800}
+.wrap{max-width:1320px;margin:22px auto;padding:0 22px}
+.hero{grid-template-columns:minmax(0,2.1fr) minmax(260px,.9fr);gap:16px}
+.slider-container{height:300px;border-radius:20px;box-shadow:0 12px 32px #1b294018}
+.slide{padding:42px}
+.slide::before{background:linear-gradient(270deg,#10182ee8 0%,#10182e9c 48%,#10182e16 100%)}
+.slide-content{max-width:58%}
+.slide h1{font-size:29px;line-height:1.65;font-weight:800}
+.slide p{font-size:14px;line-height:2}
+.primary{border-radius:10px;padding:12px 20px;box-shadow:0 5px 15px #e5324b33}
+.hero-side{gap:14px}
+.promo{border-radius:18px;min-height:143px;padding:24px;background-image:linear-gradient(120deg,#087f66dd,#06a77cbb),url('67.png')}
+.promo:nth-child(2){background-image:linear-gradient(120deg,#263d70dd,#6379b9cc),url('shiralat.png')}
+.promo strong{font-size:17px}
+.promo span{font-size:12px;line-height:1.9}
+.servicebar{border:1px solid #edf0f4;border-radius:16px;margin:18px 0 26px;padding:18px 12px;box-shadow:var(--shadow)}
+.service{font-size:12px;font-weight:600;color:#596174}
+.service i{font-size:24px}
+.section{margin:30px 0}
+.sectionhead{margin-bottom:16px;gap:12px}
+.sectionhead h2{font-size:21px;font-weight:800;color:#252a45}
+.sectionhead p{font-size:12px;color:#818897;margin:6px 0 0}
+.catalog-count{font-size:12px;color:#7d8491;background:#fff;border:1px solid var(--line);border-radius:30px;padding:7px 12px;white-space:nowrap}
+.chips{gap:8px;padding:3px 0 15px}
+.chip{font-size:12px;padding:9px 17px;border-radius:30px;background:#fff;border-color:#e2e5eb;color:#596174;transition:.2s}
+.chip.active,.chip:hover{background:#fff0f2;border-color:#ef9eaa;color:var(--red);font-weight:700}
+.products{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.card{border:1px solid #e9ebf0;border-radius:16px;padding:13px;box-shadow:0 3px 14px #18243b08;min-height:340px}
+.card:hover{box-shadow:0 14px 32px #18243b15;transform:translateY(-4px);border-color:#f0c5cc}
+.photo{height:166px;border-radius:12px;background:#f8f9fb;margin-bottom:12px}
+.photo img{object-fit:contain;mix-blend-mode:multiply}
+.product-category{font-size:10px;color:#8a91a0;margin-bottom:4px}
+.card h3{font-size:13px;line-height:1.8;min-height:48px;margin:0 0 6px;color:#30364b}
+.desc{font-size:10px;line-height:1.9;color:#858b98;min-height:38px}
+.price{font-size:12px;color:#159466;margin:9px 0;font-weight:800}
+.add{border-radius:9px;padding:9px 5px;font-size:11px;font-weight:700}
+.details-add{background:#f7f8fa;border-color:#e5e7ed;color:#606a7b}
+.stock-label{font-size:10px;color:#159466;margin-top:9px}
+.stock-label:before{content:"●";font-size:8px;margin-left:5px}
+.stock-label.out{color:#d04452}
+.heart-btn{width:34px;height:34px;top:10px;right:10px;background:#fff;box-shadow:0 2px 8px #00000010}
+.empty{border:1px dashed #dce1e9;border-radius:16px;padding:38px 20px;color:#747d8d}
+.aboutgrid{gap:16px}
+.panel{border:1px solid #e8ebf1;border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+.panel h3{font-size:17px}
+.panel p,.panel li{font-size:13px;line-height:2.2;color:#687184}
+.contactgrid{gap:14px}
+.contact{border-radius:14px;padding:19px;font-size:13px;box-shadow:var(--shadow)}
+.contact a{font-size:15px;margin-top:7px}
+.map-container{border-radius:16px}
+.footer{background:#202944;margin-top:45px;padding:38px 18px}
+.footer strong{font-size:17px}
+.footer p{font-size:12px}
+.bottom{display:none}
+.fab{width:54px;height:54px}
+.dialog{border-radius:20px 20px 0 0}
+@media(max-width:1050px){
+ .products{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .headrow{gap:14px}
+ .brand{min-width:105px}
+ .brand img{max-width:125px}
+}
+@media(max-width:760px){
+ .topline{font-size:10px}
+ .headrow{padding:10px 12px;gap:9px;min-height:unset}
+ .brand{flex:0 0 auto;min-width:74px}
+ .brand img{max-height:52px;max-width:90px}
+ .headactions{margin-right:auto;gap:5px}
+ .headbtn{font-size:10px;padding:8px 9px;min-height:37px}
+ .account-head-btn span{max-width:78px;overflow:hidden;text-overflow:ellipsis}
+ .search{order:3;flex:1 0 100%;max-width:none}
+ .search input{height:44px;font-size:12px}
+ .catrow{gap:20px;padding:0 12px}
+ .catrow button{font-size:11px}
+ .wrap{padding:0 12px;margin-top:13px}
+ .hero{grid-template-columns:1fr;gap:10px}
+ .slider-container{height:225px;border-radius:16px}
+ .slide{padding:24px}
+ .slide-content{max-width:90%}
+ .slide h1{font-size:22px}
+ .slide p{font-size:11px}
+ .hero-side{grid-template-columns:1fr 1fr;gap:9px}
+ .promo{min-height:104px;padding:14px;border-radius:13px}
+ .promo strong{font-size:12px}
+ .promo span{font-size:10px}
+ .servicebar{grid-template-columns:repeat(2,1fr);padding:13px 9px;gap:13px}
+ .service{font-size:10px;justify-content:flex-start}
+ .service i{font-size:19px}
+ .section{margin:24px 0}
+ .sectionhead h2{font-size:17px}
+ .sectionhead p{font-size:10px}
+ .catalog-count{font-size:10px;padding:6px 9px}
+ .chips{gap:7px}
+ .chip{font-size:10px;padding:8px 13px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .card{padding:9px;border-radius:13px;min-height:320px}
+ .photo{height:128px}
+ .card h3{font-size:11px;min-height:43px}
+ .desc{font-size:9px;min-height:35px}
+ .price{font-size:11px}
+ .add{font-size:10px}
+ .aboutgrid{grid-template-columns:1fr}
+ .panel{padding:17px}
+ .contactgrid{grid-template-columns:1fr}
+ .bottom{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:60;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -3px 15px #0000000a}
+ .bottom button{border:0;background:none;font-size:10px;color:#666;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative}
+ .bottom b{font-size:19px;color:var(--red)}
+ .productdetail{grid-template-columns:1fr}
+ .productdetail .photo{height:180px}
+ .floating-btns{bottom:82px}
+ .insta-menu-box{bottom:143px}
+}
+@media(max-width:380px){
+ .account-head-btn span{max-width:60px}
+ .hero-side{grid-template-columns:1fr}
+ .promo{min-height:80px}
+ .products{gap:7px}
+ .photo{height:112px}
+}
+</style>
+
 </head>
 <body>
 <div class="topline">فروشگاه مصالح ساختمانی و تأسیسات مرکزی · شهربابک</div>
@@ -57,17 +204,14 @@
   </a>
   <div class="search"><input id="search" type="search" placeholder="جستجو در محصولات..." oninput="renderProducts()"></div>
   <div class="headactions">
-    <a class="headbtn" href="tel:03434341303" style="background:#e6f7ee;border-color:#b6e3c9;color:#00a049;font-weight:700">
-      <i class="fas fa-phone"></i> تماس فوری
-    </a>
-    <a class="headbtn" href="https://maps.google.com/?q=30.128111,55.110361" target="_blank">
-      <i class="fas fa-map-marker-alt" style="color:var(--red)"></i> مسیریابی
-    </a>
-    <a class="headbtn" href="https://rubika.ir/Rezakargarborzi" target="_blank" style="background:#eef3ff;border-color:#c7d5f5">
-      <i class="fas fa-comments" style="color:#37436f"></i> پیام
-    </a>
-    <button class="headbtn" id="auth-btn" onclick="openAuthModal()" style="background:#f0f1f4;border:none">
+    <button class="headbtn cart-head-btn" onclick="openCart()" aria-label="سبد خرید">
+      <i class="fas fa-shopping-basket"></i> سبد خرید <b id="cartBadge">۰</b>
+    </button>
+    <button class="headbtn account-head-btn" id="auth-btn" onclick="openAuthModal()">
       <i class="fas fa-user"></i> <span id="auth-btn-text">ورود / ثبت‌نام</span>
+    </button>
+    <button class="headbtn account-head-btn" id="profile-btn" style="display:none" onclick="openProfile()">
+      <i class="fas fa-user-circle"></i> <span>پروفایل من</span>
     </button>
   </div>
  </div>
@@ -76,9 +220,13 @@
   <button onclick="setCategory('سیمان',this)">سیمان</button>
   <button onclick="setCategory('آجر و بلوک',this)">آجر و بلوک</button>
   <button onclick="setCategory('گچ',this)">گچ</button>
+  <button onclick="setCategory('شن و ماسه',this)">شن و ماسه</button>
   <button onclick="setCategory('کاشی و سرامیک',this)">کاشی و سرامیک</button>
+  <button onclick="setCategory('چسب',this)">چسب‌ها</button>
   <button onclick="setCategory('لوله و اتصالات',this)">لوله و اتصالات</button>
-  <button onclick="setCategory('تاسیسات',this)">تأسیسات</button>
+  <button onclick="setCategory('شیرآلات',this)">شیرآلات</button>
+  <button onclick="setCategory('پمپ آب',this)">پمپ آب</button>
+  <button onclick="setCategory('تاسیسات',this)">همه تأسیسات</button>
  </nav>
 </header>
 
@@ -121,15 +269,19 @@
  </div>
 
  <section class="section" id="productsSection">
-  <div class="sectionhead"><div><h2>محصولات فروشگاه</h2><p>برای قیمت و موجودی دقیق با فروشگاه تماس بگیرید.</p></div></div>
+  <div class="sectionhead"><div><h2>محصولات فروشگاه</h2><p>محصول موردنظرتان را جست‌وجو یا از دسته‌بندی‌ها انتخاب کنید.</p></div><span class="catalog-count" id="catalogCount">در حال بارگذاری...</span></div>
   <div class="chips" id="chips">
     <button class="chip active" onclick="setCategory('همه',this)">همه</button>
     <button class="chip" onclick="setCategory('سیمان',this)">سیمان</button>
     <button class="chip" onclick="setCategory('آجر و بلوک',this)">آجر و بلوک</button>
     <button class="chip" onclick="setCategory('گچ',this)">گچ</button>
+    <button class="chip" onclick="setCategory('شن و ماسه',this)">شن و ماسه</button>
     <button class="chip" onclick="setCategory('کاشی و سرامیک',this)">کاشی و سرامیک</button>
+    <button class="chip" onclick="setCategory('چسب',this)">چسب‌ها</button>
     <button class="chip" onclick="setCategory('لوله و اتصالات',this)">لوله و اتصالات</button>
-    <button class="chip" onclick="setCategory('تاسیسات',this)">تأسیسات</button>
+    <button class="chip" onclick="setCategory('شیرآلات',this)">شیرآلات</button>
+    <button class="chip" onclick="setCategory('پمپ آب',this)">پمپ آب</button>
+    <button class="chip" onclick="setCategory('تاسیسات',this)">همه تأسیسات</button>
   </div>
   <div class="products" id="products"></div>
  </section>
@@ -137,15 +289,15 @@
  <section class="section aboutgrid">
   <div class="panel">
     <h3>🏢 درباره مصالح ساختمانی و تأسیسات مرکزی</h3>
-    <p>فروشگاه مصالح ساختمانی و تأسیسات مرکزی با سال‌ها تجربه درخشان در شهربابک، مرجع تامین انواع مصالح ساختمانی و تجهیزات تأسیساتی برای پروژه‌های مسکونی، تجاری و صنعتی است. ما با تکیه بر کیفیت تضمینی، قیمت رقابتی و برخورد صادقانه، در کنار سازندگان و همشهریان عزیز هستیم. از سیمان و آجر تا پیشرفته‌ترین تجهیزات تأسیساتی، همه چیز را با بهترین کیفیت و مشاوره تخصصی از ما بخواهید.</p>
+    <p>فروشگاه مصالح ساختمانی و تأسیسات مرکزی با سال‌ها تجربه درخشان در شهربابک، مرجع تامین انواع مصالح ساختمانی و تجهیزات تأسیساتی برای پروژه‌های مسکونی، تجاری و صنعتی است. ما با تکیه بر کیفیت تضمینی، قیمت رقابتی و برخورد صادقانه، در کنار سازندگان و همشهریان عزیز هستیم.</p>
   </div>
   <div class="panel">
     <h3>⭐ چرا ما را انتخاب کنید؟</h3>
     <ul>
-      <li><strong>تنوع کامل کالا:</strong> از مصالح پایه تا تجهیزات تأسیساتی پیشرفته، همه در یک مکان.</li>
-      <li><strong>قیمت و موجودی روز:</strong> استعلام لحظه‌ای قیمت‌ها برای جلوگیری از ضرر شما.</li>
-      <li><strong>ارسال سریع:</strong> هماهنگی و ارسال سفارش‌ها در کوتاه‌ترین زمان در شهربابک.</li>
-      <li><strong>مشاوره تخصصی:</strong> پاسخگویی تلفنی و راهنمایی برای انتخاب صحیح مصالح.</li>
+      <li><strong>تنوع کامل کالا:</strong> از مصالح پایه تا تجهیزات تأسیساتی پیشرفته.</li>
+      <li><strong>قیمت و موجودی روز:</strong> استعلام لحظه‌ای قیمت‌ها.</li>
+      <li><strong>ارسال سریع:</strong> هماهنگی و ارسال سفارش‌ها در کوتاه‌ترین زمان.</li>
+      <li><strong>مشاوره تخصصی:</strong> پاسخگویی تلفنی و راهنمایی.</li>
     </ul>
   </div>
  </section>
@@ -198,7 +350,6 @@
   </div>
 </footer>
 
-<!-- نوار پایین موبایل -->
 <nav class="bottom">
   <button onclick="window.scrollTo({top:0,behavior:'smooth'})"><b>⌂</b>خانه</button>
   <button onclick="document.getElementById('search').focus();window.scrollTo({top:0,behavior:'smooth'})"><b>⌕</b>جستجو</button>
@@ -206,7 +357,6 @@
   <button onclick="openWishlistModal()"><b>♡</b>علاقه‌مندی</button>
 </nav>
 
-<!-- دکمه‌های شناور (راست: ثبت سفارش / چپ: اینستاگرام) -->
 <div class="floating-btns" style="right: 20px; left: auto;">
   <button class="fab order" onclick="sendOrder()" title="ثبت سفارش"><i class="fas fa-comment-dots"></i></button>
 </div>
@@ -219,7 +369,6 @@
   <a href="https://instagram.com/tasisat1_markazi_kargar" target="_blank">پیج تاسیسات</a>
 </div>
 
-<!-- مودال‌ها -->
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeDialog()">
   <div class="dialog">
     <div class="dialoghead"><h3 id="dialogTitle">سبد خرید</h3><button class="close" onclick="closeDialog()">✕</button></div>
@@ -230,10 +379,6 @@
 <div class="overlay" id="authModal" onclick="if(event.target===this)closeAuthModal()">
   <div class="dialog" style="max-width:400px">
     <div class="dialoghead"><h3 id="authTitle">ورود به حساب</h3><button class="close" onclick="closeAuthModal()">✕</button></div>
-    <div class="field" id="profilePicField" style="display:none; text-align:center; margin-bottom:15px;">
-      <img src="0987.jpg" alt="عکس پروفایل" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid var(--red); margin-bottom:10px;">
-      <button class="add" style="font-size:11px; padding:5px 10px; width:auto;">آپلود عکس</button>
-    </div>
     <div class="field"><label>ایمیل:</label><input type="email" id="authEmail" placeholder="example@mail.com" dir="ltr"></div>
     <div class="field"><label>رمز عبور:</label><input type="password" id="authPassword" placeholder="حداقل ۶ کاراکتر" dir="ltr"></div>
     <button class="primary wide" id="authSubmitBtn" onclick="handleAuthSubmit()" style="margin-top:10px">ورود</button>
@@ -241,7 +386,16 @@
   </div>
 </div>
 
-<!-- پنل ادمین -->
+<div class="overlay" id="profileModal" onclick="if(event.target===this)closeProfile()">
+  <div class="dialog" style="max-width:620px">
+    <div class="dialoghead">
+      <h3>پروفایل من</h3>
+      <button class="close" onclick="closeProfile()">✕</button>
+    </div>
+    <div id="profileBody"></div>
+  </div>
+</div>
+
 <div class="admin-overlay" id="adminOverlay">
   <div class="admin-panel">
     <div class="admin-header">
@@ -255,10 +409,8 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// کلیدهای Supabase
 const SUPABASE_URL = 'https://gqsdfhwrjudnlpwicllm.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_U2Y8o_oo51UHNf-jNFyrsw_f22l1t1U';
-
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* ================== اسلایدر ================== */
@@ -271,6 +423,10 @@ setInterval(() => {
     slides[currentSlide].classList.add('active');
 }, 4000);
 
+/* ================== متغیرهای سراسری ================== */
+let currentUser = null;
+let userProfile = null;
+
 /* ================== ثبت‌نام و ورود ================== */
 let isLoginMode = true;
 function openAuthModal() { document.getElementById('authModal').classList.add('show'); }
@@ -280,7 +436,6 @@ function toggleAuthMode() {
     document.getElementById('authTitle').textContent = isLoginMode ? 'ورود به حساب' : 'ثبت‌نام';
     document.getElementById('authSubmitBtn').textContent = isLoginMode ? 'ورود' : 'ثبت‌نام';
     document.getElementById('authToggleText').textContent = isLoginMode ? 'حساب ندارید؟ ثبت‌نام کنید' : 'حساب دارید؟ وارد شوید';
-    document.getElementById('profilePicField').style.display = isLoginMode ? 'none' : 'block'; 
 }
 async function handleAuthSubmit() {
     const email = document.getElementById('authEmail').value.trim();
@@ -288,7 +443,6 @@ async function handleAuthSubmit() {
     const btn = document.getElementById('authSubmitBtn');
     if (!email || !password) { toast('لطفا ایمیل و رمز عبور را وارد کنید'); return; }
     if (password.length < 6) { toast('رمز عبور باید حداقل ۶ کاراکتر باشد'); return; }
-    
     btn.disabled = true; btn.textContent = 'لطفا صبر کنید...';
     try {
         if (isLoginMode) {
@@ -311,14 +465,20 @@ async function handleAuthSubmit() {
     }
 }
 function updateAuthUI(user) {
-    const btn = document.getElementById('auth-btn-text');
-    const fullBtn = document.getElementById('auth-btn');
+    currentUser = user;
+    const btnText = document.getElementById('auth-btn-text');
+    const authBtn = document.getElementById('auth-btn');
+    const profileBtn = document.getElementById('profile-btn');
     if (user) {
-        btn.textContent = user.email.split('@')[0];
-        fullBtn.onclick = () => { if (confirm('از حساب خارج می‌شوید؟')) supabaseClient.auth.signOut(); };
+        btnText.textContent = user.email.split('@')[0];
+        authBtn.style.display = 'none';
+        profileBtn.style.display = 'flex';
+        loadProfile();
     } else {
-        btn.textContent = 'ورود / ثبت‌نام';
-        fullBtn.onclick = openAuthModal;
+        authBtn.style.display = 'flex';
+        profileBtn.style.display = 'none';
+        btnText.textContent = 'ورود / ثبت‌نام';
+        userProfile = null;
     }
 }
 document.addEventListener('DOMContentLoaded', async () => {
@@ -326,18 +486,211 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateAuthUI(session ? session.user : null);
 });
 
-/* ================== محصولات (خواندن از JSON) ================== */
-let productsData = [];
+/* ================== پروفایل کاربر ================== */
+async function loadProfile() {
+  if (!currentUser) return;
+  const { data, error } = await supabaseClient.from('profiles').select('*').eq('id', currentUser.id).maybeSingle();
+  if (error) { console.error(error); return; }
+  if (!data) {
+    const { data: created } = await supabaseClient.from('profiles').insert({
+      id: currentUser.id,
+      full_name: currentUser.email.split('@')[0],
+      phone: ''
+    }).select().maybeSingle();
+    userProfile = created || { full_name: currentUser.email.split('@')[0] };
+  } else {
+    userProfile = data;
+  }
+}
 
+async function openProfile() {
+  if (!currentUser) { openAuthModal(); return; }
+  await loadProfile();
+  document.getElementById('profileModal').classList.add('show');
+  renderProfile('info');
+}
+function closeProfile() { document.getElementById('profileModal').classList.remove('show'); }
+
+function renderProfile(tab) {
+  const body = document.getElementById('profileBody');
+  const tabs = `
+    <div class="profile-tabs">
+      <button class="chip ${tab==='info'?'active':''}" onclick="renderProfile('info')">اطلاعات</button>
+      <button class="chip ${tab==='addresses'?'active':''}" onclick="renderProfile('addresses')">آدرس‌ها</button>
+      <button class="chip ${tab==='orders'?'active':''}" onclick="renderProfile('orders')">سفارش‌ها</button>
+      <button class="chip ${tab==='wishlist'?'active':''}" onclick="renderProfile('wishlist')">علاقه‌مندی</button>
+      <button class="chip" onclick="logoutUser()" style="color:var(--red)">خروج</button>
+    </div>`;
+
+  if (tab === 'info') {
+    body.innerHTML = tabs + `
+      <div style="text-align:center;margin-bottom:15px">
+        <img src="${userProfile?.avatar_url || '0987.jpg'}" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--red)">
+        <label style="display:block;margin-top:8px;font-size:11px;color:var(--red);cursor:pointer">
+          تغییر عکس
+          <input type="file" accept="image/*" style="display:none" onchange="uploadAvatar(this)">
+        </label>
+      </div>
+      <div class="field"><label>نام و نام خانوادگی:</label><input id="pf-name" value="${userProfile?.full_name||''}"></div>
+      <div class="field"><label>ایمیل:</label><input value="${currentUser.email}" disabled style="background:#eee" dir="ltr"></div>
+      <div class="field"><label>شماره موبایل:</label><input id="pf-phone" value="${userProfile?.phone||''}" placeholder="09xxxxxxxxx" dir="ltr"></div>
+      <div class="field"><label>کد ملی:</label><input id="pf-nc" value="${userProfile?.national_code||''}" dir="ltr"></div>
+      <div class="field"><label>تاریخ تولد:</label><input id="pf-bd" type="date" value="${userProfile?.birth_date||''}" dir="ltr"></div>
+      <div class="field"><label>جنسیت:</label>
+        <select id="pf-gender">
+          <option value="">انتخاب کنید</option>
+          <option value="M" ${userProfile?.gender==='M'?'selected':''}>مرد</option>
+          <option value="F" ${userProfile?.gender==='F'?'selected':''}>زن</option>
+        </select>
+      </div>
+      <button class="primary wide" onclick="saveProfile()">ذخیره تغییرات</button>
+    `;
+  }
+
+  if (tab === 'addresses') {
+    supabaseClient.from('addresses').select('*').eq('user_id', currentUser.id).then(({data}) => {
+      const list = data || [];
+      body.innerHTML = tabs + `
+        <div style="display:grid;gap:10px">
+          ${list.length ? list.map(a => `
+            <div class="review-item">
+              <div style="display:flex;justify-content:space-between">
+                <b>${a.title||'آدرس'} ${a.is_default?'<span style="color:green;font-size:10px">(پیش‌فرض)</span>':''}</b>
+                <button style="background:none;border:0;color:var(--red);cursor:pointer" onclick="deleteAddress(${a.id})">حذف</button>
+              </div>
+              <div class="desc">${a.province||''}، ${a.city||''}، ${a.full_address||''}</div>
+              <div class="desc">کد پستی: ${a.postal_code||'-'} · گیرنده: ${a.receiver_name||'-'} · ${a.receiver_phone||'-'}</div>
+            </div>
+          `).join('') : '<div class="empty">آدرسی ثبت نشده</div>'}
+        </div>
+        <button class="primary wide" style="margin-top:12px" onclick="renderProfile('add-address')">+ افزودن آدرس جدید</button>
+      `;
+    });
+  }
+
+  if (tab === 'add-address') {
+    body.innerHTML = tabs + `
+      <div class="field"><label>عنوان (خانه/محل کار):</label><input id="ad-title" placeholder="خانه"></div>
+      <div class="field"><label>استان:</label><input id="ad-province"></div>
+      <div class="field"><label>شهر:</label><input id="ad-city"></div>
+      <div class="field"><label>کد پستی:</label><input id="ad-postal" dir="ltr"></div>
+      <div class="field"><label>آدرس کامل:</label><textarea id="ad-full" rows="2"></textarea></div>
+      <div class="field"><label>نام گیرنده:</label><input id="ad-rname"></div>
+      <div class="field"><label>موبایل گیرنده:</label><input id="ad-rphone" dir="ltr"></div>
+      <label style="font-size:12px"><input type="checkbox" id="ad-default"> آدرس پیش‌فرض</label>
+      <button class="primary wide" style="margin-top:12px" onclick="saveAddress()">ذخیره آدرس</button>
+    `;
+  }
+
+  if (tab === 'orders') {
+    supabaseClient.from('orders').select('*').eq('user_id', currentUser.id).order('created_at',{ascending:false}).then(({data}) => {
+      const list = data || [];
+      body.innerHTML = tabs + (list.length ? list.map(o => `
+        <div class="review-item" style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between">
+            <b>سفارش #${o.id}</b>
+            <span style="font-size:11px;color:${o.status==='pending'?'orange':'green'}">${o.status==='pending'?'در انتظار تایید':o.status}</span>
+          </div>
+          <div class="desc">${(o.items||[]).map(i=>`${i.name} (${i.qty})`).join(' · ')}</div>
+          <div style="font-size:11px;color:#888;margin-top:5px">${new Date(o.created_at).toLocaleDateString('fa-IR')}</div>
+        </div>
+      `).join('') : '<div class="empty">سفارشی ثبت نشده</div>');
+    });
+  }
+
+  if (tab === 'wishlist') {
+    const favProducts = favorites.map(id => productsData.find(p=>p.id===id)).filter(Boolean);
+    body.innerHTML = tabs + (favProducts.length ? favProducts.map(p => `
+      <div class="cartline">
+        <div><b>${p.name}</b></div>
+        <div style="display:flex;gap:6px">
+          <button class="add" onclick="addCart('${p.id}')">افزودن</button>
+          <button class="add" onclick="toggleFav('${p.id}');renderProfile('wishlist')" style="background:var(--red);color:#fff">حذف</button>
+        </div>
+      </div>
+    `).join('') : '<div class="empty">لیست خالی است</div>');
+  }
+}
+
+async function saveProfile() {
+  const update = {
+    full_name: document.getElementById('pf-name').value.trim(),
+    phone: document.getElementById('pf-phone').value.trim(),
+    national_code: document.getElementById('pf-nc').value.trim(),
+    birth_date: document.getElementById('pf-bd').value || null,
+    gender: document.getElementById('pf-gender').value || null
+  };
+  const { error } = await supabaseClient.from('profiles').update(update).eq('id', currentUser.id);
+  if (error) { toast('❌ ' + error.message); return; }
+  userProfile = { ...userProfile, ...update };
+  toast('✅ پروفایل ذخیره شد');
+}
+
+async function uploadAvatar(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const path = `${currentUser.id}-${Date.now()}.${file.name.split('.').pop()}`;
+  const { error } = await supabaseClient.storage.from('avatars').upload(path, file);
+  if (error) { toast('❌ ' + error.message); return; }
+  const { data } = supabaseClient.storage.from('avatars').getPublicUrl(path);
+  await supabaseClient.from('profiles').update({ avatar_url: data.publicUrl }).eq('id', currentUser.id);
+  userProfile.avatar_url = data.publicUrl;
+  toast('✅ عکس به‌روزرسانی شد');
+  renderProfile('info');
+}
+
+async function saveAddress() {
+  const addr = {
+    user_id: currentUser.id,
+    title: document.getElementById('ad-title').value,
+    province: document.getElementById('ad-province').value,
+    city: document.getElementById('ad-city').value,
+    postal_code: document.getElementById('ad-postal').value,
+    full_address: document.getElementById('ad-full').value,
+    receiver_name: document.getElementById('ad-rname').value,
+    receiver_phone: document.getElementById('ad-rphone').value,
+    is_default: document.getElementById('ad-default').checked
+  };
+  if (!addr.title || !addr.city || !addr.full_address) { toast('فیلدهای عنوان، شهر و آدرس را پر کنید'); return; }
+  if (addr.is_default) {
+    await supabaseClient.from('addresses').update({is_default:false}).eq('user_id', currentUser.id);
+  }
+  const { error } = await supabaseClient.from('addresses').insert(addr);
+  if (error) { toast('❌ ' + error.message); return; }
+  toast('✅ آدرس ذخیره شد');
+  renderProfile('addresses');
+}
+
+async function deleteAddress(id) {
+  if (!confirm('حذف شود؟')) return;
+  await supabaseClient.from('addresses').delete().eq('id', id);
+  renderProfile('addresses');
+}
+
+async function logoutUser() {
+  if (!confirm('خارج می‌شوید؟')) return;
+  await supabaseClient.auth.signOut();
+  closeProfile();
+  toast('خارج شدید');
+}
+
+/* ================== محصولات ================== */
+let productsData = [];
 async function loadProductsFromJSON() {
+    const target = document.getElementById('products');
+    if (target) target.innerHTML = '<div class="empty">در حال دریافت محصولات...</div>';
     try {
-        const res = await fetch('./products.json');
+        const res = await fetch('./products.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('فایل products.json پیدا نشد');
         const data = await res.json();
-        if(data && data.products) {
-            productsData = data.products;
-        }
+        if (!data || !Array.isArray(data.products)) throw new Error('ساختار فایل محصولات معتبر نیست');
+        productsData = data.products;
+        renderProducts();
+        const count = document.getElementById('catalogCount');
+        if (count) count.textContent = productsData.length.toLocaleString('fa-IR') + ' کالا';
     } catch (e) {
-        console.error('خطا در خواندن محصولات:', e);
+        console.error(e);
+        if (target) target.innerHTML = '<div class="empty">بارگذاری محصولات انجام نشد.</div>';
     }
 }
 
@@ -347,36 +700,83 @@ let favorites=JSON.parse(localStorage.getItem('kargar_favorites_v2')||'[]');
 let reviewsData = JSON.parse(localStorage.getItem('kargar_reviews')||'[]');
 
 function save(){localStorage.setItem('kargar_cart_v2',JSON.stringify(cart));localStorage.setItem('kargar_favorites_v2',JSON.stringify(favorites));}
-function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500)}
-function setCategory(cat,btn){category=cat;document.querySelectorAll('.chip,.catrow button').forEach(x=>x.classList.toggle('active',x===btn));renderProducts()}
-
+function toast(t){const el=document.getElementById('toast');if(!el)return;el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500)}
+function normalizeProductText(value){
+  return String(value || '').toLowerCase()
+    .replace(/[يى]/g,'ی').replace(/ك/g,'ک')
+    .replace(/[\u200c\u200f]/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+function productMatchesSelectedCategory(p, selected){
+  if(!selected || selected === 'همه' || selected === 'همه محصولات') return true;
+  const text = normalizeProductText([p.name,p.desc,p.category,p.keywords].join(' '));
+  const terms = {
+    'سیمان':['سیمان'],'آجر و بلوک':['آجر','بلوک'],'گچ':['گچ'],'شن و ماسه':['شن','ماسه'],
+    'کاشی و سرامیک':['کاشی','سرامیک'],'چسب':['چسب'],
+    'لوله و اتصالات':['لوله','اتصالات','زانویی','سه راهی','مغزی','بست'],
+    'شیرآلات':['شیر','شیرآلات'],'پمپ آب':['پمپ'],
+    'تاسیسات':['لوله','اتصالات','شیر','پمپ','فاضلاب','پلیمری','پلی اتیلن','پی وی سی']
+  };
+  return (terms[selected] || [selected]).some(term => text.includes(normalizeProductText(term)));
+}
+function setCategory(cat,btn){
+  category=cat;
+  document.querySelectorAll('.chip,.catrow button').forEach(x=>{
+    x.classList.toggle('active', x.textContent.trim() === cat);
+  });
+  if(btn) btn.classList.add('active');
+  renderProducts();
+}
 function renderProducts(){
-  const q=(document.getElementById('search').value||'').trim().toLowerCase();
-  let list=productsData.filter(p=>(category==='همه'||p.category===category)&&(`${p.name} ${p.desc} ${p.category}`).toLowerCase().includes(q));
-  
-  document.getElementById('products').innerHTML=list.length?list.map(p=>`
+  const searchInput = document.getElementById('search');
+  const q = normalizeProductText(searchInput ? searchInput.value : '');
+  const list = productsData.filter(p=>{
+    const searchable = normalizeProductText([p.name,p.desc,p.category,p.keywords].join(' '));
+    return productMatchesSelectedCategory(p,category) && searchable.includes(q);
+  });
+  const target = document.getElementById('products');
+  if(!target) return;
+  const count = document.getElementById('catalogCount');
+  if(count) count.textContent = list.length.toLocaleString('fa-IR') + ' کالا';
+  target.innerHTML = list.length ? list.map(p=>`
     <article class="card">
-      <button class="heart-btn ${favorites.includes(p.id)?'on':''}" onclick="toggleFav('${p.id}')"><i class="${favorites.includes(p.id)?'fas':'far'} fa-heart"></i></button>
-      <div class="photo" onclick="details('${p.id}')"><img src="${p.image}" onerror="this.outerHTML='<span class=placeholder>🧱</span>'"></div>
-      <h3>${p.name}</h3>
-      <div class="desc">${p.desc}</div>
-      <div class="price">به زودی...</div>
-      <div class="card-actions">
-        <button class="add" onclick="addCart('${p.id}')">افزودن</button>
-        <button class="add" style="flex:0.5;background:var(--red);color:#fff" onclick="details('${p.id}')">جزئیات</button>
+      <button class="heart-btn ${favorites.includes(p.id)?'on':''}" onclick="toggleFav('${p.id}')" aria-label="افزودن به علاقه‌مندی">
+        <i class="${favorites.includes(p.id)?'fas':'far'} fa-heart"></i>
+      </button>
+      <div class="photo" onclick="details('${p.id}')">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<span class=placeholder>🧱</span>'">
       </div>
+      <div class="product-category">${p.category === 'facilities' ? 'تأسیسات' : 'مصالح ساختمانی'}</div>
+      <h3>${p.name}</h3>
+      <div class="desc">${p.desc || ''}</div>
+      <div class="price">استعلام قیمت</div>
+      <div class="card-actions">
+        <button class="add" onclick="addCart('${p.id}')"><i class="fas fa-plus"></i> افزودن</button>
+        <button class="add details-add" onclick="details('${p.id}')">جزئیات</button>
+      </div>
+      <div class="stock-label ${p.inStock === false ? 'out' : ''}">${p.inStock === false ? 'ناموجود' : 'موجود / استعلام روز'}</div>
     </article>
-  `).join(''):'<div class="empty">محصولی یافت نشد.</div>';
+  `).join('') : '<div class="empty">محصولی با این مشخصات پیدا نشد.</div>';
 }
 
-function toggleFav(id){favorites.includes(id)?favorites=favorites.filter(x=>x!==id):favorites.push(id);save();renderProducts();toast('علاقه‌مندی‌ها به‌روزرسانی شد')}
+async function toggleFav(id){
+  const exists = favorites.includes(id);
+  if (exists) {
+    favorites = favorites.filter(x=>x!==id);
+    if (currentUser) await supabaseClient.from('wishlist').delete().eq('user_id',currentUser.id).eq('product_id',id);
+  } else {
+    favorites.push(id);
+    if (currentUser) await supabaseClient.from('wishlist').insert({user_id:currentUser.id, product_id:id});
+  }
+  save(); renderProducts(); toast('علاقه‌مندی‌ها به‌روزرسانی شد');
+}
 
 function openWishlistModal() {
     if(favorites.length === 0) { toast('لیست علاقه‌مندی‌ها خالی است.'); return; }
     let html = favorites.map(id => {
         let p = productsData.find(x => x.id === id);
         if(!p) return '';
-        return `<div class="cartline"><div><b>${p.name}</b><div class="desc">${p.desc}</div></div><button class="add" onclick="addCart('${p.id}'); closeDialog();">افزودن</button></div>`;
+        return `<div class="cartline"><div><b>${p.name}</b><div class="desc">${p.desc||''}</div></div><button class="add" onclick="addCart('${p.id}'); closeDialog();">افزودن</button></div>`;
     }).join('');
     openDialog('علاقه‌مندی‌ها', html);
 }
@@ -393,29 +793,24 @@ function updateBadge(){
     else { bBadge.style.display='none'; }
   }
 }
-
 function openDialog(title,body){document.getElementById('dialogTitle').textContent=title;document.getElementById('dialogBody').innerHTML=body;document.getElementById('overlay').classList.add('show')}
 function closeDialog(){document.getElementById('overlay').classList.remove('show')}
 
 function openCart(){
-  let body=cart.length?cart.map(x=>{let p=productsData.find(y=>y.id===x.id);return `<div class="cartline"><div><b>${p.name}</b><div class="desc">به زودی...</div></div><div class="qty"><button onclick="changeQty('${x.id}',-1)">−</button><b>${x.qty.toLocaleString('fa-IR')}</b><button onclick="changeQty('${x.id}',1)">+</button></div></div>`}).join('')+`<div class="note">قیمت‌ها به زودی در سایت قرار می‌گیرد. برای هماهنگی روی دکمه ثبت سفارش کلیک کنید.</div>`:'<div class="empty">سبد خرید خالی است.</div>';
+  let body=cart.length?cart.map(x=>{let p=productsData.find(y=>y.id===x.id);return `<div class="cartline"><div><b>${p.name}</b></div><div class="qty"><button onclick="changeQty('${x.id}',-1)">−</button><b>${x.qty.toLocaleString('fa-IR')}</b><button onclick="changeQty('${x.id}',1)">+</button></div></div>`}).join('')+`<div class="note">قیمت‌ها به زودی در سایت قرار می‌گیرد. برای هماهنگی روی دکمه ثبت سفارش کلیک کنید.</div>`:'<div class="empty">سبد خرید خالی است.</div>';
   openDialog('سبد خرید',body)
 }
-
 function changeQty(id,d){let x=cart.find(y=>y.id===id);if(!x)return;x.qty+=d;if(x.qty<=0)cart=cart.filter(y=>y.id!==id);save();updateBadge();openCart()}
-
 function details(id){
   let p=productsData.find(x=>x.id===id);
-  openDialog(p.name,`<div class="productdetail"><div class="photo"><img src="${p.image}" onerror="this.outerHTML='<span class=placeholder>🧱</span>'"></div><div><h3>${p.name}</h3><p class="desc" style="font-size:12px;margin:10px 0">${p.desc}</p><p style="font-weight:bold;color:var(--red)">به زودی...</p><button class="primary wide" onclick="addCart('${p.id}');closeDialog()">افزودن به سبد خرید</button></div></div>`)
+  openDialog(p.name,`<div class="productdetail"><div class="photo"><img src="${p.image}" onerror="this.outerHTML='<span class=placeholder>🧱</span>'"></div><div><h3>${p.name}</h3><p class="desc" style="font-size:12px;margin:10px 0">${p.desc||''}</p><p style="font-weight:bold;color:var(--red)">به زودی...</p><button class="primary wide" onclick="addCart('${p.id}');closeDialog()">افزودن به سبد خرید</button></div></div>`)
 }
-
 function toggleInstaMenu() { document.getElementById('instaMenu').classList.toggle('show'); }
 
 function sendOrder() {
   if(!cart.length) { toast('سبد خرید شما خالی است.'); return; }
   const lines = cart.map(x=>`${productsData.find(y=>y.id===x.id).name} - ${x.qty} عدد`).join('\n');
   let msg = "سفارش من:\n" + lines;
-  
   openDialog('ارسال سفارش', `
     <div class="note">لیست خرید شما آماده است. لطفاً انتخاب کنید سفارش به کدام بخش ارسال شود (لیست به صورت خودکار کپی می‌شود).</div>
     <button class="primary wide" style="margin-bottom:10px" onclick="navigator.clipboard.writeText('${msg}'); window.open('https://rubika.ir/Rezakargarborzi','_blank'); closeDialog();">ارسال به مصالح</button>
@@ -435,7 +830,6 @@ document.querySelectorAll('#starRating span').forEach(star => {
     while(prev) { prev.classList.add('active'); prev = prev.previousElementSibling; }
   });
 });
-
 function submitReview() {
   const name = document.getElementById('reviewName').value.trim();
   const text = document.getElementById('reviewText').value.trim();
@@ -450,10 +844,10 @@ function submitReview() {
   toast('✅ نظر شما ثبت شد و پس از تایید مدیر نمایش داده می‌شود.');
   renderReviews();
 }
-
 function renderReviews() {
   const list = reviewsData.filter(r => r.status === 'approved');
   const container = document.getElementById('reviewList');
+  if(!container) return;
   if(!list.length) { container.innerHTML = '<div class="empty">هنوز نظری ثبت نشده است.</div>'; return; }
   container.innerHTML = list.map(r => `
     <div class="review-item">
@@ -478,7 +872,6 @@ function openAdmin() {
   }
 }
 function closeAdmin() { document.getElementById('adminOverlay').classList.remove('show'); }
-
 function renderAdminReviews() {
   const container = document.getElementById('adminReviewsList');
   if(!reviewsData.length) { container.innerHTML = '<p>هیچ نظری وجود ندارد.</p>'; return; }
@@ -497,7 +890,6 @@ function renderAdminReviews() {
     </div>
   `).join('');
 }
-
 function updateReviewStatus(id, status) {
   const rev = reviewsData.find(x => x.id === id);
   if(rev) { rev.status = status; localStorage.setItem('kargar_reviews', JSON.stringify(reviewsData)); renderAdminReviews(); renderReviews(); }
@@ -508,20 +900,16 @@ function deleteReview(id) {
   localStorage.setItem('kargar_reviews', JSON.stringify(reviewsData));
   renderAdminReviews(); renderReviews();
 }
-
 document.getElementById('logoArea').addEventListener('click', (e) => {
   clickCount++;
   if(clickCount === 3) { e.preventDefault(); openAdmin(); clickCount = 0; }
   clearTimeout(clickTimer);
   clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
 });
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDialog(); closeAuthModal(); closeProfile(); closeAdmin();}});
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDialog(); closeAuthModal(); closeAdmin();}});
-
-// شروع: اول محصولات رو از JSON می‌خونیم، بعد رندر می‌کنیم
 loadProductsFromJSON().then(() => {
-    renderProducts(); 
-    updateBadge(); 
+    updateBadge();
     renderReviews();
 });
 </script>
