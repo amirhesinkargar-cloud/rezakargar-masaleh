@@ -1,534 +1,231 @@
-{
-  "products": [
-    {
-      "id": "cement-001",
-      "name": "سیمان تیپ ۲",
-      "category": "سیمان و مصالح سیمانی",
-      "description": "سیمان مناسب برای ساخت‌وسازهای عمومی.\\nدارای کاربرد گسترده در پروژه‌های ساختمانی.\\nمناسب برای مصارف مختلف عمرانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "cement-002",
-      "name": "سیمان سفید",
-      "category": "سیمان و مصالح سیمانی",
-      "description": "مناسب برای نما و کارهای تزئینی.\\nدارای رنگ روشن و کاربردهای دکوراتیو.\\nقابل استفاده در پروژه‌های ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "cement-003",
-      "name": "سیمان تیپ ۵",
-      "category": "سیمان و مصالح سیمانی",
-      "description": "مناسب پروژه‌های نیازمند مقاومت سولفاتی.\\nقابل استفاده در شرایط خاص محیطی.\\nانتخاب مناسب برای کاربردهای عمرانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "brick-001",
-      "name": "آجر فشاری",
-      "category": "آجر و بلوک",
-      "description": "مناسب دیوارچینی و ساخت‌وساز.\\nدارای کاربرد در پروژه‌های مختلف ساختمانی.\\nقابل استفاده در بخش‌های مختلف بنا.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "brick-002",
-      "name": "آجر سفالی",
-      "category": "آجر و بلوک",
-      "description": "مناسب اجرای دیوارهای داخلی و خارجی.\\nدارای وزن نسبتاً مناسب برای دیوارچینی.\\nدر اندازه‌های مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "brick-003",
-      "name": "بلوک سیمانی",
-      "category": "آجر و بلوک",
-      "description": "مناسب دیوارچینی ساختمان.\\nقابل استفاده در پروژه‌های عمرانی.\\nدر ابعاد مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "gypsum-001",
-      "name": "گچ ساختمانی",
-      "category": "گچ و پودرهای ساختمانی",
-      "description": "مناسب سفیدکاری و پرداخت دیوارها.\\nدارای کاربرد گسترده در نازک‌کاری.\\nمناسب استفاده در ساختمان‌سازی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "gypsum-002",
-      "name": "پودر سنگ",
-      "category": "گچ و پودرهای ساختمانی",
-      "description": "مناسب ترکیبات ملات ساختمانی.\\nقابل استفاده در بندکشی و کارهای عمرانی.\\nدارای کاربردهای متنوع ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "sand-001",
-      "name": "ماسه شسته",
-      "category": "شن و ماسه",
-      "description": "مناسب تهیه ملات و بتن.\\nدارای دانه‌بندی مناسب برای مصارف ساختمانی.\\nقابل استفاده در پروژه‌های عمرانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "sand-002",
-      "name": "شن نخودی",
-      "category": "شن و ماسه",
-      "description": "مناسب مصارف مختلف ساختمانی.\\nقابل استفاده در بتن‌سازی و محوطه‌سازی.\\nدارای دانه‌بندی ریزتر از شن بادامی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "sand-003",
-      "name": "شن بادامی",
-      "category": "شن و ماسه",
-      "description": "مناسب بتن‌سازی و پروژه‌های عمرانی.\\nدارای دانه‌بندی درشت‌تر.\\nقابل استفاده در کاربردهای ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "steel-001",
-      "name": "میلگرد آجدار",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب آرماتوربندی سازه‌های بتنی.\\nدارای آج برای درگیری بهتر با بتن.\\nدر سایزهای مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "steel-002",
-      "name": "تیرآهن",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب ساخت اسکلت فلزی ساختمان.\\nقابل استفاده در اجرای سازه‌ها.\\nدر سایزهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "steel-003",
-      "name": "نبشی",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب اتصالات و سازه‌های فلزی.\\nقابل استفاده در پروژه‌های ساختمانی.\\nدر اندازه‌ها و ضخامت‌های مختلف.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "tile-001",
-      "name": "کاشی دیواری",
-      "category": "کاشی و سرامیک",
-      "description": "مناسب پوشش دیوارهای داخلی.\\nدارای تنوع طرح و رنگ.\\nقابل استفاده در آشپزخانه و سرویس بهداشتی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "tile-002",
-      "name": "سرامیک کف",
-      "category": "کاشی و سرامیک",
-      "description": "مناسب پوشش کف فضاهای داخلی.\\nدر طرح‌ها و ابعاد مختلف موجود است.\\nانتخابی کاربردی برای ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "glue-001",
-      "name": "چسب کاشی",
-      "category": "چسب و ملات",
-      "description": "مناسب نصب کاشی و سرامیک.\\nدارای کاربرد در اجرای پوشش‌های ساختمانی.\\nطبق دستورالعمل تولیدکننده استفاده شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "glue-002",
-      "name": "چسب بتن",
-      "category": "چسب و ملات",
-      "description": "مناسب برخی اتصالات و ترمیم‌های بتنی.\\nقابل استفاده در پروژه‌های تعمیراتی.\\nانتخاب نوع مناسب به کاربرد بستگی دارد.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "pipe-001",
-      "name": "لوله PVC",
-      "category": "لوله و اتصالات",
-      "description": "مناسب برخی سیستم‌های فاضلابی.\\nدارای وزن سبک و نصب آسان.\\nدر قطرهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "pipe-002",
-      "name": "لوله پلی‌اتیلن",
-      "category": "لوله و اتصالات",
-      "description": "مناسب انتقال آب در کاربردهای مختلف.\\nدارای انعطاف‌پذیری مناسب.\\nدر فشارها و قطرهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "pipe-003",
-      "name": "لوله پنج‌لایه",
-      "category": "لوله و اتصالات",
-      "description": "مناسب تأسیسات آب سرد و گرم.\\nدارای ساختار چندلایه.\\nقابل استفاده در سیستم‌های لوله‌کشی ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "faucet-001",
-      "name": "شیر روشویی",
-      "category": "شیرآلات",
-      "description": "مناسب نصب روی روشویی سرویس بهداشتی.\\nدر مدل‌ها و طرح‌های مختلف.\\nقابل انتخاب متناسب با دکوراسیون.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "faucet-002",
-      "name": "شیر ظرفشویی",
-      "category": "شیرآلات",
-      "description": "مناسب نصب در آشپزخانه.\\nدارای مدل‌های مختلف اهرمی و کلاسیک.\\nدر طرح‌های متنوع قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "pump-001",
-      "name": "پمپ آب خانگی",
-      "category": "پمپ آب",
-      "description": "مناسب افزایش فشار آب ساختمان.\\nدر توان‌ها و مدل‌های مختلف.\\nانتخاب آن باید متناسب با نیاز ساختمان باشد.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "pump-002",
-      "name": "پمپ بشقابی",
-      "category": "پمپ آب",
-      "description": "مناسب کاربردهای انتقال آب.\\nدارای طراحی متداول در پمپ‌های خانگی.\\nدر مدل‌های مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "tank-001",
-      "name": "مخزن آب پلی‌اتیلن",
-      "category": "مخازن آب",
-      "description": "مناسب ذخیره آب ساختمان.\\nدر ظرفیت‌های متنوع قابل تهیه است.\\nقابل استفاده در فضاهای مختلف.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "tank-002",
-      "name": "منبع انبساط",
-      "category": "مخازن آب",
-      "description": "مناسب استفاده در سیستم‌های گرمایشی.\\nکمک به کنترل تغییرات حجم آب.\\nدر ظرفیت‌های مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "electric-001",
-      "name": "کلید برق",
-      "category": "تجهیزات برقی",
-      "description": "مناسب کنترل روشنایی ساختمان.\\nدر مدل‌های ساده و چندپل موجود است.\\nقابل استفاده در فضاهای مختلف.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "electric-002",
-      "name": "پریز برق",
-      "category": "تجهیزات برقی",
-      "description": "مناسب نصب در بخش‌های مختلف ساختمان.\\nدر مدل‌های متنوع عرضه می‌شود.\\nانتخاب آن باید مطابق استاندارد برق باشد.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه مصالح ساختمانی</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Tahoma, "Segoe UI", sans-serif;
+    background: #f4f5f7;
+    color: #222;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  header {
+    background: linear-gradient(135deg, #1f2937, #374151);
+    color: #fff;
+    padding: 28px 20px;
+    border-radius: 14px;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.7rem; margin-bottom: 6px; }
+  header p { color: #d1d5db; font-size: 0.95rem; }
+
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .toolbar input, .toolbar select {
+    padding: 11px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: #fff;
+  }
+  .toolbar input { flex: 1; min-width: 220px; }
+  .toolbar select { min-width: 220px; cursor: pointer; }
+  .toolbar input:focus, .toolbar select:focus {
+    outline: 2px solid #2563eb;
+    border-color: #2563eb;
+  }
+
+  .stats {
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  }
+
+  .card .badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: #111827;
+  }
+  .card p {
+    font-size: 0.85rem;
+    color: #4b5563;
+    line-height: 1.8;
+    flex: 1;
+    white-space: pre-line;
+  }
+  .card .footer {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+  .card .price {
+    font-weight: bold;
+    color: #059669;
+    font-size: 0.9rem;
+  }
+  .card .status {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .status.available { background: #ecfdf5; color: #047857; }
+  .status.unavailable { background: #fef2f2; color: #b91c1c; }
+
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    color: #9ca3af;
+    background: #fff;
+    border-radius: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>فروشگاه مصالح ساختمانی</h1>
+    <p>سیمان، آجر، آهن‌آلات، لوله، شیرآلات و …</p>
+  </header>
+
+  <div class="toolbar">
+    <input id="search" type="text" placeholder="جستجوی نام محصول…">
+    <select id="category">
+      <option value="">همه دسته‌بندی‌ها</option>
+    </select>
+  </div>
+
+  <div class="stats" id="stats"></div>
+  <div class="grid" id="grid"></div>
+
+</div>
+
+<script>
+  let products = [];
+
+  const gridEl = document.getElementById('grid');
+  const statsEl = document.getElementById('stats');
+  const searchEl = document.getElementById('search');
+  const catEl = document.getElementById('category');
+
+  // بارگذاری فایل JSON
+  fetch('products.json')
+    .then(res => {
+      if (!res.ok) throw new Error('خطا در دریافت فایل محصولات');
+      return res.json();
+    })
+    .then(data => {
+      products = data.products || [];
+      buildCategories();
+      render();
+    })
+    .catch(err => {
+      gridEl.innerHTML = `<div class="empty">خطا: ${err.message}</div>`;
+    });
+
+  // ساخت لیست دسته‌بندی‌ها
+  function buildCategories() {
+    const cats = [...new Set(products.map(p => p.category))];
+    cats.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c;
+      catEl.appendChild(opt);
+    });
+  }
+
+  // رندر کارت‌ها
+  function render() {
+    const q = searchEl.value.trim().toLowerCase();
+    const cat = catEl.value;
+
+    const filtered = products.filter(p => {
+      const matchSearch = p.name.toLowerCase().includes(q) ||
+                          p.description.toLowerCase().includes(q);
+      const matchCat = !cat || p.category === cat;
+      return matchSearch && matchCat;
+    });
+
+    statsEl.textContent = `نمایش ${filtered.length} محصول از ${products.length} محصول`;
+
+    if (!filtered.length) {
+      gridEl.innerHTML = `<div class="empty">محصولی یافت نشد.</div>`;
+      return;
     }
-  ]
-},
-{
-  "id": "cement-004",
-  "name": "سیمان تیپ ۱",
-  "category": "سیمان و مصالح سیمانی",
-  "description": "مناسب مصارف عمومی ساختمانی.\nقابل استفاده در بتن‌ریزی و ساخت‌وساز.\nدارای کاربرد گسترده در پروژه‌های عمرانی.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "cement-005",
-  "name": "سیمان پوزولانی",
-  "category": "سیمان و مصالح سیمانی",
-  "description": "مناسب برخی پروژه‌های عمرانی.\nدارای ویژگی‌های خاص در برابر شرایط محیطی.\nقابل استفاده طبق مشخصات فنی پروژه.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "brick-004",
-  "name": "بلوک لیکا",
-  "category": "آجر و بلوک",
-  "description": "مناسب دیوارچینی ساختمان.\nدارای ساختار سبک‌دانه.\nقابل استفاده در دیوارهای داخلی و خارجی.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "brick-005",
-  "name": "بلوک هبلکس",
-  "category": "آجر و بلوک",
-  "description": "دارای وزن نسبتاً سبک.\nمناسب اجرای دیوارهای ساختمانی.\nدارای قابلیت برش و اجرای آسان.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "gypsum-003",
-  "name": "گچ زیرکار",
-  "category": "گچ و پودرهای ساختمانی",
-  "description": "مناسب اجرای لایه زیرین گچ‌کاری.\nقابل استفاده برای آماده‌سازی سطوح.\nمناسب عملیات نازک‌کاری ساختمان.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "gypsum-004",
-  "name": "گچ سفیدکاری",
-  "category": "گچ و پودرهای ساختمانی",
-  "description": "مناسب پرداخت نهایی دیوارها.\nدارای سطح روشن و صاف پس از اجرا.\nقابل استفاده در فضای داخلی ساختمان.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "sand-004",
-  "name": "ماسه دوبار شور",
-  "category": "شن و ماسه",
-  "description": "مناسب تهیه ملات و بتن.\nدارای شست‌وشوی بیشتر نسبت به ماسه معمولی.\nقابل استفاده در مصارف ساختمانی.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "sand-005",
-  "name": "شن بادامی شکسته",
-  "category": "شن و ماسه",
-  "description": "مناسب بتن‌سازی و پروژه‌های عمرانی.\nدارای دانه‌های شکسته و گوشه‌دار.\nقابل استفاده طبق طرح اختلاط بتن.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "steel-004",
-  "name": "میلگرد ساده",
-  "category": "آهن‌آلات ساختمانی",
-  "description": "مناسب کاربردهای مختلف فلزی.\nقابل استفاده در ساخت قطعات و اتصالات.\nدر قطرهای مختلف عرضه می‌شود.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "steel-005",
-  "name": "قوطی پروفیل",
-  "category": "آهن‌آلات ساختمانی",
-  "description": "مناسب ساخت سازه‌های فلزی.\nقابل استفاده در چهارچوب و نرده‌سازی.\nدر ابعاد و ضخامت‌های مختلف.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "tile-003",
-  "name": "سرامیک دیواری",
-  "category": "کاشی و سرامیک",
-  "description": "مناسب پوشش دیوارهای داخلی.\nدارای تنوع طرح و رنگ.\nقابل استفاده در آشپزخانه و سرویس بهداشتی.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "tile-004",
-  "name": "سرامیک پرسلان",
-  "category": "کاشی و سرامیک",
-  "description": "دارای تراکم و مقاومت مناسب.\nمناسب پوشش کف و دیوار.\nدر ابعاد و طرح‌های مختلف موجود است.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "glue-003",
-  "name": "پودر بندکشی",
-  "category": "چسب و ملات",
-  "description": "مناسب پر کردن فاصله بین کاشی‌ها.\nکمک به زیبایی و تکمیل سطح کاشی‌کاری.\nدر رنگ‌های مختلف قابل تهیه است.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "glue-004",
-  "name": "چسب سنگ",
-  "category": "چسب و ملات",
-  "description": "مناسب نصب و اتصال برخی سنگ‌ها.\nدارای کاربرد در پروژه‌های ساختمانی.\nنوع مناسب باید طبق سطح انتخاب شود.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "pipe-004",
-  "name": "اتصالات پلی‌پروپیلن",
-  "category": "لوله و اتصالات",
-  "description": "مناسب اجرای لوله‌کشی آب.\nقابل استفاده برای اتصال لوله‌ها.\nدر سایزها و مدل‌های مختلف.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "pipe-005",
-  "name": "اتصالات PVC",
-  "category": "لوله و اتصالات",
-  "description": "مناسب سیستم‌های لوله‌کشی.\nقابل استفاده برای تغییر مسیر و اتصال لوله.\nدر مدل‌ها و اندازه‌های متنوع.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "faucet-003",
-  "name": "شیر حمام",
-  "category": "شیرآلات",
-  "description": "مناسب نصب در فضای حمام.\nدارای مدل‌های مختلف و طراحی متنوع.\nقابل انتخاب متناسب با نیاز ساختمان.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "faucet-004",
-  "name": "شیر توالت",
-  "category": "شیرآلات",
-  "description": "مناسب استفاده در سرویس بهداشتی.\nدارای مدل‌های مختلف ساختمانی.\nقابل تهیه در طرح‌های متنوع.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "pump-003",
-  "name": "پمپ کف‌کش",
-  "category": "پمپ آب",
-  "description": "مناسب تخلیه و انتقال آب.\nقابل استفاده در کاربردهای مختلف.\nانتخاب مدل وابسته به عمق و دبی موردنیاز است.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "pump-004",
-  "name": "پمپ شناور",
-  "category": "پمپ آب",
-  "description": "مناسب انتقال آب از منابع.\nدارای مدل‌های مختلف از نظر توان و ظرفیت.\nقابل انتخاب براساس شرایط نصب.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "tank-003",
-  "name": "مخزن آب عمودی",
-  "category": "مخازن آب",
-  "description": "مناسب ذخیره آب ساختمان.\nدارای طراحی عمودی برای اشغال فضای کمتر.\nدر ظرفیت‌های مختلف عرضه می‌شود.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "tank-004",
-  "name": "مخزن آب افقی",
-  "category": "مخازن آب",
-  "description": "مناسب ذخیره آب در فضاهای محدود.\nدارای طراحی افقی.\nدر ظرفیت‌های مختلف قابل تهیه است.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "plumbing-001",
-  "name": "فلوتر مکانیکی",
-  "category": "تجهیزات تأسیساتی",
-  "description": "مناسب کنترل سطح آب مخزن.\nکمک به قطع و وصل جریان ورودی آب.\nدر اندازه‌های مختلف عرضه می‌شود.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-},
-{
-  "id": "plumbing-002",
-  "name": "شیر فلکه",
-  "category": "تجهیزات تأسیساتی",
-  "description": "مناسب کنترل جریان آب.\nقابل استفاده در سیستم‌های لوله‌کشی.\nدر سایزهای مختلف موجود است.",
-  "price": null,
-  "priceLabel": "به‌زودی",
-  "image": "",
-  "available": true
-}
+
+    gridEl.innerHTML = filtered.map(p => `
+      <div class="card">
+        <span class="badge">${escapeHtml(p.category)}</span>
+        <h3>${escapeHtml(p.name)}</h3>
+        <p>${escapeHtml(p.description)}</p>
+        <div class="footer">
+          <span class="price">${escapeHtml(p.priceLabel || 'استعلام قیمت')}</span>
+          <span class="status ${p.available ? 'available' : 'unavailable'}">
+            ${p.available ? 'موجود' : 'ناموجود'}
+          </span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // جلوگیری از تزریق HTML
+  function escapeHtml(str = '') {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // رویدادها
+  searchEl.addEventListener('input', render);
+  catEl.addEventListener('change', render);
+</script>
+</body>
+</html>
