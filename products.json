@@ -3,412 +3,371 @@
     {
       "id": "cement-001",
       "name": "سیمان تیپ ۲",
-      "category": "سیمان و مصالح سیمانی",
-      "description": "مناسب برای ساخت‌وسازهای عمومی.\nدارای کاربرد گسترده در پروژه‌های ساختمانی.\nقابل استفاده در مصارف مختلف عمرانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب برای ساخت‌وسازهای عمومی و پروژه‌های ساختمانی. قابل استفاده در مصارف مختلف عمرانی.",
+      "image": "cement.png",
+      "category": "construction",
+      "keywords": "سیمان تیپ 2 عمومی ساختمان",
+      "inStock": true
     },
     {
       "id": "cement-002",
       "name": "سیمان سفید",
-      "category": "سیمان و مصالح سیمانی",
-      "description": "مناسب برای نما و کارهای تزئینی.\nدارای رنگ روشن و کاربردهای دکوراتیو.\nقابل استفاده در پروژه‌های ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب برای نما و کارهای تزئینی. دارای رنگ روشن و کاربردهای دکوراتیو.",
+      "image": "white-cement.png",
+      "category": "construction",
+      "keywords": "سیمان سفید نما تزئینی",
+      "inStock": true
     },
     {
       "id": "cement-003",
       "name": "سیمان تیپ ۵",
-      "category": "سیمان و مصالح سیمانی",
-      "description": "مناسب پروژه‌های نیازمند مقاومت سولفاتی.\nقابل استفاده در شرایط خاص محیطی.\nانتخاب مناسب براساس مشخصات فنی پروژه.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب پروژه‌های نیازمند مقاومت سولفاتی. قابل استفاده در شرایط خاص محیطی.",
+      "image": "cement.png",
+      "category": "construction",
+      "keywords": "سیمان تیپ 5 سولفاتی",
+      "inStock": true
     },
     {
       "id": "brick-001",
       "name": "آجر فشاری",
-      "category": "آجر و بلوک",
-      "description": "مناسب دیوارچینی و ساخت‌وساز.\nدارای کاربرد در پروژه‌های مختلف ساختمانی.\nقابل استفاده در بخش‌های مختلف بنا.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب دیوارچینی و ساخت‌وساز. دارای کاربرد در پروژه‌های مختلف ساختمانی.",
+      "image": "brick.png",
+      "category": "construction",
+      "keywords": "آجر فشاری دیوارچینی",
+      "inStock": true
     },
     {
       "id": "brick-002",
       "name": "آجر سفالی",
-      "category": "آجر و بلوک",
-      "description": "مناسب اجرای دیوارهای داخلی و خارجی.\nدارای وزن نسبتاً مناسب برای دیوارچینی.\nدر اندازه‌های مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب اجرای دیوارهای داخلی و خارجی. دارای وزن نسبتاً مناسب برای دیوارچینی.",
+      "image": "brick.png",
+      "category": "construction",
+      "keywords": "آجر سفالی دیوار",
+      "inStock": true
     },
     {
       "id": "brick-003",
       "name": "بلوک سیمانی",
-      "category": "آجر و بلوک",
-      "description": "مناسب دیوارچینی ساختمان.\nقابل استفاده در پروژه‌های عمرانی.\nدر ابعاد مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب دیوارچینی ساختمان. قابل استفاده در پروژه‌های عمرانی.",
+      "image": "block.png",
+      "category": "construction",
+      "keywords": "بلوک سیمانی دیوار",
+      "inStock": true
     },
     {
       "id": "brick-004",
       "name": "بلوک لیکا",
-      "category": "آجر و بلوک",
-      "description": "مناسب دیوارچینی ساختمان.\nدارای ساختار سبک‌دانه.\nقابل استفاده در دیوارهای داخلی و خارجی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب دیوارچینی ساختمان. دارای ساختار سبک‌دانه و عایق مناسب.",
+      "image": "block.png",
+      "category": "construction",
+      "keywords": "بلوک لیکا سبک",
+      "inStock": true
     },
     {
       "id": "brick-005",
       "name": "بلوک هبلکس",
-      "category": "آجر و بلوک",
-      "description": "دارای وزن نسبتاً سبک.\nمناسب اجرای دیوارهای ساختمانی.\nدارای قابلیت برش و اجرای آسان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "دارای وزن نسبتاً سبک. مناسب اجرای دیوارهای ساختمانی.",
+      "image": "block.png",
+      "category": "construction",
+      "keywords": "بلوک هبلکس سبک",
+      "inStock": true
     },
     {
       "id": "gypsum-001",
       "name": "گچ ساختمانی",
-      "category": "گچ و پودرهای ساختمانی",
-      "description": "مناسب سفیدکاری و پرداخت دیوارها.\nدارای کاربرد گسترده در نازک‌کاری.\nمناسب استفاده در ساختمان‌سازی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب سفیدکاری و پرداخت دیوارها. دارای کاربرد گسترده در نازک‌کاری.",
+      "image": "gypsum.png",
+      "category": "construction",
+      "keywords": "گچ ساختمانی سفیدکاری",
+      "inStock": true
     },
     {
       "id": "gypsum-002",
       "name": "پودر سنگ",
-      "category": "گچ و پودرهای ساختمانی",
-      "description": "مناسب ترکیبات ملات ساختمانی.\nقابل استفاده در بندکشی و کارهای عمرانی.\nدارای کاربردهای متنوع ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب ترکیبات ملات ساختمانی. قابل استفاده در بندکشی و کارهای عمرانی.",
+      "image": "powder.png",
+      "category": "construction",
+      "keywords": "پودر سنگ ملات",
+      "inStock": true
     },
     {
       "id": "gypsum-003",
       "name": "گچ زیرکار",
-      "category": "گچ و پودرهای ساختمانی",
-      "description": "مناسب اجرای لایه زیرین گچ‌کاری.\nقابل استفاده برای آماده‌سازی سطوح.\nمناسب عملیات نازک‌کاری ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب اجرای لایه زیرین گچ‌کاری. قابل استفاده برای آماده‌سازی سطوح.",
+      "image": "gypsum.png",
+      "category": "construction",
+      "keywords": "گچ زیرکار",
+      "inStock": true
     },
     {
       "id": "gypsum-004",
       "name": "گچ سفیدکاری",
-      "category": "گچ و پودرهای ساختمانی",
-      "description": "مناسب پرداخت نهایی دیوارها.\nدارای سطح روشن و صاف پس از اجرا.\nقابل استفاده در فضای داخلی ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب پرداخت نهایی دیوارها. دارای سطح روشن و صاف پس از اجرا.",
+      "image": "gypsum.png",
+      "category": "construction",
+      "keywords": "گچ سفیدکاری نهایی",
+      "inStock": true
     },
     {
       "id": "sand-001",
       "name": "ماسه شسته",
-      "category": "شن و ماسه",
-      "description": "مناسب تهیه ملات و بتن.\nدارای دانه‌بندی مناسب برای مصارف ساختمانی.\nقابل استفاده در پروژه‌های عمرانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب تهیه ملات و بتن. دارای دانه‌بندی مناسب برای مصارف ساختمانی.",
+      "image": "sand.png",
+      "category": "construction",
+      "keywords": "ماسه شسته بتن ملات",
+      "inStock": true
     },
     {
       "id": "sand-002",
       "name": "شن نخودی",
-      "category": "شن و ماسه",
-      "description": "مناسب مصارف مختلف ساختمانی.\nقابل استفاده در بتن‌سازی و محوطه‌سازی.\nدارای دانه‌بندی ریزتر از شن بادامی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب مصارف مختلف ساختمانی. قابل استفاده در بتن‌سازی و محوطه‌سازی.",
+      "image": "gravel.png",
+      "category": "construction",
+      "keywords": "شن نخودی بتن",
+      "inStock": true
     },
     {
       "id": "sand-003",
       "name": "شن بادامی",
-      "category": "شن و ماسه",
-      "description": "مناسب بتن‌سازی و پروژه‌های عمرانی.\nدارای دانه‌بندی درشت‌تر.\nقابل استفاده در کاربردهای ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب بتن‌سازی و پروژه‌های عمرانی. دارای دانه‌بندی درشت‌تر.",
+      "image": "gravel.png",
+      "category": "construction",
+      "keywords": "شن بادامی بتن",
+      "inStock": true
     },
     {
       "id": "sand-004",
       "name": "ماسه دوبار شور",
-      "category": "شن و ماسه",
-      "description": "مناسب تهیه ملات و بتن.\nدارای شست‌وشوی بیشتر نسبت به ماسه معمولی.\nقابل استفاده در مصارف ساختمانی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب تهیه ملات و بتن. دارای شست‌وشوی بیشتر نسبت به ماسه معمولی.",
+      "image": "sand.png",
+      "category": "construction",
+      "keywords": "ماسه دوبار شور",
+      "inStock": true
     },
     {
       "id": "sand-005",
       "name": "شن بادامی شکسته",
-      "category": "شن و ماسه",
-      "description": "مناسب بتن‌سازی و پروژه‌های عمرانی.\nدارای دانه‌های شکسته و گوشه‌دار.\nقابل استفاده طبق طرح اختلاط بتن.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب بتن‌سازی و پروژه‌های عمرانی. دارای دانه‌های شکسته و گوشه‌دار.",
+      "image": "gravel.png",
+      "category": "construction",
+      "keywords": "شن بادامی شکسته",
+      "inStock": true
     },
     {
       "id": "steel-001",
       "name": "میلگرد آجدار",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب آرماتوربندی سازه‌های بتنی.\nدارای آج برای درگیری بهتر با بتن.\nدر سایزهای مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب آرماتوربندی سازه‌های بتنی. دارای آج برای درگیری بهتر با بتن.",
+      "image": "rebar.png",
+      "category": "construction",
+      "keywords": "میلگرد آجدار آرماتور",
+      "inStock": true
     },
     {
       "id": "steel-002",
       "name": "تیرآهن",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب ساخت اسکلت فلزی ساختمان.\nقابل استفاده در اجرای سازه‌ها.\nدر سایزهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب ساخت اسکلت فلزی ساختمان. در سایزهای مختلف عرضه می‌شود.",
+      "image": "beam.png",
+      "category": "construction",
+      "keywords": "تیرآهن اسکلت فلزی",
+      "inStock": true
     },
     {
       "id": "steel-003",
       "name": "نبشی",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب اتصالات و سازه‌های فلزی.\nقابل استفاده در پروژه‌های ساختمانی.\nدر اندازه‌ها و ضخامت‌های مختلف.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب اتصالات و سازه‌های فلزی. در اندازه‌ها و ضخامت‌های مختلف.",
+      "image": "angle.png",
+      "category": "construction",
+      "keywords": "نبشی فلزی اتصالات",
+      "inStock": true
     },
     {
       "id": "steel-004",
       "name": "میلگرد ساده",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب کاربردهای مختلف فلزی.\nقابل استفاده در ساخت قطعات و اتصالات.\nدر قطرهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب کاربردهای مختلف فلزی. قابل استفاده در ساخت قطعات و اتصالات.",
+      "image": "rebar.png",
+      "category": "construction",
+      "keywords": "میلگرد ساده",
+      "inStock": true
     },
     {
       "id": "steel-005",
       "name": "قوطی پروفیل",
-      "category": "آهن‌آلات ساختمانی",
-      "description": "مناسب ساخت سازه‌های فلزی.\nقابل استفاده در چهارچوب و نرده‌سازی.\nدر ابعاد و ضخامت‌های مختلف.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب ساخت سازه‌های فلزی. قابل استفاده در چهارچوب و نرده‌سازی.",
+      "image": "profile.png",
+      "category": "construction",
+      "keywords": "قوطی پروفیل نرده",
+      "inStock": true
     },
     {
       "id": "tile-001",
       "name": "کاشی دیواری",
-      "category": "کاشی و سرامیک",
-      "description": "مناسب پوشش دیوارهای داخلی.\nدارای تنوع طرح و رنگ.\nقابل استفاده در آشپزخانه و سرویس بهداشتی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب پوشش دیوارهای داخلی. دارای تنوع طرح و رنگ.",
+      "image": "tile.png",
+      "category": "construction",
+      "keywords": "کاشی دیواری آشپزخانه",
+      "inStock": true
     },
     {
       "id": "tile-002",
       "name": "سرامیک کف",
-      "category": "کاشی و سرامیک",
-      "description": "مناسب پوشش کف فضاهای داخلی.\nدر طرح‌ها و ابعاد مختلف موجود است.\nانتخابی کاربردی برای ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب پوشش کف فضاهای داخلی. در طرح‌ها و ابعاد مختلف موجود است.",
+      "image": "ceramic.png",
+      "category": "construction",
+      "keywords": "سرامیک کف",
+      "inStock": true
     },
     {
       "id": "tile-003",
       "name": "سرامیک دیواری",
-      "category": "کاشی و سرامیک",
-      "description": "مناسب پوشش دیوارهای داخلی.\nدارای تنوع طرح و رنگ.\nقابل استفاده در آشپزخانه و سرویس بهداشتی.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب پوشش دیوارهای داخلی. دارای تنوع طرح و رنگ.",
+      "image": "ceramic.png",
+      "category": "construction",
+      "keywords": "سرامیک دیواری",
+      "inStock": true
     },
     {
       "id": "tile-004",
       "name": "سرامیک پرسلان",
-      "category": "کاشی و سرامیک",
-      "description": "دارای تراکم و مقاومت مناسب.\nمناسب پوشش کف و دیوار.\nدر ابعاد و طرح‌های مختلف موجود است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "دارای تراکم و مقاومت مناسب. مناسب پوشش کف و دیوار.",
+      "image": "porcelain.png",
+      "category": "construction",
+      "keywords": "سرامیک پرسلان",
+      "inStock": true
     },
     {
       "id": "glue-001",
       "name": "چسب کاشی",
-      "category": "چسب و ملات",
-      "description": "مناسب نصب کاشی و سرامیک.\nدارای کاربرد در اجرای پوشش‌های ساختمانی.\nطبق دستورالعمل تولیدکننده استفاده شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب نصب کاشی و سرامیک. دارای کاربرد در اجرای پوشش‌های ساختمانی.",
+      "image": "glue.png",
+      "category": "construction",
+      "keywords": "چسب کاشی سرامیک",
+      "inStock": true
     },
     {
       "id": "glue-002",
       "name": "چسب بتن",
-      "category": "چسب و ملات",
-      "description": "مناسب برخی اتصالات و ترمیم‌های بتنی.\nقابل استفاده در پروژه‌های تعمیراتی.\nانتخاب نوع مناسب به کاربرد بستگی دارد.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب برخی اتصالات و ترمیم‌های بتنی. قابل استفاده در پروژه‌های تعمیراتی.",
+      "image": "glue.png",
+      "category": "construction",
+      "keywords": "چسب بتن ترمیم",
+      "inStock": true
     },
     {
       "id": "glue-003",
       "name": "پودر بندکشی",
-      "category": "چسب و ملات",
-      "description": "مناسب پر کردن فاصله بین کاشی‌ها.\nکمک به زیبایی و تکمیل سطح کاشی‌کاری.\nدر رنگ‌های مختلف قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب پر کردن فاصله بین کاشی‌ها. در رنگ‌های مختلف قابل تهیه است.",
+      "image": "powder.png",
+      "category": "construction",
+      "keywords": "پودر بندکشی کاشی",
+      "inStock": true
     },
     {
       "id": "glue-004",
       "name": "چسب سنگ",
-      "category": "چسب و ملات",
-      "description": "مناسب نصب و اتصال برخی سنگ‌ها.\nدارای کاربرد در پروژه‌های ساختمانی.\nنوع مناسب باید طبق سطح انتخاب شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب نصب و اتصال برخی سنگ‌ها. دارای کاربرد در پروژه‌های ساختمانی.",
+      "image": "glue.png",
+      "category": "construction",
+      "keywords": "چسب سنگ نصب",
+      "inStock": true
     },
     {
       "id": "pipe-001",
       "name": "لوله PVC",
-      "category": "لوله و اتصالات",
-      "description": "مناسب برخی سیستم‌های فاضلابی.\nدارای وزن سبک و نصب آسان.\nدر قطرهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب برخی سیستم‌های فاضلابی. دارای وزن سبک و نصب آسان.",
+      "image": "pipe-pvc.png",
+      "category": "facilities",
+      "keywords": "لوله pvc فاضلاب",
+      "inStock": true
     },
     {
       "id": "pipe-002",
       "name": "لوله پلی‌اتیلن",
-      "category": "لوله و اتصالات",
-      "description": "مناسب انتقال آب در کاربردهای مختلف.\nدارای انعطاف‌پذیری مناسب.\nدر فشارها و قطرهای مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب انتقال آب در کاربردهای مختلف. دارای انعطاف‌پذیری مناسب.",
+      "image": "pipe-pe.png",
+      "category": "facilities",
+      "keywords": "لوله پلی اتیلن آب",
+      "inStock": true
     },
     {
       "id": "pipe-003",
       "name": "لوله پنج‌لایه",
-      "category": "لوله و اتصالات",
-      "description": "مناسب تأسیسات آب سرد و گرم.\nدارای ساختار چندلایه.\nقابل استفاده در سیستم‌های لوله‌کشی ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب تأسیسات آب سرد و گرم. دارای ساختار چندلایه.",
+      "image": "pipe-5layer.png",
+      "category": "facilities",
+      "keywords": "لوله پنج لایه آب گرم",
+      "inStock": true
     },
     {
       "id": "pipe-004",
       "name": "اتصالات پلی‌پروپیلن",
-      "category": "لوله و اتصالات",
-      "description": "مناسب اجرای لوله‌کشی آب.\nقابل استفاده برای اتصال لوله‌ها.\nدر سایزها و مدل‌های مختلف.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب اجرای لوله‌کشی آب. در سایزها و مدل‌های مختلف.",
+      "image": "fitting-pp.png",
+      "category": "facilities",
+      "keywords": "اتصالات پلی پروپیلن",
+      "inStock": true
     },
     {
       "id": "pipe-005",
       "name": "اتصالات PVC",
-      "category": "لوله و اتصالات",
-      "description": "مناسب سیستم‌های لوله‌کشی.\nقابل استفاده برای تغییر مسیر و اتصال لوله.\nدر مدل‌ها و اندازه‌های متنوع.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب سیستم‌های لوله‌کشی. در مدل‌ها و اندازه‌های متنوع.",
+      "image": "fitting-pvc.png",
+      "category": "facilities",
+      "keywords": "اتصالات pvc",
+      "inStock": true
     },
     {
       "id": "faucet-001",
       "name": "شیر روشویی",
-      "category": "شیرآلات",
-      "description": "مناسب نصب روی روشویی سرویس بهداشتی.\nدر مدل‌ها و طرح‌های مختلف.\nقابل انتخاب متناسب با دکوراسیون.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب نصب روی روشویی سرویس بهداشتی. در مدل‌ها و طرح‌های مختلف.",
+      "image": "faucet.png",
+      "category": "facilities",
+      "keywords": "شیر روشویی",
+      "inStock": true
     },
     {
       "id": "faucet-002",
       "name": "شیر ظرفشویی",
-      "category": "شیرآلات",
-      "description": "مناسب نصب در آشپزخانه.\nدارای مدل‌های مختلف اهرمی و کلاسیک.\nدر طرح‌های متنوع قابل تهیه است.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب نصب در آشپزخانه. دارای مدل‌های مختلف اهرمی و کلاسیک.",
+      "image": "faucet.png",
+      "category": "facilities",
+      "keywords": "شیر ظرفشویی آشپزخانه",
+      "inStock": true
     },
     {
       "id": "faucet-003",
       "name": "شیر حمام",
-      "category": "شیرآلات",
-      "description": "مناسب نصب در فضای حمام.\nدارای مدل‌های مختلف و طراحی متنوع.\nقابل انتخاب متناسب با نیاز ساختمان.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب نصب در فضای حمام. دارای مدل‌های مختلف و طراحی متنوع.",
+      "image": "faucet.png",
+      "category": "facilities",
+      "keywords": "شیر حمام",
+      "inStock": true
     },
     {
       "id": "faucet-004",
       "name": "شیر توالت",
-      "category": "شیرآلات",
-      "description": "مناسب استفاده در سرویس بهداشتی.\nدارای مدل‌های مختلف ساختمانی.\nقابل تهیه در طرح‌های متنوع.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب استفاده در سرویس بهداشتی. قابل تهیه در طرح‌های متنوع.",
+      "image": "faucet.png",
+      "category": "facilities",
+      "keywords": "شیر توالت",
+      "inStock": true
     },
     {
       "id": "pump-001",
       "name": "پمپ آب خانگی",
-      "category": "پمپ آب",
-      "description": "مناسب افزایش فشار آب ساختمان.\nدر توان‌ها و مدل‌های مختلف.\nانتخاب آن باید متناسب با نیاز ساختمان باشد.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب افزایش فشار آب ساختمان. در توان‌ها و مدل‌های مختلف.",
+      "image": "pump.png",
+      "category": "facilities",
+      "keywords": "پمپ آب خانگی",
+      "inStock": true
     },
     {
       "id": "pump-002",
       "name": "پمپ بشقابی",
-      "category": "پمپ آب",
-      "description": "مناسب کاربردهای انتقال آب.\nدارای طراحی متداول در پمپ‌های خانگی.\nدر مدل‌های مختلف عرضه می‌شود.",
-      "price": null,
-      "priceLabel": "به‌زودی",
-      "image": "",
-      "available": true
+      "desc": "مناسب کاربردهای انتقال آب. در مدل‌های مختلف عرضه می‌شود.",
+      "image": "pump.png",
+      "category": "facilities",
+      "keywords": "پمپ بشقابی",
+      "inStock": true
     }
   ]
 }
