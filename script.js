@@ -1,7 +1,6 @@
 // ================== اتصال به Supabase ==================
 const SUPABASE_URL = 'https://gqsdfhwrjudnlpwicllm.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_U2Y8o_oo51UHNf-jNFyrsw_f22l1t1U';
-
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ================== اسپلش اسکرین ==================
@@ -35,17 +34,15 @@ const productsData = [
 
 let cart = [];
 let favorites = JSON.parse(localStorage.getItem('kargar_favorites_v2') || '[]');
-let currentUser = JSON.parse(localStorage.getItem('kargar_user')) || null;
 
 // ================== اسلایدر ==================
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 function showSlide(index) { if(slides.length) slides.forEach((s, i) => s.classList.toggle('active', i === index)); }
 function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
-function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
 if(slides.length) setInterval(nextSlide, 4000);
 
-// ================== اینستاگرام ==================
+// ================== دکمه‌های شناور ==================
 function toggleInstaMenu(event) {
     if(event) event.stopPropagation();
     const popup = document.getElementById('instaPopup');
@@ -60,11 +57,8 @@ document.addEventListener('click', function(e) {
 
 // ================== علاقه‌مندی‌ها ==================
 function toggleFav(id) {
-    if(favorites.includes(id)) {
-        favorites = favorites.filter(x => x !== id);
-    } else {
-        favorites.push(id);
-    }
+    if(favorites.includes(id)) favorites = favorites.filter(x => x !== id);
+    else favorites.push(id);
     localStorage.setItem('kargar_favorites_v2', JSON.stringify(favorites));
     renderProducts();
 }
@@ -89,10 +83,12 @@ function renderProducts() {
         html += `<div class="category-title">${cat}</div><div class="products-grid">`;
         productsData.filter(p => p.cat === cat).forEach(p => {
             const isFav = favorites.includes(p.id);
+            // استفاده از ایموجی برای لود آنی
+            const heartIcon = isFav ? '❤️' : '🤍';
             html += `
                 <div class="product-card" data-name="${p.name} ${p.desc}">
                     <button class="wishlist-btn ${isFav?'active':''}" onclick="toggleFav('${p.id}')">
-                        <i class="${isFav?'fas':'far'} fa-heart"></i>
+                        ${heartIcon}
                     </button>
                     <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150/2d3139/9ca3af?text=No+Image'">
                     <h3>${p.name}</h3>
